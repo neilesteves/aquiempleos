@@ -1,0 +1,88 @@
+<div id="main" class="all">
+    <div class="innerAll">
+        <div class="bgAll gridS20">
+            <?=
+            $this->partial('_partials/_navigation.phtml',
+                array('isAuth' => $this->isAuth, 'auth' => $this->auth, "flashMessages" => $this->flashMessages))
+            ?>
+            <div id="innerMain" class="grid20">
+
+                <div id="cntLoginAdmin" class="bLB3 r5 shadow login-modal">  
+                    <div id="loginAdminM" class="wrap-login">
+                        <h2 class="alignC">Módulo de Administración</h2>
+                        <form id="fLoginWMH" action="<?= $this->baseUrl('/auth/login') ?>" method="post" class="frm-login frm-horizontal">
+                            <input type="radio" name="userPEI" value="admin" class="hide" checked="checked">
+                            <div class="control-group">
+                                <label for="txtMail" class="control-label">E-mail</label>
+                                <div class="controls">
+                                    <?=
+                                    $this->loginForm->userEmail->setAttribs(array(
+                                        'id' => 'wmMail',
+                                        'class' => 'input-xxmiddle', 'autocomplete' => 'off'))->renderViewHelper()
+                                    ?>
+                                    <div class="hide respW">&nbsp;</div>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label for="txtClave" class="control-label">Clave</label>
+                                <div class="controls">
+                                    <?=
+                                    $this->loginForm->userPass->setAttribs(array(
+                                        'id' => 'wmPass',
+                                        'class' => 'input-xxmiddle','autocomplete'=>'off'))->renderViewHelper()
+                                    ?>
+                                    <div class="hide respW">&nbsp;</div>
+
+                                    <p>
+                                        <label class="ioption">
+                                            <?=
+                                            $this->loginForm->save->setAttribs(array(
+                                                'id' => 'saveKeyWM', 'class' => 'mR5 noBdr'))->renderViewHelper()
+                                            ?>
+                                            No cerrar sesión
+                                        </label>
+                                    </p>                        
+                                    <p><a href="javascript:;" id="forgotPass">¿Olvidaste tu clave?</a></p>
+                                    <p><?=$this->loginForm->Ingresar->setAttribs(array('id' => 'btnSignIn', 'class' => 'btn btn-primary btnLoginEPA','value' => 'Ingresar'))->renderViewHelper()?>
+                                        <span id="divRespLogin" class="response"></span>
+                                    </p>
+                                </div>
+                            </div>
+                            <?= $this->loginForm->auth_token->renderViewHelper() ?>
+                            <?= $this->loginForm->return; ?>
+                        </form>
+                    </div>
+
+
+                    <div id="cntForgotP" class="row hide" >
+                        <h2 class="text-mediumx center">Recupera tu clave</h2>
+                        <p class="c3">
+                            Ingresa tu  dirección de e-mail y te enviaremos tu nueva contraseña de verificación. Una vez que hayas recibido la contraseña, podrá elegir una nueva para su cuenta.
+                        </p>
+                        <form method="post" action="<?= $this->baseUrl('/auth/recuperar-clave') ?>" id="frmForgotPass" <?=
+                        (APPLICATION_ENV != 'development') ? 'autocomplete="off"'
+                                : ''
+                        ?> >
+                            <div class="cgroup-inline">
+                                <div class="control-label">Email:</div>
+                                <div class="control-group">
+                                    <?= $this->recuperarClaveForm->recuperar_token->renderViewHelper() ?>
+                                    <?= $this->recuperarClaveForm->email->setAttribs(array('id' => 'textForgotP', 'class' => 'input-xxmiddle'))->renderViewHelper() ?>
+                                </div>
+                                <div class="control-group last">
+                                    <?=$this->recuperarClaveForm->Enviar->setAttribs(array('id' => 'sendForgotP', 'class' => 'btn btn-primary input-xmini', 'value' => 'Cambiar Contraseña'))->renderViewHelper()?>
+                                </div>
+                            </div>
+                            <div class="load-wrap fix hide"></div>
+                        </form>
+                        <div class="response bad"></div>
+                    </div>
+
+
+
+                </div>  
+
+            </div>
+        </div>
+    </div>
+</div>

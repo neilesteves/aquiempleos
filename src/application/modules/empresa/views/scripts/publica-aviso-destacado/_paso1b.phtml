@@ -1,0 +1,155 @@
+<div id="iSection2EM" class="sectionEM">
+	 <?php $i = 1; ?>
+	 <?php
+	 foreach ($this->arrayClasificado as $row) {
+		  ?>
+		  <?php $i = $i + 1 ?>
+		  <div id="iBlock<?= $i ?>S2M" class="cntTopTitP2 formatAdv formatAdv<?=
+		  $i - 1
+		  ?> left">
+				<div class="topTitP2 topTitP2AP topTitP2S<?= $i - 1 ?>" <?=
+				$i == 1 ? 'id="freeAdv"' : ''
+				?> >
+					 <h3 class="titAdvTopP2">Económico</h3>
+					 <!--
+					 <h3 class="titAdvMidP2"><? //= $row['0']['descripcion']=='Sólo Web'? 'PUBLICACIÓN WEB':'IMPRESO '.mb_strtoupper($row['0']['descripcion'])        ?></h3>
+					 -->
+					 <h3 class="titAdvMidP2"><?=
+						  $row['0']['descripcion'] == 'Sólo Web' ? '' : '' . mb_strtoupper($row['0']['descripcion'])
+						  ?></h3>
+					 <div class="desdeAP">Desde</div>
+					 <div class="priceP2 priceDef">
+						  $<?=
+						  $i == 1 ? '20' : number_format(substr($row['0']['valor'], 0,
+										  -3))
+						  ?>
+					 </div>
+				</div>
+				<div class="topbodyP2 row<?= $row['0']['id'] ?>EM">
+					 <div class="cntBodyP2">
+						  <?php //$valor2 = explode(',', $row['1']['valor'])  ?>
+						  <!--
+								<div class="textEM4"><? //= $valor2['0']         ?> días </div>
+								<div class="textEM5 c3 mB20 bold">de publicación web</div>
+						  <?php //if ($i != 1) {  ?>
+						  <?php //$valor2 = explode(',', $row['1']['valor'])  ?>
+		  <div class="textEM4"> <span id="<? //= $i        ?>WordsEM"><? //= $valor2['1']         ?> palabras</span> </div>
+		  <div class="textEM5 c3 mB20 bold"> en el aviso impreso </div>
+		  <div class="textEM5">Aviso <span class="bold"> Publicado</span> en </div>
+		  <div class="textEM4 c3 bold"> AquiEmpleos o El Talán </div>
+						  <?php //}   ?>
+								<div class="textCntE">
+										  <div <? //= $i==1? 'id="clickAFC"':''         ?> class="textEM1 c3">
+													 PUBLICACIÓN WEB
+										  </div>
+										  <div class="textEM2 c3">
+													 en aquiempleos.com
+										  </div>
+								</div>
+								<div class="textEM3 c3 bold">
+										  Utilización de Filtros
+								</div>
+						  -->
+						  <?php
+						  $valor2
+								= explode(',', $row['1']['valor'])
+						  ?>
+						  <ul>
+								<li class="liArrowIW liLineHL">
+									 <span class="br liTxtSmall">Usuario y cuenta</span>
+									 <span class="br liTxtSmallL">en aquiempleos.com</span>
+								</li>
+								<li class="liArrowIW liLineHL">
+									 <span class="br liTxtSmall">Utilización de Filtros</span>
+									 <span class="br liTxtSmallL">de CVs</span>
+								</li>
+								<li class="liArrowIW liLineHL">
+									 <span class="br liTxtSmall">4 Semanas</span>
+									 <span class="br liTxtSmallL">de publicación Web</span>
+								</li>
+								<li class="liArrowIW liLineHL">
+									 <span class="br liTxtSmall">Ubicación Preferencial</span>
+									 <span class="br liTxtSmallL">del aviso web sobre los Avisos Solo Web (2 días)</span>
+								</li>
+								<?php
+								if ($i != 1) {
+									 ?>
+									 <?php
+									 $valor2 = explode(',', $row['1']['valor'])
+									 ?>
+									 <li class="liArrowIW liLineHL">
+										  <span class="br liTxtSmall">Compra de <?= $valor2['1'] ?> palabras en el aviso impreso </span>
+										  <span class="br liTxtSmallL">en el suplemento AquiEmpleos del Diario La Prensa y/o en El Talan del Diario El Trome desde la web de AquiEmpleos</span>
+									 </li>
+								<?php } ?>
+						  </ul>
+					 </div>
+					 <?php
+					 if ($i == 1) {
+						  ?>
+						  <div class="all alignC"><a class="winModal viewShowEjm" rel="web.jpg" href="#ejmsAviso">Ver ejemplo</a></div>
+						  <?php
+					 } elseif ($i == 2) {
+						  ?>
+						  <div class="all alignC"><a class="winModal viewShowEjm" rel="ejemplo-impreso-economico.jpg" href="#ejmsAviso">Ver ejemplo</a></div>
+						  <?php
+					 } elseif ($i == 3) {
+						  ?>
+						  <div class="all alignC"><a class="winModal viewShowEjm" rel="ejemplo-impreso-oro.jpg" href="#ejmsAviso">Ver ejemplo</a></div>
+						  <?php
+					 } elseif ($i == 4) {
+						  ?>
+						  <div class="all alignC"><a class="winModal viewShowEjm" rel="ejemplo-impreso-platinium.jpg" href="#ejmsAviso">Ver ejemplo</a></div>
+					 <?php } ?>
+						  <br>
+					 <div class="wrap-btn center">
+						  <!-- flag -->
+						  <?php
+						  $precio
+								= explode(',', $row['2']['valor'])
+						  ?>
+						  <?php
+						  $id
+								= explode(',', $row['2']['id'])
+						  ?>
+						  <?php if ($i == 1) {
+								?>
+								<?php
+								if ($this->layout()->auth != null && array_key_exists('empresa',
+										  $this->layout()->auth)):
+									 ?>
+									 <form action="" id="fStep1hb" method="post" >
+										  <input type="hidden" name="id_tarifa" value="1" />
+										  <input type="submit" id="segOptP1" value="Continuar >" class="btn btn-primary logoutPrimP1 continNoP2 btnSptEmp iBtn1S2M"/>
+									 </form>
+								<?php else: ?>
+									 <a rel="{id:'<?= $id['0'] ?>'}" id="primOptP1" href="#loginP" class="btn btn-primary login_modal loginPrimP1 continNoP2 iBtn<?= $i ?>S2M" title="">
+										  Continuar >
+									 </a>
+								<?php endif; ?>
+								<?php
+						  } elseif ($i == 2) {
+								?>
+								<a rel="{id1:'<?= $id['0'] ?>',id2:'<?= $id['1'] ?>',id3:'<?= $id['2'] ?>',words:'<?= $valor2['1'] ?> palabras',precio1:'<?= number_format($precio['0']) ?>',precio2:'<?= number_format($precio['1']) ?>',precio3:'<?= number_format($precio['2']) ?>'}" href="#2" class="btn btn-primary continP2 btnSptEmp iBtn<?= $i ?>S2M">
+									 Continuar >
+								</a>
+								<?php
+						  } elseif ($i == 3) {
+								?>
+								<a rel="{id1:'<?= $id['0'] ?>',id2:'<?= $id['1'] ?>',id3:'<?= $id['2'] ?>',words:'<?= $valor2['1'] ?> palabras',precio1:'<?= number_format($precio['0']) ?>',precio2:'<?= number_format($precio['1']) ?>',precio3:'<?= number_format($precio['2']) ?>'}" href="#3" class="btn btn-primary continP2 btnSptEmp iBtn<?= $i ?>S2M">
+									 Continuar >
+								</a>
+								<?php
+						  } elseif ($i == 4) {
+								?>
+								<a rel="{id1:'<?= $id['0'] ?>',id2:'<?= $id['1'] ?>',id3:'<?= $id['2'] ?>',words:'<?= $valor2['1'] ?> palabras',precio1:'<?= number_format($precio['0']) ?>',precio2:'<?= number_format($precio['1']) ?>',precio3:'<?= number_format($precio['2']) ?>'}" href="#4" class="btn btn-primary continP2 btnSptEmp iBtn<?= $i ?>S2M">
+									 Continuar >
+								</a>
+						  <?php } ?>
+						  <br>
+					 </div>
+						  <br>
+				</div>
+		  </div>
+	 <?php } ?>
+</div>

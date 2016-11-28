@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>
+<html lang="es" xmlns:fb="http://ogp.me/ns/fb#" class="lt-ie6"></html><![endif]--><!--[if IE 7]>
+<html lang="es" xmlns:fb="http://ogp.me/ns/fb#" class="lt-ie7"></html><![endif]--><!--[if IE 8]>
+<html lang="es" xmlns:fb="http://ogp.me/ns/fb#" class="lt-ie8"></html><![endif]--><!--[if IE 9]>
+<html lang="es" xmlns:fb="http://ogp.me/ns/fb#" class="lt-ie9"></html><![endif]-->
+<!-- [if (gt IE 9)|!(IE)] <!-->
+<html lang="es" xmlns:fb="http://ogp.me/ns/fb#">
+  <!-- <![endif]-->
+    <head>
+        <?= $this->headMeta() ?>
+        <?= $this->headTitle() ?>
+        <!--[if lte IE 9]> 
+        <script type="text/javascript" src="<?=$this->S('/js/libs/html5shiv.js')?>"></script>
+        <script type="text/javascript" src="<?=$this->S('/js/libs/selectivizr.js')?>"></script>
+        <![endif]-->
+        <?= $this->headLink() ?>
+        <?= isset($this->layout()->SEOCanonical)?$this->layout()->SEOCanonical:'' ?>
+        <?= isset($this->layout()->SEONext)?$this->layout()->SEONext:'' ?>
+        <?= isset($this->layout()->SEOPrev)?$this->layout()->SEOPrev:'' ?>
+        <?= $this->headScript() ?>
+        <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+        <meta http-equiv="Content-Language" content="es" />
+        <meta name="Author" content="EMPLEOBUSCO.com" />
+        <meta name="geo.placename" content="Peru" />
+        <?php // = $this->GoogleAnalytics(); ?>
+        
+    </head>
+    <body <?= $this->attribs($this->layout()->bodyAttr) ?><?=defined('CSRF_HASH') ? ' data-hash="' . CSRF_HASH . '"' : ''?>>
+        
+        <?= $this->DaxTag(MODULE, CONTROLLER, ACTION, $this->layout()->params);?>
+        <?= $this->render('_band-top.phtml') ?>
+
+        <?=
+        /* Header Page */
+        $this->partial('_header.phtml',
+            array(
+            'auth' => $this->layout()->auth,
+            'menu_sel' => $this->layout()->menu_sel,
+            'modulo' => $this->layout()->modulo
+            )
+        )
+        ?>
+        <?= $this->layout()->content ?>
+        <?= $this->render('_footer.phtml') ?>
+        <?=
+        $this->partial('_boxes.phtml',
+            array('loginForm' => $this->layout()->loginForm, 'recuperarClaveForm' => $this->layout()->recuperarClaveForm,
+            'modulo' => $this->layout()->modulo, 'registrorapido' => $this->layout()->registrorapido));
+        ?>
+
+        <script language="JavaScript1.3" src="http://b.scorecardresearch.com/c2/6906602/ct.js"></script>
+        <!-- cXense script begin -->
+        <div id="cX-root" style="display:none"></div>
+        <script type="text/javascript">
+            var cX = cX || {};
+            cX.callQueue = cX.callQueue || [];
+            cX.callQueue.push(['setAccountId', '9222268904439147011']);
+            cX.callQueue.push(['setSiteId', '9222268904439147019']);
+            cX.callQueue.push(['sendPageViewEvent']);
+        </script>
+        <script type="text/javascript">
+            (function() {
+                try {
+                    var scriptEl = document.createElement('script');
+                    scriptEl.type = 'text/javascript';
+                    scriptEl.async = 'async';
+                    scriptEl.src = ('https:' == document.location.protocol) ? 'https://scdn.cxense.com/cx.js' : 'http://cdn.cxense.com/cx.js';
+                    var targetEl = document.getElementsByTagName('script')[document.getElementsByTagName('script').length-1];
+                    targetEl.parentNode.insertBefore(scriptEl, targetEl);
+                } catch (e) {};
+            }());
+        </script>
+        <!-- cXense script end -->
+        
+    </body>
+</html>

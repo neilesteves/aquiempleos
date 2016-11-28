@@ -1,0 +1,58 @@
+<?=
+$this->partial('home/_home-carrucel.phtml', array(
+    'form' => $this->form,
+    'baseURLLogos' => $this->baseURLLogos
+));?>
+<section class="bonus">
+    <div class="container">
+        <div class="row text-center">
+            <div class="bonus-text">
+                <div class="col-xs-12 col-sm-4 col-md-4">
+                    <img class="" src="<?= $this->S('/eb/img/postulante/a.png'); ?>" alt="">
+                    <p class="azul pd-rl-30">Más de <?=number_format($this->ntotal); ?> avisos</p>
+                </div>
+                <div class="col-xs-12 col-sm-4 col-md-4">
+                    <img class="responsive-img" src="<?= $this->S('/eb/img/postulante/b.png'); ?>" alt="">
+                    <p class="azul pd-rl-30">Más de <?=number_format($this->totalEmpresaPublican); ?> empresas </p>
+                </div>
+                <div class="col-xs-12 col-sm-4 col-md-4">
+                    <img class="responsive-img" src="<?= $this->S('/eb/img/postulante/c.png'); ?>" alt="">
+                    <p class="azul pd-rl-30">Más de <?=number_format($this->totalPostulantes);?> postulantes</p>
+                </div>
+            </div>
+        </div>
+    </div> 
+</section>
+<?=
+$this->partial('home/_avisos_destacados.phtml', array(
+    'listAvisosDestacados' => $this->listAvisosDestacados,
+    'baseURLLogos' => $this->baseURLLogos
+));
+?>  
+<!--
+<section class="publicidad">
+    <div class="container">
+        <div class="caja text-center">
+            <img class="img-responsive" src="<?//= $this->S('/eb/img/postulante/publicidad.jpg'); ?>" alt="">
+        </div>
+    </div>
+</section>
+-->
+<?=
+$this->partial('home/_areas_interes_aviso.phtml', array(
+    'listAreasAvisos' => $this->listAreasAvisos,
+    'baseURLLogos' => $this->baseURLLogos
+));
+?>  
+<?php /* =
+  $this->partial('home/_aviso_recientes.phtml', array(
+  'avisoResientes'=>  $this->avisoResientes,
+  'baseURLLogos'=> $this->baseURLLogos
+  )); */
+?>  
+<?=
+$this->partial('home/_banner_empresa_trabaja_con_nosotros.phtml', array(
+    'tcn' => $this->tcn,
+    'baseURLLogos' => $this->baseURLLogos
+));
+?>  

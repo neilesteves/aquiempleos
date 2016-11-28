@@ -1,0 +1,249 @@
+<table summary="Avisos activos" id="dataAadvice" class="dataGrid">
+    <?php
+    if (!$this->tipoAviso) {
+        $routeName = 'default';
+    } else {
+        $routeName = 'avisos-inactivos';
+    }
+    ?>
+    <thead>
+        <tr>
+            <?
+            $base = array('module' => 'empresa',
+                'controller' => 'mi-cuenta', 'action' => 'mis-avisos-inactivos');
+            ?>
+            <th class="data1 titleGrid">#</th>
+            <th class="data2 titleGrid">Aviso</th>
+            <th class="data3 titleGrid">Descripción</th>
+            <th class="data4 titleGrid linkTitleG">
+                <?
+                $col
+                    = 'fh_pub'
+                ?>
+                <?
+                $ord = $this->col == $col && $this->ord == 'ASC' ? 'DESC' : 'ASC'
+                ?>
+                <?
+                $url = $this->url(array_merge($base,
+                        array('col' => $col, 'ord' => $ord)), $routeName, false)
+                ?>
+                <a href="<?= $url ?>" class="rel relArrow">Fecha de<br/>compra <span class="arrowDG <?= strtolower($ord) ?>">&nbsp;</span></a>
+            </th>
+            <th class="data5 titleGrid linkTitleG">
+                <?
+                $col
+                    = 'fh_vencimiento'
+                ?>
+                <?
+                $ord = $this->col == $col && $this->ord == 'ASC' ? 'DESC' : 'ASC'
+                ?>
+                <?
+                $url
+                    = $this->url(array_merge($base,
+                        array('col' => $col, 'ord' => $ord)), $routeName, false)
+                ?>
+                <a href="<?= $url ?>" class="rel relArrow">Fecha<br/>fin web <span class="arrowDG <?= strtolower($ord) ?>">&nbsp;</span></a>
+            </th> 
+            <?php if (!$this->tipoAviso) { ?> 
+                <th class="data6 titleGrid linkTitleG">
+                    <?
+                    $col
+                        = 'fh_pub'
+                    ?>
+                    <?
+                    $ord = $this->col == $col && $this->ord == 'ASC' ? 'DESC' : 'ASC'
+                    ?>
+                    <?
+                    $url
+                        = $this->url(array_merge($base,
+                            array('col' => $col, 'ord' => $ord)), $routeName,
+                        false)
+                    ?>
+                    <a href="<?= $url ?>" class="rel relArrow">Fecha fin<br/>impresa <span class="arrowDG <?= strtolower($ord) ?>">&nbsp;</span></a>
+                </th> 
+                <th class="data7 titleGrid linkTitleG">
+                    <?
+                    $col
+                        = 'fh_vencimiento_proceso'
+                    ?>
+                    <?
+                    $ord
+                        = $this->col == $col && $this->ord == 'ASC' ? 'DESC' : 'ASC'
+                    ?>
+                    <?
+                    $url
+                        = $this->url(array_merge($base,
+                            array('col' => $col, 'ord' => $ord)), $routeName,
+                        false)
+                    ?>
+                    <a href="<?= $url ?>" class="rel relArrow">Fecha fin<br/>proceso <span class="arrowDG <?= strtolower($ord) ?>">&nbsp;</span></a>
+                </th>
+            <?php } else { ?>
+                <th class="data6 titleGrid linkTitleG">
+                    <?
+                    $col
+                        = 'fh_vencimiento_proceso'
+                    ?>
+                    <?
+                    $ord = $this->col == $col && $this->ord == 'ASC' ? 'DESC' : 'ASC'
+                    ?>
+                    <?
+                    $url
+                        = $this->url(array_merge($base,
+                            array('col' => $col, 'ord' => $ord)), $routeName,
+                        false)
+                    ?>
+                    <a href="<?= $url ?>" class="rel relArrow">Fecha fin<br/>proceso <span class="arrowDG <?= strtolower($ord) ?>">&nbsp;</span></a>
+                </th> 
+                <th class="data7 titleGrid linkTitleG">
+                    <?
+                    $col
+                        = 'fh_aviso_baja'
+                    ?>
+                    <?
+                    $ord = $this->col == $col && $this->ord == 'ASC' ? 'DESC' : 'ASC'
+                    ?>
+                    <?
+                    $url = $this->url(array_merge($base,
+                            array('col' => $col, 'ord' => $ord)), $routeName,
+                        false)
+                    ?>
+                    <a href="<?= $url ?>" class="rel relArrow">Fecha de<br/>Baja <span class="arrowDG <?= strtolower($ord) ?>">&nbsp;</span></a>
+                </th>
+            <?php } ?>
+            <th class="data8 titleGrid">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        $count
+            = 1;
+        ?>
+        <?php foreach ($this->arrayAviso as $item) {
+            ?>
+            <tr>
+                <td class="data1"><?= $count++; ?></td>
+                <td class="data2">
+                    <div class="dataLinkAEM">
+                        <a href="<?=
+                        $this->url(array(
+                            'module' => 'empresa', 'controller' => 'mis-procesos',
+                            'action' => 'ver-proceso',
+                            'id' => $item['id']), 'default', true);
+                        ?>" class="aDataLAEM">
+                           <?= $item['aviso'] ?>
+                            <span class="spanDataLAEM">(<?=
+                                $item['npostulante'] == '' ? '0' : $item['npostulante']
+                                ?>)</span>
+                        </a> 
+
+                    </div>
+                    <div class="dataLinkAEM">
+                        <a  href="#winVerProceso" rel="<?=
+                        $this->url(array(
+                            'slug' => $item['slug'], 'url_id' => $item['id_anuncio_web'],
+                            'id' => $item['id']), 'avisoEmpresa', true)
+                        ?>" class="winModal">
+                            Ver aviso</a>
+                    </div>
+                </td>	
+                <td class="data3">
+                    <div class="strTypeAEM"><?= $item['desc_tipo'] ?></div>
+                    <div class="strDateAEM"><?php echo $this->moneda?> <?= $item['precio'] ?></div>
+                </td>	
+                <td class="data4">
+                    <div class="strTypeAEM"><?=
+                        date('d/m/Y', strtotime($item['fecha_compra']));
+                        ?></div>
+                </td>		
+                <td class="data5">
+                    <div class="strTypeAEM"><?=
+                        $item['fecha_fin'] ? date('d/m/Y',
+                                strtotime($item['fecha_fin'])) : '';
+                        ?></div>
+                </td>
+                <?php if (!$this->tipoAviso) { ?>		
+                    <td class="data6">
+                        <div class="strTypeAEM"><?=
+                            $item['fecha_impreso'] ? date('d/m/Y',
+                                    strtotime($item['fecha_impreso'])) : '';
+                            ?></div>
+                    </td>		
+                    <td class="data7">
+                        <div class="strTypeAEM"><?=
+                            $item['fecha_proceso'] ? date('d/m/Y',
+                                    strtotime($item['fecha_proceso'])) : '';
+                            ?></div>
+                    </td>	
+                    <td class="data8">
+                        <div class="dataLinkAEM"><a href="<?=
+                            $this->url(array(
+                                'module' => 'empresa', 'controller' => 'mis-procesos',
+                                'action' => 'ver-proceso',
+                                'id' => $item['id']), 'default', true);
+                            ?>" class="f11 linkViewProEM aDataLAEM">Ver proceso</a></div>
+                                                    <?
+                                                    if ($this->creador && $this->asignarProcesos):
+                                                        ?>
+                            <div class=""><a class="manageProcess" href="<?=
+                                $this->url(array(
+                                    'module' => 'empresa', 'controller' => 'proceso-administrador',
+                                    'action' => 'asignado',
+                                    'anuncio_id' => $item['id']), 'default',
+                                    false);
+                                ?>" rel="" class="">Gestionar Administradores</a></div>
+                            <? endif ?>
+                            <?
+                            $url
+                                = $this->url(array('module' => 'empresa', 'controller' => 'aviso',
+                                'action' => 'editar',
+                                'idPost' => $item["id"], 'redirect' => $this->redirect),
+                                'default', false)
+                            ?>
+                        <div class="dataLinkAEM"><a href="<?= $url ?>">Editar</a></div>
+                        <div class="dataLinkAEM"><a href="#winAlertBajaAviso" rel="<?=
+                            $this->url(array(
+                                'module' => 'empresa', 'controller' => 'mi-cuenta',
+                                'action' => 'baja-aviso',
+                                'id' => $item['id']), 'default', false);
+                            ?>" class="winModal">Dar de baja</a></div> 
+
+                    </td>
+                <?php } else { ?>
+                    <td class="data6">
+                        <div class="strTypeAEM"><?=
+                            $item['fecha_proceso'] ? date('d/m/Y',
+                                    strtotime($item['fecha_proceso'])) : '';
+                            ?></div>
+                    </td>		
+                    <td class="data7">
+                        <div class="strTypeAEM"><?=
+                            $item['fecha_baja'] ? date('d/m/Y',
+                                    strtotime($item['fecha_baja'])) : '';
+                            ?></div>
+                    </td>	
+                    <td class="data8">
+                        <!-- div class="dataLinkAEM"><a href="<?=
+                        $this->url(array(
+                            'module' => 'empresa', 'controller' => 'publica-aviso',
+                            'action' => 'index',
+                            'republica' => $item['id']), 'default', true);
+                        ?>" class="f11 linkEditEM aDataLAEM">Republicar</a></div -->
+                        <div class="dataLinkAEM"><a class="winModal" href="#winAlertEliminarAviso" rel="<?=
+                            $this->url(array(
+                                'module' => 'empresa', 'controller' => 'mi-cuenta',
+                                'action' => 'eliminar-aviso',
+                                'id' => $item['id']), 'default', true);
+                            ?>" >Eliminar</a></div>
+                    </td>
+                <?php } ?>
+            </tr>
+        <?php } ?>
+    </tbody>
+</table>
+<div class="pagination all">
+    <?=
+    $this->paginationControl($this->arrayAviso, 'Sliding',
+        'mi-cuenta/_pag.phtml')
+    ?>
+</div>

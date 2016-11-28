@@ -1,0 +1,26 @@
+<div class="bgMDTIE">
+    <div class="modFind bLBlue r10">
+        <div class="bgImageF rel">
+            <form id="formFind" action="<?= $this->url(array('controller' => 'buscar', 'action' => 'index'), null, true) ?>">
+                <h2 class="titleFind">
+                    Encuentra tu próximo Trabajo
+                </h2>
+                <fieldset id="nAdvance" class="field mB5">
+                    <?= $this->form->datosBusqueda->setAttribs(array('id' => 'fieldSearch', 'alt' => 'Busca por puesto, ubicaciÃ³n, empresa, etc', 'class' => 'cGray mB10 fieldSch placeH'))->renderViewHelper(); ?>
+                </fieldset>
+                <fieldset id="advanced" class="field hide mB5">
+                    <h5 class="f13 bold">Área</h5>
+                    <?= $this->form->areas->setAttribs(array('id' => 'fAreas', 'class' => 'selectA'))->renderViewHelper(); ?>
+                    <h5 class="f13 bold">Nivel de puesto</h5>
+                    <?= $this->form->nivelPuestos->setAttribs(array('id' => 'fAreas', 'class' => 'selectA'))->renderViewHelper(); ?>
+                    <h5 class="f13 bold">Ubicación</h5>
+                    <?= $this->form->ubicaciones->setAttribs(array('id' => 'fAreas', 'class' => 'selectA'))->renderViewHelper(); ?>
+                </fieldset>
+                <fieldset id="sbtSearchC" class="right btnAdv">
+                    <?= $this->form->submit->setAttribs(array('id' => 'sbtSearch', 'class' => 'btn btn-primary', 'value' => 'Aceptar'))->renderViewHelper(); ?>
+                </fieldset>
+            </form>
+            <div class="advanced"><a href="#" id="searchAdv">Búsqueda avanzada</a></div>
+        </div>
+    </div>
+</div>

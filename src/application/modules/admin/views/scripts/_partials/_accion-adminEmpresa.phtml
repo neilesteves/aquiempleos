@@ -1,0 +1,11 @@
+<div class="all">
+	<h2>Empresa : <?= $this->razonsocial ?></h2>
+    <div class="legend history">
+        <?php if ($this->activo != 0) {?>
+        <a href="#winAlertBloquearEmp" class="blockEmp emp winModal" rel="<?= $this->idEmpresa?>">Bloquear</a>
+        <?php } else { ?>
+        <a href="#winAlertBloquearEmp" class="desblockEmp emp winModal" rel="<?= $this->idEmpresa?>">Desbloquear</a>
+        <?php } ?>
+        <a href="<?= $this->empresaAdminUrl ?>" class="f14 right" id="backToProcess" >&laquo; Volver</a>
+	</div>
+</div>

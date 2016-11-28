@@ -1,0 +1,41 @@
+<?php 
+$ind = (isset($this->indice)) ? $this->indice : 'blank';
+?>
+<div id="h<?php echo $ind ?>_expeN" class="skillN" rol="<?= $this->form->id_pregunta!=null? ( $this->form->id_pregunta->getValue()==''? '-1':$this->form->id_pregunta->getValue() ):'-1';?>">
+	<div id="h<?php echo $ind ?>_expTDiv" class="expTDiv <?$this->isPregunta?'':'hide'?>">
+	<?php if ($this->totalPregunta > 1 || isset($this->isEditar)) : ?>
+	<blockquote class="addReg">
+		<span class="wCount left">
+			<span class="countN"><?php echo $ind + 1; ?></span>
+		</span>
+		<span class="wJob left">
+			<span class="jobReg bold"><?=$this->escape($this->form->pregunta->getValue()); ?></span>
+		</span>
+		<a href="#Editar" class="editB hide" title="Editar"><span class="sEditB f11">Editar</span></a>
+		<?php if (isset($this->form->id_pregunta)) : ?>
+		<?php $value = $this->form->id_pregunta->getValue(); ?>
+		<?php endif; ?>
+		<a rel="#h<?php echo $ind ?>_expeN" rol="#winAlert" href="#winAlert" class="deleteB winAlertM<?=$value?' eliminarItemEmp':''?>" title="¿Está seguro que desea eliminar la pregunta?"><span class="sDeleteB f11">Eliminar</span></a>
+	</blockquote>
+	<?php endif; ?>
+	</div>
+	<?$isError = $this->form->isErrors(); ?>
+	<div id="h<?php echo $ind ?>_fSkill" class="fSkill <?=(!$isError && ($this->totalPregunta > 1 || isset($this->isEditar)))?'hide':''?>" >
+		<div class="block" rel="sectionPre">
+			<label for="<?=$this->form->pregunta->getAttrib('id')?>" class="labelN noReq"><span class="req"
+				title="Requerido">&nbsp;</span> Redactar su pregunta:</label>
+			<div id="h<?php echo $ind ?>_cntAreaMsg" class="iBlockM left">
+			<?php $hasError = $this->form->pregunta->hasErrors(); ?>
+			<?php if (!$hasError && isset($this->isPregunta)) { ?>
+			<?=$this->form->pregunta->setAttribs(array('class'=>'msgTask areaN inputReq qAreaTxt ready','rows'=>'3','cols'=>'20'))->renderViewHelper(); ?>
+			<?php } else { ?>
+			<?=$this->form->pregunta->setAttribs(array('class'=>'msgTask areaN inputReq qAreaTxt','rows'=>'3','cols'=>'20'))->renderViewHelper(); ?>
+			<?php } ?>
+			</div>
+			<span class="response def cGray left"> </span>
+		</div>
+		<div class="hide">
+		<?=$this->form->id_pregunta;?>
+		</div>
+	</div>
+</div>

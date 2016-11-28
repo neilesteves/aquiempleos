@@ -1,0 +1,69 @@
+<div class="center_box site_map_wrap">
+  <h2>Postulante</h2>
+  <h3>Trabajos en Perú</h3>
+  <div class="cols4 row">
+    <?php foreach($this->provincias as $prov){?>
+    <ul class="site_map_list">
+      <?php foreach($prov as $k => $v){?>
+      <li><a href="/buscar/ubicacion/<?php echo $k?>" title="Trabajos en <?php echo $v?>">Trabajos en <?php echo $v?></a></li>
+      <?php }?>
+    </ul>
+    <?php }?>
+  </div>
+  <h3 class="mt40">Trabajos por Área</h3>
+  <div class="cols4 row">
+    <?php foreach($this->areas as $area){?>
+    <ul class="site_map_list">
+        <?php foreach($area as $k => $v){?>
+        <li><a href="/buscar/areas/<?php echo $k?>" title="<?php echo $v?>"><?php echo $v?></a></li>
+        <?php }?>
+    </ul>
+    <?php }?>
+  </div>
+  <h3 class="mt40">Trabajos por Carrera</h3>
+  <div class="cols4 row">
+    <?php foreach($this->carreras as $carrera){?>
+    <ul class="site_map_list">
+        <?php foreach($carrera as $k => $v){?>
+        <li><a href="/buscar/carrera/<?php echo $k?>" title="<?php echo $v?>"><?php echo $v?></a></li>
+        <?php }?>
+    </ul>
+    <?php }?>
+  </div>
+  <h3 class="mt40">Trabajos por Puesto</h3>
+  <div class="site_map_tabs puesto"><span class="is_active">A</span><span>B</span><span>C</span><span>D</span><span>E</span><span>F</span><span>G</span><span>H</span><span>I</span><span>J</span><span>K</span><span>L</span><span>M</span><span>N</span><span>O</span><span>P</span><span>Q</span><span>R</span><span>S</span><span>T</span><span>U</span><span>V</span><span>W</span><span>X</span><span>Y</span><span>Z</span></div>
+  <div class="site_map_content_tabs puesto">
+    <?php $count = 1; ?>
+    <?php foreach($this->puestos as $letra => $puesto){?>
+      <?php $className = ($count == 2)? "" : " hide"; ?>
+      <div class="cols4 row <?=$className?>" data-rel="<?php echo $letra?>">
+      <?php foreach($puesto as $i => $pue){?>
+        <ul class="site_map_list">
+          <?php foreach($pue as $k => $v){?>
+          <li><a href="/buscar/q/<?php echo $k?>" title="<?php echo $v?>"><?php echo $v?></a></li>
+          <?php }?>
+        </ul>
+      <?php }?>
+      </div>
+      <?php $count++; ?>
+    <?php }?>
+  </div>
+  <h3 class="mt40">Trabajos por Empresas</h3>
+  <div class="site_map_tabs emp"><span class="is_active">A</span><span>B</span><span>C</span><span>D</span><span>E</span><span>F</span><span>G</span><span>H</span><span>I</span><span>J</span><span>K</span><span>L</span><span>M</span><span>N</span><span>O</span><span>P</span><span>Q</span><span>R</span><span>S</span><span>T</span><span>U</span><span>V</span><span>W</span><span>X</span><span>Y</span><span>Z</span></div>
+  <div class="site_map_content_tabs emp">
+    <?php $count2 = 1; ?>
+    <?php foreach($this->empresas as $letra2 => $empresa){?>
+      <?php $className = ($count2 == 2)? "" : " hide"; ?>
+      <div class="cols4 row <?=$className?>" data-rel="<?php echo $letra2?>">
+      <?php foreach($empresa as $i => $emp){?>
+        <ul class="site_map_list">
+          <?php foreach($emp as $k => $v){?>
+          <li><a href="/buscar/empresa/<?php echo $k?>" title="<?php echo $v?>"><?php echo $v?></a></li>
+          <?php }?>
+        </ul>
+      <?php }?>
+      </div>
+      <?php $count2++; ?>
+    <?php }?>
+  </div>
+</div>

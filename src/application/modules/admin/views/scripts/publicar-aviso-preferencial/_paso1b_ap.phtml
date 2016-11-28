@@ -1,0 +1,81 @@
+<div id="iSectionsEM" class="sectionEM">
+<?php $i = 0; ?>
+<?php foreach ($this->arrayPreferencial as $row) {?>
+    <?php $i = $i+1 ?>
+	<div id="iBlock<?= $i?>S2MAP" class="cntTopTitP2 formatAdv formatAdv<?= $i ?> left">
+		<div class="topTitP2 topTitP2AP topTitP2S<?= $i?>">
+			<h3 class="titAdvTopP2">Preferencial</h3>
+			<? $nameAvd = explode(" ", $row['0']['descripcion']); ?>
+			<h3 class="titAdvMidP2">
+                    <?= ((strtoupper($nameAvd["1"])=="CLASICO")?'CLÁSICO':strtoupper($nameAvd["1"]));?>
+            </h3>
+            <div class="desdeAP">Desde</div>
+			<div class="priceP2 priceDef"><?php echo $this->moneda?><?= number_format(substr($row['0']['valor'],0,-3))?></div>
+		</div>
+		<div class="topbodyP2 row<?= $row['0']['id']?>EM">
+			<div class="cntBodyP2">
+
+                    <?php $valor2 = explode(',', $row['2']['valor']) ?>
+                    <div class="textEM5">Avisos Web - <span class="bold"><?= $valor2['0'] ?> días</span></div>
+                    <div class="textEM5 c3 mB20 bold">de publicación web</div>
+
+                    <div class="textEM5">Aviso Impreso en</div>
+                    <div class="textEM4 c3 mB20 bold">AquiEmpleos o El Talán</div>
+
+					<?php $desc1 = explode(',', $row['1']['descripcion']) ?>
+                    <div class="textEM5">
+                    	<span>Tamaños </span>
+                    	<span class="bold textEM4">
+                        <?php foreach ($desc1 as $item) : ?>
+                            <span class="spanAP"><?= $item ?></span>
+                        <?php endforeach; ?>
+                        </span>
+                    </div>
+                    <div class="textEM5 c3 mB20 bold">en el aviso impreso</div>
+
+                    <div class="textEM5">Acceso a <span class="bold">base de datos de CVs</span></div>
+                    <div class="textEM4 c3 mB20 bold">15 días</div>
+
+					<div class="textEM5 c3 bold">Utilización de <span class="bold">filtros de CVs</span></div>
+
+			</div>
+            <?php if ($row['0']['id'] == 5 ) {?>
+            <div class="all alignC">
+                <a class="winModal viewShowEjmAP" rel="{tipo:'Aviso Preferencial Estándar',avisos:['1x1','2x1','3x1','2x2'],tamanios:['1.94 x 3.77 cm','4.27 x 3.77 cm','6.60 x 3.77 cm','4.27 x 4.96 cm']}" href="#ejmsAviso">Ver ejemplo</a>
+            </div>
+            <?php  } elseif ($row['0']['id'] == 6) {?>
+            <div class="all alignC">
+                <a class="winModal viewShowEjmAP" rel="{tipo:'Aviso Preferencial Clásico',avisos:['3x2','4x2','3x3'],tamanios:['6.60 x 7.96 cm','8.92 x 7.96 cm','6.60 x 12.16 cm']}" href="#ejmsAviso">Ver ejemplo</a>
+            </div>
+            <?php  } elseif ($row['0']['id'] == 7) {?>
+            <div class="all alignC">
+                <a class="winModal viewShowEjmAP" rel="{tipo:'Aviso Preferencial Oro',avisos:['6x2','6x3'],tamanios:['13.58 x 7.96 cm','13.58 x 12.16 cm']}" href="#ejmsAviso">Ver ejemplo</a>
+            </div>
+            <?php  } else {?>
+            <div class="all alignC">
+                <a class="winModal viewShowEjmAP" rel="{tipo:'Aviso Preferencial Platinium',avisos:['6x6','12x3','12x6'],tamanios:['13.58 x 24.74 cm','27.55 x 12.16 cm','27.55 x 24.74 cm']}" href="#ejmsAviso">Ver ejemplo</a>
+            </div>
+		<?php  } ?>
+		<div class="all">
+		<!-- flag -->
+                <div rel="{idProd:'<?= $row['0']['id']?>'}" id="avispPref<?= $row['0']['id'] ?>" class="btnPink continueP1C continNoP2 btnSptEmp iBtn<?=$i?>S2MAP">
+                Continuar
+                </div>
+
+                <!--
+				<?//php if ($this->layout()->auth != null && array_key_exists('empresa', $this->layout()->auth)): ?>
+				<div rel="{idProd:'<?//= $row['0']['id']?>'}" id="avispPref<?//= $i ?>" class="sptEmp continueP1C continNoP2 btnSptEmp iBtn<?//=$i?>S2MAP">
+				<span class="hide">Continuar</span>
+				</div>
+				<?//php else: ?>
+				<a rel="{idProd:'/empresa/publica-aviso-preferencial/paso1/idProd/<?//= $row['0']['id']?>/slide/4'}" id="avispPref<?//=$i?>" href="#registerP" class="sptEmp continNAPS winModal continNoP2 btnSptEmp">
+                                <span class="hide">Continuar</span>
+				</a>
+				<?//php endif; ?>
+                 -->
+
+        </div>
+        </div>
+	</div>
+<?php } ?>
+</div>

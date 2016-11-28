@@ -1,0 +1,227 @@
+<div id="main" class="all">
+    <div class="innerAll">
+        <div class="bgAll gridS20">
+            <?=
+            $this->partial('_partials/_navigation.phtml', 'admin',
+                array('isAuth' => $this->isAuth, "flashMessages" => $this->flashMessages))
+            ?>
+            <div class="gridTab">
+                <div class="gridIT">
+                    <h5 class="h5TitleAdm">Módulo de Administración</h5>
+                    <div class="iAccount" id="innerMain">
+
+                        <div class="blockAL grid4 omega left">
+                            <?=
+                            $this->partial('/gestion/_sidebar-menu.phtml',
+                                array('menu_sel_side' => $this->menu_sel_side, 'rol' => $this->rol));
+                            ?>
+                        </div>
+
+                        <div class="blockAR alpha right blockFix">
+                            <div class="iBlockAR">
+                                <div id="cntAddNewT" class="iBlockAR row">
+                                    <a id="addNewUserNE" class="right btn btn-primary"
+                                       href="<?=
+                                       $this->url(array(
+                                           'module' => 'admin', 'controller' => 'testimonio',
+                                           'action' => 'registrar-testimonio'),
+                                           "default", true);
+                                       ?>">Registrar testimonio</a>
+                                    <h2 class="titleMAU">Testimonios</h2>
+                                    
+                                </div>
+
+                                <div class="blockAR alpha right blockFix">
+                                    <div class="iBlockAR">
+                                        <form action="<?=
+                                        $this->url(array(
+                                            'module' => 'admin', 'controller' => 'gestion',
+                                            'action' => 'testimonios'),
+                                            "default", true);
+                                        ?>" method="post" id="frmBuscar_empresas" class="r2 fieldsetAdm" maxTes="<?= $this->maxTes; ?>">
+                                            <div class="block">
+                                                <label for="fEmpresa" class="labelN"> Empresa:</label>
+                                                <?
+                                                $hasError
+                                                    = $this->formBuscarTestimonio->empresa->hasErrors();
+                                                ?>
+                                                <?=
+                                                $this->formBuscarTestimonio->empresa->setAttribs(array(
+                                                    'id' => 'fEmpresa', 'class' => 'fields inputN left replaceNbsp',
+                                                    'tabindex' => '6'))->renderViewHelper();
+                                                ?>
+                                                <span class="response cGray left<?=
+                                                $hasError ? ' bad' : ''
+                                                ?>"><?=
+                                                          $hasError ? $this->formBuscarTestimonio->empresa->errMsg
+                                                                  : '';
+                                                          ?></span>
+                                            </div>
+                                            <div class="block">
+                                                <label for="fReferente" class="labelN"> Referente:</label>
+                                                <?
+                                                $hasError
+                                                    = $this->formBuscarTestimonio->referente->hasErrors();
+                                                ?>
+                                                <?=
+                                                $this->formBuscarTestimonio->referente->setAttribs(array(
+                                                    'id' => 'fReferente', 'class' => 'fields inputN left replaceNbsp',
+                                                    'tabindex' => '7'))->renderViewHelper();
+                                                ?>
+                                                <span class="response cGray left<?=
+                                                $hasError ? ' bad' : ''
+                                                ?>"><?=
+                                                          $hasError ? $this->formBuscarTestimonio->referente->errMsg
+                                                                  : '';
+                                                          ?> </span>
+                                            </div>
+                                            <div class="all">
+                                                <button id="fSendRS"  type="submit" class="active btnSptAdm sptAdm right btn-gestion" value="">Buscar</button>
+                                                <!-- input id="fResetRS"  type="reset" class="active btnSptAdm sptAdm right" value="" -->
+                                                <button id="fResetRS" class="active btnSptAdm sptAdm right btn-gestion" type="reset" value="">Limpiar</button>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                    <!-- ************************************************************************ -->
+                                    <?php if (isset($this->empresaAdminUrl)) { ?>
+                                        <div class="gridYScroll">
+                                            <table summary="Administradores" id="dataAadmins" class="dataGrid">
+                                                <thead>
+                                                    <?php
+                                                    $base
+                                                        = $this->empresaAdminUrl
+                                                    ?>
+                                                    <tr>
+                                                        <th class="data2 titleGrid linkTitleG">
+                                                            <?
+                                                            $col
+                                                                = 'razon_social'
+                                                            ?>
+                                                            <?
+                                                            $ord
+                                                                = $this->col == $col
+                                                                && $this->ord == 'ASC'
+                                                                    ? 'DESC' : 'ASC'
+                                                            ?>
+                                                            <?
+                                                            $base['col'] = $col;
+                                                            $base['ord'] = $ord;
+                                                            $url = $this->url($base,
+                                                                'default', true)
+                                                            ?>
+                                                            <a href="<?= $url ?>" class="rel relArrow">Empresa<span class="arrowDG <?= strtolower($ord) ?>">&nbsp;</span></a>
+                                                        </th>
+                                                        <th class="data3 titleGrid">Testimonio</th>
+                                                        <th class="data4 titleGrid">Referente</th>
+                                                        <th class="data5 titleGrid">Orden</th>
+                                                        <th class="data6 titleGrid linkTitleG">
+                                                            <?
+                                                            $col
+                                                                = 'estado'
+                                                            ?>
+                                                            <?
+                                                            $ord
+                                                                = $this->col == $col
+                                                                && $this->ord == 'ASC'
+                                                                    ? 'DESC' : 'ASC'
+                                                            ?>
+                                                            <?
+                                                            $base['col'] = $col;
+                                                            $base['ord'] = $ord;
+                                                            $url = $this->url($base,
+                                                                'default', true)
+                                                            ?>
+                                                            <a href="<?= $url ?>" class="rel relArrow">Estado<span class="arrowDG <?= strtolower($ord) ?>">&nbsp;</span></a>
+                                                        </th>
+                                                        <th class="data7 titleGrid">Acciones</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <?php
+                                                    if (count($this->arrayBusqueda)
+                                                        > 0) {
+                                                        $cantidad
+                                                            = $this->arrayBusqueda->getCurrentItemCount();
+                                                        $count
+                                                            = ($this->pagina - 1)
+                                                            * $cantidad + 1;
+                                                    }
+                                                    ?>
+                                                    <?php foreach ($this->arrayBusqueda as $item) { ?>                                                    
+                                                    <?php $token = crypt($item['id'], '$2a$07$'.md5(uniqid(rand(), true)).'$'); ?>
+                                                        <tr>
+                                                            <td class="data2"><?php echo $this->escape($item['razon_social']); ?></td>
+                                                            <td class="data3"><?php 
+                                                                echo $this->escape(substr($item['testimonio'],
+                                                                    0, 80));
+                                                                ?>...</td>
+                                                            <td class="data4"><?php echo $this->escape($item['referente']); ?></td>
+                                                            <td class="data5"><?php
+                                                                if ($item['orden']
+                                                                    != 0) {
+                                                                    echo $item['orden'];
+                                                                }
+                                                                ?></td>
+                                                            <td class="data6"> <?=
+                                                                $item['estado'] == 'activo'
+                                                                        ? 'Activo'
+                                                                        : 'Inactivo'
+                                                                ?>
+                                                            </td>
+
+                                                            <td class="data7">
+                                                                <div class="editAdmEPI"><a href="<?=
+                                                                    $this->url(array(
+                                                                        'module' => 'admin',
+                                                                        'controller' => 'testimonio',
+                                                                        'action' => 'editar-testimonio',
+                                                                        'id' => $item['id']),
+                                                                        "default",
+                                                                        true)
+                                                                    ?> ">Editar</a></div>
+                                                                    <?php
+                                                                    if ($item['estado']
+                                                                        != 'activo') {
+                                                                        ?>
+                                                                    <div class="blockAdmEPI"><a href="#winAlertBloquearTestimonio" class="blockTes tes winModal" rel="<?= $item['id'] ?>" data-token="<?=$token;?>" maxTes="<?= $this->maxTes; ?>" actTes="<?= $this->verifTestimoniosActivos; ?>">Activar</a></div>
+                                                                <?php } else { ?>
+                                                                    <div class="blockAdmEPI"><a href="#winAlertBloquearTestimonio" class="desblockTes tes winModal" rel="<?= $item['id'] ?>" data-token="<?=$token;?>" maxTes="<?= $this->maxTes; ?>" actTes="<?= $this->verifTestimoniosActivos; ?>">Desactivar</a></div>
+                                                                <?php } ?>
+                                                            </td>
+                                                        </tr>
+                                                    <?php } ?>
+                                            </table>
+                                        </div>
+                                        <?php
+                                        if (count($this->arrayBusqueda) != 0) {
+                                            ?>
+                                            <div class="pagination all">
+                                                <?=
+                                                $this->paginationControl($this->arrayBusqueda,
+                                                    'Sliding',
+                                                    'gestion/_pag.phtml')
+                                                ?>
+                                            </div>
+                                        <?php } else { ?>
+                                            <div class="pagination all">
+                                                <div class='pagUl theta alignL'> - No hay Resultados que se adecuen a tu Búsqueda </div>
+                                            </div>
+                                        <?php } ?><?php } ?>
+                                    <!-- ************************************************************************ -->
+                                </div>
+
+                            </div>
+
+
+                            <div id="resultadoBusqueda" class="hide center">
+                                <!-- resultado Ajax -->
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

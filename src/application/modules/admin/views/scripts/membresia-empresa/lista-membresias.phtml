@@ -1,0 +1,88 @@
+	<table summary="Administradores" id="dataAadmins" class="dataGrid">
+		<thead>
+			<tr>
+				<th class="data1 titleGrid">Nombre Membresía</th>
+                <th class="data5 titleGrid">Tipo</th>
+				<th class="data2 titleGrid">Fecha Inicio</th>
+				<th class="data3 titleGrid">Fecha Fin</th>
+				<th class="data4 titleGrid">Monto (<?php echo $this->moneda?>)</th>
+                <th class="data5 titleGrid">Medio de Pago</th>
+                <th class="data5 titleGrid">Estado</th>
+				<th class="data6 titleGrid">Acciones</th>
+			</tr>
+		</thead>
+		<tbody>
+                    
+            <?php 
+            
+                $contador = 0;
+                foreach ($this->membresiasEmp as $item) {
+                    $objfini = new Zend_Date($item['em_fh_inicio_membresia']);
+                    $objffin = new Zend_Date($item['em_fh_fin_membresia']); 
+                    
+                    //Siempre y cuando el cip esté activo por pagarse
+                    $cip = '';
+                    if (!is_null($item['cip'])) {
+                        $cip .= '<br>(CIP)<br><font size=1>'. $item['cip']."</font>";
+                        if ($item['diasPE'] > 0 && $item['c_estado'] != Application_Model_Compra::ESTADO_PAGADO) {                         
+                            $cip .= "<br/>(Expirado)";
+                        }
+                        
+                    } else {
+                        if ($item['m_tipo'] != 'bonificado') {
+                            $cip  =  '<br>(Token) <br><font size=1>'.$item['c_token']."</font>";
+                        } else {
+                            $cip = '';
+                        }
+                            
+                    }
+            ?>
+	<tr> 
+                <td class="data1"><?= $item['m_tipo']=='bonificado'? 
+				    'Bonificado '.$this->escape($item['m_nombre']):
+				    'Membresía '.$this->escape($item['m_nombre']) ?>
+                </td>
+                <td class="data5"><?=ucfirst($this->escape($item['m_tipo'])) ?></td>
+                <td class="data2"><?=$objfini->toString('dd/MM/yyyy')?></td>
+				<td class="data3"><?=$objffin->toString('dd/MM/yyyy')?></td>
+				<td class="data4">
+                    <div class="tlfEMG1 right">
+                        <?php echo $this->escape(number_format($item['em_monto'], 2)); ?>
+                    </div>
+				</td>
+                <td class="data3" align="center">
+                    <?= ucfirst($item['tipoDoc']) . "<br>" . $item['medio'] . $cip ?>
+                </td>
+                <td class="data5">
+                    <?php echo $item['em_estado']=='no vigente'? 'Inactivo' : ucwords($item['em_estado']); ?>
+                </td>
+				<td class="data6">
+                    <?php if($item['em_estado']=='vigente') :
+                        //if ($item['em_estado']=='vigente'):
+                    ?>
+					<a href="javascript:;" class="editMembAdmin" rel="<?php echo $item['em_id']; ?>" idEmp="<?= $this->idEmpresa ?>">Editar</a>
+                    <?php endif;?>
+				</td>
+			</tr>
+			<?php $contador++; } ?>
+		</tbody>
+	</table>
+
+        <div class="pagination all">
+            <?=
+            $this->paginationControl(
+                    $this->membresiasEmp, 
+                    'Sliding', 
+                    '_partials/_pag.phtml'
+            );
+            ?>
+        </div>	
+
+
+    <?php if (count($this->membresiasEmp) == 0) {?>
+    <div class="pagination all">
+        <div class="paginador all">
+            <div class='pagUl theta alignL'> - La empresa actualmente no cuenta con membresía. </div>
+        </div>
+    </div>
+    <?php } ?>

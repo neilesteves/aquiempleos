@@ -1,0 +1,143 @@
+<?php if (isset($this->data[$this->idTarifaImpreso])): ?>
+    <div class="row bg-color-gray">
+        <div id="accordion" role="tablist" aria-multiselectable="true">
+            <div role="tab" id="headingOne">
+                <div class="aviso-title">
+                    <h2 class="title-white-impreso">Publicación de aviso <span class="cl-dorado">Lineal</span><span class="sub-title-azul sub-title-white">(Alternativa 1: Te permitirá ingresar un texto, adjuntar una imagen y elegir los días de destaque)</span></h2>
+                    <div class="right position-arrow">
+                        <a class="arrow-up" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                <div class="aviso-body">
+                    <div class="row smp">
+                        <div class="col-md-4 spb">
+                            <div class="bg-gray text-center text-clasificaciones-bg">
+                                <div class="text-clasificados">Estilo de Texto del Aviso</div>
+                            </div>
+                            <div class="box-body">
+                                <?php
+                                if (count($this->data[$this->idTarifaImpreso]['beneficio'])
+                                    > 0) :
+                                    ?>
+                                    <div class="contenedor-calendario-all">
+                                        <div class="row smb ">
+                                            <div class="col-md-12 spb">
+                                                <p>Estilo de Texto</p>
+                                            </div>
+                                        </div>
+                                        <div class="row smb">
+                                            <div class="col-md-8 spb">
+                                                <?=
+                                                $this->FormDecorate($this->formImpresoLineal->estilo->renderViewHelper(),
+                                                    'radio')
+                                                ?>
+                                            </div>
+                                            <div class="col-md-4 spb">
+                                                <div class="precio-col">
+                                                    <p class="precio"></p>
+                                                    <p class="precio"></p>
+                                                    <p class="precio"></p>
+                                                    <p class="precio"></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                        <div class="col-md-4 ">
+                            <div class="bg-gray text-center text-clasificaciones-bg">
+                                <div class="text-clasificados">Color y Apariencia del Aviso</div>
+                            </div>
+                            <div class="box-body">
+
+                                <div class="contenedor-calendario-all">
+                                    <div class="row smb">
+                                        <div class="col-md-12 spb">
+                                            <p>Fondo</p>
+                                        </div>
+                                    </div>
+                                    <div class="row smb">
+                                        <div class="col-md-8 spb">
+                                            <?=
+                                            $this->FormDecorate($this->formImpresoLineal->Fondo->renderViewHelper(),
+                                                'radio')
+                                            ?>
+
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="precio-col">
+                                                <p class="precio"></p>
+                                                <p class="precio"></p>
+                                                <p class="precio"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row smb">
+                                        <div class="col-md-12 spb">
+                                            <p>Color de mi Aviso</p>
+                                        </div>
+                                    </div>
+                                    <div class="row smb">
+                                        <div class="col-md-8 spb">
+                                            <?=
+                                            $this->FormDecorate($this->formImpresoLineal->color->renderViewHelper(),
+                                                'radio')
+                                            ?>
+                                        </div>
+                                        <div class="col-md-4 spb">
+                                            <div class="precio-col">
+                                                <p class="precio"></p>
+                                                <p class="precio"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="bg-gray text-center text-clasificaciones-bg">
+                                <div class="text-clasificados">Detalles del Aviso</div>
+                            </div>
+                            <div class="box-body">
+                                <div class="contenedor-calendario-all">
+                                    <div class="row smb">
+                                        <div class="col-md-12 spb">
+                                            <p>Texto de mi Aviso Impreso</p>
+                                        </div>
+                                    </div>
+                                    <div class="row smb">
+                                        <?= $this->formImpresoLineal->texto->renderViewHelper() ?>
+                                    </div>
+                                    <div class="row smb">
+                                        <div class="col-md-12 spb">
+                                            <p>Adjuntar la imagen para el impreso</p>
+                                        </div>
+                                    </div>
+                                    <div class="row smb">
+                                        <!--    -->                                    <input type="text" name="" id="pathArchivo" class="input-image-file">
+                                        <label for="archivo" class="cargar">
+                                            <span>Elegir
+                                                <?= $this->formImpresoLineal->path_foto->renderFile() ?>
+
+                                            </span>
+                                        </label>
+                                        <div class="has-error">
+                                            <span id="" class="help-block">
+                                                <small id="errorImagen"></small> <br>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>

@@ -1,0 +1,234 @@
+<?php
+$flagBtn = $this->LimitarOpcionesProceso($this->empresaMembresia,$this->tipoAviso)->showBotonesProceso();
+$flagAcciones = $this->LimitarOpcionesProceso($this->empresaMembresia,$this->tipoAviso)->showAccionesProceso();
+$flagPestanas = $this->LimitarOpcionesProceso($this->empresaMembresia,$this->tipoAviso)->showPestanasProceso();
+?>
+<?=
+$this->partial('_partials/_navigation.phtml',
+	 array('menu_sel' => $this->menu_sel, 'isAuth' => $this->isAuth, "flashMessages" => $this->flashMessages))
+?>
+<?=
+$this->partial('mi-cuenta/_sec-menu.phtml',
+	 array('menu_post_sel' => $this->menu_post_sel, "tieneBuscador" => $this->tieneBuscador,
+		  'tieneBolsaCVs' => $this->tieneBolsaCVs,'Look_Feel' =>  $this->Look_Feel))
+?>
+<div id="wrapper" class="view-process">
+	 <div class="row">
+		  <input type="hidden" value='<?=$this->idAviso?>' id='idAviso'>
+		  <div class="iAccount contraido rel row" id="innerMain" style="overflow:visible">
+				<div class="header row">
+					 <h2 class="title-big"><? echo $this->escape($this->auth['empresa']['nombre_comercial']); ?><?=$this->auth['empresa']['nombre_comercial'] == ""? "" : ":"?> <?= strtr(strtoupper($this->puesto),"àèìòùáéíóúçñäëïöü","ÀÈÌÒÙÁÉÍÓÚÇÑÄËÏÖÜ"); ?></h2>
+					 <br>
+					 <div class="row">
+						  <?php if ($this->online): ?>
+								<ul class="nav horizontal right">
+									 <li>
+										  <?php $claseLst = "";
+										  if ($flagBtn['listReferidos']['tooltip'] == '') $claseLst = "listarreferidos";?>
+										  <a id="listarRefer" class="btn btn-option <?=$claseLst?> <?=$flagBtn['listReferidos']['tooltip']?>" <?=$flagBtn['listReferidos']['texto']?> rel="-3">Listar Referidos</a>
+									 </li>
+									 <?php if (isset($this->aviso['online']) && $this->aviso['online'] == 1):?>
+									 <li>
+										  <?php
+										  $winModal = '';
+										  $winHref = '';
+										  if ($flagBtn['regReferidos']['tooltip'] == '') {
+												$winModal = "winModal";
+												$winHref = "href='#winRegistrarReferenciado'";
+										  }?>
+										  <a class="btn btn-option <?=$winModal?> <?=$flagBtn['regReferidos']['tooltip']?>" <?=$flagBtn['regReferidos']['texto']?> <?=$winHref?>>Registrar Referido</a>
+									 </li>
+									 <?php endif; ?>
+									 <li>
+										  <?php
+										  $urlBuscador = $this->url(array("module" => "empresa","controller" => "buscador-empleo-busco"),"default", true);
+										  $urlBuscar = '';
+										  if ($flagBtn['buscarAptitus']['tooltip'] == '') {
+												if (isset($this->auth['empresa']['membresia_info']['membresia']) && is_null($this->auth['empresa']['membresia_info']['membresia'])) {
+													 //Validar cuantos días tiene de publicado tiene el aviso
+													 if ($this->vigenciaAvisoPreferencial) {
+														  $urlBuscar = " href=".$urlBuscador."/index/id/".$this->idanuncio."?token=$this->token";
+													 } else {
+														  $flagBtn['buscarAptitus']['tooltip'] = 'inactive tooltip';
+														  $flagBtn['buscarAptitus']['texto'] = ' data-tool = "Ya pasaron los 5 días de la publicación de su aviso"';
+														  $urlBuscar = "";
+													 }
+												}
+												else{
+													 $urlBuscar = " href=".$urlBuscador."/index/id/".$this->idanuncio."?token=$this->token";
+												}
+										  }
+
+										  ?>
+
+										  <a class="btn btn-option <?=$flagBtn['buscarAptitus']['tooltip']?>" <?=$flagBtn['buscarAptitus']['texto']?> <?=$urlBuscar?>>Buscar Candidatos en AquiEmpleos</a>
+									 </li>
+
+									 <?php if($this->empresaMembresia ){?>
+									 <li><?php if($this->estadisticas):?> <div class="message_button_wrapper hide"></div><?php  endif; ?>
+										  <a class="btn btn-option btn_charts" onClick="ga('send','event','Estadisticas','Detalles_Estadistica','<?php echo $this->idanuncio;?>');"  href="<?=$this->url(array("module" => "empresa","controller" => "mis-procesos", "action" => "estadisticas",
+									 'id' => $this->idanuncio),"default", true)?>">Estadísticas <i class="icon icon_charts"></i>
+										  </a>
+									 </li>
+									 <?php }?>
+
+								</ul>
+						  <?php endif; ?>
+						  <ul class="nav horizontal links text-smallxx">
+								<li><a rel="<?=$this->url(array('slug' => $this->slug, 'url_id' => $this->url_id,'id' => $this->id),'avisoEmpresa', true)?>" class="winModal" href="#winVerProceso">Ver Perfil del puesto</a></li>
+								<?php if ( isset($this->auth['empresa']['membresia_info']['membresia']['m_nombre']) && $this->auth['empresa']['membresia_info']['membresia']['m_nombre'] != Application_Model_Membresia::M_NOMBRE_ESENCIAL):?>
+								<li><a href="<?= $this->url(array('module' => 'empresa','controller' => 'mis-procesos','action' => 'exportar-proceso','id' => $this->id),"default", true)?>">Exportar Proceso a Excel</a></li>
+								<?php endif; ?>
+						  </ul>
+						  <div class="alignR linkBotEM" rel="-2">
+								<a href="#" rel="-2" class="listardescartados">Descartados</a>
+						  </div>
+					 </div>
+					 <ul class="nav nav-tabs">
+						  <?php
+						  $url = $this->url(array("module" => "empresa","controller" => "mis-procesos", "action" => "ver-proceso"),"default", true);
+						  $activeLi = ($this->categoria == "") ? "active" : "";
+						  ?>
+						  <li class="<?= $activeLi ?>"><a xxx="-1"  href="<?= $url ?>/id/<?= $this->idanuncio ?>" >Postulantes (<span class="cantEmPA"><?= $this->npostulantes ?></span>)</a></li>
+						  <?php foreach ($this->categoriaPostulacion as $item): ?>
+								<?php
+								$url = $this->url(array("module" => "empresa","controller" => "mis-procesos", "action" => "ver-proceso",
+									 'id' => $this->idanuncio, 'categoria' => $item['id']),"default", true);
+								$clase = $flagPestanas[substr(strtolower($item['nombre']),0,3)];
+								$select = ($this->categoria == $item["id"]) ? "active" : "";
+								$style = '';
+								$tooltip = $flagPestanas['tooltip'];
+								if ($clase != '') {$url = 'javascript:;';$select = 'active';$style = "style='text-decoration:none'";}
+								?>
+								<li class="<?= $select ?>"><a <?=$style?> <?=$tooltip?> class="<?=$clase?>" xxx="<?= $item["id"] ?>"  href="<?=$url?>" ><?= $item["nombre"] ?> (<span class="cantEmPA"><?=isset($this->numeroPostulacionesxCategoria[$item['id']]["n"]) ? $this->numeroPostulacionesxCategoria[$item['id']]["n"] : "0"?></span>)</a></li>
+						  <?php endforeach; ?>
+					 </ul>
+					 <br>
+					 <?php /*?>
+					 <div id="linksTable" class="all">
+						  <?
+						  $url = $this->url(array("module" => "empresa","controller" => "mis-procesos", "action" => "ver-proceso"),"default", true);
+						  $select = ($this->categoria != "") ? "aLinkOn" : "";
+						  ?>
+						  <a xxx="-1" <? if ($select != ""): ?> href="<?= $url ?>/id/<?= $this->idanuncio ?>" <? endif; ?> class="left aLinkTable <?= $select ?>">Postulantes (<span class="cantEmPA"><?= $this->npostulantes ?></span>)</a>
+
+						  <?php foreach ($this->categoriaPostulacion as $item): ?>
+								<?
+								$url = $this->url(array("module" => "empresa","controller" => "mis-procesos", "action" => "ver-proceso"),"default", true);
+								$select = ($this->categoria == $item["id"]) ? "" : "aLinkOn";
+								?>
+								<a xxx="<?= $item["id"] ?>" <?if ($select != ""):?> href="<?= $url ?>/id/<?= $this->idanuncio ?>/categoria/<?= $item["id"] ?>" <? endif; ?> class="left aLinkTable <?= $select ?>">
+								<?= $item["nombre"] ?>(<span class="cantEmPA"><?=isset($this->numeroPostulacionesxCategoria[$item['id']]["n"]) ? $this->numeroPostulacionesxCategoria[$item['id']]["n"] : "0"?></span>)
+								</a>
+						  <? endforeach; ?>
+					 </div>
+					 <?*/?>
+				</div>
+				<!-- BUSCADOR DE POSTULANTES -->
+				<div id="filterProcEmp" class="blockAL grids-2 fix">
+					 <?=$this->LimitarOpcionesProceso($this->empresaMembresia,$this->tipoAviso)->showFilterProceso();?>
+					 <div class="mask-search"></div>
+					 <div class="search-box">
+						  <h4 class="black-title">Buscador Postulantes</h4>
+						  <form id="fIRSearch" class="frm-search" method="get" action="/buscar">
+								<div class="control-group">
+									 <input type="text" value="" id="fWordRS" class="inputNS">
+								</div>
+								<div class="controls">
+									 <input type="submit" value="Buscar" class="btn btn-primary" id="fSendRS">
+								</div>
+						  </form>
+					 </div>
+
+
+					 <div class="box-details">
+						  <h4 class="black-title">Mejore su búsqueda </h4>
+						  <?=
+						  $this->partialLoop('_partials/_buscador_empresa.phtml',$this->dataFiltros); ?>
+						  <div class="bgRSBSIE hide">&nbsp;</div>
+					 </div>
+				</div>
+				<!-- FIN BUSCADOR POSTULANTES -->
+				<div class="grids-7" id="innerProcEmp" style="position:relative">
+					 <?php if ($flagBtn['acciones']['tooltip'] == '') { ?>
+					 <ul id="listActionE" class="hide">
+						  <li class="liActionE" rel="0"><a class="aActionE <?=$flagBtn['acciones']['tooltip']?>"  <?=$flagBtn['acciones']['texto']?> href="#marcarleido">Marcar como leído</a></li>
+						  <li class="liActionE" rel="1"><a class="aActionE <?=$flagBtn['acciones']['tooltip']?>" <?=$flagBtn['acciones']['texto']?> href="#marcarnoleido">Marcar como No leído</a></li>
+						  <li class="liActionE"><a class="aActionE <?=$flagBtn['acciones']['tooltip']?>" <?=$flagBtn['acciones']['texto']?> href="#enviarMensaje">Enviar Mensaje</a></li>
+								<li id="lnkEnviarBolsaProceso" name="lnkEnviarBolsaProceso" class="liActionE enviarBolsaGrupo" rel="3">
+							  <?php  if($this->empresaMembresia!=11) { ?>
+									  <a href="" class="aActionE noScrollTop <?=$flagBtn['acciones']['tooltip']?>" <?=$flagBtn['acciones']['texto']?>>Enviar a Carpeta CVs</a>
+							  <?php  }?>
+								</li>
+					 </ul>
+					 <?php } ?>
+					 <a href="#winAnadirMensaje" class="winModal hide" id="enviarmensaje">&nbsp;</a>
+					 <?php if ($this->online): ?>
+						  <div id="cntOptionsCR" class="row">
+								<ul class="nav horizontal links right">
+									 <li class="liListOptE" rel="-1"><a style="font-weight:bold; text-decoration: none;">Todos</a></li>
+									 <li class="liListOptE" rel="0"><a href="#">Leídos</a></li>
+									 <li class="liListOptE" rel="1"><a href="#">No leídos</a></li>
+								</ul>
+								<ul class="nav horizontal">
+									 <li><button type="button" class="btn btn-option descartarButtonVerProceso <?=$flagBtn['descartar']['tooltip']?>" <?=$flagBtn['descartar']['texto']?>>Descartar</button></li>
+									 <li class="moveraetapafila" rel="der">
+										  <button type="button" class="btn btn-option aLinkFlechaT cntFGrisT <?=$flagBtn['moverEtapa']['tooltip']?>" <?=$flagBtn['moverEtapa']['texto']?>>Mover a etapa <span class="flechaGrisT upFlechaEP"></span></button>
+										  <?php if ($flagBtn['moverEtapa']['tooltip'] == '') { ?>
+										  <ul class="menuinterno hide">
+												<?php
+												if ($this->categoria != "") :
+													 ?>
+													 <li class="liActionM"><a class="aActionM" rel="-1" href="#verProceso">Sin Seleccionar</a></li>
+												<?php else: ?>
+													 <li class="liActionM"><a class="aActionMDisable" href="#verProceso">Sin Seleccionar</a></li>
+												<?php endif; ?>
+												<?php
+												foreach ($this->categoriaPostulacion as $item):
+													 ?>
+													 <?php
+													 if ($this->categoria != $item["id"]):
+														  ?>
+														  <li class="liActionM"><a class="aActionM" rel="<?= $item["id"] ?>" href="#verProceso"><?= $item["nombre"] ?></a></li>
+													 <?php else: ?>
+														  <li class="liActionM"><a class="aActionMDisable" href="#verProceso"><?= $item["nombre"] ?></a></li>
+													 <?php endif; ?>
+												<?php endforeach; ?>
+										  </ul>
+										  <?php }?>
+									 </li>
+									 <li id="aLinkFlechaT" rel="der"><a class="btn btn-option aLinkFlechaT cntFGrisT <?=$flagBtn['acciones']['tooltip']?>" <?=$flagBtn['acciones']['texto']?> href="#masacciones">Más acciones <span class="flechaGrisT upFlechaEP"></span></a></li>
+								</ul>
+						  </div>
+					 <?php endif; ?>
+					 <div id="mensajesVerProceso" class="hide r5 dvMensajeAccion dvMensajesBolsaCVs">MENSAJES</div>
+
+					 <div id="contenido_ajax">
+						  <?=
+						  $this->partial('mis-procesos/_main_verproceso.phtml',
+								array('ord' => $this->ord, 'col' => $this->col,
+								"proceso" => $this->proceso,
+                                                                    	"dtproceso" => $this->dtproceso,
+								"idanuncio" => $this->idanuncio, "pagina" => $this->pagina,
+								"categoria" => $this->categoria,
+								"categoriaPostulacion" => $this->categoriaPostulacion,
+								"mostrando" => $this->mostrando,
+								"online" => $this->online, "tieneBolsaCVs" => $this->tieneBolsaCVs,
+								"flagAcciones" => $flagAcciones,
+								"empresaMembresia"=>$this->empresaMembresia      ))   ?>
+					 </div>
+					 <div id="alertSearch" class="window fix search-modal hide" style="display: none;">
+						  <a class="closeWM icon-close big" href="#Cerrar" title="Cerrar ventana">Cerrar</a>
+						  Has clic en buscar cuando hayas terminado de seleccionar.
+						  <div class="wrap-btn center">
+								<a href="javascript:;" id="modalUrl" class="btn btn-primary">Buscar</a>
+								<a href="#Cerrar" title="Cerrar ventana" class="btn btn-default closeWM">Cancelar</a>
+						  </div>
+					 </div>
+					 <div class="mask-search" style="display: none; top:0"></div>
+				</div>
+
+		  </div>
+	 </div>
+	 <div id="ajax-loading" class="loading" style="width: 100%;"></div>
+</div>

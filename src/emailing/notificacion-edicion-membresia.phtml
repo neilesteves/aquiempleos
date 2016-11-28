@@ -1,0 +1,78 @@
+<table cellspacing="0" cellpadding="0" border="0" align="center" width="760" style="color:#666; background-color:#fff; font-family:Arial, Helvetica, sans-serif; font-size:12px">
+	<tbody>
+    <tr>
+    	<td width="680px" style="padding:20px; vertical-align:top">
+        	<table cellspacing="0" cellpadding="0" border="0" width="680" style="color:#333">
+            <tbody><tr>
+              	<td style="text-align:left; padding-bottom:20px;">
+                	<p style="color: #333; font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:16px; margin:0; padding:0 0 5px;">Hola <strong>ADMINISTRADOR</strong></p>
+                </td>
+              </tr>
+              <tr>
+              	<td style="vertical-align:top; text-align:left; ">
+                	<p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:18px;margin:0; padding:0 0 20px;">El usuario "<?php echo $this->usuario;?>" realizó cambios en el Plan de Membresía de la Empresa "<?php echo $this->empresa;?>".</p>
+                </td>
+              </tr>
+              
+              <tr>
+              	<td style="padding:0 20px; vertical-align:top">
+                	<table cellspacing="1" cellpadding="0" border="0" width="600" style="background-color:#069">
+                      <tbody><tr>
+                        <td style="background-color:#FFF; font-size:14px; font-family:Arial, Helvetica, sans-serif; padding:5px 0; text-align:center">DATOS INICIALES</td>
+                        <td style="background-color:#FFF; font-size:14px; font-family:Arial, Helvetica, sans-serif; padding:5px 0; text-align:center">DATOS ACTUALES</td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top;">
+                        	<table cellspacing="0" cellpadding="0" border="0" width="300">
+                              <tbody><tr>
+                                <td width="110" style="text-align:left; background-color:#fff;font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight:700; line-height:18px;margin:0; padding:5px 0 5px 10px; vertical-align:top">Tipo de Plan</td>
+                                <td style="text-align:left; background-color:#fff;font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:18px;margin:0; padding:5px 0; vertical-align:top">: <?php echo $this->antes['planMembresia']?></td>
+                              </tr>
+                              <tr>
+                                <td style="text-align:left; background-color:#fff;font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight:700; line-height:18px;margin:0; padding:0 0 5px 10px; vertical-align:top">Estado</td>
+                                <td style="text-align:left; background-color:#fff;font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:18px;margin:0; padding:0 0 5px; vertical-align:top">: <?php echo $this->antes['estado']?></td>
+                              </tr>
+                              <tr>
+                                <td style="text-align:left; background-color:#fff;font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight:700; line-height:18px;margin:0; padding:0 0 5px 10px; vertical-align:top">Vigencia</td>
+                                <td style="text-align:left; background-color:#fff;font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:18px;margin:0; padding:0 0 5px; vertical-align:top">: <?php echo $this->antes['vigencia']?></td>
+                              </tr>
+                              <tr>
+                                <td style="text-align:left; background-color:#fff;font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight:700; line-height:18px;margin:0; padding:0 0 5px 10px; vertical-align:top">Monto</td>
+                                <td style="text-align:left; background-color:#fff;font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:18px;margin:0; padding:0 0 5px; vertical-align:top">: $ <?php echo $this->antes['monto']?></td>
+                              </tr>
+                            </tbody></table>
+                        </td>
+                        <td style="vertical-align:top;">
+                        	<table cellspacing="0" cellpadding="0" border="0" width="300">
+                              <tbody><tr>
+                                <td width="110" style="text-align:left; background-color:#fff;font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight:700; line-height:18px;margin:0; padding:5px 0 5px 10px; vertical-align:top">Tipo de Plan</td>
+                                <td style="text-align:left; background-color:#fff;font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:18px;margin:0; padding:5px 0; vertical-align:top">: <?php echo $this->despues['planMembresia']?></td>
+                              </tr>
+                              <tr>
+                                <td style="text-align:left; background-color:#fff;font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight:700; line-height:18px;margin:0; padding:0 0 5px 10px; vertical-align:top">Estado</td>
+                                <td style="text-align:left; background-color:#fff;font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:18px;margin:0; padding:0 0 5px; vertical-align:top">: <?php echo $this->despues['estado']?></td>
+                              </tr>
+                              <tr>
+                                <td style="text-align:left; background-color:#fff;font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight:700; line-height:18px;margin:0; padding:0 0 5px 10px; vertical-align:top">Vigencia</td>
+                                <td style="text-align:left; background-color:#fff;font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:18px;margin:0; padding:0 0 5px; vertical-align:top">: <?php echo $this->despues['vigencia']?></td>
+                              </tr>
+                              <tr>
+                                <td style="text-align:left; background-color:#fff;font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight:700; line-height:18px;margin:0; padding:0 0 5px 10px; vertical-align:top">Monto</td>
+                                <td style="text-align:left; background-color:#fff;font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:18px;margin:0; padding:0 0 5px; vertical-align:top">: $ <?php echo $this->despues['monto']?></td>
+                              </tr>
+                            </tbody></table>
+                        </td>
+                      </tr>
+                    </tbody></table>
+                </td>
+              </tr>
+              <tr>
+              	<td style="text-align:left; font-family:Arial, Helvetica, sans-serif; font-size:15px; line-height:16px; padding-top:40px;">
+                	¡Éxitos!<br><br><strong>El equipo EMPLEOBUSCO</strong>.
+                </td>
+              </tr>
+            </tbody></table>
+        </td>
+    </tr>
+    
+</tbody></table>

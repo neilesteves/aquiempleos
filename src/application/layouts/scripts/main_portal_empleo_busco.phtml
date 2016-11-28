@@ -1,0 +1,73 @@
+<?php $imgeOg = $this->HeadMetas()->getImgeOg(); ?><!DOCTYPE html>
+<html lang="es" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://ogp.me/ns/fb#">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="language" content="es">
+        <meta name="title" content="<?= $this->HeadMetas()->getTitle(); ?>">
+        <title><?= $this->HeadMetas()->getTitle(); ?></title>
+        <meta property="og:description" content="<?= $this->HeadMetas()->getDescription(); ?>">
+        <meta property="og:image" content="<?= $imgeOg['image'] ?>">
+        <meta property="og:image:height" content="<?= $imgeOg['height'] ?>">
+        <meta property="og:image:type" content="<?= $imgeOg['type'] ?>">
+        <meta property="og:image:width" content="<?= $imgeOg['width'] ?>">
+        <meta property="og:site_name" content="Empleos">
+        <meta property="og:title" content="<?= $this->HeadMetas()->getTitle(); ?>">
+        <meta property="og:type" content="article">
+        <meta property="og:url" content="<?= $imgeOg['url'] ?>">
+        <meta name="DC.Contributor" content="Empleos.com">
+        <meta name="DC.Creator" content="Empleos">
+        <meta name="DC.Description" content="<?= $this->HeadMetas()->getDescription(); ?>">
+        <meta name="DC.Language" content="es">
+        <meta name="DC.Publisher" content="La Prensa">
+        <meta name="DC.Subject" content="<?= $this->HeadMetas()->getTitle(); ?>">
+        <meta name="DC.Title" content="<?= $this->HeadMetas()->getTitle(); ?>">
+        <meta name="author" content="Empleos.com">
+        <meta name="description" content="<?= $this->HeadMetas()->getDescription(); ?>">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="geo.placename" content="Peru">
+        <meta name="geo.position" content="-12.0478;-77.0622">
+        <meta name="geo.region" content="PE-LIM">
+        <meta name="ICBM" content="-12.0478, -77.0622">
+        <meta name="keywords" content="<?= $this->HeadMetas()->getKeywords(); ?>">
+        <meta name="msvalidate.01" content="050EB16938699EA18AA37FCBD106D6FE">
+        <meta name="robots" content="index,follow">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+        <meta name="format-detection" content="telephone=no">
+        <link rel="canonical" href="<?= $imgeOg['url'] ?>">
+        <?php foreach ($this->HeadCs()->HomeEmpresa() as $key => $value) { ?>
+            <link href="<?= $this->S($value); ?>" media="all" rel="stylesheet" type="text/css">
+        <?php } ?>
+        <?php echo $this->GoogleAnalytics(); ?>
+        <link href="<?= $this->S('/img/favicon.ico'); ?>" rel="icon" type="image/vnd.microsoft.icon" />
+        <link href="<?= $this->S('/img/favicon.ico'); ?>" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+        <link href="<?= $this->S('/img/favicon.ico'); ?>" rel="shortcut icon" type="image/x-icon" />
+        <link href="<?= $this->S('/img/favicon.ico'); ?>" rel="image_src" type="image/ico" />   
+        
+        <?php echo $this->SharpSpring(); ?>
+    </head>
+    <body><?php
+        echo $this->partial('render/_header.phtml', array(
+            'layout'=>$this->layout(),
+            'auth' => $this->layout()->auth));
+        ?>
+        <div class="page_default">
+            <?php echo $this->ModalBoxes($this->layout()); ?>
+            <?php echo $this->layout()->content ?>
+            <?php
+            echo $this->partial('render/_footer.phtml', array(
+                'auth' => $this->layout()->auth))
+            ?>
+        </div>  
+        <style type="text/css">
+            .errorMesajes{
+                color: #BB4C4C;
+                text-align: center;
+            }
+        </style>
+        <?= $this->headScript() ?>
+        
+
+        <script id="navegg" type="text/javascript" src="//tag.navdmp.com/tm42256.js"></script>
+    </body>
+</html>

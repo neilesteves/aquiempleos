@@ -1,0 +1,129 @@
+
+/*paleta de colores*/
+
+/*texto*/
+.azul{
+	color:#2A5E9B;
+}
+
+.amarillo{
+	color:#FFA200;
+}
+
+.blanco{
+	color:white;
+}
+
+.size{
+	font-size:14px;
+}
+
+/*bg-color*/
+
+.bg-azul{
+	background-color:#2A5E9B; 
+}
+
+.bg-amarillo{
+	background-color:#FFA200;
+}
+
+/*utilities*/
+
+.mg-top-10{
+	margin-top: 10px;
+}
+
+.mg-top-20{
+	margin-top: 20px;
+}
+
+.mg-top-30{
+	margin-top: 30px;
+}
+.mg-top-40{
+	margin-top: 40px;
+}
+
+.mg-top-60{
+	margin-top: 60px;
+}
+
+.mg-top-80{
+	margin-top: 80px;
+}
+
+.mg-top-230{
+	margin-top: 230px;
+}
+
+.mg-tb-40{
+	margin-top: 40px;
+	margin-bottom: 40px;
+}
+
+.pd-tb-10-10{
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.pd-tb-20-20{
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.pd-tb-40-20{
+	padding-top: 40px;
+	padding-bottom: 20px;
+}
+
+.pd-top-10{
+	padding-top: 10px;
+}
+.pd-top-20{
+	padding-top: 20px;
+}
+.pd-top-40{
+	padding-top: 40px;
+}
+
+
+
+
+/*fuentes*/
+@font-face {
+    font-family: breeSerif;
+    src: url(../text/BreeSerif-Regular.woff);
+}
+
+@font-face {
+    font-family: calibriBold;
+    src: url(../text/Calibri-Bold.woff);
+}
+
+@font-face {
+    font-family: dockChamp;
+    src: url(../text/dokchamp.woff);
+}
+
+@font-face {
+    font-family: miriam;
+    src: url(../text/Miriam.woff);
+}
+
+@font-face {
+    font-family: sylfaen;
+    src: url(../text/sylfaen.woff);
+}
+
+@font-face {
+    font-family: myriadProReg;
+    src: url(../text/MyriadPro-Regular.woff);
+}
+
+
+
+
+
+
+

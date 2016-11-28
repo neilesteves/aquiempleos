@@ -1,0 +1,104 @@
+<div id="paginEPM" class="pagination bBGray all">
+    <p class="pagLegend grid5 mB0 theta alingL left"><?=$this->mostrando?></p>
+<?= $this->paginationControl($this->proceso, 'Sliding', 'buscador-EMPLEOBUSCO/_pag.phtml',array("estasArriba"=>1)) ?>
+</div>
+
+<table cadenabusqueda="<?=$this->cadenabusqueda?>"  ord="<?=$this->ord?>" col="<?=$this->col?>" page="<?=$this->pagina?>" class="dataGrid dataGridEnviarBolsa" id="dataProcesoBusqueda" summary="Proceso de Postulacion">
+<thead>
+    <tr>
+        <? $base = array('module' => 'empresa', 'controller' => 'mis-procesos', 'action' => 'ver-proceso'); ?>
+        <th class="data0 titleGrid linkTitleG">
+            <input type="checkbox" name="selectAll" class="noBdr" />
+        </th>
+        <th class="data1 titleGrid linkTitleG">
+            <? $col = 'foto' ?>
+            <? $ord = ($this->col == $col && $this->ord == 'ASC') ? 'DESC': 'ASC' ?>
+            <a href="#anclaCol" ord="<?=$ord?>" col="<?=$col?>" class="relArrow titleRow <?=strtolower($ord)?>Row">Foto</a>
+        </th>
+        <th class="data2 titleGrid linkTitleG">
+            <? $col = 'nombres' ?>
+            <? $ord = ($this->col == $col && $this->ord == 'ASC') ? 'DESC': 'ASC' ?>
+            <a href="#anclaCol" ord="<?=$ord?>" col="<?=$col?>" class="relArrow titleRow <?=strtolower($ord)?>Row">Nombres</a>
+        </th>
+        <th class="data3 titleGrid linkTitleG">
+            <? $col = 'sexo' ?>
+            <? $ord = ($this->col == $col && $this->ord == 'ASC') ? 'DESC': 'ASC' ?>
+            <a href="#anclaCol" ord="<?=$ord?>" col="<?=$col?>" class="relArrow titleRow <?=strtolower($ord)?>Row">Sexo</a>
+        </th>
+        <th class="data4 titleGrid linkTitleG">
+            <? $col = 'edad' ?>
+            <? $ord = ($this->col == $col && $this->ord == 'ASC') ? 'DESC': 'ASC' ?>
+            <a href="#anclaCol" ord="<?=$ord?>" col="<?=$col?>" class="relArrow titleRow <?=strtolower($ord)?>Row">Edad</a>
+        </th>
+        <th class="data5 titleGrid linkTitleG">
+            <? $col = 'mayornivelestudio' ?>
+            <? $ord = ($this->col == $col && $this->ord == 'ASC') ? 'DESC': 'ASC' ?>
+            <a href="#anclaCol" ord="<?=$ord?>" col="<?=$col?>" class="relArrow titleRow <?=strtolower($ord)?>Row" >Nivel estudio</a>
+        </th>
+        <th class="data6 titleGrid linkTitleG">
+            <? $col = 'mayorcarrera' ?>
+            <? $ord = ($this->col == $col && $this->ord == 'ASC') ? 'DESC': 'ASC' ?>
+            <a href="#anclaCol" ord="<?=$ord?>" col="<?=$col?>" class="relArrow titleRow <?=strtolower($ord)?>Row" >Carrera</a>
+        </th>
+        <th class="data6 titleGrid linkTitleG">
+            <? $col = 'ubigeo' ?>
+            <? $ord = ($this->col == $col && $this->ord == 'ASC') ? 'DESC': 'ASC' ?>
+            <a href="#anclaCol" ord="<?=$ord?>" col="<?=$col?>" class="relArrow titleRow <?=strtolower($ord)?>Row" >Lugar de<br/>Residencia</a>
+        </th>
+    </tr>
+</thead>
+<tbody>
+    <? foreach ($this->proceso as $item): ?>
+       <tr>
+       <td class="data0">
+           <input type="checkbox" name="select" class="noBdr" id="<?=$item["idpostulante"]?>" relpos="<?=$item["idpostulante"]?>" />
+       </td>
+        <td class="data1">
+            <span class="dateData cntImgFix">
+                <a href="#" class="verPerfilFilPerfP_Imagen">
+                 <? $logo = ($item["foto"]=="" || $item["foto"]==NULL) ? 
+                            $this->S("/images/photoDefault.jpg")
+                            : ELEMENTS_URL_IMG.$item["foto"]; 
+                   $lado = $this->ImgLadoMayor($logo); ?>
+                   <img <?=$lado?>="60" src="<?=$logo?>" />
+                </a>
+            </span>
+        </td>
+        <td class="data2">
+                <div class="bold nameFilPerfP"><a href="#" class="verPerfilFilPerfP_Nombre"><?=$item["nombres"]." ".$item["apellidos"]?></a></div>
+                <div class="tlfFilPerfP sptIcoEmp" title="Telefono">&nbsp;<?=$item["celular"]?></div>
+
+                <div class="all">
+                    <?  if($item["slug"]!="" && $item["slug"]!=null): ?>
+                    <a class="verPerfilFilPerfP sptIcoEmp left" rel="<?=$item["idpostulante"]?>" href="#" title="Ver perfil"></a>
+                    <? endif; ?>
+                    <? if($item["path_cv"]!="" && $item["path_cv"]!=null): ?>
+                    <span class="pipeFilPerfP left">|</span>
+                    <a class="downFilPerfP sptIcoEmp left" href="<?=ELEMENTS_URL_CVS.$item["path_cv"]?>" title="Ver CV"></a>
+                    <? endif; ?>
+                </div>
+
+        </td>
+        <td class="data3">
+        	<div class="sptIcoEmp <?=($item["sexo"]=="M")?"imgHombre":"imgMujer" ?>" title=" <?=($item["sexo"]=="M")?"Hombre":"Mujer" ?>"><?=$item["sexo"]?></div>
+        </td>
+        <td class="data4">
+            <span class="dateData"><?=$item["edad"]?></span>
+        </td>
+        <td class="data5">
+            <span class="dateData"><? if (trim($item["mayornivelestudio"]) == "") echo "Ninguno"; else echo $item["mayornivelestudio"]; ?></span>
+        </td>
+        <td class="data6">
+            <span class="dateData"><? if (trim($item["mayorcarrera"]) == "") echo "Ninguna"; else echo $item["mayorcarrera"]; ?></span>
+        </td>
+        <td class="data6">
+            <span class="dateData"><?=$item["ubigeo"]?></span>
+        </td>
+        </tr>
+    <? endforeach; ?>
+    </tbody>
+</table>
+
+<div class="pagination all">
+   <?= $this->paginationControl($this->proceso, 'Sliding', 'buscador-EMPLEOBUSCO/_pag.phtml',array("estasArriba"=>0)) ?>
+</div>

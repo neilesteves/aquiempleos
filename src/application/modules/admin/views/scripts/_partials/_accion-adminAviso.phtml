@@ -1,0 +1,11 @@
+<div class="all">
+	<h2>Nombre : <?= $this->puesto ?></h2>
+		<div class="legend history">
+	<?php if ($this->estado != Application_Model_AnuncioWeb::ESTADO_BANEADO) {?>
+	<a href="#winAlertBloquearAviso" class="blockAviso avi winModal" rel="<?= $this->idAviso?>">Bloquear</a>
+	<?php } else {?>
+	<a href="#winAlertBloquearAviso" class="desblockAviso avi winModal" rel="<?= $this->idAviso?>">Desbloquear</a>
+	<?php } ?>
+	<a href="<?= $this->avisoAdminUrl ?>" class="f14 right" id="backToProcess" >&laquo; Volver</a>
+	</div>
+</div>

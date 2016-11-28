@@ -1,0 +1,196 @@
+<?=
+$this->partial('_partials/_navigation.phtml',
+    array('menu_sel' => $this->menu_sel, 'isAuth' => $this->isAuth, "flashMessages" => $this->flashMessages))
+?>
+<?=
+$this->partial('mi-cuenta/_sec-menu.phtml',
+    array('menu_post_sel' => $this->menu_post_sel, "tieneBuscador" => $this->buscadorEMPLEOBUSCO))
+?>
+<div id="wrapper" class="row">
+    <?=
+    $this->partial('_partials/_messages.phtml',
+        array("flashMessages" => $this->flashMessages))
+    ?>  
+    <div id="filterProcEmp" class="blockAL grid4 theta left">        
+        <div class="search-box">
+            <h4 class="black-title">Buscador Postulantes</h4>
+            <form id="fIRSearch" class="frm-search" method="get" action="<?=
+                $this->url(array(
+                    'module' => 'empresa', 'controller' => 'postulantes-bloqueados',
+                    'action' => 'buscar'))
+                ?>">
+                <div class="control-group">
+                    <input type="text" name="criterio" value="<?= $this->criterio ?>" id="fWordRS">
+                </div>
+                <div class="controls">
+                    <input type="submit" value="Buscar" class="btn btn-primary" id="fSendRS">
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="right" id="innerProcEmp">
+        <div id="cntOptionsCR" class="all">
+            <div id="leftBtnsCR" class="divListHeadE left">
+                <ul class="ulListHeadE all">
+                    <li class="liListHeadE left"><a class="aListHeadE left" href="javascript:;">Desbloquear</a></li>                        
+                </ul>
+            </div>
+        </div>
+        <div id="paginEPM" class="pagination bBGray all">
+            <p class="pagLegend grid5 mB0 theta alingL left">Mostrando <?= $this->totalBloqueadosPagina ?> de <?= $this->totalBloqueados ?> (todos)</p>
+            <?=
+            $this->paginationControl($this->postulantesBloqueados, 'Sliding',
+                'paginador.phtml',
+                array('variables' =>
+                array('criterio' => $this->criterio)))
+            ?>
+        </div>
+        <table class="dataGrid dataGridEnviarBolsa" id="dataProcesoPostulacion" summary="Bloqueados">
+            <thead>
+                <tr>
+                    <th class="data0 titleGrid linkTitleG">
+                        <input type="checkbox" name="selectAll" class="noBdr" />
+                    </th>
+                    <th class="data2 titleGrid linkTitleG">
+                        <a href="<?=
+                        $this->url(array(
+                            'columna' => 'path_foto', 'orden' => $this->orden['path_foto'],
+                            'criterio' => $this->criterio))
+                        ?>" class="rel relArrow">
+                            <span class="arrowDG <?= $this->orden['path_foto'] ?>">&nbsp;</span> Foto</a>
+                    </th>
+                    <th class="data8 titleGrid linkTitleG">
+                        <a href="<?=
+                        $this->url(array(
+                            'columna' => 'nombres', 'orden' => $this->orden['nombres'],
+                            'criterio' => $this->criterio))
+                        ?>" class="rel relArrow">
+                            <span class="arrowDG <?= $this->orden['nombres'] ?>">&nbsp;</span> Nombres</a>
+                    </th>
+                    <th class="data6 titleGrid linkTitleG">
+                        <a href="<?=
+                        $this->url(array(
+                            'columna' => 'sexo', 'orden' => $this->orden['sexo'],
+                            'criterio' => $this->criterio))
+                        ?>" class="rel relArrow">
+                            <span class="arrowDG <?= $this->orden['sexo'] ?>">&nbsp;</span> Sexo</a>
+                    </th>
+                    <th class="data6 titleGrid linkTitleG">
+                        <a href="<?=
+                        $this->url(array(
+                            'columna' => 'edad', 'orden' => $this->orden['edad'],
+                            'criterio' => $this->criterio))
+                        ?>" class="rel relArrow">
+                            <span class="arrowDG <?= $this->orden['edad'] ?>">&nbsp;</span> Edad</a>
+                    </th>
+                    <th class="data2 titleGrid linkTitleG">
+                        <a href="<?=
+                        $this->url(array(
+                            'columna' => 'nivel_nombre', 'orden' => $this->orden['nivel_nombre'],
+                            'criterio' => $this->criterio))
+                        ?>" class="rel relArrow">
+                            <span class="arrowDG <?= $this->orden['nivel_nombre'] ?>">&nbsp;</span> Nivel<br/>estudio</a>
+                    </th>
+                    <th class="data2 titleGrid linkTitleG">
+                        <a href="<?=
+                        $this->url(array(
+                            'columna' => 'otro_carrera', 'orden' => $this->orden['otro_carrera'],
+                            'criterio' => $this->criterio))
+                        ?>" class="rel relArrow">
+                            <span class="arrowDG <?= $this->orden['otro_carrera'] ?>">&nbsp;</span> Carrera</a>
+                    </th>
+                    <th class="data7 titleGrid linkTitleG">
+                        <a href="<?=
+                        $this->url(array(
+                            'columna' => 'fecha_bloqueo',
+                            'orden' => $this->orden['fecha_bloqueo'],
+                            'criterio' => $this->criterio))
+                        ?>" class="rel relArrow">
+                            <span class="arrowDG <?= $this->orden['fecha_bloqueo'] ?>">&nbsp;</span>Fecha de bloqueo</a>
+                    </th>
+                    <th class="data5 titleGrid">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                foreach ($this->postulantesBloqueados as $postulante):
+                    ?>
+                    <tr>
+                        <td class="data0">
+                            <input type="checkbox" name="select" />
+                        </td>
+                        <td class="data2">
+                            <span class="dateData">
+                                <!--<a class="verPerfilFilPerfP_Imagen" href="#">-->
+                                <? if (empty($postulante['path_foto'])) : ?>
+                                    <img height="60" src="<?php echo $this->S('/images/photoDefault.jpg'); ?>">
+                                <? else: ?>
+                                    <img height="60" src="<?php echo ELEMENTS_URL_IMG . $postulante['path_foto']; ?>">
+                                <? endif ?>
+                                <!--</a>-->
+                            </span>
+                        </td>
+                        <td class="data8">
+                            <div class="bold nameFilPerfP">
+                                <!--<a class="aActionM" rel="<?= $postulante["id_postulante"] ?>" href="">-->
+                                <?= $postulante['nombres'] ?>, <?= $postulante['apellidos'] ?>
+                                <!--</a>-->
+                            </div>
+                            <div title="Telefono" class="tlfFilPerfP sptIcoEmp">&nbsp;<?= $postulante['celular'] ?></div>
+                            <div class="all">
+                                <!--<a title="Ver perfil" rel="592143" href="#" class="verPerfilFilPerfP sptIcoEmp left"></a>-->
+                            </div>
+                        </td>
+                        <td class="data6">
+                            <div class="sptIcoEmp <?php
+                            if ($postulante['sexo'] === "F") {
+                                echo "imgMujer";
+                            } else {
+                                echo "imgHombre";
+                            }
+                            ?>" title="Hombre"><?= $postulante['sexo'] ?></div>
+                        </td>
+                        <td class="data6"><?= $postulante['edad'] ?> años</td>
+                        <td class="data2">
+                            <span class="dateData">
+                                <?php
+                                if (is_null($postulante['nivel_nombre'])):
+                                    echo "Ninguno";
+                                else:
+                                    echo $postulante['nivel_nombre'];
+                                endif;
+                                ?>
+                            </span>
+                        </td>
+                        <td class="data2">                        
+                            <span class="dateData">
+                                <?php
+                                if (is_null($postulante['otro_carrera'])):
+                                    echo "Ninguno";
+                                else:
+                                    echo $postulante['otro_carrera'];
+                                endif;
+                                ?>
+                            </span>                                                        
+                        </td>
+                        <td class="data7">
+                            <span class="dateData"><?= $postulante['fecha_bloqueo'] ?></span>
+                        </td>
+                        <td class="data5">
+                            <div class="addNoteFilPerfP"><a class="winModal anadirnotas" href="#winAnadirNotas" rel="">Desbloquear</a></div>
+                        </td>               
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+        <div class="pagination all">
+            <?=
+            $this->paginationControl(
+                $this->postulantesBloqueados, 'Sliding', 'paginador.phtml',
+                array('variables' =>
+                array('criterio' => $this->criterio)))
+            ?>
+        </div>
+    </div>
+    <div id="ajax-loading" class="loading" style="width: 100%;"></div>
+</div>

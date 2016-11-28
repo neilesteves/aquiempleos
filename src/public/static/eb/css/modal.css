@@ -1,0 +1,153 @@
+
+.big-box{
+    width: 490px;
+    height: auto;
+    overflow: visible;
+    overflow-x:hidden; 
+    overflow-y:hidden;
+}
+
+.box-modal{
+    width: 100%;
+    height: auto;
+    /*box-shadow: 0px 0px 11px 2px #B3B3B3;*/
+    border-radius: 1em;
+    background-color:#eaeaea;
+}
+
+.img-ico-cuenta{
+    width: 25%;
+    position: relative;
+    top: -2px;
+    z-index: 2;
+}
+
+
+.little-box-bg{
+    background-color: white;
+    padding: 2.5em  1em 1.5em 1em;
+    border-radius: 1em;
+    position: relative;
+    top: -42px;
+}
+
+
+.title{
+    color: #adadad;
+    font-size: 21px;
+}
+
+.user {
+    background-image: url(../img/modal/login/user.svg);
+    background-repeat: no-repeat;
+    background-size: 53px;
+    height: 50px;
+    background-position: 3px -1px;
+}
+
+.password {
+    background-image: url(../img/modal/login/password.svg);
+    background-repeat: no-repeat;
+    background-size: 53px;
+    height: 50px;
+    background-position: 3px -1px;
+}
+
+.form-control{
+    border-radius: 0px;
+    height: 45px;
+    border-left: 6px solid #adadad;
+    background-color: #f8f8f8;
+    border-right:transparent;
+    border-top:transparent;
+    border-bottom:transparent;
+    padding-left: 4em;
+    font-family: breeSerif-light;
+    font-size: 16px;
+}
+
+/*===*/
+
+.help-password a{
+    color:#2b5f9c;
+    font-size: 12px;
+    padding-top: 2px;
+    position: relative;
+    top: 5px;
+}
+
+.ingresar{
+    position: relative;
+    top:15px;
+    width: 100%;
+    background-color: #ffa200;
+    color:white;
+}
+
+.ingresar-facebook{
+    position: relative;
+    top:15px;
+    width: 100%;
+    background-color: #3a5998;
+    border-radius: 0.5em;
+    color:white;
+}
+
+.ingresar-facebook i{
+    border-right: 1px solid white;
+    font-size: 30px;
+    padding-right: 20px;
+    margin-right: 27px;
+}
+
+.btn_label-face{
+    position: relative;
+    right: 13px;
+    bottom:4px;
+}
+
+.registrate{
+    background-color: #eaeaea;
+    margin-top: 35px;
+    padding: 10px;
+}
+
+.registrate a{
+    font-size: 14px;
+    color:#2b5f9c;
+}
+
+.no-cuenta{
+    padding-right: 20px;
+    font-size: 14px;
+    color:#666666;
+}
+
+.radio input[type="radio"], .radio-inline input[type="radio"], .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"]{
+    margin-left:-14px;
+}
+
+.check-in{
+    position: relative;
+    top:11px;
+    left:120px;
+}
+
+.password-remind{
+    position: relative;
+    top: 10px;
+    font-size: 14px;
+    color:#adadad;
+    font-family:breeSerif-light; 
+}
+
+.btn_label{
+    font-size: 20px;
+}
+
+
+
+
+
+
+

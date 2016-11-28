@@ -1,0 +1,65 @@
+<table cellspacing="0" border="0" cellpadding="0" width="750">
+	<tr><td>&nbsp;</td></tr>
+    <tr>
+        <td style="font-family: Arial, Helvetica, sans-serif;">
+            <table border="0" cellspacing="1" cellpadding="0" style="padding: 18px 0px 0px 0px">
+                <tr>
+                    <td style="font-weight: bold; font-size: 21px; color: #000000; padding:0 0 0 30px; margin:0"><?= $this->nombre.' '.$this->apellidos ?></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td valign="top" align="center" colspan="2" style="text-align: center">
+            <table width="100%" style="margin: 10px 0px 0px 10px" align="center" border="0">
+                <tr>
+                    <td align="center" style="color:#5a5658;font-weight:bold;font-size:36px; line-height:1"><span style="line-height:1">Ha postulado al puesto</span><br/>
+                        <span style="color:#000000;font-size:44px; line-height:1"><?= $this->nombrePuesto ?></span></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr></tr>
+</table>
+<table cellspacing="6" border="0" cellpadding="0" width="750">
+	<tr>
+    	<td style="font-size: 17px; padding:0 0 0 30px; margin:0"> Usuario : <a href="mailto:<?= $this->usuario ?>" style="color:#007fd3; font-weight:normal; text-decoration:none"><?= $this->usuario ?></a>
+        </td>
+        
+        <tr>
+    	<td style="font-size: 17px; padding:0 0 0 30px; margin:0"> CI : <?= $this->dni ?></a>
+        </td>
+        
+        <tr>
+    	<td style="font-size: 17px; padding:0 0 0 30px; margin:0"> Nivel más alcanzado : <?= $this->nivel ?></a>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" style="padding-left:0px;">
+            <table width="92%" cellspacing="5" border="0" cellpadding="2" style="font-size:14px;">
+                <tr>
+                	<td colspan="4">
+                    <a style="color: #007FD2;" href="<?=SITE_URL.'/perfil/'.$this->slug?>">Ver perfil público del postulante</a>
+                    </td>
+                </tr>
+                <tr>
+                	<td height="8" colspan="4"></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+<table cellspacing="0" cellpadding="0" border="0" width="750">
+    <tr>
+        <td>
+            <table style="border-left-color: #fff; border-top-color: #fff; border-bottom: #fff 1px solid; border-right-color: #fff" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                    <td align="left" width="750" style="padding-left:30px;padding-bottom:10px;"><h1 style="padding-right: 0px; padding-left: 20px; font-family:'Arial, Helvetica, sans-serif';font-weight: bold; font-size: 20px; margin: 0px; color: #222222; padding-top: 10px; padding-bottom: 10px;">
+                        <span style="color:#000000; font-family: Arial, Helvetica, sans-serif"> El equipo EMPLEOBUSCO</span> </h1>
+                        
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>

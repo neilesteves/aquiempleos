@@ -1,0 +1,155 @@
+<div id="main" class="all">
+    <div class="innerAll">
+        <div class="bgAll gridS20">
+            <?=
+            $this->partial('_partials/_navigation.phtml', 'admin',
+                array('isAuth' => $this->isAuth, "flashMessages" => $this->flashMessages))
+            ?>
+            <div class="gridTab">
+                <div class="gridIT">
+                    <h5 class="h5TitleAdm">Módulo de Administración</h5>
+                    <div class="iAccount" id="innerMain">
+                        <div id="admLeftNM" class="blockAL grid4 omega left">
+                            <?=
+                            $this->partial('gestion/_sidebar-menu.phtml',
+                                array('menu_sel_side' => $this->menu_sel_side, 'rol' => $this->rol))
+                            ?>
+                        </div>
+                        <div class="blockAR grid15 alpha right">
+                            <div class="iBlockAR row">
+                                <a href="#editAdmL" class="right btn btn-primary winModal" id="addNewUserNE">Nuevo usuario</a>
+                                <h2 class="titleMAU">Administradores</h2>
+                            </div>
+                            <div class="gridYScroll">
+                                <table class="dataGrid" id="dataAadmins" summary="Administradores">
+                                    <thead>
+                                        <?php
+                                        $base
+                                            = $this->usuarioAdmin
+                                        ?>
+                                        <tr>
+                                            <th class="data1 titleGrid">#</th>
+                                            <th class="data2 titleGrid">Usuario</th>
+                                            <th class="data3 titleGrid linkTitleG">
+                                                <?
+                                                $col
+                                                    = 'nombre'
+                                                ?>
+                                                <?
+                                                $ord
+                                                    = $this->col == $col && $this->ord
+                                                    == 'ASC' ? 'DESC' : 'ASC'
+                                                ?>
+                                                <?
+                                                $base['col'] = $col;
+                                                $base['ord'] = $ord;
+                                                $url = $this->url($base,
+                                                    'default', true)
+                                                ?>
+                                                <a href="<?= $url ?>" class="rel relArrow">Nombres<span class="arrowDG <?= strtolower($ord) ?>">&nbsp;</span></a>
+                                            </th>
+                                            <th class="data4 titleGrid linkTitleG">
+                                                <?
+                                                $col
+                                                    = 'apellido'
+                                                ?>
+                                                <?
+                                                $ord
+                                                    = $this->col == $col && $this->ord
+                                                    == 'ASC' ? 'DESC' : 'ASC'
+                                                ?>
+                                                <?
+                                                $base['col'] = $col;
+                                                $base['ord'] = $ord;
+                                                $url = $this->url($base,
+                                                    'default', true)
+                                                ?>
+                                                <a href="<?= $url ?>" class="rel relArrow">Apellidos<span class="arrowDG <?= strtolower($ord) ?>">&nbsp;</span></a>
+                                            </th>
+                                            <th class="data5 titleGrid">Rol</th>
+                                            <th class="data6 titleGrid">Estado</th>
+                                            <th class="data7 titleGrid linkTitleG">
+                                                <?
+                                                $col
+                                                    = 'fh_registro'
+                                                ?>
+                                                <?
+                                                $ord
+                                                    = $this->col == $col && $this->ord
+                                                    == 'ASC' ? 'DESC' : 'ASC'
+                                                ?>
+                                                <?
+                                                $base['col'] = $col;
+                                                $base['ord'] = $ord;
+                                                $url = $this->url($base,
+                                                    'default', true)
+                                                ?>
+                                                <a href="<?= $url ?>" class="rel relArrow">Fecha<span class="arrowDG <?= strtolower($ord) ?>">&nbsp;</span></a>
+                                            </th>
+                                            <th class="data8 titleGrid">Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        if (count($this->arrayBusqueda) > 0) {
+                                            $cantidad = 5; //$this->arrayBusqueda->getCurrentItemCount() 
+                                            $count = ($this->pagina - 1) * $cantidad
+                                                + 1;
+                                        }
+                                        ?>
+                                        <?php
+                                        foreach ($this->arrayBusqueda as $data) {
+                                            ?>
+                                        
+                                        <?php 
+                                            $token = crypt($data['id'], '$2a$07$'.md5(uniqid(rand(), true)).'$');
+
+                                        ?>
+                                            <tr>
+                                                <td class="data1"><?= $count++ ?></td>
+                                                <td class="data2"><?= $data['email'] ?></td>
+                                                <td class="data3"><?= $data['nombre'] ?></td>
+                                                <td class="data4"><?= $data['apellido'] ?></td>
+                                                <td class="data5"><?=
+                                                    $data['rol'] == Application_Form_Login::ROL_ADMIN_CALLCENTER
+                                                            ? 'Call Center' : ucfirst(substr($data['rol'],
+                                                                6))
+                                                    ?></td>
+                                                <td class="data6"><?=
+                                                    $data['activo'] == 1 ? 'Activo'
+                                                            : 'Inactivo'
+                                                    ?></td>
+                                                <td class="data7"><?=
+                                                    date('d/m/Y',
+                                                        strtotime($data['fh_registro']));
+                                                    ?></td>
+                                                <td class="data8">
+                                                    <ul>
+                                                        <li><a href="#editAdmL" rol="<?= $data['id'] ?>" class="winModal">Editar</a></li>
+                                                        <?php
+                                                        if ($data['activo'] != 0) {
+                                                            ?>
+                                                            <li><a href="#winAlertBloquearUsuAdmin" rol="<?= $data['id'] ?>" token="<?=$token;?>" class="winModal BlockUsuAdmin block">Desactivar</a></li>
+                                                        <?php } else { ?>
+                                                            <li><a href="#winAlertBloquearUsuAdmin" rol="<?= $data['id'] ?>" token="<?=$token;?>" class="winModal BlockUsuAdmin">Activar</a></li>
+                                                        <?php } ?>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="pagination all">
+                                <?=
+                                $this->paginationControl($this->arrayBusqueda,
+                                    'Sliding', 'gestion/_pag.phtml')
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

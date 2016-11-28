@@ -1,0 +1,90 @@
+<form id="frmUserEducation" autocomplete="off" class="type1 mt20 "  <?=($this->noneSkill)? "":'style="display: none;"'?> method="post" action="/mi-cuenta/mis-estudios-ajax">  
+  <div class="form_box border_grey">
+    <div class="form_row">
+      <div class="form_col6">
+        <fieldset>
+          <label>Grado</label>
+          <?= $this->formEstudiosPostulante->selLevelStudy->setAttribs(array('id' => 'selLevelStudy', 'tabindex' => '2', 'required'=>'', 'class'=>'pretty_select_2x'))->renderViewHelper();?>
+        </fieldset>
+      </div>
+      <div class="form_col6">
+        <fieldset>
+          <label>Estado</label>
+          <?= $this->formEstudiosPostulante->selStateStudy->setAttribs(array('id' => 'selStateStudy', 'tabindex' => '3', 'required'=>'', 'class'=>'pretty_select_2x'))->renderViewHelper();?>
+        </fieldset>
+      </div>
+    </div>
+    <div class="form_row">
+      <div class="form_col6">
+        <fieldset>
+          <label>INSTITUCIÓN</label>
+          <?=$this->formEstudiosPostulante->txtInstitution->setAttribs(array('class' => 'input_control','placeholder' => 'Nombre de institución',
+          'id' => 'txtInstitution', 'tabindex' => '4', 'maxlength'=>"75", 'minlenght'=>"2", 'required'=>''))->renderViewHelper();?>
+        </fieldset>
+        <input id="hidInstitution" name="hidInstitution" type="hidden" value="0">
+      </div>
+      <div class="form_col6">
+        <fieldset>
+          <label>Carrera</label>
+          <?=$this->formEstudiosPostulante->txtCareer->setAttribs(array('class' => 'input_control','placeholder' => 'Dato de carrera',
+          'id' => 'txtCareer', 'tabindex' => '5', 'maxlength'=>"75", 'minlenght'=>"2", 'required'=>''))->renderViewHelper();?>
+          <input id="hidCareer" name="hidCareer" type="hidden" value="0">
+        </fieldset>
+      </div>
+    </div>
+    <div class="form_row">
+      <div class="form_col6">
+        <fieldset>
+          <label>Inicio</label>
+          <?= $this->formEstudiosPostulante->selMonthBegin->setAttribs(array('id' => 'selMonthBegin', 'tabindex' => '6', 'class'=>'pretty_select_2x'))->renderViewHelper();?>
+        </fieldset>
+      </div>
+      <div class="form_col6">
+        <fieldset>
+          <label>Año</label>
+          <?=$this->formEstudiosPostulante->txtYearBegin->setAttribs(array('class' => 'input_control','placeholder' => "yyyy",
+          'id' => 'txtYearBegin', 'tabindex' => '7', 'maxlength'=>"4", 'minlenght'=>"4", 'required'=>''))->renderViewHelper();?>
+        </fieldset>
+      </div>
+    </div>
+    <div class="form_row">
+      <div class="form_col6">
+        <fieldset>
+          <label>FIN</label>
+          <?= $this->formEstudiosPostulante->selMonthEnd->setAttribs(array('id' => 'selMonthEnd', 'tabindex' => '8', 'class'=>'pretty_select_2x'))->renderViewHelper();?>
+        </fieldset>
+      </div>
+      <div class="form_col6">
+        <fieldset>
+          <label>Año</label>
+          <?=$this->formEstudiosPostulante->txtYearEnd->setAttribs(array('class' => 'input_control','placeholder' => "yyyy",
+          'id' => 'txtYearEnd', 'tabindex' => '9', 'maxlength'=>"4", 'minlenght'=>"4", 'required'=>'', 'max' => $this->maxYear, 'min' => $this->minYear, 'data-currentmonth' => (int)date('m'), 'data-current-year' => date('Y')))->renderViewHelper();?>
+        </fieldset>
+      </div>
+    </div>
+    <div class="form_row">
+      <div class="form_col6">
+        <fieldset>
+          <label class="lbl_control"> Actualmente estudiando
+              <input type="checkbox" name="actualStudent" id="actualStudent" tabindex="10">
+            <?php /* $this->formEstudiosPostulante->actualStudent->setAttribs(array('id' => 'actualStudent', 'tabindex' => '10'))->renderViewHelper(); */ ?>
+          </label>
+        </fieldset>
+      </div>
+      <div class="form_col6">
+        <fieldset>
+          <label>País</label>
+          <?= $this->formEstudiosPostulante->selCountry->setAttribs(array('id' => 'selCountry', 'tabindex' => '11', 'class'=>'pretty_select_2x'))->renderViewHelper();?>
+        </fieldset>
+      </div>
+    </div>      
+    <div class="form_row buttons_row">
+      <button class="btn btn_save" disabled>
+        <span class="btn_label">Guardar</span>
+        <span class="btn_spinner"></span>
+      </button>
+      <button class="btn btn_cancel type_basic" type="button">Cancelar</button>
+    </div>
+  </div>
+  <input id="hidStudy" name="hidStudy" type="hidden" value="0">
+</form>

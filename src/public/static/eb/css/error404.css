@@ -1,0 +1,46 @@
+.contenedor-error404{
+	padding-top: 5em;
+	padding-bottom: 2em;
+	text-align: center;
+}
+.contenedor-error404 p{
+	color: #5C5C5C;
+}
+.img-error404{
+	width: 100%;
+	height: 190px;
+	padding-bottom: 1em;
+}
+.text-no-encontrado{
+	text-align: center;
+	font-size: 21px;
+}
+.btn-home{
+	background: #2A5D99;
+	padding: 0.5em 1em;
+	text-align: center;
+	color: white;
+	box-shadow: 2px 3px 5px #888888;
+	transition: 0.5s;
+}
+.btn-home:hover{
+	color: #333;
+    text-decoration: none;
+    background: aliceblue;
+    border: 1px solid #2a5e9b; 
+}
+.btn-publicar, .btn-buscar{
+	background: #FEA203;
+	padding: 0.5em 1em;
+	text-align: center;
+	color: white;
+	box-shadow: 2px 3px 5px #888888;
+	color: white;
+	transition: 0.5s;
+}
+.btn-publicar:hover, .btn-buscar:hover{
+	color: #fff;
+    text-decoration: none;
+    background: goldenrod;
+    border: 1px solid #776235;
+}

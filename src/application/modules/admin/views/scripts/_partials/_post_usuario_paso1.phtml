@@ -1,0 +1,48 @@
+<?php if ( $this->controlador == 'registro' || $this->controlador == 'registro-empresa') {?>
+    <div class="control-group">
+        <label for="txtEmail" class="control-label"><em>*</em><?= $this->modulo == 'postulante'? ' Email:':' Email de contacto:'?> </label>
+        <?= $this->formUsuario->auth_token->renderViewHelper() ?>
+        <div class="controls">
+            <?=$this->formUsuario->email->setAttribs(array('id'=>'txtEmail','class'=>'input-xmedium', 'autocomplete'=>'off','required'=>'', 'data-parsley-type'=>'email', 'data-parsley-trigger'=>'change', 'data-parsley-maxlength'=>'50', 'data-parsley-errors-container'=>'#responseEmail'))->renderViewHelper(); ?>
+            <div class="parsley_info" id="responseEmail"></div>
+        </div>
+    </div>
+<?php if ($this->update == 0) { ?>
+    <div class="control-group">
+        <label for="txtPassword" class="control-label"><em>*</em> Clave:</label>
+        <div class="controls">
+            <?=$this->formUsuario->pswd->setAttribs(array('id'=>'txtPassword','class'=>'input-xmedium','maxlength'=>32,'type'=>'password','required'=>'', 'data-parsley-trigger'=>'change', 'data-parsley-errors-container'=>'#responsePassword', 'data-parsley-minlength'=>'6', 'data-parsley-maxlength'=>'32', 'maxlength'=>32, 'data-pstrength-container' => '#divPasswordStr'))->renderViewHelper(); ?>
+            <div class="parsley_info" id="responsePassword"><div class="txt_small mL10">Usa de 6 a 32 caracteres ¡Sé ingenioso!</div></div>
+            <div id="divPasswordStr" class="wrap_stronger_pass"></div>
+        </div>
+    </div>
+    <div class="control-group">
+        <label for="txtRepeatPassword" class="control-label"><em>*</em> Repetir clave:</label>
+        <div class="controls">
+            <?=$this->formUsuario->pswd2->setAttribs(array('id'=>'txtRepeatPassword','class'=>'input-xmedium','maxlength'=>32,'type'=>'password','required'=>'', 'data-parsley-trigger'=>'change','data-parsley-equalto'=>'#txtPassword', 'data-parsley-minlength'=>'6', 'data-parsley-maxlength'=>'32', 'maxlength'=>32))->renderViewHelper(); ?>       
+        </div>
+    </div>
+    <?php } ?>
+<?php } elseif ( $this->rol == Application_Form_Login::ROL_ADMIN_SOPORTE || $this->rol == Application_Form_Login::ROL_ADMIN_MASTER || $this->modulo == 'empresa' || $this->modulo == 'postulante' ) { ?>
+    <div class="control-group">
+        <label for="txtEmail" class="control-label"><em>*</em><?= $this->modulo == 'postulante'? ' Email:':' Email de contacto:'?> </label>
+        <?= $this->formUsuario->auth_token->renderViewHelper() ?>
+        <div class="controls">
+            <?=$this->formUsuario->email->setAttribs(array('id'=>'txtEmail','class'=>'input-xmedium', 'autocomplete'=>'off','required'=>'', 'data-parsley-type'=>'email', 'data-parsley-trigger'=>'change', 'data-parsley-maxlength'=>'50', 'data-parsley-errors-container'=>'#responseEmail', 'rol' => $this->idPostulante))->renderViewHelper(); ?>
+            <div class="parsley_info" id="responseEmail"></div>
+        </div>
+    </div>
+<?php }else {?>
+    <div class="control-group">
+        <label for="fEmail" class="control-label"><em>*</em>  Email de contacto: ></label>
+        <div class="controls">
+            <p><?= $this->emailMicuenta ?></p>
+            <span class="response cGray left"></span>
+        </div>
+    </div>
+<?php } ?>
+<?php if ( $this->controlador == 'mi-cuenta') :?>
+    <?php if (isset($this->formUsuario->auth_token)) { ?>
+    <?= $this->formUsuario->auth_token->renderViewHelper(); ?>
+    <?php } ?>
+<?php endif; ?>

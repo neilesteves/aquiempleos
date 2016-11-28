@@ -1,0 +1,209 @@
+<div id="main" class="all">
+    <div class="innerAll">
+        <div class="bgAll gridS20">
+            <?=$this->partial('_partials/_navigation.phtml','admin',array('isAuth' =>$this->isAuth, 'auth'=>$this->auth, "flashMessages"=>$this->flashMessages))?>
+            <div class="gridTab">
+                <div class="gridIT">
+                    <h5 class="h5TitleAdm">Módulo de Administración</h5>
+                    <div class="iAccount" id="innerMain">
+                    
+                        <div id="admLeftNM" class="blockAL grid4 omega left">
+                        <?=$this->partial('gestion/_sidebar-menu.phtml',array('menu_sel_side' => $this->menu_sel_side,'rol' => $this->rol))?>
+                        </div>
+                        
+                        <div class="blockAR alpha right blockFix">
+                            <div class="iBlockAR">
+                            <h2 class="titleMAU">Avisos</h2>
+                            <form action="" method="post" id="frmBuscar_avisos" class="r2 fieldsetAdm">
+                              <div class="block">
+                                <label for="fUrlId" class="labelN"> ID:</label>
+                                <?$hasError = $this->formAviso->url_id->hasErrors(); ?>
+                                <?=$this->formAviso->url_id->setAttribs(array('id'=>'fUrlId','class'=>'fields inputN left replaceNbsp','tabindex'=>'6'))->renderViewHelper(); ?>
+                                <span class="response cGray left<?=$hasError?' bad':''?>"><?=$hasError?$this->formAviso->url_id->errMsg:''?></span>
+                              </div>
+                              
+                              <div class="block">
+                                <label for="fRazonSocial" class="labelN"> Empresa:</label>
+                                <?$hasError = $this->formAviso->razonsocial->hasErrors(); ?>
+                                <?=$this->formAviso->razonsocial->setAttribs(array('id'=>'fRazonSocial','class'=>'fields inputN left replaceNbsp','tabindex'=>'6','data-model' => $this->model,'autocomplete'=>'off','data-param'=>'3','data-id'=>$this->dataId,'data-auto'=>$this->dataAuto))->renderViewHelper(); ?>
+                                <span id="resSuggest" class="response left<?=$hasError?' bad':''?>"><?=$hasError?$this->formAviso->razonsocial->errMsg:''?>ingresa mínimo 3 caracteres para iniciar la búsqueda.</span>
+                              </div>
+                              <div class="block" id="fRucVal">
+                                <label for="fRuc" class="labelN"> Ruc:</label>
+                                <?$hasError = $this->formAviso->num_ruc->hasErrors(); ?>
+                                <?=$this->formAviso->num_ruc->setAttribs(array('id'=>'fRuc','class'=>'fields inputN left replaceNbsp','tabindex'=>'7'))->renderViewHelper(); ?>
+                                <span class="response cGray left<?=$hasError?' bad':''?>"><?=$hasError?$this->formAviso->num_ruc->errMsg:""?> </span>
+                              </div>
+                              <div class="block">
+                                <label for="fBirthDate" class="labelN"> Fecha:</label>
+                                <div class="blockBDC alignMeses left">
+                                   <?$hasError = $this->formAviso->fh_pub->hasErrors(); ?>
+                                   <?  if ($hasError != 0){
+                                    	$ErrorFecNac= $this->formAviso->fh_pub->getErrors();
+                                    	$errMsg = Application_Form_Paso1Postulante::$errorsFechaNac[$ErrorFecNac[0]];
+                                    	} else{
+                                    	$errMsg ='';
+                                    	}	
+                                    ?>
+                                   <?=$this->formAviso->fh_pub->setAttribs(array('id'=>'fBirthDate','class'=>'fields inputN iDateP datepicker left ready','tabindex'=>'7','readonly'=>'readonly'))->renderViewHelper(); ?>
+									<select id="dayjFunctions" class="left"></select> 
+									<select id="monthjFunctions" class="left"></select> 
+									<select id="yearjFunctions" class="left"></select>
+        						</div> 
+                                <span class="response cGray left<?=$hasError?' bad':''?>"><?=$errMsg?> </span> 
+                              </div>
+                              <div class="block">
+                              	<label class="labelN left" id="lblP3" for="optCheckP3">
+                                <?=$this->formAviso->tipobusq->setAttribs(array('id'=>'optCheckP3','class'=>'checkNI noBdr left'))->renderViewHelper(); ?>
+                            	
+                                Código Adecsys
+                                </label>
+                                <?$hasError = $this->formAviso->cod_ade->hasErrors(); ?>
+                                <?=$this->formAviso->cod_ade->setAttribs(array('id'=>'fCodigoAdecsys','class'=>'fields inputN left replaceNbsp ','disabled'=>'disabled','tabindex'=>'6'))->renderViewHelper(); ?>
+                              </div>
+        						<div class="all">
+        							
+        							<button id="fSendRS"  type="submit" class="active btnSptAdm sptAdm right btn-gestion" value="">Buscar</button>
+                                    <button id="fResetRS"  type="reset" class="active btnSptAdm sptAdm right btn-gestion" value="">Limpiar</button>
+        						</div>
+                                <?=$this->formAviso->token?>
+    						</form>
+                			</div>
+                			<?php if(isset($this->avisoAdminUrl)) { ?>
+                      <div class="gridYScroll">
+                      <table summary="Administradores" id="dataAadmins" class="dataGrid">
+                				<thead>
+                				<?php $base = $this->avisoAdminUrl;
+                                                $base['token'] = $this->formAviso->token->getValue();?>
+                					<tr>
+                						<th class="data1 titleGrid"></th>
+                						<th class="data2 titleGrid linkTitleG">
+                						<? $col = 'url_id' ?>
+                                        <? $ord = $this->col == $col && $this->ord == 'ASC' ? 'DESC': 'ASC' ?>
+                                        <? $base['col']=$col;
+                                           $base['ord']=$ord;
+                                           $url = $this->url($base,'default',true) ?>
+                                           <a href="<?=$url?>" class="rel relArrow">ID<span class="arrowDG <?=strtolower($ord)?>">&nbsp;</span></a>
+                                           </th>
+                						<th class="data3 titleGrid linkTitleG">
+                						<? $col = 'puesto' ?>
+                                        <? $ord = $this->col == $col && $this->ord == 'ASC' ? 'DESC': 'ASC' ?>
+                                        <? $base['col']=$col;
+                                           $base['ord']=$ord;
+                                           $url = $this->url($base,'default',true) ?>
+                                        <a href="<?=$url?>" class="rel relArrow">Puesto<span class="arrowDG <?=strtolower($ord)?>">&nbsp;</span></a>
+                                        </th>
+                						<th class="data4 titleGrid linkTitleG">
+                						<? $col = 'ruc' ?>
+                                        <? $ord = $this->col == $col && $this->ord == 'ASC' ? 'DESC': 'ASC' ?>
+                                        <? $base['col']=$col;
+                                           $base['ord']=$ord;
+                                           $url = $this->url($base,'default',true) ?>
+                                        <a href="<?=$url?>" class="rel relArrow">Ruc<span class="arrowDG <?=strtolower($ord)?>">&nbsp;</span></a>
+                						</th>
+    									<th class="data5 titleGrid linkTitleG">
+    									<? $col = 'tipo' ;
+                                         $ord = $this->col == $col && $this->ord == 'ASC' ? 'DESC': 'ASC'; 
+                                         $base['col']=$col;
+                                         $base['ord']=$ord;
+                                         $url = $this->url($base,'default',true) ?>
+                                        <a href="<?=$url?>" class="rel relArrow">Tipo<span class="arrowDG <?=strtolower($ord)?>">&nbsp;</span></a>
+    									</th>
+    									<th class="data6 titleGrid linkTitleG">
+    									<? $col = 'razon_social' ;
+                                         $ord = $this->col == $col && $this->ord == 'ASC' ? 'DESC': 'ASC'; 
+                                         $base['col']=$col;
+                                         $base['ord']=$ord;
+                                         $url = $this->url($base,'default',true) ?>
+                                        <a href="<?=$url?>" class="rel relArrow">Empresa<span class="arrowDG <?=strtolower($ord)?>">&nbsp;</span></a>
+    									</th>
+    									<th class="data7 titleGrid linkTitleG">
+    									<? $col = 'fh_pub' ?>
+                                        <? $ord = $this->col == $col && $this->ord == 'ASC' ? 'DESC': 'ASC' ?>
+                                        <? $base['col']=$col;
+                                           $base['ord']=$ord;
+                                           $url = $this->url($base,'default',true) ?>
+                                        <a href="<?=$url?>" class="rel relArrow">Fecha Publicación<span class="arrowDG <?=strtolower($ord)?>">&nbsp;</span></a>
+                                        </th>
+    									<th class="data8 titleGrid">Estado</th>
+    									<th class="data9 titleGrid">Acción</th>
+    									
+    								</tr>
+                				</thead>
+                				<tbody>
+                				<?php
+                				if (count($this->arrayBusqueda)>0) { 
+                				    $cantidad =5;//$this->arrayBusqueda->getCurrentItemCount() 
+                				    $count = ($this->pagina - 1)*$cantidad + 1 ; 
+                				}
+                				?>
+                				<?php foreach ($this->arrayBusqueda as $key => $item) {?>
+    								<tr>
+                						<td class="data1"><?= $count ++//($key+1)+($arrayBusqueda->getCurrentItemCount()-1) ?></td>
+                						<td class="data2"><?= $item['url_id'] ?></td>
+                						<td class="data3"><?= $item['puesto'] ?></td>
+                						<td class="data4"><?= $item['ruc'] ?></td>
+    									<td class="data5"><?= $item['tipo'] ?></td>
+                						<td class="data5"><?= $item['razon_social'] ?></td>
+                						<td class="data7">
+                						<?php if ($item['fh_pub']!= null) {?>
+                						<?=  date('d/m/Y', strtotime($item['fh_pub']));?>
+                						<?php } else {?>
+                						Sin Fecha
+                						<?php } ?>
+                						</td>
+                						<td class="data8"> <?= $item['online'] == 1? 'Activo':'Inactivo'?>
+                						</td>
+                						<td class="data9">
+                							<div class="editAdmEPI"><a href="<?=$this->url(array('module'=>'admin','controller'=>'aviso','action'=>'editar','rel'=>$item['id']),"default",true)?> ">Editar</a></div>
+                                            <?php if ($item['activo'] == 0) { ?>
+                                            <div class="blockAdmEPI"><a href="#winAlertBloquearAviso" class="desblockAviso avi winModal" rel="<?=$item['id']?>">Desbloquear</a></div>
+                							<?php } elseif ($item['estado'] == Application_Model_AnuncioWeb::ESTADO_BANEADO) {?>
+    										<div class="blockAdmEPI"><a href="#winAlertBloquearAviso" class="desblockAviso avi winModal" rel="<?=$item['id']?>">Desbloquear</a></div>
+    										<?php } else {?>
+                                            <div class="blockAdmEPI"><a href="#winAlertBloquearAviso" class="blockAviso avi winModal" rel="<?=$item['id']?>">Bloquear</a></div>
+                                            
+                                            <?php if($item['online']==Application_Model_AnuncioWeb::ONLINE){?>                                       
+                                            <div class="checkSwitchWrap">
+                                                <span class="txt_small">Mostrar en portada</span>
+                                                <?php if ($item['destacado'] == 1) { ?>
+                                                <input type="checkbox" value="1" class="checkSwitch" checked="checked" data-rel="<?=$item['id']?>"/>
+                                                <?php } else { ?>
+                                                <input type="checkbox" value="1" class="checkSwitch" data-rel="<?=$item['id']?>"/>
+                                                <?php }  ?>
+                                            </div>
+                                            <?php }?>
+                                            <?php } ?>
+<!--                                            <a id="DestaqueOro" href="#" data-id="<?=$item['id']?>" >destaque Oro</a>
+                                            <a href="#"  data-id="<?=$item['id']?>" >destaque Plata</a>-->
+                						</td>
+    								</tr>
+    								<?php } ?>
+    							</tbody>
+                </table>
+              </div>
+                			<?php if (count($this->arrayBusqueda) != 0) { ?>
+                            <div class="pagination all">
+                            <?= $this->paginationControl($this->arrayBusqueda, 'Sliding', 'gestion/_pag.phtml',array('token'=>$this->formAviso->token->getValue())) ?>
+                            </div>
+                            <?php } else { ?>
+                            <div class="pagination all">
+                            <div class='pagUl theta alignL'> - No existen avisos para la búsqueda realizada </div>
+                        	</div>
+                            <?php }  ?>
+                        <?php } ?>
+                        </div>
+                	</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+

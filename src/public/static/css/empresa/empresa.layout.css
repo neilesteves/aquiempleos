@@ -1,0 +1,492 @@
+/* 
+layout empresa 
+*/
+#goAptEmp{
+    display: block; 
+    background-position:0 0;
+    position:absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 2; 
+    width:223px; 
+    height: 64px
+}
+.gridIFormEmp #formReg{ padding-top:0 }
+#checksOptAdm { margin-top: 20px; width:430px }
+#btnRegEmpresa{
+    display:block; 
+    background-position:0 -69px;
+    margin:0 auto; 
+    width:94px; 
+    height:45px 
+}
+#formP3APimg{ margin: 0 auto; width: 942px; overflow: hidden }
+#countWordEM{ min-height:1px }
+#loginRightEM{ background: url(../../images/empresa/bgLoginREM.jpg) right bottom no-repeat }
+#btnDashReg{ background-position:0 -69px; width:94px }
+#btnDashView2All{ background-position:-104px -69px; margin:0 auto; width:90px }
+#btnDashSearch{ background-position:-204px -69px; width:78px }
+#myAccount .activeDashS{ background-position:-371px -432px }
+#bgPublishAdv{ 
+    border-bottom:1px solid #D1D1D1; 
+    padding:0 0 10px; 
+    margin:0 0 10px; 
+    line-height:1;
+    text-align:center
+}
+#bgDashSEM{ 
+    background: url(../../images/empresa/bgDashSearchEM.jpg) 0 0 no-repeat; 
+    padding:15px 0 0 119px;
+    margin:0 0 5px;
+    width:125px; 
+    height:90px; 
+    overflow: hidden;
+    color:#5A5A5A;
+    line-height:1.2 
+}
+#bgDashPEM{ 
+    background: url(../../images/empresa/bgDashPostEM.jpg) 0 0 no-repeat; 
+    padding:15px 110px 0 15px;
+    width:119px; 
+    height:90px; 
+    overflow: hidden;
+    color:#5A5A5A;
+    line-height:1.2 
+}
+#dataAadvice, #dataAdmins, #dataAdvPagados, #dataAdvProcess{ width:760px }
+#linksTable, #linksTablePE{ background: url(../../images/empresa/lineBottomUl.png) 0 bottom repeat-x; margin:0 0 10px }
+#titleyBtn{ position:relative; width:100%; height: 45px }
+#btnPusbliAdvA{ 
+    position:absolute; 
+    right:0;
+    top:0;
+    z-index:2;
+    background-position:0 -134px; 
+    width:134px 
+}
+#asideBtnAdm{ margin:0 0 10px }
+#addNewAdminEM{ background-position:-144px -134px; margin:15px 0; width:207px }
+#newAdminEM {
+    padding: 0;
+    margin: 0 auto;
+    width: 574px;
+    height: auto;
+}
+#wAvisoEmpleo {
+    padding: 0;
+    margin: 0 auto;
+    width: 574px;
+    height: 450px;
+}
+#gridTableR{ width:760px }
+#cargando{ width:100% }
+#registerP { 
+    padding:0; 
+    margin:-215px 0 0 -285px; 
+    width:614px; 
+    height:430px 
+}
+#iRegisterP{ padding: 0; overflow:hidden }
+#inRegisterP{ width:604px }
+#bgAvisoEcon{ background: url(../../images/empresa/bgImgHomeP1.jpg) 10px bottom no-repeat }
+#bgAvisoPref{ background: url(../../images/empresa/bgImgHomeP2.jpg) right bottom no-repeat }
+#pTlfAvis{ padding:0 0 2px 60px; background: url(../../images/empresa/bgTlfHome.jpg) 30px center no-repeat; font-size:20px }
+#iRP{ 
+    background-color:white;
+    padding: 20px; 
+    width:558px; 
+    overflow:hidden 
+}
+#ejemploext{
+    padding:0;
+    margin:-225px 0 0 -160px;
+    width:450px;
+    height:320px    
+}
+#cntExtracargos{ margin:0 auto; width:387px; height:263px; overflow: hidden }
+#registerRightEM{ background: url(../../images/empresa/bgRegRightEM.png) 0 0 repeat-x; padding:10px 20px 0; width:236px }
+#cntRegRightEM{ background: url(../../images/empresa/bgShadowRREM.png) 10px 0 repeat-x; padding:0 0 0 10px; overflow: hidden }
+#cntRegisterWM{ width:100%; overflow: hidden }
+#sectionsEM{ padding:0 0 10px; width:100%; height:600px; overflow:hidden }
+#iSectionLeft, #iSectionRight, #iSectionLeftW{  width:314px; height:400px; overflow:hidden }
+#iSectionLeftW{ margin-right:15px }
+#continP1, #nextEmpP1Lg,
+#continP1AP{ background-position:-361px -134px; width:108px }
+#contacP1{ background-position:-369px -194px; width:113px }
+#buscaEmail{ width:100px }
+#outP1EM{ background-position:-123px -194px; width:60px }
+#elije3Opt{ 
+    background: url(../../images/empresa/bgS3.jpg) 0 0 repeat-x; 
+    margin:0 auto 10px;
+    padding:12px 0 0 20px; 
+    width:932px; 
+    height:304px; 
+    overflow:hidden 
+}
+#innerSectionEmp{ position:relative; height:600px }
+#section1EM, #section2EM, #section3EM,
+#section2AP, #section3AP{ 
+    position:absolute; 
+    left:0; 
+    z-index:2; 
+    overflow: hidden 
+}
+#section1EM{ top:0; height:470px }
+#section2EM{ /*top:480px;*/ top:0; left:65px; height:600px }
+#section3EM{ top:1030px; height:400px }
+#section2AP{ top:0; left:65px; height:680px }
+#section3AP{ top:820px; height:820px }
+
+#backEmpXF{ background-position:0 -252px; margin:0 10px 0 0; width:96px }
+#backEmpXF{ margin:0 }
+#footEmpP1{ width:952px }
+#cntEmpRelF{ 
+    position:relative; 
+    padding:0 0 0; 
+    margin:0; 
+    width:100%; 
+    height:52px 
+}
+#sectionsP3EM{ width:980px; overflow: hidden }
+#footEmpP3{ margin:15px 0 0; width:942px }
+#txtAdvP3Emp{ 
+    border-width:1px 0; 
+    border-style: solid; 
+    border-color:black; 
+    width:390px; 
+    height:100px;
+    overflow: hidden 
+}
+#areaCountCP{ border:1px solid #ccc; padding:10px; width:368px; height:60px }
+#countCntP3{ margin:10px 0 0 }
+#backEmpP3{ background-position:-105px -252px; margin:0 10px 0 0; width:96px }
+#iSectionP3Left{  width:367px; overflow: hidden }
+#iSectionP3Right{  width:476px; overflow: hidden }
+#iSectionP4Right{ width:562px; overflow:hidden }
+#nextEmpPA3{ background-position:-361px -134px; width:108px }
+#asideP4Sec{ 
+    background: url(../../images/empresa/candado.png) 0 0 no-repeat; 
+    margin:10px 0 0; 
+    padding:0 0 0 20px;
+    height:20px 
+}
+
+#count2P3{ color:black }
+#endRegisterEmp{ padding-top:50px }
+#txtP3Emp { background: url(../../images/empresa/lineVerEmp.png) center 105px no-repeat }
+#codeBarPayEmp{ position:relative; height:220px }
+#printEmpP4{ background-position:-292px -318px; width:89px }
+#totalAsideP4Emp{ height:58px }
+#msjP4EndPay{ 
+    border:1px solid #A4A4A4; 
+    margin:0 0 20px; 
+    padding:50px 0 20px; 
+    overflow:hidden; 
+    text-align:center; 
+    line-height:1 
+}
+#imgAdvPref{ background-image: url(../../images/empresa/bgImgP2.jpg) }
+#gridEndPayA{ margin:0px auto 0; width:560px }
+#btnsEndPayC{ margin:15px auto 0; width:560px; overflow: hidden }
+#publushTAdvP4{ background-position:-234px 0; width:148px }
+#asideEMC{ margin:0 auto; width:164px; overflow: hidden }
+#contentEPL, #sidebarEPL{ overflow: hidden }
+#contentEPL{ width:664px }
+#sidebarEPL{ width:280px }
+#cntAddBtnsE{ margin:10px 0; height:20px }
+.noteBagCVS #cntLineHEPL{ border-bottom:0 none }
+#cntHistoryE{ padding:0 5px; width:270px }
+#cntChecksE{ 
+    background: url(../../images/empresa/bgCheckEPL.png) 0 0 no-repeat; 
+    padding:15px 10px 0 15px;
+    margin:0 0 20px;
+    width:245px; 
+    height:29px 
+}
+#innerMainEPL #urlPublic{ width:642px }
+#cntLineHEPL{ border-bottom:1px solid #ccc }
+#btnIdentico{ margin:0 auto; width:85px; background-position:0 -432px; }
+#btnPersonali{ margin:0 auto; width:123px; background-position:-95px -432px; }
+#publiYaE{ background-position:-108px -491px; margin:0 auto; width:144px; height:50px }
+#publiAVE, #publiAVEP{ margin:0 auto; width:154px; height:50px }
+#publiAVE{ background-position:-174px -546px; width:154px }
+#publiAVEP{ background-position:-333px -546px; width:167px }
+#publiAVHP{ 
+    position:absolute;
+    left:195px;
+    bottom:0;
+    z-index:2;
+    background-position:0 0; 
+    width:210px; 
+    height:55px
+}
+#cntAdvType{ 
+    position:relative; 
+    padding-bottom:25px; 
+    margin-bottom:10px; 
+    overflow:hidden
+}
+#advWH1{ height:160px }
+#advWH2{ height:176px }
+#advWH4{ height:230px }
+#serviceHP{
+    background: url(../../images/empresa/bgServicosHP.jpg) 0 0 no-repeat;
+    margin-bottom:10px;
+    padding:10px;
+    width:610px;
+    height:230px;
+    overflow:hidden
+} 
+#cntTitlesEF{
+    margin-bottom:15px;
+    overflow: hidden 
+}
+#cntHeadEMP{ margin:0 0 10px }
+#leftTitleCR{ width:700px }
+#leftTitleCR{ width:960px }
+#rightTitleCR, #leftBtnsCR, #rightBtnsCR{ overflow: hidden }
+#rightTitleCR{ width:400px }
+#rightTitleCR.fix{width:464px}
+#leftBtnsCR{ width:520px }
+#rightBtnsCR{ width:200px }
+#errorMsjPEP{ margin:5px 0 0 }
+#cntOptionsCR{ margin:0 0 20px }
+#paginEPM{ border:0 none; padding:0; margin:0 0 15px }
+#listActionE, #listActionEV{
+    background-color:white;
+    position:absolute;
+    left:180px;
+    top:25px;
+    z-index:99;
+    width:150px;
+    padding:10px;
+    border:1px solid #999;
+}
+#listActionM{
+    background-color:white;
+    position:absolute;
+    left:100px;
+    top:25px;
+    z-index:99;
+    width:150px;
+    padding:10px;
+    border:1px solid #999;
+}
+.menuinterno{
+    background-color:white;
+    position:absolute;
+    z-index:199;
+    width:150px;
+    padding:10px;
+    border:1px solid #999;
+}
+#cntDetailEPC{ margin:0 0 30px; line-height: 15px; }
+#perfilEmpPA #infoPerfilCP{ width:340px }
+#perfilEmpPA #infoPPubPC{ width:190px }
+#allBtnsCR{ border-bottom:1px solid #ccc; padding:0 0 5px; margin:0 0 20px }
+#perfilEmpPA #iDivShareCP{background: url(../../images/empresa/bgShareR.png) right top no-repeat;padding:0 10px 17px 0;width:260px;height:28px}
+#perfilEmpPA #iDivShareCP.fix{width:274px}
+#perfilEmpPA #divShareCP{background: url(../../images/empresa/bgShareL.png) left top no-repeat;padding: 0 0 17px 10px;width:270px;height:28px}
+#perfilEmpPA #divShareCP.fix{width:284px}
+#linkHeadMFC{ border-bottom:1px solid #ccc; padding:0 0 10px; margin:0 0 20px }
+#linkRMFC{ padding:5px 0 0; width:100px; text-align:right }
+#agregadorNote{ border-top:1px solid #ccc; padding:5px 0; width:100% }
+#ejmsAviso{
+    padding:0;
+    margin:-260px 0 0 -260px;
+    width:520px;
+    height:520px
+}
+#ajax-loading{ height:300px }
+#perfilEmpPA #imgPPubPC{ width:140px; height:140px }
+#adjAttachE{ position:relative; margin-top:0 }
+#adjAttachE #txtUploadFile,
+#adjAttachE #adjuntarnota{ position:absolute; right:0; top:0; width:50px }
+#adjAttachE #txtUploadFile{ z-index:3; top:0; right:200px; display:block }
+#adjAttachE #adjuntarnota{ z-index:2; background:url(../../images/empresa/attach.png) 5px center no-repeat }
+#btnBuscarxEmail{ background-position:-370px -491px; width:74px }
+#cntSearchDat{ padding:0 10px; width:600px; overflow: hidden }
+#processMathA{ 
+    background-color: white;
+    margin:10px 0 0; 
+    width:100%;
+    overflow:hidden;
+    border:0 none 
+}
+#bntRegReferen{ width:120px }
+#bntListReferen{ width:115px }
+#listarRefer{ width:105px }
+#bntRegReferen .aListHeadE{ width:110px }
+#bntRegRBusca{ width:50px }
+#bntRegRBusca .aListHeadE{ width:40px }
+#content-winInvitarProceso{ width:100% }
+#loadMsjEmpPP{ width:938px }
+#dataCntInvA{ width:352px;  overflow-x: hidden } 
+.overInvHS{ height:280px; overflow-y: scroll }
+#mensajesVerProceso{ margin:0 0 10px }
+#loadMsjEmpPP{ margin:10px 0 }
+#fLogoEmp .sendPhoto .btnPink{ background-position: -272px -285px }
+#avisoFileCnt{ border:1px solid #ccc; padding:5px; margin:0 0 5px }
+#datoBasicoEPF{ border-top:1px solid #B1DBF2; padding-top:20px }
+#tablaEPostulante{ width:600px }
+#cntAvisoInv{ padding:0 10px; overflow: hidden }
+#tablaEPostulante .data1{ width:90px }
+#tablaEPostulante .data2{ width:345px }
+#tablaEPostulante .data3{ width:80px }
+#fLogoEmp .sendPhoto .btnPink{ background-position: -272px -285px }
+#showLabelIpt{ margin-left:0; width:160px }
+#cntAdvTPYU{ position:relative; height:120px }
+#msjAdvTRY{ 
+    position:absolute; 
+    right:260px; 
+    top:45px; 
+    z-index:2; 
+    width:235px; 
+    line-height: 1.2
+}
+#widthINM{ padding: 15px 5px 0 }
+#dataInfoCDT{ 
+    background-color: white; 
+    position: absolute; 
+    left:650px; 
+    top: 0; 
+    z-index: 2; 
+    width: 450px;
+    height: 30px;
+    line-height: 1.2
+}
+#viewPCAP{ margin-left: 10px; font-weight: normal; font-size: 12px }
+#typePCAP,
+#typePCAPC1{ 
+    background: url(../../images/empresa/okAP.gif) left top no-repeat; 
+    padding-left: 25px; 
+    font-size: 18px 
+}
+#totalP4NML{ 
+    background-image: url(../../images/empresa/okAP.gif);
+    background-position: 5px center;
+    background-repeat: no-repeat; 
+    height: 45px; 
+    padding: 5px 5px 5px 25px
+}
+#planPCAP, #typePCAPC1{ font-size: 14px }
+#tablaP1CAP{ margin:0 0 20px; width:970px; overflow: hidden }
+#tablePriceAPA{ position: relative; margin:5px auto 0; width:960px }
+#formTipoAviso{ margin: 0 auto; width:970px }
+#listPagerAP1, #listPagerAP2{ 
+    position:relative;
+    margin:0 0 20px 5px;
+    /*width:950px;*/
+    width:590px;
+    height:28px;
+    overflow: hidden; 
+    text-align: left 
+}
+#saldoAP, #priceP4P2{ font-size: 16px }
+#listPagerAP2{ margin-left: 10px }
+#commentAPWT, #commentNAPWT{ width:308px; height: 290px }
+#maskGrid, #maskPaso3Cnt, 
+#maskTPBA, #maskEditChar{ 
+    background-color: #fff; 
+    filter: alpha(opacity=80); 
+    opacity: .8; 
+    -moz-opacity: 0.8;
+    position: absolute; 
+    left: 0; 
+    top: 0; 
+    z-index: 3    
+}
+#maskGrid{ width: 960px; /*height:330px*/ height:550px }
+#maskPaso3Cnt{ width:942px; height: 560px }
+#content-winVerProceso #listPagerAP1{ margin-left: 0; width:535px }
+#tableMembresiaAP, #cntMembresiaAP{ width:650px }
+#cntMembresiaAP{ margin: 0 auto 20px; overflow-x:auto; overflow-y:hidden }
+#ejmAvisoPA1{ padding:0; margin: -280px 0 0 -260px; width:520px; height: 600px }
+#imgAvisoPA1, #imgAvisoPA1 img{ width:350px; height: 365px }
+#imgAvisoPA1{ margin: 0 auto; overflow: hidden; line-height: 1 }
+#priceP4P1{ padding-left: 5px; text-decoration:line-through }
+#blockTPBA{ position: relative }
+#maskTPBA{ width: 445px; height: 205px;/*270px*/ }
+#infoAPPR{ margin: 0 auto 20px; width:530px; height: auto }
+/* Layout empresa 1.5 */
+#bgDashBoardMC,
+#bgDashBoardMC2{
+    color: #5A5A5A;
+    height: 140px;
+    line-height: 1.2;
+    overflow: hidden;
+    width: 244px;
+}
+#bgDashBoardMC{ margin:10px 0 15px }
+#bgDashBoardMC2{ margin: 0 0 10px }
+#tituloGroup {
+    background-color: black;
+    padding:5px 10px;
+    color: white;
+    font-size: 14px;
+}
+#winEnviarBolsa { padding: 0; margin: -168px 0 0 -190px; width: 384px; height: 306px }
+#winBloquearPos, #winDesBloquearPos{padding:0;margin: -168px 0 0 -220px; width: 440px; height: 306px}
+#divEnviaBolsa{
+    border-color: #CDCDCD;
+    border-style: solid;
+    border-width: 1px;
+    background-color: #F9F9F9;
+    height: auto;
+    padding: 12px;
+    overflow: hidden;
+}
+#winMoverBolsa { padding: 0; margin: -168px 0 0 -190px; width: 384px; height: 306px }
+#divAddGroup{ 
+	border-color: #B2E0F5; 
+	border-style: solid; 
+	border-width: 0 1px; 
+	padding: 12px 12px 5px
+}
+#divOperBCVS{ float: right; margin: 8px 20px 0 0 }
+#content-winDetalleEmpresaMembresia{ width:100% }
+#winDetalleMembresia{ padding: 0; margin: -250px 0 0 -190px; width:500px; height: 360px }
+/* end */
+/* pasos */
+#planAvs1{ font-size:15px; font-weight:bold; color:#333 }
+#divLeftAP3{ padding:15px 20px; width:290px }
+#divRightAP3{
+    position:relative; 
+    background-color:white;
+    box-shadow: 2px 2px 1px #E9E9E9;
+    border:1px solid #E9E9E9; 
+    padding:15px 20px;
+    margin-right:20px;
+    width:498px
+}
+#areaEditorP3{ width:360px; height:190px }
+#editorScot2{ width:370px; height:200px }
+#maskEditChar{ 
+    position:absolute; 
+    left:135px; 
+    top:35px; 
+    z-index:9; 
+    width:390px; 
+    height:680px
+}
+#labelAvs2{ width:920px; min-height:350px }
+#flagLoadEdit{ width:100% }
+#msgRelTmp{ margin:0 0 10px; width:350px }
+#leftTextAR{ 
+    background: url(../../images/empresa/leftTextUp.png) 0 0 no-repeat;
+    width:585px; 
+    overflow:hidden
+}
+#leftTextMid{ padding:20px 40px 0 20px }
+#rightTextAR{ width:275px; overflow:hidden }
+#leftTextBot{ background: url(../../images/empresa/leftTextDown.png) 0 0 no-repeat; height:20px }
+#inBtnYes{ background-position:0 -855px; width:44px }
+#inBtnNot{ background-position:-60px -855px; margin-left:10px; width:268px }
+#cntTextAR{ margin:0 auto; width:875px; overflow:hidden }
+#freeAdv{ background: url(../../images/empresa/bgP2TFree.png) 0 0 no-repeat }
+#buscaPerfilE #urlPublic{ width:935px }
+#buscaPerfilE #summaryPPC{ width:500px }
+
+/* tyniMCE */
+#areaEditorP3_ifr{ height:300px!important }
+#areaEditorP3_tbl{ width: 372px!important; height: 150px!important }

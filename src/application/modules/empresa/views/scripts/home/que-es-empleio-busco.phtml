@@ -1,0 +1,47 @@
+<?=
+$this->partial('_partials/_navigation.phtml',
+	 array('menu_sel' => $this->menu_sel, 'isAuth' => $this->isAuth, "flashMessages" => $this->flashMessages))
+?>
+<div id="wrapper" class="row">
+	 <div class="grids-6" id="introduccion">
+		  <h6 class="titulo-que-es-EMPLEOBUSCO">AquiEmpleos son los avisos clasificados de ofertas laborales de el Grupo La Prensa.</h6>
+		  <p class="introquees">
+				Y en nuestra página web los postulantes se contactan con las empresas más exitosas y reconocidas del mercado, a través de nuestra combinación única de software, optimización de procesos y experiencia en recursos humanos.
+		  </p>
+		  <div class="infografia">
+		  </div>
+		  <p class="introquees2">
+				AquiEmpleos está comprometida a ayudar a su organización a contratar y retener una fuerza de trabajo más productiva, porque hoy los Recursos Humanos son la ventaja competitiva por excelencia en la mayoría de industrias.
+		  </p>
+		  <p class="introquees">
+				AquiEmpleos le ofrece una serie de soluciones que ayudarán a su empresa a conseguir tres cosas:
+		  </p>
+		  <div class="benefits">
+		  </div>
+	 </div>
+	 <aside class="grids-300">
+		  <div class="modArticle" style="background: #F4F7F7;line-height: 17px;">
+				<h6 class="titulotipo bold">Para empresas anunciantes</h6>
+				<p class="a-borderline">
+					 <a href="/empresa/">AquiEmpleos Empresas</a> es un paquete de soluciones flexible que le ayuda a ubicar al mejor candidato para cada puesto al menor costo y tiempo. Si desea contratar cualquiera de estos servicios por favor escribanos a:
+					 <a class="r10" href="mailto:assessment@EMPLEOBUSCO.com.pe">assessment@EMPLEOBUSCO.com.pe</a>
+				</p>
+				<br>
+				<h2 class="a-user-postulante bold">Para candidatos</h2>
+				<p>
+					 <a href="/postulante/">AquiEmpleos postulante</a> es un paquete de soluciones flexible que le ayuda a ubicar al mejor candidato para cada puesto al menor costo y tiempo. Si desea contratar cualquiera de estos servicios por favor escribanos a:
+					 <a class="r10" href="mailto:assessment@EMPLEOBUSCO.com.pe">assessment@EMPLEOBUSCO.com.pe</a>
+				</p>
+		  </div>
+		  <?=
+		  $this->partial('home/_articulos_interes.phtml', 'postulante')
+		  ?>
+
+		  <div class="pubish-ad">
+				<p>PUBLICA <span>TU AVISO</span></p>
+				<a href="<?= SITE_URL . '/empresa/publica-aviso/paso1' ?>" title="Ingresa Aquí" class="btn btn-primary">Ingresa Aquí</a>
+				<span>PROGRAMA PARA EMPRESAS</span>
+				<div class="img-aside"></div>
+		  </div>
+	 </aside>
+</div>

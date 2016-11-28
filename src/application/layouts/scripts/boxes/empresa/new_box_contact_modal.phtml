@@ -1,0 +1,52 @@
+<?php $auth = $this->layout()->auth; ?>
+<div id="modalContact" class="page_modal contact_modal hide">
+  <h2 class="title align_center">Planes de Membresía</h2>
+  <form id="frmContactMemberShip" method="post" action="" class="form_valide_tooltip">
+    <div class="form_box border_grey">
+      <div class="form_row">
+        <div class="form_col12">
+          <fieldset>
+            <label>Empresa</label>
+            <input type="text" name="txtCompany" value="<?=$auth['empresa']['razon_social'];?>" id="txtCompany" minlength="2" maxlength="50" required="required" class="input_control"/>
+          </fieldset>
+        </div>
+      </div>
+      <div class="form_row">
+        <div class="form_col6">
+          <fieldset>
+            <label>Nombre de Contacto</label>
+            <input type="text" name="txtContact" value="<?=$auth['usuario-empresa']['nombres'].' '.$auth['usuario-empresa']['apellidos'];?>" id="txtContact" minlength="2" maxlength="50" required="required" class="input_control"/>
+          </fieldset>
+        </div>
+        <div class="form_col6">
+          <fieldset>
+            <label>Teléfono de Contacto</label>
+            <input type="text" name="txtPhone" value="<?=$auth['usuario-empresa']['telefono'];?>" id="txtPhone" minlength="6" maxlength="9" required="required" class="input_control"/>
+          </fieldset>
+        </div>
+      </div>
+      <div class="form_row">
+        <div class="form_col12"> 
+          <fieldset>
+            <label>E-mail</label>
+            <input type="text" name="txtEmail" value="<?=$auth['usuario']->email;?>" id="txtEmail" maxlength="50" required="required" class="input_control"/>
+          </fieldset>
+        </div>
+      </div>
+      <div class="form_row">
+        <div class="form_col12"> 
+          <fieldset>
+            <label>Consulta</label>
+            <textarea name="txaMessage" id="txaMessage" maxlength="3000" required="required"></textarea>
+          </fieldset>
+        </div>
+      </div>
+      <div class="form_row button_container">
+        <button id="btnSendMemberShip" class="btn btn_save">
+          <div class="btn_label">Enviar</div>
+          <div class="btn_spinner"></div>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

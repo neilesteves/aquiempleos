@@ -1,0 +1,65 @@
+<?php
+$ind = (isset($this->indice)) ? $this->indice : 'blank';
+$index = $this->index;
+$dataInd = 'data-index="' . $ind . '"';
+
+if($this->form->id_Experiencia != null){
+    if($this->form->id_Experiencia->getValue() != ''){
+        $dataRol = 'data-rol="'.$this->form->id_Experiencia->getValue().'"';
+    }
+}
+$dataRel = 'data-rel="' . $this->idPost . '"';
+?>
+
+
+<li <?= isset($dataRol) ? $dataRol : '' ?> <?= $dataRel ?> <?= $dataInd ?>>
+	<?$isError = $this->form->isErrors(); ?>
+	<?php if (!$isError && ($this->isExperiencia || isset($this->isEditar))) : ?>
+		<ul class="skill-title row">
+            <li><?php echo $index + 1; ?>. </li>
+            <li><b><?=$this->escape($this->form->id_nivel_puesto->getMultiOption($this->form->id_nivel_puesto->getValue())); ?></b> en <b><?=$this->escape($this->form->id_area->getMultiOption($this->form->id_area->getValue())); ?></b>
+            </li>
+            <li class="last">
+            	<?php if (!isset($this->online)) : ?>
+            		<a href="#Editar" class="action-icons edit" title="Editar"></a>
+					<?php if (isset($this->form->id_Experiencia)) : ?>
+						<?php $value = $this->form->id_Experiencia->getValue(); ?>
+					<?php endif; ?>
+					<a href="javascript:;" class="action-icons delete<?= isset($value) ? ' eliminarItemEmp' : '' ?>" title="Eliminar"></a>
+				<?php endif; ?>
+            </li>
+        </ul>
+	<?php endif; ?>
+	<div class="skill-content<?=(!$isError && ($this->isExperiencia || isset($this->isEditar)))?' hide':''?>" >
+		
+        <div class="control-group">
+            <label for="" class="control-label"><em>*</em> &Aacute;rea:</label>
+            <div class="controls">
+                <? $hasError = $this->form->id_area->hasErrors(); ?>
+                <?= $this->form->id_area->setAttribs(array('class' => 'sel-medium require second_title'))->renderViewHelper(); ?>
+                <span class="response<?= $hasError ? ' bad' : '' ?>"><?= $hasError ? $this->form->id_area->errMsg : '' ?></span>
+            </div>
+        </div>
+        
+		<div class="control-group">
+            <label for="" class="control-label"><em>*</em> Puesto:</label>
+            <div class="controls">
+				<? $hasError = $this->form->id_nivel_puesto->hasErrors(); ?>
+				<?= $this->form->id_nivel_puesto->setAttribs(array('class' => 'sel-medium require first_title'))->renderViewHelper(); ?>
+                <span class="response<?= $hasError ? ' bad' : '' ?>"><?= $hasError ? $this->form->id_nivel_puesto->errMsg : '' ?></span>
+            </div>
+        </div>
+        
+        <div class="control-group">
+            <label for="" class="control-label no-req"><em>&nbsp;</em> Tiempo de experiencia:</label>
+            <div class="controls">
+				<? $hasError = $this->form->experiencia->hasErrors(); ?>
+				<?= $this->form->experiencia->setAttribs(array('class' => 'sel-medium require'))->renderViewHelper(); ?>
+                <span class="response<?= $hasError ? ' bad' : '' ?>"><?= $hasError ? $this->form->experiencia->errMsg : '' ?></span>
+            </div>
+        </div>
+		<div class="hide">
+			<?=$this->form->id_Experiencia;?>
+		</div>
+	</div>
+</li>

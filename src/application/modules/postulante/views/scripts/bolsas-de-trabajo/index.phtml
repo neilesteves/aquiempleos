@@ -1,0 +1,42 @@
+<section class="job_board_header">
+    <form class="center_box" method="post">
+          <h3>Bolsa de trabajo</h3>
+          <input type="text" name="razonsocial" placeholder="Busca las empresas por nombres" class="input-big" ><button type="submit" class="btn btn_cuaternary"><span>Buscar</span><i class="icon icon_lens"></i></button>
+        </form>
+      </section>
+      <section class="job_board_content">
+        <div class="center_box"> <?php $data= array(); $count=0;?>
+            <?php foreach ($this->empresas as $value) { ?>
+            <?php $count++?>          
+                <?php if ($value['orden'] < 3) { ?>
+                <?php if($count>=25){
+                        $data[]=$value;
+                        }else { ?>
+                     <a href="<?=(!empty($value['url_tcn']))?$value['url_tcn']:'#'?>" target='_blank'  class="job_board_content_job">
+                    <div class="job_board_content_job_image">
+                      <div class="center_image"><img src="<?= ELEMENTS_URL_LOGOS ?><?= $value['logo'] . $this->E()->getLastCommit() ?>" width="200"></div>
+                    </div>
+                    <div class="job_board_content_job_title"><div class="align_middle"><?=$value['rs'] ?></div></div>
+                    <div class="icon icon_arrow_right job_board_content_job_arrow"></div></a>    
+                    <?php }?>
+                                
+                <?php } ?>
+            <?php } ?>            
+              <div class="job_board_content_job_hidden">
+               <?php foreach ($data as $value) { ?>
+                   <a href="<?=(!empty($value['url_tcn']))?$value['url_tcn']:'#'?>" target='_blank'  class="job_board_content_job">
+                <div class="job_board_content_job_image">
+                  <div class="center_image"><img src="<?= ELEMENTS_URL_LOGOS ?><?= $value['logo'] . $this->E()->getLastCommit() ?>" width="200"></div>
+                </div>
+                <div class="job_board_content_job_title"><div class="align_middle"><?=$value['rs'] ?></div></div>
+                <div class="icon icon_arrow_right job_board_content_job_arrow"></div></a>  
+               <?php } ?>                  
+              </div>
+        </div>
+
+        <?php if($count > 25 ) : ?>
+          <a href="javascript:;" class="btn btn_cuaternary btn_see_more_companies" id="seeMoreCompanies">Ver más empresas</a>
+        <?php endif; ?>
+      </section>
+
+

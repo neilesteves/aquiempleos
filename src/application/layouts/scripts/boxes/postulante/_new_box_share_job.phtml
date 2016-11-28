@@ -1,0 +1,46 @@
+<div class="page_modal modal_share_email hide" id="modalShareEmail">
+  <div class="title">Comparte por e-mail</div>
+  <form id="frmModalShareEmail" class="frmModalShareEmail type1" method="post" novalidate="novalidate" action="<?= SITE_URL . $this->compartirAviso->getAction(); ?>" >
+    <div class="form_box">
+      <div class="form_row">
+        <div class="form_col12">
+          <fieldset>
+            <label>Nombre de Emisor</label>
+            <input type="text" name="txtSenderName" id="txtSenderName" value="" maxlength="75" minlength="2" placeholder="" required="">
+          </fieldset>
+        </div>
+      </div>
+      <div class="form_row">
+        <div class="form_col12"> 
+          <fieldset>
+            <label>Nombre Destinatario</label>
+            <input type="text" name="txtName" id="txtName" value="" maxlength="75" minlength="2" placeholder="" required="">
+          </fieldset>
+        </div>
+      </div>
+      <div class="form_row">
+        <div class="form_col12"> 
+          <fieldset>
+            <label>Email Destinatario</label>
+            <input type="text" name="txtEmail" id="txtEmail" value="" maxlength="75" placeholder="" required="" />
+             </fieldset>
+        </div>
+      </div>
+      <div class="form_row">
+        <div class="form_col12"> 
+          <fieldset>
+            <label>Mensaje</label>
+            <textarea id="txtMessage" name="txtMessage" maxlength="500" required=""></textarea>
+             </fieldset>
+        </div>
+      </div>
+    </div>
+    <div class="button_container row">
+      <a class="btn btn_cancel" id="clsModalShareEmail" href="javascript:;">Cancelar</a>
+      <a href="javascript:;" class="btn btn_save"><span class="btn_label">Enviar</span><span class="btn_spinner"></span></a>
+    </div>
+  </form>  
+  <p class="success_text hide"><i class="icon icon_check"></i><span></span></p>
+  <p class="error_text hide"><i class="icon icon_cross"></i><span></span></p>
+  
+</div>

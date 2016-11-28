@@ -1,0 +1,173 @@
+.big-box{
+  width: 490px;
+    height: auto;
+    overflow: visible;
+    overflow-x:hidden; 
+    overflow-y:hidden;
+}
+
+.box-modal{
+	width: 100%;
+	height: auto;
+	/*box-shadow: 0px 0px 11px 2px #B3B3B3;*/
+	border-radius: 1em;
+	background-color:#eaeaea;
+}
+
+.box-title{
+	padding-bottom: 10px;
+}
+
+.little-box-bg{
+	background-color: white;
+	padding: 2.5em  1em 0em 1em;
+	border-radius: 1em;
+	position: relative;
+    top: -42px;
+}
+
+
+.title{
+	color:#2b5f9c;
+	font-size: 18px;
+}
+
+.img-ico-cuenta{
+	width: 15%;
+	position: relative;
+    top: -2px;
+    z-index: 2;
+}
+
+
+.parrafo{
+	padding-bottom: 1em;
+	color:#adadad;
+}
+
+
+.parrafo span{
+	font-family: breeSerif-light;
+}
+
+
+
+.form-control-modal-r{
+	border-radius: 0px;
+    width: 100%;
+	border-left: 6px solid #adadad;
+	background-color: #f8f8f8;
+	border-right:transparent;
+	border-top:transparent;
+	border-bottom:transparent;
+	font-family: breeSerif-light;
+	font-size: 16px;
+	padding: 0.5em 1em;
+}
+
+
+.pd-5{
+	padding: 5px;
+	padding-right: 25px;
+    padding-left: 25px;
+}
+
+.condiciones{
+	padding-left: 1.5em;
+	padding-bottom: 1em;
+}
+
+.condiciones span{
+	color:#adadad;
+}
+
+.condiciones a{
+	color:#2b5f9c;
+}
+
+.condiciones span, .condiciones a{
+	font-size: 11px;
+}
+
+
+.ingresar{
+	width: 100%;
+	background-color: #ffa200;
+	color:white;
+}
+
+.ingresar-facebook{
+	width: 100%;
+	background-color: #3a5998;
+	border-radius: 0.5em;
+	color:white;
+}
+
+.ingresar-facebook i{
+	border-right: 1px solid white;
+    font-size: 25px;
+    padding-right: 5px; 
+    margin-right: 5px;  
+}
+
+.registrate{
+	background-color: #eaeaea;
+	margin-top: 20px;
+	padding: 10px;
+}
+
+.registrate a{
+	font-size: 14px;
+	color:#2b5f9c;
+}
+
+.no-cuenta{
+	padding-right: 20px;
+	font-size: 14px;
+	color:#666666;
+}
+
+
+.modal-header{
+  border:0;
+}
+.modal-home-postulante-close{
+    opacity: 1;
+    color: gray;
+    cursor: pointer;
+    position: absolute;
+    right: 1em;
+}
+.modal-home-postulante-close span{
+  font-size: 1.5em;
+}
+#modalLoginUser .modal-body,#modalRegisterUser .modal-body {
+	padding: 0;
+}
+#modalLoginUser .modal-content,#modalRegisterUser .modal-content{
+	border-radius: 0.9em;
+}
+#modal_comentarios .modal-header{
+	background: #2A5E9B;
+    color: white;
+}
+#modal_comentarios .close {
+	opacity: 1 !important;
+    text-shadow: none;
+    color: white;
+}
+#modal_comentarios .close span{
+	font-size: 18px;
+}
+#modal_comentarios .form-control{
+	padding-left: 5px !important;
+}
+.comentario-area{
+	resize: none;
+    height: 7em !important;
+    outline: none;
+    color: #6f6d6d;
+}
+
+
+

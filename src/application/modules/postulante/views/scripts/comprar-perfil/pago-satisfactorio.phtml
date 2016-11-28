@@ -1,0 +1,31 @@
+<?= $this->partial('_partials/_navigation.phtml', array('menu_sel' => $this->menu_sel)) ?>
+<div id="wrapper">
+    <div class="legend">
+        <a href="<?=SITE_URL?>">Inicio</a> » <span class="noLink">Perfil Destacado</span>
+    </div>
+    <div class="wrap_joincv">
+        <h1 class="title-bigxxx">¡Ya tienes tu Perfil Destacado de <span class="logo_EMPLEOBUSCO"></span>!</h1>
+        <p class="text-medium">Haz que la búsqueda de empleo sea más efectiva y<br>
+            multiplica las posibilidades de conseguir el empleo que estás buscando.</p>
+
+        <table class="dataGrid" align="center">
+            <thead>
+                <tr>
+                    <th class="data6 titleGrid">Tipo</th>
+                    <th class="data6 titleGrid">Duración</th>
+                    <th class="data6 titleGrid">Fecha de Inicio</th>
+                    <th class="data6 titleGrid">Fecha de Fin</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="data1">Perfil Destacado</td>
+                    <td class="data2"><?=$this->compra['meses']?></td>
+                    <td class="data3"><?=$this->inicio?></td>	
+                    <td class="data4"><?=$this->fin?></td>
+                </tr>
+        </table>
+        <a href="/mi-cuenta" title="Ir a mi cuenta" class="mR20">Ir a mi cuenta</a>
+        <a href="/mi-cuenta/mis-datos-personales" title="Ver mi perfil">Ver mi perfil</a>
+    </div>
+</div>

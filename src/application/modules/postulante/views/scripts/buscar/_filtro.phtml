@@ -1,0 +1,174 @@
+<div data-key="<?php echo $this->param;?>" class="list-group dropdown filters">
+  <div href="#" class="list-group-item active">
+    <a href="#" data-toggle="dropdown"><?php echo $this->titulo; ?> 
+      <i class="fa fa-plus" aria-hidden="true"></i>
+    </a>
+  </div>
+  <form id="fFilter<?= $this->pfijof1 ?>" action="#" class="form-search open" data-type="<?= $this->param ?>">
+    <ul class="dropdown-menub show">
+      <?php 
+            
+        foreach ($this->datos['visible'] as $item):
+            
+            $conf_areas = $this->constantes->areas;
+            $conf_nivel = $this->constantes->nivel;
+            $conf_fechapub = $this->constantes->fechapub;
+            $conf_ubicacion = $this->constantes->ubicacion;
+            $conf_discapacidad = $this->constantes->discapacidad;
+
+            $conf_remuneracion = $this->constantes->remuneracion;
+            
+            if (($this->param != $conf_fechapub && $item['count'] > 0) || $this->param == $conf_fechapub) { 
+          ?>
+            
+            <li class="list-group-item filter_options">
+                <label><?php
+
+                    $filtros2 = array();
+                    $separador = $this->constantes->separador;
+                    if ($this->param == $conf_areas) { //areas
+                        $actual = $this->filtro;
+                        $nueva = $item['slug'];
+                        $valor = "";
+                        if ($this->Existepalabra($nueva, $actual, $separador)) {
+                            $x = explode("--", $actual);
+                            array_splice($x,
+                                array_search($item["slug"], $x), 1);
+                            $valor = implode("--", $x);
+                        } else {
+                            if ($actual != "") {
+                                    $valor = $actual . $separador . $nueva;
+                            } else { 
+                                $valor = $nueva;
+                            }
+                        }
+                        $filtros2['areas'] = $valor;
+                        if ($filtros2["areas"] == "") {
+                                $filtros2["areas"] = null;
+                        }
+                    }
+                    
+                    if ($this->param == $conf_nivel) { //nivel
+                        $actual = $this->filtro;
+                        $nueva = $item['slug'];
+                        $valor = "";
+                        if ($this->Existepalabra($nueva, $actual, $separador)) {
+                            $x = explode("--", $actual);
+                            array_splice($x,
+                                array_search($item["slug"], $x), 1);
+                            $valor = implode("--", $x);
+                        } else {
+                            if ($actual != "") {
+                                        $valor = $actual . $separador . $nueva;
+                            } else {
+                                $valor = $nueva; 
+
+                            }
+                        }
+                        $filtros2['nivel'] = $valor;
+                        if ($filtros2["nivel"] == "") {
+                                $filtros2["nivel"] = null;
+                        }
+                    }
+                    
+                    if ($this->param == $conf_fechapub) { //FechaPub
+                        $actual = $this->filtro;
+                        $nueva = $item['slug'];
+                        $valor = "";
+                        if ($this->Existepalabra($nueva, $actual, $separador)) {
+                            $x = explode("--", $actual);
+                            array_splice($x,
+                                array_search($item["slug"], $x), 1);
+                            $valor = implode("--", $x);
+                        } else {
+                            if ($actual != "") {
+                                    $valor = $actual . $separador . $nueva;
+                            } else {
+                                $valor = $nueva;
+                            }
+                        }
+                        $filtros2['fecha-publicacion'] = $valor;
+                        if ($filtros2["fecha-publicacion"] == "") {
+                                $filtros2["fecha-publicacion"] = null;
+                        }
+                    }
+                    
+                    if ($this->param == $conf_ubicacion) { //Ubicacion
+                        $actual = $this->filtro;
+                        $nueva = $item['slug'];
+                        $valor = "";
+                        if ($this->Existepalabra($nueva, $actual, $separador)) {
+                            $x = explode("--", $actual);
+                            array_splice($x,
+                                array_search($item["slug"], $x), 1);
+                            $valor = implode("--", $x);
+                        } else {
+                            if ($actual != "") {
+                                $valor = $actual . $separador . $nueva;
+                            } else {
+                                $valor = $nueva;
+                            }
+                        }
+                        $filtros2['ubicacion'] = $valor;
+                        if ($filtros2["ubicacion"] == "")
+                                $filtros2["ubicacion"] = null;
+                    }
+                    
+                    if ($this->param == $conf_discapacidad) {
+                        $actual = $this->filtro;
+                        $nueva = $item['slug'];
+                        $valor = "";
+                        if ($this->Existepalabra($nueva, $actual, $separador)) {
+                            $x = explode("--", $actual);
+                            array_splice($x,
+                                array_search($item["slug"], $x), 1);
+                            $valor = implode("--", $x);
+                        } else {
+                            if ($actual != "") {
+                                $valor = $actual . $separador . $nueva;
+                            } else {
+                                $valor = $nueva;
+                            }
+                        }
+                        $filtros2['discapacidad'] = $valor;
+                        if ($filtros2["discapacidad"] == "")
+                                $filtros2["discapacidad"] = null;
+                        
+                    }
+                    
+                    $ruta = $this->url($filtros2, 'buscar', false);
+                    
+                    if (($this->param != $conf_fechapub && $item['count'] > 0) || $this->param == $conf_fechapub) { 
+                            echo trim($this->escape($item['label']));
+                            
+                    } 
+                    
+                    //if ($this->param != $conf_fechapub) { 
+                        if ($item['count'] > 0) { ?> <span class="count">(<?= $item['count'] ?>)</span><?php } 
+                    //} 
+                    
+                    $val = $item['slug'];
+                    $type = "checkbox";
+                    if ($this->param == $conf_fechapub) {
+                        $type = 'radio';
+                        $val = '';
+                    }
+                    if($this->param == $conf_remuneracion){
+                        $val = '';
+                    }
+                    
+                        ?>
+                    <input id="areas<?= $item['slug'] ?>" name="areas<?= $val ?>" data-value="<?= $item['slug'] ?>" value="<?= $item['slug'] ?>"
+                       type="<?=$type?>" class="checkN" <?=
+                       ($this->param != "" ? (in_array($item["slug"],
+                               explode($this->constantes->separador,
+                                   $this->filtro)) ? "checked" : "") : "")
+                       ?> />
+                <?php } ?>
+                </label>
+              </li>
+        <?php endforeach; ?>
+
+    </ul>
+  </form>
+</div>

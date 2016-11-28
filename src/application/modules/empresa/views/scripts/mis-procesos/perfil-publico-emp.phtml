@@ -1,0 +1,320 @@
+<?= $this->partial('_partials/_messages.phtml',
+    array("flashMessages" => $this->flashMessages))
+?>
+<?=
+$this->partial('_partials/_navigation.phtml',
+    array('menu_sel' => $this->menu_sel, 'isAuth' => $this->isAuth, "flashMessages" => $this->flashMessages))
+?>
+<?=
+$this->partial('mi-cuenta/_sec-menu.phtml',
+    array('menu_post_sel' => $this->menu_post_sel, "tieneBuscador" => $this->tieneBuscador,
+    'tieneBolsaCVs' => $this->tieneBolsaCVs, 'Look_Feel' => $this->Look_Feel))
+?>
+<div id="wrapper" class="view-process">
+    <div class="row">
+
+        <div id="perfilEmpPA" class="iAccount">
+            <div class="dvMensajesBolsaCVs hide r5"></div>
+<?php if ((int) $this->btnBloqueado > 0) { ?>
+                <div class="msgYellow mB10 r5 msgPerfilEPL">
+                    <div class="msgInPerfilEPL">
+                        <span class="dateDMAPEeMp">El postulante
+                            <?php
+                            echo $this->postulante['postulante']['nombres'].' '.$this->postulante['postulante']['apellidos'];
+                            ?>
+                            se encuentra bloqueado.
+                        </span>
+                    </div>
+                </div>
+<?php } ?>
+
+            <h2 class="titleModSP bold titlePEL">Cuenta de empresa: <span class="txtEmpresaEPL"><? echo $this->auth['empresa']['nombre_comercial']; ?></span></h2>
+            <div id="linkHeadMFC" class="all">
+                <div class="cntTitlePEL left">
+                    <h2 class="titleModSP titlePEL">Postulantes: <span class="txtPuestoEPL"><?= $this->puesto ?></span> <span class="linkViewEPL"><a rel="<?=
+                                                                                                                                                     $this->url(array(
+                                                                                                                                                         'slug' => $this->slug,
+                                                                                                                                                         'url_id' => $this->url_id,
+                                                                                                                                                         'id' => $this->id),
+                                                                                                                                                         'avisoEmpresa',
+                                                                                                                                                         true)
+                                                                                                                                                     ?>" class="aEPLLinksF winModal winVerProcesoA" href="#winVerProceso">Ver perfil del puesto</a></span></h2>
+                </div>
+                <div id="linkRMFC" class="right grid2">
+                    <?php
+                    $url = $this->url(array(
+                        'module' => 'empresa',
+                        'controller' => 'mis-procesos',
+                        'action' => 'ver-proceso',
+                        'id' => $this->idsback), "default", true);
+                    ?>
+                    <a href="<?php echo $url ?>" class="f14" id="backToProcess_" >&laquo; Volver</a>
+
+
+                </div>
+                <div class="alignR all" >
+                    <?php foreach ($this->paginado as $key => $value) { ?>
+                        <?php if ($this->idactual == $value) { ?>
+                    <?php if (isset($this->paginado[$key
+                                    -  1])) { ?>
+                            <a href="<?=
+                            $this->url(array(
+                                'module' => 'empresa',
+                                'controller' => 'mis-procesos',
+                                'action' => 'perfil-publico-emp',
+                                'id' => $this->paginado[$key - 1],
+                                'idAviso' =>  $this->idaviso,
+                                'idsback' => $this->idaviso,
+                                'postulaciones' => $this->Util()->listPostulaciones($this->paginado)
+                                ), "default", true)
+                            ?>" class="f14" id="Perfil" >«Anterior  </a>
+                       <?php } ?>
+                            <?php if (isset($this->paginado[$key
+                                    + 1])) { ?>
+
+                                <a href="<?=
+                                $this->url(array(
+                                    'module' => 'empresa',
+                                    'controller' => 'mis-procesos',
+                                    'action' => 'perfil-publico-emp',
+                                    'id' => $this->paginado[$key + 1],
+                                    'idAviso' => $this->idaviso,
+                                    'idsback' => $this->idaviso,
+                                    'postulaciones' =>  $this->Util()->listPostulaciones($this->paginado)
+                                    ), "default", true)
+                                ?>" class="f14" id="Perfil"  >Siguiente» </a>
+
+
+        <?php } ?>
+
+    <?php } ?>
+
+<?php } ?>
+
+
+                </div>
+
+            </div>
+            <div id="mensajesVerProceso" class="hide r5">MENSAJES</div>
+            <div id="allBtnsCR" class="divListHeadE row">
+                <h6 class="titleNameEPC fix">Perfil de <span class="spanNameEPC" id="spanPostulante" rel="<?= $this->postulante['postulante']['slug'] ?>"><?= $this->postulante['postulante']['nombres'].' '.$this->postulante['postulante']['apellidos'] ?> </span></h6>
+
+                <ul class="ulListHeadE left">
+                    <?php /* if ($this->postulante['postulante']['descartado']!=1 && $this->online>0) { ?>
+                      <li id="sendMsjEPA" class="liListHeadE left"><a class="aListHeadE left " href="#">Enviar mensaje</a></li>
+                      <?php } */ ?>
+                    <!-- class que separa botones con margin : liSeparMR   -->
+                            <?php
+                            echo $this->LimitarOpcionesProceso($this->empresaMembresia,
+                                $this->tipoAviso)->showBtnInvitar($this->postulante['postulante']['idpostulante'],
+                                $this->idPostulacion);
+                            ?>
+                    <?php echo $this->LimitarOpcionesProceso($this->empresaMembresia,
+                        $this->tipoAviso)->showMoverEtapa();
+                    ?>
+                    <?php if ($this->postulante['postulante']['descartado']
+                        != 1 && $this->online > 0) {
+                        ?>
+                        <li id="aLinkDescarTE" class="left"><a
+                                class=" btn btn-option  descartarButton left  <?= $this->postulante['postulante']['descartado']
+                    != 1 ? '' : ' activo'
+                    ?>"
+                                href="#"
+                                rol="<?= $this->idPostulacion ?>" >Descartar</a>
+                        </li>
+                    <?php } ?>
+                    <?php
+                    echo $this->LimitarOpcionesProceso($this->empresaMembresia,
+                        $this->tipoAviso)->showEnviarCarpeta($this->postulante['postulante']['idpostulante'],
+                        $this->idPostulacion);
+                    ?>
+                           <?php
+                           echo $this->LimitarOpcionesProceso($this->empresaMembresia,
+                               $this->tipoAviso)->showBloquearCandidato($this->postulante['postulante']['idpostulante'],
+                               $this->idPostulacion);
+                           ?>
+                    <?php $tipoEmpresa = $this->LimitarOpcionesProceso($this->empresaMembresia,
+                            $this->tipoAviso)->tipoEmpresa();
+                    ?>
+
+                </ul>
+                    <?php if ($tipoEmpresa != 'A') { ?>
+                    <!--<ul class="menuinterno hide" >-->
+                    <!-- rel = es el id del proceso y rol es el id de postulacion-->
+                    <ul id="listActionEV" class="hide">
+                            <?php foreach ($this->categoriaPostulacion as $item): ?>
+                            <li class="liActionM" >
+                                <a class="aActionM<?= $this->postulante['postulante']['id_categoria_postulacion']
+                        != $item['id'] ? '' : ' active'
+                        ?>"
+                                   rol="<?= $this->postulante['postulante']['id_categoria_postulacion']
+                        != $item['id'] ? $this->idPostulacion : ''
+                        ?>"
+                                   rel="<?= $this->postulante['postulante']['id_categoria_postulacion']
+                        != $item['id'] ? $item['id'] : ''
+                        ?>"
+                                   href="#" ><?= $item["nombre"] ?></a>
+                            </li>
+    <?php endforeach; ?>
+                    </ul>
+<?php } ?>
+                <div class="right fix btn btn-option" style="padding: 0 10px;">
+                        <?php echo $this->LimitarOpcionesProceso($this->empresaMembresia,
+                            $this->tipoAviso)->showEnviarEmail();
+                        ?>
+
+                    <div class="lineSepCP right" style="margin-left: 13px;">
+                        <a class="expPdfCP icoSpt right" target="_blank" href="<?=
+                        $this->url(array(
+                            'module' => 'postulante', 'controller' => 'mi-cuenta',
+                            'action' => 'pdf', 'slug' => $this->postulante['postulante']['slug']),
+                            "default", true)
+                        ?>">Exporta a PDF</a>
+                    </div>
+                </div>
+                <div id="loadMsjEmpPP" class="all r5 hide"></div>
+            </div>
+
+
+            <div class="all" id="innerMainEPL">
+                <div class="left" id="contentEPL">
+<?= $this->partial('mi-cuenta/_perfil-publico-old.phtml',
+    'postulante', $this->postulante)
+?>
+                </div>
+
+                <div class="right" id="sidebarEPL">
+                    <h3 class="titleAsideEPL">Historial de Postulante</h3>
+                    <div id="cntHistoryE">
+                            <?php if ($this->postulante['postulante']['descartado']
+                                != 1 && $this->online > 0) {
+                                ?>
+                            <div id="cntAddBtnsE">
+                                <?= $this->LimitarOpcionesProceso($this->empresaMembresia,
+                                    $this->tipoAviso)->showAddNote()
+                                ?>
+                            </div>
+                            <div id="addNoteMsjTop">
+                                <!--Valores Vacio para llamar a la nota-->
+    <?=
+    $this->partial('_partials/_nota.phtml', 'empresa',
+        array(
+        'form' => $this->emptyFormNota,
+        'nota' => $this->emptyNotas,
+        'idPostulacion' => $this->idPostulacion
+        )
+    );
+    ?>
+
+                                <!--Valores Vacio para llamar a la mensaje-->
+                                    <?=
+                                    $this->partial('_partials/_mensajes-emp.phtml',
+                                        'empresa',
+                                        array(
+                                        'form' => $this->emptyFormMensajes,
+                                        'mensaje' => $this->emptyMensajes,
+                                        'idPostulacion' => $this->idPostulacion,
+                                        'postulante' => $this->postulante,
+                                        'tipoEmpresa' => $tipoEmpresa
+                                        )
+                                    );
+                                    ?>
+                            </div>
+                                <?php } ?>
+                                <?php echo $this->LimitarOpcionesProceso($this->empresaMembresia,
+                                    $this->tipoAviso)->showCheckBox();
+                                ?>
+
+
+                        <div id="cntLineHEPL" class="all">
+
+                            <div id="contentHistoryEPL" class="fltNota">
+
+                                            <?php foreach ($this->arrayHistorico as $historico) : ?>
+
+                                                <?php
+                                                $class = "";
+                                                if ($historico['descripcion'] == Application_Model_HistoricoPs::ESTADO_POSTULACION) {
+                                                    $class = 'icoPostulacion';
+                                                }
+                                                if ($historico['descripcion'] == Application_Model_HistoricoPs::ESTADO_SELECCIONADO) {
+                                                    $class = 'icoPreseleccionado';
+                                                }
+                                                if ($historico['descripcion'] == Application_Model_HistoricoPs::ESTADO_PRESELECCION) {
+                                                    $class = 'icoPreseleccionado';
+                                                }
+                                                if ($historico['descripcion'] == Application_Model_HistoricoPs::ESTADO_FINALISTA) {
+                                                    $class = 'icoPreseleccionado';
+                                                }
+                                                if ($historico['descripcion'] == Application_Model_HistoricoPs::ESTADO_DESCARTAR) {
+                                                    $class = 'icoDescartar';
+                                                }
+                                                if ($historico['descripcion'] == Application_Model_HistoricoPs::ESTADO_RESTITUIR) {
+                                                    $class = 'icoRestituir';
+                                                }
+                                                if ($historico['descripcion'] == Application_Model_HistoricoPs::ESTADO_SINSELECCIONAR) {
+                                                    $class = 'icoSinSeleccionar';
+                                                }
+                                                ?>
+                                    <div class="blockHsty">
+                                        <div class="txtHsty <?= $class ?>">
+                                            <span class="spanBlockH">
+                                       <?= $historico['descripcion'] ?>
+                                            </span> <span class="spanBlockH">
+                                    <?= $this->FriendlyDateTime($historico['fecha_hora']) ?>
+                                            </span>
+                                        </div>
+                                    </div>
+                                <?php endforeach; ?>
+
+                            </div>
+                            <div id="contentNotaEPL" class="fltNota">
+                                <?php foreach ($this->formNota as $indExp => $formNota) : ?>
+                                    <?=
+                                    $this->partial('_partials/_nota.phtml',
+                                        'empresa',
+                                        array(
+                                        'form' => $formNota,
+                                        'nota' => $this->notas[$indExp],
+                                        'descartado' => $this->postulante['postulante']['descartado'],
+                                        'idPostulacion' => $this->idPostulacion
+                                        )
+                                    );
+                                    ?>
+<?php endforeach; ?>
+                                <div id="agregadorNote"></div>
+                            </div>
+                            <div id="contentMsjEPL" class="fltMsj">
+<?php if (count($this->formMensaje)): ?>
+                                    <a href="<?=
+    $this->url(array('module' => 'empresa',
+        'controller' => 'mis-procesos', 'action' => 'mensajes', 'postulacion' => $this->idPostulacion),
+        false, true)
+    ?>">
+                                        Ver todos
+                                    </a><br />
+<?php endif ?>
+<?php ?>
+<?php foreach ($this->formMensaje as $indMen => $formMensaje) : ?>
+    <?php
+    echo $this->partial('_partials/_mensajes-emp.phtml', 'empresa',
+        array('form' => $formMensaje,
+        'mensaje' => $this->mensajes[$indMen],
+        'idPostulacion' => $this->idPostulacion,
+        )
+    );
+    ?>
+<?php endforeach; ?>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script>
+    AptitusPerfil();
+</script>

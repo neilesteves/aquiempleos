@@ -1,0 +1,444 @@
+/*
+    Administrador
+*/
+/* empresa */
+.none{display:none;}
+/*push*/
+#goAptEmp{
+	display: block; 
+	background-position:0 0;
+	position:absolute;
+	right: 0;
+	bottom: 0;
+	z-index: 2; 
+	width:223px; 
+	height: 64px	
+}
+#avisoAdmin .gridIFormEmp { padding:0 }
+.gridIFormEmp #formReg{ padding-top:0 }
+#checksOptAdm { margin-top: 20px; width:430px }
+#submOptAdm{ width:520px }
+#btnRegEmpresa{ 
+	display:block; 
+	background-position:0 -69px;
+	margin:0 auto; 
+	width:94px; 
+	height:45px 
+}
+#countWordEM{ min-height:1px }
+#loginRightEM{ background: url(../../images/empresa/bgLoginREM.jpg) right bottom no-repeat }
+#btnDashReg{ background-position:0 -69px; width:94px }
+#btnDashViewAll{ background-position:-104px -69px; width:90px }
+#btnDashPublish{ background-position:-290px -69px; width:131px }
+#btnDashSearch{ background-position:-204px -69px; width:78px }
+#myAccount .activeDashS{ background-position:-371px -432px }
+#bgPublishAdv{ background: url(../../images/empresa/bgPublishAdv.jpg) right bottom no-repeat; height:126px }
+#bgDashSEM{ 
+	background: url(../../images/empresa/bgDashSearchEM.jpg) 0 0 no-repeat; 
+	padding:15px 0 0 119px;
+	margin:0 0 5px;
+	width:125px; 
+	height:90px; 
+	overflow: hidden;
+	color:#5A5A5A;
+	line-height:1.2 
+}
+#bgDashPEM{ 
+	background: url(../../images/empresa/bgDashPostEM.jpg) 0 0 no-repeat; 
+	padding:15px 110px 0 15px;
+	width:119px; 
+	height:90px; 
+	overflow: hidden;
+	color:#5A5A5A;
+	line-height:1.2 
+}
+#dataAadvice, #dataAdmins, #dataAdvPagados, #dataAdvProcess{ width:760px }
+#linksTable, #linksTablePE{ background: url(../../images/empresa/lineBottomUl.png) 0 bottom repeat-x; margin:0 0 10px }
+#titleyBtn{ position:relative; width:100%; height: 45px }
+#btnPusbliAdvA{ 
+	position:absolute; 
+	right:0;
+	top:0;
+	z-index:2;
+	background-position:0 -134px; 
+	width:134px 
+}
+#asideBtnAdm{ margin:0 0 10px }
+#addNewAdminEM{ background-position:-144px -134px; margin:15px 0; width:207px }
+#newAdminEM {
+	padding: 0;
+	margin: 0 auto;
+	width: 574px;
+	height: auto;
+}
+#wAvisoEmpleo {
+	padding: 0;
+	margin: 0 auto;
+	width: 574px;
+	height: 450px;
+}
+#gridTableR{ width:760px }
+#registerP { 
+	padding:0; 
+	margin:-215px 0 0 -285px; 
+	width:614px; 
+	height:430px 
+}
+#iRegisterP{ padding: 0; overflow:hidden }
+#inRegisterP{ width:604px }
+#iRP{ 
+	background-color:white;
+	padding: 20px; 
+	width:558px; 
+	overflow:hidden 
+}
+#btnRegCont{ 
+	background-position:-193px -194px;
+	margin:0 auto; 
+	width:166px 
+}
+#ejemploext{
+	padding:0;
+	margin:-225px 0 0 -160px;
+	width:450px;
+	height:320px	
+}
+#cntExtracargos{ margin:0 auto; width:387px; height:263px; overflow: hidden }
+#registerRightEM{ background: url(../../images/empresa/bgRegRightEM.png) 0 0 repeat-x; padding:10px 20px 0; width:236px }
+#cntRegRightEM{ background: url(../../images/empresa/bgShadowRREM.png) 10px 0 repeat-x; padding:0 0 0 10px; overflow: hidden }
+#cntRegisterWM, #msjDataResT{ width:100%; overflow: hidden }
+#sectionsEM{ padding:0 0 20px; width:100%; /*height:420px;*/ height:470px; overflow:hidden }
+#iSectionLeft, #iSectionRight{  width:476px; height:331px }
+#continP1, #nextEmpP1, #nextEmpP1Lg{ background-position:-361px -134px; width:108px }
+#contacP1{ background-position:-369px -194px; width:113px }
+#outP1EM{ background-position:-123px -194px; width:60px }
+#elije3Opt{ 
+	background: url(../../images/empresa/bgS3.jpg) 0 0 repeat-x; 
+	margin:0 0 10px;
+	padding:30px 0 0 20px; 
+	width:932px; 
+	height:220px; 
+	overflow:hidden 
+}
+#innerSectionEmp{ position:relative; /*height:420px*/ height:470px }
+#section1EM, #section2EM, #section3EM{ 
+	position:absolute; 
+	left:0; 
+	z-index:2; 
+	overflow: hidden 
+}
+#section1EM{ top:0; /*height:420px*/ height:470px }
+#section2EM{ /*top:430px;*/ top:480px; left:25px; height:600px }
+#section3EM{ top:1030px; height:300px }
+#backEmpP1{ background-position:0 -252px; margin:0 10px 0 0; width:96px }
+#footEmpP1{ width:952px }
+#cntEmpRelF{ 
+	position:relative; 
+	padding:0 0 0; 
+	margin:0; 
+	width:100%; 
+	height:52px 
+}
+#sectionsP3EM{ width:980px; overflow: hidden }
+#footEmpP3{ margin:15px 0 0; width:942px }
+#txtAdvP3Emp{ 
+	border-width:1px 0; 
+	border-style: solid; 
+	border-color:black; 
+	width:390px; 
+	height:100px;
+	overflow: hidden 
+}
+#areaCountCP{ border:1px solid #ccc; padding:10px; width:368px; height:60px }
+#countCntP3{ margin:10px 0 0 }
+#nextEmpP3{ background-position:-211px -252px; width:98px }
+#backEmpP3{ background-position:-105px -252px; margin:0 10px 0 0; width:96px }
+/*#sectionsEMP4{ padding:0 0 20px; width:100%; overflow:hidden }*/
+#iSectionP3Left, #iSectionP3Right{  width:476px; overflow: hidden }
+#nextEmpPA3{ background-position:-361px -134px; width:108px }
+#asideP4Sec{ 
+	background: url(../../images/empresa/candado.png) 0 0 no-repeat; 
+	margin:10px 0 0 15px; 
+	padding:0 0 0 20px;
+	height:20px 
+}
+#nextEmpP3{ background-position:-319px -252px; width:106px; height:60px }
+#endRegisterEmp{ padding-top:50px }
+#txtP3Emp { background: url(../../images/empresa/lineVerEmp.png) center 105px no-repeat }
+#btnsEndRegE{ width:290px; height:60px; margin:0 auto }
+#btnsEndRegELef{ background-position:0 -318px; width:135px }
+#btnsEndRegERig{ background-position:-145px -318px; width:137px }
+#codeBarPayEmp{ position:relative; height:220px }
+
+#printEmpP4{ background-position:-292px -318px; width:89px }
+#totalAsideP4Emp{ height:42px }
+#msjP4EndPay{ 
+	border:1px solid #A4A4A4; 
+	margin:0 0 20px; 
+	padding:50px 0 20px; 
+	overflow:hidden; 
+	text-align:center; 
+	line-height:1 
+}
+#imgAdvPref{ background-image: url(../../images/empresa/bgImgP2.jpg) }
+#gridEndPayA{ margin:-10px auto 0; width:560px }
+#btnsEndPayC{ margin:15px auto 0; width:560px; overflow: hidden }
+#publushTAdvP4{ background-position:-234px 0; width:148px }
+#asideEMC{ margin:0 auto; width:164px; overflow: hidden }
+#contentEPL, #sidebarEPL, #cntHistoryE, #cntChecksE{ overflow: hidden }
+#contentEPL{ width:664px }
+#sidebarEPL{ width:280px }
+#cntAddBtnsE{ margin:10px 0; height:20px }
+#cntHistoryE{ padding:0 5px; width:270px }
+#cntChecksE{ 
+	background: url(../../images/empresa/bgCheckEPL.png) 0 0 no-repeat; 
+	padding:15px 10px 0 15px;
+	margin:0 0 20px;
+	width:245px; 
+	height:29px 
+}
+#innerMainEPL #urlPublic{ width:642px }
+#cntLineHEPL{ border-bottom:1px solid #ccc }
+#btnIdentico{ margin:0 auto; width:85px; background-position:0 -432px; }
+#btnPersonali{ margin:0 auto; width:123px; background-position:-95px -432px; }
+#publiYaE{ 
+	background-position:-108px -491px; 
+	margin:0 auto; 
+	width:144px; 
+	height:60px 
+}
+#innerProcEmp, #contenido_ajax{ position:relative; padding:0 0 60px; width:760px; overflow: hidden }
+#cntTitlesEF{ 
+	border-bottom:0 none; 
+	padding-bottom:0; 
+	margin-bottom:15px; 
+	width:100%; 
+	overflow: hidden 
+}
+#cntHeadEMP{ margin:0 0 10px }
+#leftTitleCR{ width:700px }
+#leftTitleCR{ width:960px }
+#rightTitleCR, #leftBtnsCR, #rightBtnsCR{ overflow: hidden }
+#rightTitleCR{ width:400px }
+#leftBtnsCR{ width:520px }
+#rightBtnsCR{ width:200px }
+#cntOptionsCR{ margin:0 0 20px }
+#paginEPM{ border:0 none; padding:0; margin:0 0 15px }
+#listActionE, #listActionEV{
+	background-color:white;
+	position:absolute;
+	left:180px;
+	top:25px;
+	z-index:99;
+	width:150px;
+	padding:10px;
+	border:1px solid #999;
+}
+#listActionM{
+	background-color:white;
+	position:absolute;
+	left:100px;
+	top:25px;
+	z-index:99;
+	width:150px;
+	padding:10px;
+	border:1px solid #999;
+}
+.menuinterno{
+	background-color:white;
+	position:absolute;
+	z-index:199;
+	width:150px;
+	padding:10px;
+	border:1px solid #999;
+}
+#cntDetailEPC{ margin:0 0 30px }
+#perfilEmpPA #infoPerfilCP{ width:340px }
+#perfilEmpPA #infoPPubPC{ width:190px }
+#allBtnsCR{ border-bottom:1px solid #ccc; padding:0 0 5px; margin:0 0 20px }
+#perfilEmpPA #iDivShareCP {
+	background: url(../../images/empresa/bgShareR.png) right top no-repeat;
+	padding: 0 10px 17px 0;
+	width: 260px;
+	height: 28px;
+}
+#perfilEmpPA #divShareCP {
+	background: url(../../images/empresa/bgShareL.png) left top no-repeat;
+	padding: 0 0 17px 10px;
+	width: 270px;
+	height: 28px;
+}
+#linkHeadMFC{ border-bottom:1px solid #ccc; padding:0 0 10px; margin:0 0 20px }
+#linkRMFC{ padding:5px 0 0; width:100px; text-align:right }
+#agregadorNote{ border-top:1px solid #ccc; padding:5px 0; width:100% }
+#ejmsAviso{
+  padding:0;
+	margin:-100px 0 0 -200px;
+	width:404px;
+	height:280px
+}
+#ajax-loading{ height:300px }
+#perfilEmpPA #imgPPubPC{ width:140px; height:140px }
+#processMathA{ 
+	background-color: white;
+	margin:10px 0 0; 
+	width:100%;
+	overflow:hidden;
+	border:0 none 
+}
+#bntRegReferen{ width:120px }
+#bntListReferen{ width:105px }
+#bntRegReferen .aListHeadE{ width:110px }
+#bntRegRBusca{ width:50px }
+#bntRegRBusca .aListHeadE{ width:40px }
+#content-winInvitarProceso{ width:100% }
+#loadMsjEmpPP{ width:938px }
+#dataCntInvA{ width:352px;  overflow-x: hidden } 
+.overInvHS{ height:280px; overflow-y: scroll }
+#mensajesVerProceso{ margin:0 0 10px }
+ #loadMsjEmpPP{ margin:10px 0 }
+#fLogoEmp .sendPhoto .btnPink{ background-position: -272px -285px }
+/* Administrador */
+#homeAdmin #logoSlogan{ margin:10px auto 0; width:181px; float:none }
+#homeAdmin .bgAll,
+#homeAdmin .innerAll{ background-position:center top }
+#homeAdmin #main{ background-position:center -35px }
+#homeAdmin #asideHead{ display:none }
+#wrap #navigation{ height:30px }
+#txtAdministrador{ display:none }
+#cntLoginAdmin{ padding:15px; margin:0 auto  !important; width:387px }
+#homeAdmin #innerMain{ padding-bottom:20px }
+#sLoginWMH{ margin-right:0 }
+#homeAdmin #cntForgotPReg{ width:347px }
+#homeAdmin #textForgotP,
+#homeAdmin #fForgotPass .labelN{ width:340px }
+#backLogAdm {
+	right: 20px;
+	top: 20px;
+	z-index: 2;
+}
+#winEditPostulante{
+  padding:0;
+  margin:-100px 0 0 -440px;
+  width:870px;
+  height:200px
+}
+#winDividirAviso{
+    padding:0;
+    top:20px;
+    margin:0 0 0 -255px;
+    width:510px;
+    height:250px
+}
+#ejmsAviso{
+    padding: 0;
+    margin: -260px 0 0 -260px;
+    width: 520px;
+    height: 520px;
+}
+#content-winInvitarProceso { width: 100% }
+#fSendRS, #btnBuscarPostulanteCallCenter{ background-position: 0 0; margin:0 0 0 10px; width: 74px }
+#fResetRS{ background-position: -84px 0; width: 74px }
+#monthjFunctions{ width:85px }
+#yearjFunctions, #dayjFunctions{ width:65px }
+#submitDividirAviso{ background-position:-168px 0; margin:10px auto 0; width:122px }
+#dataDivAviso{ margin:0 auto 10px; width:450px }
+#dataDivAviso td{ padding:5px }
+#dataDivAviso th{ padding:6px 5px }
+#flowIptDivAv{ display:block; height:130px; overflow-y:auto; overflow-x:hidden }
+#frmBuscar_postulantes #fNDoc{ width:220px }
+#buscarEmailCliente #txtEmailCliente{ width:270px }
+#buscarEmailCliente #fNDoc{ width:160px }
+#btnLlamadaCliente{ background-position: 0 -56px; border:0 none; width:168px; height: 40px }
+#btnPublicarAnuncio{ background-position: 0 -98px; border:0 none; width:131px; height: 40px }
+#saveNEAdmin, .btnSubmitAdm #fSubmit,#saveUserAPI{ background-position: -300px 0; border:0 none; width:74px; height: 40px; cursor:pointer }
+#saveUserAPI{ margin-left: 10px; height:45px }
+#cntAddNewT .inactivo{ background-position: 0 -148px }
+
+#winAlertBloquearPost{
+    padding:0;
+    margin:-100px 0 0 -200px;
+    width:404px;
+    height:280px
+}
+#winAlertBloquearEmp{
+    padding:0;
+    margin:-100px 0 0 -200px;
+    width:404px;
+    height:280px
+}
+#winAlertBloquearTestimonio{
+    padding:0;
+    margin:-100px 0 0 -200px;
+    width:404px;
+    height:280px
+}
+#winAlertBloquearEportada{
+    padding:0;
+    margin:-100px 0 0 -200px;
+    width:404px;
+    height:280px
+}
+#winAlertBloquearAviso{
+    padding:0;
+    margin:-100px 0 0 -200px;
+    width:404px;
+    height:280px
+}
+#winAlertBloquearUsuAdmin{
+    padding:0;
+    margin:-100px 0 0 -200px;
+    width:404px;
+    height:280px
+}
+/* layout2 */
+#divCtrlsMemb{ width: 305px }
+#winAddMemb{ padding: 0; margin: -190px 0 0 -290px; width: 610px; height: 306px }
+#divContBenefM{ 
+   border: 1px solid #CDCDCD; 
+   width:204px;
+   height: auto; 
+   padding: 8px; 
+   overflow: hidden
+}
+#divContentDetailsM li{ 
+	background: url(../../images/administrador/aspa.png) left 2px no-repeat;
+	padding:0 0 5px 15px;
+	line-height:1.2
+}
+#asideBtnAdm .inactivo { background-position: -188px -652px; cursor: default }
+#addViewEmpP{ position:absolute; right:0; top:5px; z-index:2 }
+/* api */
+#cntOptSaveApi #saveUserAPI{ margin: 0 auto }
+#fCheckDomainApi, #fCheckIvgAPi{ border: 0 none }
+#infoRelADM{ padding:10px 0 0; width:420px }
+#fTestimonio{ width:410px }
+#btnAceptarT{ background-position:0 -600px; margin:0 auto; width:77px }
+.legendFloat #backToProcess{ margin-right:10px }
+#btnQElimAdm #orden{ padding:4px }
+/* Listado */
+#listPagerAP1, #listPagerAP2{ 
+    position:relative;
+    margin:0 0 20px 5px;
+    /*width:950px;*/
+    width:590px;
+    height:28px;
+    overflow: hidden; 
+    text-align: left 
+}
+#btnDuplicarP{ background-position: -87px -600px; margin-right: 10px; width:141px }
+#btnDeleteP{ background-position: -238px -600px; width:87px }
+#btnClearAP{ background-position: -380px -652px; width:77px; margin-right: 10px }
+#btnsDivAP {
+    height: 40px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 350px;
+    z-index: 2;
+}
+#btnSaveCAP{ background-position:-300px -805px; margin-left:10px; width:145px }
+#btnSaveDAP{ background-position:-138px -805px; width:152px }
+/* fix adm */
+#main{ background-position:center -35px }
+#empresasAdmin{ border-width:5px }

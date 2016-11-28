@@ -1,0 +1,73 @@
+<nav class="cont-menu row">
+	 <br>
+</nav>
+<div id="wrapper" class="row">
+	 <?= $this->partial('_partials/_messages.phtml', array("flashMessages" => $this->flashMessages)) ?>
+	 <div class="head-title row">
+		  <ul class="steps">
+				<li class="act">Tus<br> Datos<span></span></li>
+				<li>Tu Perfil<br> Profesional<span></span></li>
+				<li><br>¡Listo!<span></span></li>
+		  </ul>
+		  <div class="title-step">
+				<div class="legend">
+					 <a href="<?=$this->url(array('controller' => 'home', 'action' => 'index'), false, true)?>">Inicio</a> » <span class="noLink">Paso1 - Ingresa tus datos</span>
+				</div>
+				<h1><?=(isset($this->texto)?'Actualiza':'Registra')?> tus datos</h1>
+		  </div>
+	 </div>
+	 <div class="row">
+		  <p class="right bold">Los campos con <span class="req">*</span> son necesarios</p>
+		  <?php if (!isset($this->update)) { ?>
+		  <h2 class="title-big">Ingresa tus datos</h2>
+		  <?php } ?>
+	 </div>
+	 <form action="" method="post" id="frmPostulantRegistration" enctype="multipart/form-data" class="frm-horizontal large">
+		  <div class="wrap-controls">
+				<?=
+				$this->partial('registro/_usuario_paso1.phtml',
+					 array('formUsuario' => $this->formUsuario, 'modulo' => $this->modulo,
+					 'controlador' => $this->controlador, 'idPostulante' => $this->idPostulante, 'update' =>(isset($this->update)?1:0)));
+				?>
+		  </div>
+		  <?=
+		  $this->partial('registro/_postulante_paso1.phtml',
+				array('formPostulante' => $this->formPostulante,
+				'imgPhoto' => $this->imgPhoto,
+				'config' => $this->config,
+				'mes' => $this->mes, 'sexo'=>$this->sexo,
+				'idPostulante' => $this->idPostulante));
+		  ?>
+		  <div class="txt_right">
+				<a href="#escapeForm" class="btn btn-default input-small winModal">Salir</a>
+				<button type="submit" class="btn btn-primary input-xsmall" id="btnPostulantRegister" tabindex="20">Continuar ></button>
+		  </div>
+	 </form>
+</div>
+
+<div id="escapeForm" class="window">
+		  <div id="iEscpForm" class="innerWin"> <a href="#Cerrar" class="closeWM icoCWM"><span class="hide">Cerrar</span></a>
+				<div id="inEscpForm" class="iWindow r5">
+					 <div id="iEscpF" class="bLB3 r5 inWindow">
+						  <p class="alertEsc">
+								<span class="bold f18 mB5 titTxtAE"><?=(isset($this->update))?'La actualización':'El registro'?> de sus datos no se ha completado</span>
+								<!-- <span class="bold f18 mB5 titTxtAE">The registration of your data has not been completed</span> -->
+								<?php if (!isset($this->update)) {?>
+								<span class="relTxtAE cGray">por lo que no podrá participar en ningún proceso de postulación en AquiEmpleos</span>
+								<?php } ?>
+						  </p>
+						  <div class="wrap-btn center">
+								<?php if (!isset($this->update)) {
+									 $url = $this->url(array(
+									 'controller' => $this->controlador, 'module' => $this->modulo,
+									 'action' => 'index'), false, true);
+								} else {
+									 $url = SITE_URL;
+								} ?>
+								<a id="btnCEscp" class="btnCEscp btn btn-default" href="<?=$url?>">Confirmar salida</a>
+								<a href="#Continuar" id="btnNSh" class="closeWM btn btn-primary">Continuar <?=(isset($this->update))?'actualización':'registro'?> de datos</a>
+						  </div>
+					 </div>
+				</div>
+		  </div>
+	 </div>

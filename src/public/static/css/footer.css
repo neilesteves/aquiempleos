@@ -1,0 +1,32 @@
+/*footer*/
+
+/*footer{
+	background-color: #1D517C;
+}
+
+footer p, footer h2, footer li{
+	font-family: sylfaen;
+}
+
+*/
+
+.box-center {
+    padding-bottom: 30px;
+}
+
+.footer-title{
+	font-family: sylfaen;
+	font-size: 30px !important;
+	border-bottom:  none !important;
+}
+
+.icons{
+	color:white;
+	font-size:30px;
+	padding: 5px 15px 5px 42px;
+}
+
+.list-footer li {
+    margin: 0 26px 12px 23px !important;
+}
+

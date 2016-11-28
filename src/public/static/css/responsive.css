@@ -1,0 +1,23 @@
+
+@media screen and (min-width: 500px) and (max-width: 800px){
+  /*carusell*/
+  
+}
+
+@media screen and (min-width: 320px) and (max-width: 500px){
+  /*header-navbar*/
+  .conf{
+    font-size: 20px;
+  }
+  .navbar-mcl .navbar-nav > li > a {
+    margin: 0px; 
+    padding: 10px;
+  }
+  .tree{
+    background-color: white;
+  }
+  /*-------------------------*/
+  /*carusell*/
+    
+}
+

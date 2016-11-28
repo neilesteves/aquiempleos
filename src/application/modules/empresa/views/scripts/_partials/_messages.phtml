@@ -1,0 +1,21 @@
+<? if (is_array($this->flashMessages)) : ?>
+    <? foreach ($this->flashMessages as $msg) : ?>
+        <? if(!is_object($msg)): ?>
+            <? $temp = $msg ?>
+            <? $msg = new stdClass(); ?>
+            <? $msg->level = 'error'; ?>
+            <? $msg->message = $temp.''; ?>
+        <? endif; ?>
+        <div class="flash-message <?=$msg->level ?>">
+            <div class="msgsTime msgYTIE">
+               <div class="contenidoFlashMessage <?=
+                   ($msg->level=="success"?"msgYellow":
+                   ($msg->level=="info"?"msgBlue":
+                   ($msg->level=="error" || 
+                   $msg->level=="errorout"?"msgRed":"")))?> mB10 r5">
+                <?=$this->escape($msg->message) ?>
+               </div>
+            </div>
+        </div>
+    <? endforeach; ?>
+<? endif; ?>

@@ -1,0 +1,102 @@
+<?=Application_Model_Partials::getMenuPostulante(); ?>
+<section class="profile_wrapper">
+  <div class="center_box">
+    <div class="content_body profile_detail_wrapper">
+      <?=Application_Model_Partials::getPerfilPorcentaje(); ?>
+      <div class="skill_body">
+        <div class="skill_buttons row">
+          <h2 class="skill_category"><i class="icon icon_references"></i>Referencias</h2>
+          <button class="btn btn_white flt_right" id="btnAddSkill" <?=(count($this->lisReferencias)==0)?'disabled="disabled" ':''?> >Agregar Otro</button>
+          <a class="btn btn_print flt_right" target="_blank" title="Imprimir" href="<?=$this->url(array(
+            'module' => 'postulante', 'controller' => 'mi-cuenta',
+            'action' => 'pdf',
+            'slug' => $this->slug), "default", true)?>">
+            <i class="icon icon_print"></i></a>
+        </div>
+        <?=$this->form->hidToken;?>
+        <?php if (count($this->lisReferencias)>0) { ?>
+        <ul class="title_content_edit references">
+        <!--Se lista cada una-->
+        <?php foreach ($this->lisReferencias as $key => $value) { ?>
+          <li>
+            <div class="title_skills row">
+                <div class="block_text">
+                <?php
+                $puesto=(!empty($value['otro_puesto']))?$value['otro_puesto']:$value['puesto'];?>
+                <h2><?=ucfirst(strtolower($puesto)).' en '.$value['empresa'] ?></h2>
+                <div class="block_text_6">
+                  <h3 class="contact_ref"><?=$value['nombre']?></h3>
+                  <h3 class="item1"><?=$value['cargo']?></h3>
+                  <h3><a href="mailto:<?=$value['email']?>"><?=$value['email']?></a></h3>
+                </div>
+                <div class="block_text_6">
+                  <h3><?=!(empty($value['telefono']))?'T: '.$value['telefono']:''?></h3>
+                  <h3><?=!(empty($value['telefono2']))?'T: '.$value['telefono2']:''?></h3>
+                </div>
+              </div>
+              <div class="block_buttons">
+                <button class="btn btn_delete" data-id="<?=$value['id_referencia']?>">
+                  <span class="btn_label"><i class="icon icon_delete2"></i></span>
+                  <span class="btn_spinner"></span>
+                </button>
+                <button class="btn btn_edit" data-id="<?=$value['id_referencia']?>">
+                  <span class="btn_label"><i class="icon icon_pencil"></i></span>
+                  <span class="btn_spinner"></span>
+                </button>
+              </div>
+            </div>
+          </li>
+        <?php } ?>
+          <!--fin del listado-->
+        </ul>
+        <?php } else { ?>
+               <?= $this->partial('mi-cuenta/_referencia.phtml', array('form' => $this->form, 'noneSkill' => false ,'existe'=>$this->existe)); ?>
+               <ul class="title_content_edit references hide"></ul>
+        <?php } ?>
+        <!--Fin de Referencias Confirmadas-->
+      </div>
+      <?php if(!$this->existe){?>
+          <div class="skill_blocked">
+            <p>Para añadir referencias es necesario agregar al menos una experiencia.</p>
+            <p><a href="/mi-cuenta/mis-experiencias" class="btn btn_secondary">Ir a Experiencias</a></p></div>
+     <?php }?>
+    </div>
+    <aside><?php Application_Model_Partials::getAvisosSugeridos(); ?></aside>
+  </div>
+</section>
+<script id="tplUserReferences" type="text/template">
+     <?= $this->partial('mi-cuenta/_referencia.phtml', array('form' => $this->form, 'noneSkill' => false,'existe'=>$this->existe)); ?>
+</script>
+<script id="tplSkillTitle" type="text/template">
+<h2><%=selCareReference%></h2>
+<div class="block_text">
+  <div class="block_text_6">
+    <h3 class="contact_ref"><%=txtNameReference%></strong></h3>
+    <h3 class="item1"><%=txtPositionReference%></h3>
+    <h3><a href="mailto:<%=txtTelephoneReferenceEmail%>"><%=txtTelephoneReferenceEmail%></a></h3>
+  </div>
+  <div class="block_text_6">
+    <h3>T: <%=txtTelephoneReferenceOne%></h3>
+    <% if (txtTelephoneReferenceTwo !== "") { %>
+        <h3>T: <%=txtTelephoneReferenceTwo%></h3>
+    <% } %>
+  </div>
+</div>
+  <div class="block_buttons">
+    <button class="btn btn_delete" data-id="<%=hidReference%>">
+      <span class="btn_label"><i class="icon icon_delete2"></i></span>
+      <span class="btn_spinner"></span>
+    </button>
+    <button class="btn btn_edit" data-id="<%=hidReference%>">
+      <span class="btn_label"><i class="icon icon_pencil"></i></span>
+      <span class="btn_spinner"></span>
+    </button>
+  </div>
+</script>
+<script id="tplSkillBox" type="text/template">
+  <li>
+    <div class="title_skills row">
+      <% include tplSkillTitle %>
+    </div>
+  </li>
+</script>

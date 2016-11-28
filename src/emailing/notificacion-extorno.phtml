@@ -1,0 +1,43 @@
+<table width="96%" style="margin: 10px 0px 0px 10px" align="center" border="0">
+    <tr><td height="32"></td></tr>
+    <tr>
+        <td>
+            <table border="1">
+            <tr>
+                <td>CIP</td>
+                <td>Tipo</td>
+                <td>Monto</td>
+                <td>Empresa</td>
+                <td>Razón Social</td>
+                <td>CI/RUT</td>
+                <td>Email</td>
+            </tr>
+            <?php
+            echo "
+                <tr>
+                    <td>".$this->data['cip']."</td>
+                    <td>".$this->data['tipoAnuncio']."</td>
+                    <td>".$this->data['total']."</td>
+                    <td>".$this->data['medioPago']."</td>
+                    <td>".$this->data['razonSocial']."</td>
+                    <td>".$this->data['numeroDoc']."</td>
+                    <td>".$this->data['emailContacto']."</td>
+                </tr>
+            ";
+            ?>
+            </table>
+        </td>
+    </tr>
+    <tr><td height="20"></td></tr>
+    <tr><td height="25"></td></tr>
+</table>
+<table style="border-left-color: #fff; border-top-color: #fff; border-bottom: #fff 1px solid; border-right-color: #fff"
+    cellspacing="0" cellpadding="0" border="0">
+    <tr>
+        <td align="center" width="750" style="padding-left:30px;padding-bottom:10px;">
+            <h1 style="padding-right: 0px; padding-left: 20px;font-weight: bold; font-size: 18px; margin: 0px; color: #222222; padding-top: 10px; padding-bottom: 10px;">
+                <span style="color:#000;font-family: Arial, Helvetica, sans-serif">El equipo AquiEmpleos</span> 
+            </h1>
+        </td>
+    </tr>
+</table>

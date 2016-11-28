@@ -1,0 +1,80 @@
+<?=$this->partial('mi-cuenta/_new_sec-menu.phtml',array('dataperfil' => $this->dataperfil));?>
+<div class="modal_helper" id="modalHelp">
+  <div class="center_box">
+    <div class="content_modal_rigth">
+      <div class="over_profile">
+        <div class="over_dotted_profile"></div>
+        <i class="icon icon_arrowh_left"></i>
+        <p class="over_text_profile">Regresa a editar tu perfil y sugerencias de búsqueda</p>
+      </div>
+      <div class="over_helpers">
+        <div class="over_text_helpers">Imprime tu CV <br> Descarga tu CV</div>
+        <i class="icon icon_arrowh_right"></i>
+        <i class="icon icon_arrowh_right"></i>
+        <div class="over_dotted_helpers_print"></div>
+      </div>
+      <div class="content_modal_rigth modal_suggest">
+        <div class="over_suggest">
+          <i class="icon icon_arrowh_top"></i>
+          <p class="over_text_suggest">Acá podrás ver tus sugerencias preferidas</p>
+        </div>
+        <div class="over_suggest">
+          <i class="icon icon_arrowh_top"></i>
+          <p class="over_text_suggest">Acá podrás ver las sugerencias descartadas</p>
+        </div>
+      </div>
+    </div>
+    <div class="content_modal_left">
+      <div class="over_know">
+        <div class="over_dotted_know"></div>
+        <i class="icon icon_arrowh_top"></i>
+        <div class="over_text_know">Conoce cómo destacar tu perfil</div>
+      </div>
+    </div>
+  </div>
+  <a href="#" class="icon icon_cross" id="btnCloseHelp"></a>
+  
+</div>
+<section class="profile_wrapper">
+  <div class="center_box mt10">
+    <div class="content_body suggested_jobs_list">
+      <div class="welcome_detail row">
+        <div class="welcome_detail_left">
+          <div class="message_mobile">
+            <p>Tu perfil </p>
+            <p>está al <strong><?=$this->porcentaje?>%.</strong></p>
+          </div>
+             <a href="<?=$this->url(array('module'=>'postulante','controller'=>'mi-cuenta','action'=>'mis-datos-personales'))?>" class="bg_icon_profile">
+                <i class="icon icon_person2"></i>
+                <p>Volver al perfil</p>
+           </a>
+          <div class="message">
+            <p><strong><?=$this->nombres; ?>, </strong>tu perfil está al <?=$this->porcentaje?>%, conoce las sugerencias y recomendaciones para ti. </p>
+          </div>
+        </div>
+        <div class="welcome_detail_right">
+          <div class="circle_progress">
+            <div id="progressProfile" class="progress_profile"></div>
+          </div>
+            <?php /* ?>
+          <div class="suggest_get_resume"><a href="#" class="icon icon_print"></a><a href="#" class="icon icon_download"></a></div>
+          <?php */ ?>
+        </div>
+      </div>
+      <div class="suggested_information">
+
+        <?= $this->partial('avisos-sugeridos/_tabs.phtml',$this); ?>
+        <?= $this->partial('avisos-sugeridos/_listado.phtml',$this); ?>
+
+      </div>
+      <div class="search_results_pagination row">
+        <?= $this->partial('avisos-sugeridos/_pag.phtml',array(
+          'totalPage'  => $this->totalPaginas ,
+          'pageActual' => $this->paginaActual
+        )); ?>
+      </div>
+    </div>
+      <?=Application_Model_Partials::getIncompleteDashboard(); ?>
+  </div>
+</section>
+<?= $this->partial('avisos-sugeridos/_template.phtml',$this); ?>

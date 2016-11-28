@@ -1,0 +1,206 @@
+<table width="790" height="751" border="0" cellpadding="0" cellspacing="0" style="font-family:Arial;color:#444">
+	<tr>
+		<td rowspan="7">&nbsp;</td>
+		<td colspan="5" height="26"><img style="display:block; border:0" src="<?=MEDIA_URL?>/images/emailing/alertas_anunciantes_02.jpg"></td>
+		<td rowspan="7">&nbsp;</td>
+	</tr>
+	<tr>
+		<td colspan="4" rowspan="2" height="128"><img style="display:block; border:0" src="<?=MEDIA_URL?>/images/emailing/alertas_anunciantes_04.jpg"></td>
+		<td><img src="<?=MEDIA_URL?>/images/emailing/alertas_anunciantes_05.jpg" border="0" usemap="#Map2" style="display:block; border:0"></td>
+	</tr>
+	<tr>
+		<td width="88" height="90"><img style="display:block; border:0" src="<?=MEDIA_URL?>/images/emailing/alertas_anunciantes_06.jpg"></td>
+	</tr>
+	<tr>
+		<td colspan="5" style="text-align:center; font-size: 1.45em; font-weight:bold">
+			<p><?php echo $this->titulo?></p>	
+		</td>
+	</tr>
+	<tr>
+		<td colspan="5" height="62"><img style="display:block; border:0" src="<?=MEDIA_URL?>/images/emailing/alertas_anunciantes_08.jpg"></td>
+	</tr>
+	<tr valign="top">
+	  <td height="256" colspan="5" style="font-size:13px" bgcolor="#f6f6f6">
+			<table style="font-size:13px;border-spacing: 0;" border="0" cellpadding="0" cellspacing="0">
+                            <?php 
+                            $numPostulantes = $this->numPostulantes;
+                            $contador = 1;
+                            foreach ($this->postulante as $postulante) { ?>
+                            <?php if ($numPostulantes%2==0) { ?>
+                            <?php if ($contador == 1 || $contador == 3 || $contador == 5) { ?>
+				<tr bgcolor="#f6f6f6">
+					<td width="330" valign="top" style="padding: 10px 0 16px 36px;border-right:1px solid #000">
+						<img <?=($postulante['path_foto']!='')?(($this->ImgLadoMayor(ELEMENTS_ROOT_IMG.$postulante['path_foto']))=="width"? "width='90'" : "height='90'"):"";?> src="<?= ($postulante['path_foto'] == '')? $this->S('/images/photoDefault.jpg').'" width="90':ELEMENTS_URL_IMG.$postulante['path_foto']; ?>" width="91" height="101" style="display:block; border: none; float:left; margin-right:13px">
+						<div style="padding:0;margin:0; overflow:hidden;width: 224px;float: right;"><b style="color: #0091d2"><?php echo $postulante['nombres']." ".$postulante['apellidos']?></b><br>
+						  <?php 
+                                                    if ($postulante['nivel_estudio'] != 'Ninguno') 
+                                                        echo $postulante['nivel_estudio'];
+                                                    
+                                                    if ($postulante['carrera'] != 'Ninguno')
+                                                        if ($postulante['carrera'] != '')
+                                                        echo " en ".$postulante['carrera']."<br>";
+                                                    else
+                                                        echo "<br>";
+                                                 ?>
+						  <?php echo $postulante['edad']?> años
+                                                  <?php 
+                                                    if ($postulante['upuesto'] != '') 
+                                                        echo "<br>".$postulante['upuesto'];
+                                                    
+                                                    if ($postulante['uempresa'] != '')
+                                                        echo " - ".$postulante['uempresa'];
+                                                    ?><br>
+						<a href="<?=SITE_URL.'/perfil/'.$postulante['slug']?>" style="width: 90px; height:27px; display:block;float:left;margin-top:17px"><img style="display:block; border:0" src="<?=MEDIA_URL?>/images/emailing/vermas.jpg"></a>
+						</div>
+					</td>
+                            <?php } ?>  
+                            <?php if ($contador == 2 || $contador == 4 || $contador == 6) { ?>
+					<td width="330" valign="top" style="padding: 10px 0 16px 36px;">
+						<img <?=($postulante['path_foto']!='')?(($this->ImgLadoMayor(ELEMENTS_ROOT_IMG.$postulante['path_foto']))=="width"? "width='90'" : "height='90'"):"";?> src="<?= ($postulante['path_foto'] == '')? $this->S('/images/photoDefault.jpg').'" width="90':ELEMENTS_URL_IMG.$postulante['path_foto']; ?>" width="91" height="101" style="display:block; border: none; float:left; margin-right:13px">
+						<div style="padding:0;margin:0; overflow:hidden;width: 224px;float: right;"><b style="color: #0091d2"><?php echo $postulante['nombres']." ".$postulante['apellidos']?></b><br>
+						 <?php 
+                                                    if ($postulante['nivel_estudio'] != 'Ninguno') 
+                                                        echo $postulante['nivel_estudio'];
+                                                    
+                                                    if ($postulante['carrera'] != 'Ninguno')
+                                                        if ($postulante['carrera'] != '')
+                                                        echo " en ".$postulante['carrera']."<br>";
+                                                    else
+                                                        echo "<br>";
+                                                 ?>
+						  <?php echo $postulante['edad']?> años
+                                                  <?php 
+                                                    if ($postulante['upuesto'] != '') 
+                                                        echo "<br>".$postulante['upuesto'];
+                                                    
+                                                    if ($postulante['uempresa'] != '')
+                                                        echo " - ".$postulante['uempresa'];
+                                                    ?><br>
+						<a href="<?=SITE_URL.'/perfil/'.$postulante['slug']?>" style="width: 90px; height:27px; display:block;float:left;margin-top:17px"><img style="display:block; border:0" src="<?=MEDIA_URL?>/images/emailing/vermas.jpg"></a>
+						</div>
+					</td>
+				</tr>
+                            <?php } ?>    
+                            <?php } else { ?>
+                            <?php if ($numPostulantes == 1) { ?>    
+                                <tr bgcolor="#f6f6f6">
+					<td width="330" valign="top" style="padding: 10px 0 16px 36px;border-right:1px solid #000">
+						<img <?=($postulante['path_foto']!='')?(($this->ImgLadoMayor(ELEMENTS_ROOT_IMG.$postulante['path_foto']))=="width"? "width='90'" : "height='90'"):"";?> src="<?= ($postulante['path_foto'] == '')? $this->S('/images/photoDefault.jpg').'" width="90':ELEMENTS_URL_IMG.$postulante['path_foto']; ?>" width="91" height="101" style="display:block; border: none; float:left; margin-right:13px">
+						<div style="padding:0;margin:0; overflow:hidden;width: 224px;float: right;"><b style="color: #0091d2"><?php echo $postulante['nombres']." ".$postulante['apellidos']?></b><br>
+						  <?php 
+                                                    if ($postulante['nivel_estudio'] != 'Ninguno') 
+                                                        echo $postulante['nivel_estudio'];
+                                                    
+                                                    if ($postulante['carrera'] != 'Ninguno')
+                                                        if ($postulante['carrera'] != '')
+                                                        echo " en ".$postulante['carrera']."<br>";
+                                                    else
+                                                        echo "<br>";
+                                                 ?>
+						  <?php echo $postulante['edad']?> años
+                                                  <?php 
+                                                    if ($postulante['upuesto'] != '') 
+                                                        echo "<br>".$postulante['upuesto'];
+                                                    
+                                                    if ($postulante['uempresa'] != '')
+                                                        echo " - ".$postulante['uempresa'];
+                                                    ?><br>
+						<a href="<?=SITE_URL.'/perfil/'.$postulante['slug']?>" style="width: 90px; height:27px; display:block;float:left;margin-top:17px"><img style="display:block; border:0" src="<?=MEDIA_URL?>/images/emailing/vermas.jpg"></a>
+						</div>
+					</td>
+					<td width="330" valign="top" style="padding: 10px 0 16px 36px;">
+						
+					</td>
+				</tr>
+                            <?php } else { ?> 
+                                <?php if ($contador == 1 || $contador == 3 || $contador == 5) { ?>
+                                <tr bgcolor="#f6f6f6">
+					<td width="330" valign="top" style="padding: 10px 0 16px 36px;border-right:1px solid #000">
+						<img <?=($postulante['path_foto']!='')?(($this->ImgLadoMayor(ELEMENTS_ROOT_IMG.$postulante['path_foto']))=="width"? "width='90'" : "height='90'"):"";?> src="<?= ($postulante['path_foto'] == '')? $this->S('/images/photoDefault.jpg').'" width="90':ELEMENTS_URL_IMG.$postulante['path_foto']; ?>" width="91" height="101" style="display:block; border: none; float:left; margin-right:13px">
+						<div style="padding:0;margin:0; overflow:hidden;width: 224px;float: right;"><b style="color: #0091d2"><?php echo $postulante['nombres']." ".$postulante['apellidos']?></b><br>
+						  <?php 
+                                                    if ($postulante['nivel_estudio'] != 'Ninguno') 
+                                                        echo $postulante['nivel_estudio'];
+                                                    
+                                                    if ($postulante['carrera'] != 'Ninguno')
+                                                        if ($postulante['carrera'] != '')
+                                                        echo " en ".$postulante['carrera']."<br>";
+                                                    else
+                                                        echo "<br>";
+                                                 ?>
+						  <?php echo $postulante['edad']?> años
+                                                  <?php 
+                                                    if ($postulante['upuesto'] != '') 
+                                                        echo "<br>".$postulante['upuesto'];
+                                                    
+                                                    if ($postulante['uempresa'] != '')
+                                                        echo " - ".$postulante['uempresa'];
+                                                    ?><br>
+						<a href="<?=SITE_URL.'/perfil/'.$postulante['slug']?>" style="width: 90px; height:27px; display:block;float:left;margin-top:17px"><img style="display:block; border:0" src="<?=MEDIA_URL?>/images/emailing/vermas.jpg"></a>
+						</div>
+					</td>
+                                <?php } else if (($numPostulantes == 1 && $contador == 1) || ($numPostulantes == 3 && $contador == 3)
+                                        || ($numPostulantes == 5 && $contador == 5)) { ?>
+                                <td width="330" valign="top" style="padding: 10px 0 16px 36px;">
+						
+                                </td>
+                                <?php }
+                                else if ($contador == 2 || $contador == 4 || $contador == 6){ ?>
+					<td width="330" valign="top" style="padding: 10px 0 16px 36px;">
+						<img <?=($postulante['path_foto']!='')?(($this->ImgLadoMayor(ELEMENTS_ROOT_IMG.$postulante['path_foto']))=="width"? "width='90'" : "height='90'"):"";?> src="<?= ($postulante['path_foto'] == '')? $this->S('/images/photoDefault.jpg').'" width="90':ELEMENTS_URL_IMG.$postulante['path_foto']; ?>" width="91" height="101" style="display:block; border: none; float:left; margin-right:13px">
+						<div style="padding:0;margin:0; overflow:hidden;width: 224px;float: right;"><b style="color: #0091d2"><?php echo $postulante['nombres']." ".$postulante['apellidos']?></b><br>
+						 <?php 
+                                                    if ($postulante['nivel_estudio'] != 'Ninguno') 
+                                                        echo $postulante['nivel_estudio'];
+                                                    
+                                                    if ($postulante['carrera'] != 'Ninguno')
+                                                        if ($postulante['carrera'] != '')
+                                                        echo " en ".$postulante['carrera']."<br>";
+                                                    else
+                                                        echo "<br>";
+                                                 ?>
+						  <?php echo $postulante['edad']?> años
+                                                  <?php 
+                                                    if ($postulante['upuesto'] != '') 
+                                                        echo "<br>".$postulante['upuesto'];
+                                                    
+                                                    if ($postulante['uempresa'] != '')
+                                                        echo " - ".$postulante['uempresa'];
+                                                    ?><br>
+						<a href="<?=SITE_URL.'/perfil/'.$postulante['slug']?>" style="width: 90px; height:27px; display:block;float:left;margin-top:17px"><img style="display:block; border:0" src="<?=MEDIA_URL?>/images/emailing/vermas.jpg"></a>
+						</div>
+					</td>
+				</tr>
+                                <?php } ?>
+                            <?php } ?>
+                            <?php } ?>    
+                            <?php $contador++;} ?>
+				
+			</table>
+			<br>
+		</td>
+	</tr>
+	<tr>
+		<td height="189" colspan="5" align="center" valign="top"><img src="<?=MEDIA_URL?>/images/emailing/bottom-m.jpg" border="0" usemap="#Map" style="display:block; border:0"></td>
+	</tr>
+	<tr>
+		<td colspan="7">&nbsp;</td>
+	</tr>
+	<tr>
+		<td width="12" height="1" ></td>
+		<td width="160" height="1"></td>
+		<td width="160" height="1"></td>
+		<td width="160" height="1" ></td>
+		<td width="167" height="1" ></td>
+		<td width="88" height="1" ></td>
+		<td width="43" height="1" ></td>
+	</tr>
+</table>
+<map name="Map">
+  <area shape="rect" coords="215,69,523,135" href="<?=SITE_URL.'/empresa/mis-procesos/ver-proceso/id/'.$this->idAviso?>">
+</map>
+
+<map name="Map2">
+  <area shape="rect" coords="4,3,37,36" href="http://www.facebook.com/EMPLEOBUSCO.empleos">
+  <area shape="rect" coords="51,1,84,39" href="http://www.linkedin.com/company/EMPLEOBUSCO">
+</map>

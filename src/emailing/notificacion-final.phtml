@@ -1,0 +1,68 @@
+<?php
+    /*$visitas = (empty($this->visitas))?0:count(explode(',', $this->visitas));
+    $busquedas = (empty($this->busquedas))?0:count(explode(',', $this->busquedas));
+    $postulaciones = (empty($this->postulaciones))?0:count(explode(',', $this->postulaciones));
+    $invitaciones = (empty($this->invitaciones))?0:count(explode(',', $this->invitaciones));        
+    $procesos = (empty($this->procesos))?0:count(explode(',', $this->procesos));        
+    $mensajes = (empty($this->mensajes))?0:count(explode(',', $this->mensajes));        
+    $responder = (empty($this->responder))?0:count(explode(',', $this->responder));  */      
+    $visitas = $this->visitas;
+    $busquedas = $this->busquedas;
+    $postulaciones = $this->postulaciones;
+    $invitaciones = $this->invitaciones;        
+    $procesos = $this->procesos;        
+    $mensajes = $this->mensajes;        
+    $responder = $this->responder;        
+?>
+<table style="background-color:#FFF" width="750" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td style="font-family:Arial, Helvetica, sans-serif; font-size:18px; line-height:20px; padding:30px 20px 40px; vertical-align:top">Hola <span style="font-weight:700"><?php echo ucwords($this->nombres)?></span></td>
+  </tr>
+  <tr>
+    <td style="padding:0 50px;vertical-align:top">
+    	<table width="650" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="200" style="font-family:Arial, Helvetica, sans-serif; font-size:16px; line-height:25px; padding-left:10px; vertical-align:top">Tipo de Cuenta</td>
+            <td width="445" style="font-family:Arial, Helvetica, sans-serif; font-size:16px; font-weight:700; line-height:25px; vertical-align:top"><?php echo $this->cuenta?></td>
+          </tr>
+          <tr>
+            <td style="border-bottom:1px solid #ccc; font-family:Arial, Helvetica, sans-serif; font-size:16px; line-height:25px; padding-left:10px; padding-bottom:10px; vertical-align:top">Período</td>
+            <td style="border-bottom:1px solid #ccc; font-family:Arial, Helvetica, sans-serif; font-size:16px; font-weight:700; line-height:25px; padding-bottom:10px; vertical-align:top"><?php echo $this->periodo?></td>
+          </tr>
+          <tr>
+            <td colspan="2" style="font-family:Arial, Helvetica, sans-serif; font-size:16px; line-height:18px; padding:30px 0 30px 10px; vertical-align:top">Se mostró su Perfil en las Búsquedas de Empresas <span style="font-weight:700"><?php echo $busquedas?> veces</span></td>
+          </tr>
+          <tr>
+            <td style="font-family:Arial, Helvetica, sans-serif; font-size:16px; line-height:25px; padding-left:10px; vertical-align:top">Su perfil fue visto por:</td>
+            <td style="font-family:Arial, Helvetica, sans-serif; font-size:16px; font-weight:700; line-height:25px; vertical-align:top"><?php echo $visitas?> empresas</td>
+          </tr>
+          <tr>
+            <td style="border-bottom:1px solid #ccc;font-family:Arial, Helvetica, sans-serif; font-size:16px; line-height:25px; padding-left:10px; padding-bottom:10px; vertical-align:top">Fue invitado a postular en:</td>
+            <td style="border-bottom:1px solid #ccc;font-family:Arial, Helvetica, sans-serif; font-size:16px; font-weight:700; line-height:25px; padding-bottom:10px; vertical-align:top"><?php echo $invitaciones?> empresas</td>
+          </tr>
+          <tr>
+            <td style="font-family:Arial, Helvetica, sans-serif; font-size:16px; line-height:25px; padding-left:10px; padding-top:20px; vertical-align:top">Postuló a:</td>
+            <td style="font-family:Arial, Helvetica, sans-serif; font-size:16px; font-weight:700; line-height:25px; padding-top:20px; vertical-align:top"><?php echo $postulaciones?> avisos</td>
+          </tr>
+          <tr>
+            <td style="font-family:Arial, Helvetica, sans-serif; font-size:16px; line-height:25px; padding-left:10px; vertical-align:top">Su Perfil fue visto en:</td>
+            <td style="font-family:Arial, Helvetica, sans-serif; font-size:16px; font-weight:700; line-height:25px; vertical-align:top"><?php echo $procesos?> procesos de selección</td>
+          </tr>
+          <tr>
+            <td style="font-family:Arial, Helvetica, sans-serif; font-size:16px; line-height:25px; padding-left:10px; vertical-align:top">Mensajes Totales:</td>
+            <td style="font-family:Arial, Helvetica, sans-serif; font-size:16px; font-weight:700; line-height:25px; vertical-align:top"><?php echo $mensajes?> mensajes</td>
+          </tr>
+          <tr>
+            <td style="border-bottom:1px solid #ccc;font-family:Arial, Helvetica, sans-serif; font-size:16px; line-height:25px; padding-left:10px; padding-bottom:10px; vertical-align:top">Mensajes por responder:</td>
+            <td style="border-bottom:1px solid #ccc;font-family:Arial, Helvetica, sans-serif; font-size:16px; font-weight:700; line-height:25px; padding-bottom:10px; vertical-align:top"><?php echo $responder?> mensajes</td>
+          </tr>
+        </table>
+    </td>
+  </tr>
+  <tr>
+    <td style="padding: 60px 20px 20px; vertical-align:top">
+        <p style="font-family:Arial, Helvetica, sans-serif; font-size:18px; line-height:20px; margin:0 0 20px">¡Éxitos!</p>
+        <p style="font-family:Arial, Helvetica, sans-serif; font-size:18px; font-weight:700; line-height:20px; margin:0 0 20px">El Equipo EMPLEOBUSCO</p>
+    </td>
+  </tr>
+</table>

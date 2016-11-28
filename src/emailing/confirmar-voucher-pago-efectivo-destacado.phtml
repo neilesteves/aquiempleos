@@ -1,0 +1,75 @@
+<table width="85%" style="margin: 10px 0px 0px 10px" align="center" border="0">
+<!--    <tr>
+    <td width="71%"></td>
+    <td width="45%" style="padding-top:4px;font-size: 13px;padding-bottom:15px;">
+        <span style="font-weight:bold;">URL Aviso: </span><a style="color: #007FD2;text-decoration:none;" href="#">Ver aviso publicado en la web</a>
+    </td></tr>-->
+    <tr>
+        <td colspan="2" height="20"></td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center" style="font-weight:bold;">
+            <span style="color:#100F0F;font-size:24px;">Ha registrado un aviso de tipo Destacado en EMPLEOBUSCO.<br /> Su aviso está creado pero pendiente de pago.</span>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center" style="font-size: 15px;">Sus datos de acceso son: <br />
+            <span style="">Usuario : </span><a style="color: #007FD2;text-decoration:none;" href="#"><?= $this->to ?></a>
+        </td>
+    </tr>
+    <tr><td height="6" colspan="2"></td></tr>
+    <tr>
+        <td colspan="2" align="left" style="font-size: 15px;">
+            Al registrar su aviso, usted eligió como medio de pago: <b><?= $this->medioPago ?></b> para su aviso de "<?= $this->titulo ?>". Hasta no realizar el pago del aviso no será publicado.
+        </td>
+    </tr>
+    <tr><td height="5" colspan="2"></td></tr>
+</table>
+
+<table cellspacing="6" border="0" cellpadding="0" width="750">
+    <tr>
+        <td align="center">
+            <table width="95%" cellspacing="5" border="0" cellpadding="2">
+                <tr>
+                    <td width="2%" align="right" valign="top">&raquo;</td>
+                    <td width="42%">
+                        <table border="0" cellpadding="0" cellspacing="0" style="font-size:13px;">
+                            <tr><td height="40">Se ha registrado su aviso con las siguientes caracter&iacute;sticas:</td></tr>
+                            <tr><td>
+                                    <span style="font-weight:bold;">N&uacute;mero de Puestos:</span> 1<br/>
+                                    <span style="font-weight:bold;">Empresa:</span> <?= $this->razonSocial ?><br/>
+                                    <span style="font-weight:bold;">Precio:</span> $<?= $this->montoTotal ?><br/>
+                                    <span style="font-weight:bold;">Tipo de Aviso:</span> <?= $this->anuncioClase ?><br/>
+                                    <span style="font-weight:bold;">Medio de Pago:</span> <?= $this->medioPago ?><br />
+                                    <span style="font-weight:bold;">Código de Pago en Efectivo: </span> <?= $this->cip ?>
+                                </td></tr>
+                        </table>
+                    </td>
+                    <td width="2%" align="right" valign="top">&raquo;</td>
+                    <td width="48%" style="font-size:13px;" valign="top">
+                        Para realizar el pago a través de este medio, <b>Pago Efectivo</b> le enviará un correo electrónico con los detalles necesarios para que pueda pagar el aviso en cualquier agencia del Banco de Crédito del Perú (BCP) o Banco Continental (BBVA) y por internet a través de <a style="color: #007FD2;text-decoration:none;" href="<?php ?>">www.viabcp.com</a> y <a style="color: #007FD2;text-decoration:none;" href="<?php ?>">www.bbvabancontinental.com</a>
+                        respectivamente.
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td colspan="3" style="font-weight:bold;font-size:13px;padding-top:15px;">
+                        Su aviso está guardado como borrador y puede revisarlo y editarlo antes de realizar el pago. Para ver su aviso debe ingresar a <a href="<?= SITE_URL . '/empresa' ?>" style="text-decoration:none;color:#000"><b>EMPLEOBUSCO</b></a>, luego ir a Mis Procesos y finalmente a Borradores.
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+<table style="border-left-color: #fff; border-top-color: #fff; border-bottom: #fff 1px solid; border-right-color: #fff" 
+       cellspacing="0" cellpadding="0" border="0">
+    <tr><td height="25">&nbsp;</td></tr>
+    <tr>
+        <td align="left" width="750" style="padding-left:30px;padding-bottom:10px;">
+            <h1 style="padding-right: 0px; padding-left: 20px;font-weight: bold; font-size: 18px; margin: 0px; color: #222222; padding-top: 10px; padding-bottom: 10px;">
+                <span style="font-family:Arial, Helvetica, sans-serif;">&iexcl;Gracias por anunciar en EMPLEOBUSCO!</span><br />
+            </h1> 
+        </td>
+    </tr>
+</table>

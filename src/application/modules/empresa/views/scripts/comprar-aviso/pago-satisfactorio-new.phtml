@@ -1,0 +1,48 @@
+<nav class="cont-menu row">
+    <br>
+</nav>
+<div id="wrapper" class="row">
+    <div class="head-title row">
+        <ul class="steps">
+            <li>Escoge<br> el Aviso<span></span></li>
+            <li>Datos<br> del Aviso<span></span></li>
+            <li class="act">Verifica<br> tus datos<span></span></li>
+        </ul>
+        <div class="title-step">
+            <div class="legend">
+                <?
+                if (substr($this->rol, 0, 5) != Application_Form_Login::ROL_ADMIN):
+                    ?>
+                    <a href="<?php
+                    echo $this->url(array(
+                        'module' => 'empresa', 'controller' => 'mi-cuenta', 'action' => 'index'),
+                        false, true)
+                    ?>">Inicio</a> »
+                   <? else: ?>
+                    <a href="<?php
+                    echo $this->url(array(
+                        'module' => 'admin', 'controller' => 'gestion', 'action' => 'index'),
+                        false, true)
+                    ?>">Inicio</a> »
+                   <? endif; ?>
+                <span class="noLink">Personalice su Aviso</span>
+            </div>
+            <h2>Pague su Aviso</h2>
+        </div>
+    </div>
+    
+    <?=
+    $this->partial('_partials/_messages.phtml',
+        array("flashMessages" => $this->flashMessages))
+    ?>
+    
+    
+    <div class="gridIStepEmp" class="all">
+        <?php //var_dump($this->tipoContrato); exit;   ?>
+        <?=
+        $this->partial('_partials/_pago_satisfactorio.phtml',
+            array('aw' => $this->compra, 'tipoContrato' => $this->tipoContrato, 'saldoFinal' => $this->saldoFinal,
+            'rol' => $this->auth["usuario"]->rol,'moneda'=>$this->moneda))
+        ?>
+    </div>
+</div>

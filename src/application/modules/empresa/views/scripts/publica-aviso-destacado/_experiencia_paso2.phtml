@@ -1,0 +1,61 @@
+<?php
+$ind = (isset($this->indice)) ? $this->indice : 'blank';
+?>
+<div id="f<?php echo $ind ?>_expeN" class="skillN" rol="<?= $this->form->id_Experiencia!=null? ( $this->form->id_Experiencia->getValue()==''? '-1':$this->form->id_Experiencia->getValue() ):'-1';?>">
+	<div id="f<?php echo $ind ?>_expTDiv" class="expTDiv">
+	<?php if ($this->totalExperiencia > 1 || isset($this->isEditar)) : ?>
+	<blockquote class="addReg">
+		<span class="wCount left">
+			<span class="countN"><?php echo $ind + 1; ?></span>
+		</span>
+		<span class="wJob left">
+			<span class="jobReg bold"><?=$this->escape($this->form->id_nivel_puesto->getMultiOption($this->form->id_nivel_puesto->getValue())); ?></span> en
+			<span class="eJob bold"><?=$this->escape($this->form->id_area->getMultiOption($this->form->id_area->getValue())); ?></span>
+		</span>
+		<?php if (!isset($this->online)) : ?>
+		<a href="#Editar" class="editB hide" title="Editar"><span class="sEditB f11">Editar</span></a>
+		<?php if (isset($this->form->id_Experiencia)) : ?>
+		<?php $value = $this->form->id_Experiencia->getValue(); ?>
+		<?php endif; ?>
+		<a rel="#f<?php echo $ind ?>_expeN" rol="#winAlert" href="#winAlert" class="deleteB winAlertM<?=isset($value)?' eliminarItemEmp':''?>" title="¿Está seguro que desea eliminar la experiencia seleccionada?"><span class="sDeleteB f11">Eliminar</span></a>
+		<?php endif; ?>
+	</blockquote>
+	<?php endif; ?>
+	</div>
+	<?$isError = $this->form->isErrors(); ?>
+	<div id="f<?php echo $ind ?>_fSkill" class="fSkill <?=(!$isError && ($this->totalExperiencia > 1 || isset($this->isEditar)))?'hide':''?>" >
+		<div class="block" rel="sectionExp">
+			<label for="<?=$this->form->id_nivel_puesto->getAttrib('id')?>" class="labelN"><span class="req" title="Requerido">*</span> Nivel del puesto:</label>
+				<?php $hasError = $this->form->id_nivel_puesto->hasErrors(); ?>
+				<?php if (!$hasError && isset($this->isExperiencia) && $this->totalExperiencia > 0) { ?>
+				<?=$this->form->id_nivel_puesto->setAttribs(array('class'=>'fNiv selectN left selectReq ready'))->renderViewHelper(); ?>
+				<?php } else { ?>
+				<?=$this->form->id_nivel_puesto->setAttribs(array('class'=>'fNiv selectN left selectReq'))->renderViewHelper(); ?>
+				<?php } ?>
+				<span class="response def cGray left<?=$hasError?' bad':''?>"><?=$hasError?$this->form->id_nivel_puesto->errMsg:''?></span>
+		</div>
+		<div class="block" rel="sectionExp">
+                        <label for="<?=$this->form->id_area->getAttrib('id')?>" class="labelN"><span class="req" title="Requerido">*</span> &Aacute;rea:</label>
+				<?php $hasError = $this->form->id_area->hasErrors(); ?>
+				<?php if (!$hasError && isset($this->isExperiencia) && $this->totalExperiencia > 0 ) { ?>
+				<?=$this->form->id_area->setAttribs(array('class'=>'fAre selectN left selectReq ready'))->renderViewHelper(); ?>
+				<?php } else { ?>
+				<?=$this->form->id_area->setAttribs(array('class'=>'fAre selectN left selectReq'))->renderViewHelper(); ?>
+				<?php } ?>
+				<span class="response def cGray left<?=$hasError?' bad':''?>"><?=$hasError?$this->form->id_area->errMsg:''?></span>
+		</div>
+		<div class="block" rel="sectionExp">
+			<label for="<?=$this->form->experiencia->getAttrib('id')?>" class="labelN noReq"><span class="req" title="Requerido">*</span>  Tiempo de experiencia:</label>
+				<?php $hasError = $this->form->experiencia->hasErrors(); ?>
+				<?php if (!$hasError && isset($this->isEstudio) && $this->totalExperiencia > 0 ) { ?>
+    			<?=$this->form->experiencia->setAttribs(array('class'=>'fNiv selectN left ready'))->renderViewHelper(); ?>
+    			<?php } else { ?>
+    			<?=$this->form->experiencia->setAttribs(array('class'=>'fNiv selectN left'))->renderViewHelper(); ?>
+    			<?php } ?>
+				<span class="response def cGray left<?=$hasError?' bad':''?>"><?=$hasError?$this->form->tiempo_experiencia->errMsg:''?></span>
+		</div>
+		<div class="hide">
+		<?=$this->form->id_Experiencia;?>
+		</div>
+	</div>
+</div>

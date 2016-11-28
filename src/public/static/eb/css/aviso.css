@@ -1,0 +1,567 @@
+
+hr {
+    margin-top: 7px;
+    margin-bottom: 7px;
+    border: 0;
+    border-top: 1px solid #eee;
+}
+
+hr.yellow{
+  border-top: 2px solid #FFA200;
+}
+
+.linea{
+    margin: 1em 0em;
+    border: 0;
+    border-top: 5px solid #2A5E9B;
+}
+
+a:hover,a:focus{
+  text-decoration: none;
+}
+
+.aviso{
+	padding-top:5.6em; 
+	color:#565656;
+}
+
+.titular{
+  color:#2A5E9B;
+  font-family: breeSerif-Regular;
+  font-size: 30px;
+}
+
+.titular span{
+  color:#2A5E9B;
+  font-family: breeSerif-Regular;
+  text-decoration: underline;
+  font-size: 30px;
+}
+
+.box-subtitular{
+  background-color:#CCCCCC;
+  padding: 0.7em;
+  font-size: 1.1em;
+  color: #2a5e9b;
+  margin: 0em;
+}
+
+.box-subtitular p{
+  color:#2A5E9B;
+  font-family: breeSerif;
+  font-size: 20px;
+}
+
+.box-content{
+  padding-left: 3em;
+  padding-top: 1em;
+}
+
+
+.box-subtitular-d-oro,.box-subtitular-d-plata{
+    background-color: #fca108;
+    padding: 0.7em;
+    margin-left: 1.6em;
+    color: white;
+    font-size: 1.1em;
+    margin-top: 0em;
+}
+.box-subtitular-d-plata
+{
+  background-color: #666666;
+}
+
+.box-subtitular-d-oro p{
+  color:white;
+  font-family: breeSerif;
+  font-size: 20px;
+}
+
+h1.cuadro {
+    font-size: 1.1em;
+    font-family: breeSerif;
+}
+
+h2.cuadro {
+  font-size: 1.1em;
+  font-family: sylfaen;
+  margin-top: 0.2em;
+}
+
+
+.box-subtitular-d-plata p{
+  color:white;
+  font-family: breeSerif;
+  font-size: 20px;
+}
+
+
+
+.bandera-left{
+  position: relative;
+  top:25px;
+  left:18px;
+}
+
+.box-yellow{
+  padding: 0.3em;
+}
+
+.content{
+  font-family:sylfaen;
+  color:#2A5E9B; 
+  line-height: 15px;
+}
+
+.box-content small{
+  font-size: 12px;
+}
+
+.img-content{
+  border: 1px solid #2A5E9B;
+}
+
+.box-content-sub table,.box-content-sub tr,.box-content-sub td{
+  font-family:sylfaen;
+  font-size: 12px;
+}
+
+td.td-class {
+  padding-left: 1em;
+  color:#2A5E9B;
+}
+
+.description-title{
+  color: #2A5E9B;
+  font-family: breeSerif;
+  font-size: 20px;
+}
+
+.description-content{
+  font-family:sylfaen;
+  color:gray;
+  line-height: 18px;
+}
+
+.rsocial{
+  background-color:#2A5E9B;
+  padding: 5px;
+  font-size: 15px;
+  border-radius: 5px;
+  color:white;
+  margin-top: 0.1em;
+}
+
+.fa-facebook.rsocial{
+  padding: 5px 8px;
+}
+
+
+.box-right{
+  float: right;
+  padding-top: 0.2em;
+}
+
+
+.sobre-aviso p{
+  color:#2A5E9B;
+  font-family: breeSerif;
+  font-size: 20px;
+}
+
+.sobre-aviso span{
+  color:#666666;;
+  font-family: breeSerif;
+  font-size: 16px;
+}
+
+.sobre-aviso table,.sobre-aviso tr,.sobre-aviso  td{
+  font-family:sylfaen;
+  font-size: 15px;
+}
+
+.td-class-sa{
+   padding-left: 5em;
+}
+
+.sobre-aviso ul, .sobre-aviso li{
+  font-family:sylfaen;
+  font-size: 15px;
+}
+
+.sobre-aviso li{
+  margin-left:2em;
+}
+
+
+.boton-postular{
+  padding: 0em 13em;
+  margin-top: 2em;
+  cursor: pointer;
+}
+
+.buttom-blue-w.change{
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.rs{
+  padding: 1em;
+}
+
+.move{
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}
+
+
+.right-two{
+	float:right;
+}
+
+
+.box-subtitular-resultados{
+  background-color:#2A5E9B;
+  padding: 0.2em 0 0.05em 0;
+}
+
+.box-subtitular-resultados p{
+  color:white;
+  font-family: breeSerif;
+  font-size: 20px;
+}
+
+
+.box-subtitular-resultados-b{
+  background-color:#2A5E9B;
+  margin-top: 77px;
+  padding: 0.2em 0em 0.01em 0em;
+}
+
+.box-subtitular-resultados-b p{
+  color:white;
+  font-family: breeSerif;
+  font-size: 20px;
+}
+
+.resultados{
+	color:#565656;
+	margin-top: 0.1em;
+	margin-bottom: 2em;
+}
+
+.resultados a{
+	text-decoration: none;
+	color:#565656;
+}
+
+.resultados a img{
+	float: left;
+	padding-right: 1em;
+	padding-top: 1.4%;
+  margin-right: 0.5em;
+  margin-top: 0.5em;
+  border: 1px solid #2A5E9B;
+  padding: 1px;
+}
+
+
+.contenedor{
+  margin-top: 0.1px;
+  margin-bottom: -6.9px;
+  padding: 0.5em;
+  box-shadow: 1px 1px 8px 1px rgba(0,0,0,0.15);
+}
+
+
+.contenedor-a{
+	background-color:rgba(255, 162, 0, 0.21);
+	margin-top: 0.1px;
+	margin-bottom: -6.9px;
+	padding: 0.5em;
+}
+
+.contenedor-a:hover{
+	background-color:rgba(255, 162, 0, 0.21);
+	box-shadow: 0 1px 2px rgba(0,0,0,.090);
+  outline: 5px solid rgba(255, 162, 0, 0.21);
+  transition: 200ms;
+}
+
+.contenedor-b{
+  background-color:rgba(86, 86, 86, 0.22);
+  margin-top: 0.1px;
+  margin-bottom: -6.9px;
+  padding: 0.5em;
+}
+.contenedor-empleo{
+  margin-top: 0.1px;
+  margin-bottom: -6.9px;
+  padding: 1em;
+}
+.contenedor-empleo:hover{
+  background-color:rgba(86, 86, 86, 0.22);
+  box-shadow: 0 1px 2px rgba(0,0,0,.090);
+  outline: 5px solid rgba(86, 86, 86, 0.22);
+  transition: 200ms;
+}
+.contenedor-b:hover{
+  background-color:rgba(86, 86, 86, 0.22);
+  box-shadow: 0 1px 2px rgba(0,0,0,.090);
+  outline: 5px solid rgba(86, 86, 86, 0.22);
+  transition: 200ms;
+}
+
+
+.contenedor-c{
+  background-color:rgba(42, 94, 155, 0.22);
+  margin-top: 0.1px;
+  margin-bottom: -6.9px;
+  padding: 1em;
+}
+
+.contenedor-c:hover{
+  background-color:rgba(42, 94, 155, 0.22);
+  outline: 5px solid rgba(42, 94, 155, 0.22);
+  box-shadow: 0 1px 2px rgba(0,0,0,.090);
+  transition: 200ms;
+}
+
+.empresa{
+  color:#2A5E9B;
+  margin-bottom: 0px;
+  font-size: 18px;
+}
+
+.box-star{
+/*	width: 25px;
+	height: 25px;	*/
+  width: 25px;
+  position: absolute;
+  height: 25px;
+  right: 0;
+
+}
+
+.media-body h4{
+  font-family: breeSerif;
+  font-size:20px;
+  margin-top: 5px;
+  margin-bottom: 0px;
+}
+
+.media-body small{
+  font-family: sylafen;
+  font-size: 12px;
+}
+.box-borde{
+  box-shadow: 0px 0px 6px;
+}
+
+.parrafo{
+	padding-right: 0.5em;
+  font-size: 14px;
+  font-family: sylafen;
+  padding-bottom: 0.1em;
+  color: black;
+}
+
+.media img{
+  width: 30%;
+}
+
+
+
+
+@media screen and (min-width: 534px) and (max-width: 740px){
+  .media img{
+  width: 27%;
+  height: 50%;
+ }
+}
+
+
+@media screen and (min-width: 480px) and (max-width: 534px){
+  .media img{
+  width: 44%;
+  height: 50%;
+ }
+}
+
+@media screen and (min-width: 320px) and (max-width: 480px){
+	.right{
+		float:none;
+		padding-bottom: 0.2em;
+	}
+  .media img{
+  width: 50%;
+  height: 50%;
+ }
+}
+.link-empresa {
+    color: #2A5E9B;
+    font-size: 1.5em;
+    text-decoration: underline;
+    padding: 0.7em 0em;
+    display: inline-block;
+}
+
+.container-title-oro
+{
+  position: relative;
+}
+.bandera-oro
+{
+  position: absolute;
+  width: 1.5em;
+  top:0;
+  left: 0;
+}
+
+.text-gray-small
+{
+    color: gray;
+    font-weight: normal !important;
+    font-family: Sylfaen;
+    font-size: 14px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.text-gray-small-icon
+{
+  font-size: 14px;
+  color: gray;
+  display: inline-block;
+  vertical-align: middle;
+}
+.separate-ficha-aviso
+{
+  padding:0.3em 0em;
+  margin-top: 1em;
+}
+.text-label,.text-label-content
+{
+    font-weight: normal;
+    color: #4d4d4d;
+    font-family: Sylfaen;
+    font-size: 16px;
+    padding: 0.2em 0em;
+}
+.text-label-content
+{
+    color: #2A5E9B;
+  
+}
+.img-center-cell
+{
+  width: 100%;
+  height: 125px;
+}
+.img-table-cell
+{
+    width: 159px;
+    height: 129px;
+    display: table-cell;
+    vertical-align: middle;
+}
+.contenedor-table-cell-2
+{
+    padding: 0.2em 2em;
+    border: 1px solid #2A5E9B;
+    text-align: center;
+}
+.contenedor-img-cell-center
+{
+  padding:0.5em 0em;
+}
+.contenedor-redes-sociales
+{
+    padding: 0.5em 0em;
+    border-top: 2px solid #b3b3b3;
+    border-bottom: 2px solid #b3b3b3;
+    margin-top: 1em;
+}
+.inline-link
+{
+  display: inline-block;
+}
+.btn-aviso,.btn-postula
+{
+    color: white;
+    background: #666666;
+    padding: 0.2em 1em;
+    margin-right: 2em;
+}
+.btn-postula
+{
+  background: #2A5E9B;
+  margin-right: 0em;
+}
+.inline-link:hover
+{
+  color: white;
+}
+.botones-postula-ficha
+{
+  text-align: right;
+}
+.title-detalle-aviso
+{
+    padding: 0.5em 0em;
+    color: #2A5E9B;
+    font-size: 1.3em;
+}
+.contenedor-derecho-ficha
+{
+  padding: 0em 1em
+}
+.no-visibility
+{
+  visibility: hidden;
+}
+@media screen and (max-width: 948px) {
+  .contenido-ficha
+  {
+    padding: 0em 1em;
+  }
+}
+@media screen and (max-width: 412px) {
+  .separate-ficha-aviso,.contenedor-img-cell-center
+  {
+    width: 100%;
+  }
+  .contenedor-table-cell-2
+  {
+      float: initial;
+      margin: 0 auto;
+      width: 14em;
+  }
+}
+@media screen and (max-width: 768px) {
+  .redes-sociales-ficha,.botones-postula-ficha
+  {
+    text-align: center;
+  }
+  .botones-postula-ficha
+  {
+    margin-top: 1em;
+  }
+  .btn-aviso, .btn-postula
+  {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0.5em;
+    padding: 0.5em 1em;
+  }
+  .boton-postular
+  {
+    padding: 0em;
+  }
+}
+@media screen and (max-width: 345px) {
+  .btn-postula
+  {
+    margin-top: 0.5em;
+  }
+}

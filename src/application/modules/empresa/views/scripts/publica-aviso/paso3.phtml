@@ -1,0 +1,62 @@
+<script>
+	 var maximo_palabras = <?= $this->npalabras["valor"] ?>;
+</script>
+<nav class="cont-menu"><br></nav>
+<div id="wrapper">
+	 <div class="head-title row">
+		  <ul class="steps">
+				<li>Escoge<br> el Aviso<span></span></li>
+				<li>Datos<br> del Aviso<span></span></li>
+				<li class="act">Aviso<br> Impreso<span></span></li>
+				<li>Verifica<br> tus datos<span></span></li>
+		  </ul>
+		  <div class="title-step">
+				<div class="legend">
+					 <a href="<?php
+					 echo $this->url(array(
+						  'module' => 'empresa', 'controller' => 'mi-cuenta', 'action' => 'index'),
+						  false, true)
+					 ?>">Inicio</a> »
+					 <span class="noLink">Paso 3 - Ingrese el aviso Impreso</span>
+				</div>
+				<h1>Ingrese el aviso impreso</h1>
+		  </div>
+	 </div>
+
+	 <h2 class="titleGrayEM">Aviso <?= $this->dataAnuncio['nombreProducto'] ?> Web + <?= str_replace('AquiEmpleos', 'AquiEmpleos', $this->dataAnuncio['medioPublicacion']) ?>, <?php echo $this->moneda?><?= ucfirst($this->dataAnuncio['tarifaPrecio']) ?>: <span id="cantPalabbras"><?= $this->npalabras["valor"] ?></span> palabras</h2>
+
+	 <form id="formCountCP" action="" method="POST">
+		  <h6 class="black-title txt-left">Escriba las palabras con las que desea describir su aviso impreso.</h6>
+		  <div class="wrap-controls">
+				<p class="mB10"><span class="bold blackTxtv">¡Atención!</span> <span class="c6">Una palabra debe contener hasta 12 caracteres como máximo, de lo contrario se considerará 2 palabras</span></p>
+
+				<? $hasError = $this->form->texto->hasErrors(); ?>
+				<?=
+				$this->form->texto->setAttribs(array(
+					 'id' => 'areaCountCP', 'onpaste' => 'return false', 'class' => 'mR20'))->renderViewHelper();
+				?>
+				<span class="response<?= $hasError ? ' bad' : ''?>"><?= $hasError ? $this->form->texto->errMsg : '' ?></span>
+				<?= $this->form->id_aviso; ?>
+				<?=$this->form->tok->renderViewHelper();?>
+				<div class="mT10">Le queda <b id="countWords"><?= $this->npalabras["valor"] ?></b> palabras</div>
+		  </div>
+
+		  <h6 class="black-title txt-left">Vista referencial del aviso impreso (<span id="maxWords"><?= $this->npalabras["valor"] ?></span> palabras)</h6>
+		  <div class="wrap-controls">
+				<div class="wrap_mirror">
+					 <span><?= $this->anuncio["tipo_puesto"]; ?></span> <span id="divDisplay"></span>
+				</div>
+		  </div>
+
+		  <div class="wrap-btn right">
+				<a href="<?=
+				$this->url(array(
+					 'module' => 'empresa', 'controller' => 'aviso', 'action' => 'editar',
+					 'idPost' => $this->anuncio['id'],
+					 'back' => 'true'), false, true)
+				?>" id="backEmpP1" class="btn btn-default">Regresar</a>
+				<input type="submit" onclick="ga('send', 'event', 'P3_Economico_<?php echo $this->producto['desc']?>', '<?php echo $this->empresaId?>' , '<?php echo $this->producto['medio_publicacion']?>');" id="nextEmpP3" value="Continuar >" class="loginEmp btnSptEmp btn btn-primary"/>
+				<div id="msgErrorEmpP3" class="msgErrorDef right error"></div>
+		  </div>
+	 </form>
+</div>

@@ -1,0 +1,21 @@
+<table class="dataGrid">
+    <thead>
+        <tr>
+            <th class="data5 titleGrid">Proceso</th>
+            <th class="data5 titleGrid">Fecha Asignación</th>
+            <th class="data5 titleGrid"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <? foreach ($this->procesosAsignados as $procesoAsignado) :?>
+        <tr>
+            <td><?=$procesoAsignado['puesto']?></td>
+            <td><?=$procesoAsignado['fecha_asignacion']?></td>
+            <td><a class="abtnDelete" href="<?= $this->url(array('action' => 'quitar', 'anuncio_id' => $procesoAsignado['anuncio_id']))?>"><span class="btnDelete"></span><span>Eliminar</span></a></td>
+        </tr>
+        <? endforeach;?>
+    </tbody>
+</table>
+<div class="paginador mT10">
+    <?= $this->paginationControl($this->procesosAsignados, 'Sliding', 'paginador.phtml') ?>
+</div>

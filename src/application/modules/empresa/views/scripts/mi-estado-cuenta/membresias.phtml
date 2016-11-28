@@ -1,0 +1,30 @@
+<?=
+$this->partial('_partials/_navigation.phtml',
+    array('menu_sel' => $this->menu_sel, 'isAuth' => $this->isAuth))
+?>
+<?=
+$this->partial('mi-cuenta/_sec-menu.phtml',
+    array('menu_post_sel' => $this->menu_post_sel, "tieneBuscador" => $this->tieneBuscador,'Look_Feel'=>$this->Look_Feel))
+?>
+<div id="wrapper" class="row">
+    <?=
+    $this->partial('_partials/_messages.phtml',
+        array("flashMessages" => $this->flashMessages))
+    ?>  
+    <?=
+    $this->partial('mi-estado-cuenta/_sidebar-menu.phtml',
+        array('menu_sidebar_sel' => $this->menu_sidebar_sel))
+    ?>
+    <div id="gridTableR" class="blockAR alpha right">
+        <div class="iBlockAR">
+            <div id="titleyBtn">
+                <h2>Membresías</h2>
+            </div>        														
+            <a name="anclaPag"></a>
+            <?=
+            $this->partial('mi-estado-cuenta/_lista-membresias.phtml',
+                array('membresias' => $this->membresias,'moneda' => $this->moneda))
+            ?>
+        </div>
+    </div>
+</div>

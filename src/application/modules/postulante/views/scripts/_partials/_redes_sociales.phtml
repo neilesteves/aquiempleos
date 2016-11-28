@@ -1,0 +1,48 @@
+<div class="blockField r2">
+    <p class="c6">¡ <span class="bold urlApt">AquiEmpleos</span> te da la opción de ingresar a tu cuenta usando la red social que quieras!:</p>
+    <div class="mT10" id="addSincRS">
+        <div id="faceAdd" class="left">
+            <?php if($this->isFacebook === true) : ?>
+            <img alt="Facebook" src="<?php echo $this->S('/images/facebookOff.png');?>" alt="Facebook" />
+            <?php else: ?>
+            <a href="http://www.facebook.com/dialog/oauth?client_id=<?=$this->facebookAppId?>&redirect_uri=<?=$this->urlFacebook?>">
+            <img alt="Facebook" src="<?php echo $this->S('/images/facebookOn.png');?>" alt="Facebook" />
+            </a>
+            <?php endif; ?>
+        </div>
+        <div id="googAdd" class="right urlGoogle" rel="mi-cuenta/agregar-cuenta-google" >
+            <?php if($this->isGoogle === true) : ?>
+            <img alt="Google" src="<?php echo $this->S('/images/googleOff.png');?>" alt="Google" />
+            <?php else: ?>
+            <a href="<?=$this->openUrl?>" >
+            <img alt="Google" src="<?php echo $this->S('/images/googleOn.png');?>" alt="Google" />
+            </a>
+        <?php endif; ?>
+        </div>
+    </div>
+    <table summary="Sincronización con redes sociales" class="grid11" id="optRedSocial">
+    <?php if (count($this->redes) > 0) : ?>
+        <thead>
+            <tr>
+                <th colspan="2" class="titleRedSoc">Nombre</th>
+            </tr>
+        </thead>
+    <?php endif; ?>
+    <?php if (count($this->redes) > 0) : ?>
+        <tbody>
+        <?php foreach($this->redes as $red): ?>
+            <tr>
+                <td class="bFieldRS c6 <?=$red['rs'] == 'facebook' ? 'bFacebook':'bGoogle'?>"><span class="nTwitter"><?=$red['screenname'] ?></span></td>
+                <td class="bDelete"><a href="<?=$this->baseUrl('mi-cuenta/eliminar-cuenta-'.$red['rs'])?>">Eliminar</a></td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    <?php else : ?>
+        <tbody>
+            <tr>
+                <td class="bFieldRS bFieldNone alignC c6">Aún no has asociado ninguna cuenta</td>
+            </tr>
+        </tbody>
+    <?php endif; ?>
+    </table>
+</div>

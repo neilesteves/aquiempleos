@@ -1,0 +1,17 @@
+<? $active2 = "active"; ?>
+<div class="blockAL grid4 theta left ieEmpAside">
+    <h5 class="tituloPC r5T">Mis Datos</h5>
+    <ul class="thirdMenu bLBlue bgLBlue r5B mB20">
+        <? if ($this->layout()->auth['usuario-empresa']['creador'] == Application_Model_UsuarioEmpresa::PRINCIPAL) : ?>
+            <li class="liThird <?=$this->menu_sel_side==App_Controller_Action_Empresa::MENU_POST_SIDE_DATOSEMPRESA?$active2:''?>"><a class="aThird" href="<?=$this->url(array('module'=>'empresa','controller'=>'mi-cuenta','action'=>'datos-empresa'),"default",true)?>"><span class="sThird">Datos de la empresa</span></a></li>
+        <? endif?>
+        <li class="liThird <?=$this->menu_sel_side==App_Controller_Action_Empresa::MENU_POST_SIDE_MIS_AVISOS?$active2:''?>"><a class="aThird" href="<?=$this->url(array('module'=>'empresa','controller'=>'mi-cuenta','action'=>'mis-avisos'),"default",true)?>"><span class="sThird">Mis avisos</span></a></li>
+        <li class="liThird <?=$this->menu_sel_side==App_Controller_Action_Empresa::MENU_POST_SIDE_MIS_ALERTAS?$active2:''?>"><a class="aThird" href="<?=$this->url(array('module'=>'empresa','controller'=>'mi-cuenta','action'=>'mis-alertas'),"default",true)?>"><span class="sThird">Mis alertas</span></a></li>
+        <!--
+        <li class="liThird <?=$this->menu_sel_side==App_Controller_Action_Empresa::MENU_POST_SIDE_MIS_MEMBRESIAS?$active2:''?>"><a class="aThird" href="<?=$this->url(array('module'=>'empresa','controller'=>'mi-cuenta','action'=>'membresias'),"default",true)?>"><span class="sThird">Mis membresías</span></a></li>
+-->
+        <li class="liThird <?=$this->menu_sel_side==App_Controller_Action_Empresa::MENU_POST_SIDE_CAMBIOCLAVE?$active2:''?>"><a class="aThird" href="<?=$this->url(array('module'=>'empresa','controller'=>'mi-cuenta','action'=>'cambio-clave'),"default",true)?>"><span class="sThird">Cambio de clave</span></a></li>
+        <li class="liThird liLast <?=$this->menu_sel_side==App_Controller_Action_Empresa::MENU_POST_SIDE_ADMINISTRADORES?$active2:''?>"><a class="aThird ie6Last" href="<?=$this->url(array('module'=>'empresa','controller'=>'administrador','action'=>'index'),"default",true)?>"><span class="sThird">Administradores</span></a></li>
+    </ul>
+</div>
+

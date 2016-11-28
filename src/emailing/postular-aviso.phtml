@@ -1,0 +1,52 @@
+<table width="760" border="0" cellspacing="0" cellpadding="0" style="color:#666; background-color:#fff; font-family:Arial, Helvetica, sans-serif; font-size:12px" align="center">
+    <tr>
+    	<td width="720px" style="padding:20px;">
+        	<table width="720" border="0" cellspacing="0" cellpadding="0" style="color:#333">
+              <tr>
+              	<td>
+                	<p style="font-family:Arial, Helvetica, sans-serif; font-size:17px; line-height:22px;margin:0; padding:0 0 30px;">Hola <strong><?php echo $this->nombre ?></strong></p>
+                </td>
+              </tr>
+              <tr>
+              	<td style="text-align:center; padding-bottom:40px;">
+                	<h2 style="color: #666; font-family:Arial, Helvetica, sans-serif; font-size:20px; font-weight:400; line-height:22px; margin:0; padding:0 0 5px;">Postulaste al aviso de
+</h2>
+					<p style=" color:#000;font-family:Arial, Helvetica, sans-serif; font-size:29px; line-height:32px; margin:0; padding:0"><?php echo $this->nombrePuesto ?></p>
+                </td>
+              </tr>
+              <tr>
+              	<td>
+                    
+                	<p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:18px;margin:0; padding:0 0 30px;">
+                            <?php echo ($this->mostrarEmpresa == 1)?"La empresa <strong>$this->nombreEmpresa":"La empresa con alias <strong>'$this->nombreComercial'"?></strong> acaba de recibir tu información al aplicar al puesto de <strong><?php echo $this->nombrePuesto ?></strong> y agradece tu interés.</p>
+                	<p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:18px;margin:0; padding:0;">Te aconsejamos mantener siempre actualizado tu perfil en el portal. Mientras más completo esté tu perfil, más oportunidades de ser considerado y ser encontrado por las empresas.</p>
+                  <p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:18px;margin:0; padding:5px 0 30px;"><span style="color:#00577F; font-size:12px;">&gt;&gt;</span> <a style="color:#00577F; font-size:18px; line-height:21px; text-decoration:none;" href="<?php echo SITE_URL ?><?php echo
+                        $this->url(array(
+                            'controller' => 'mi-cuenta', 'action' => 'mis-datos-personales'),
+                            'default', true)
+                        ?>" target="_blank" title="Editar mi perfil">Editar mi perfil</a></p>
+                </td>
+              </tr>
+              <tr>
+              	<td>
+                	<p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:18px;margin:0; padding:0;">Mira más ofertas de trabajo</p>
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:18px;margin:0; padding:5px 0 30px;"><span style="color:#00577F; font-size:12px;">&gt;&gt;</span> <a style="color:#00577F; font-size:18px; line-height:21px; text-decoration:none;" href="<?php echo SITE_URL ?><?php echo
+                        $this->url(array(
+                            'controller' => 'buscar', 'action' => 'index'),
+                            'default', true)
+                        ?>" target="_blank" title="Ver más avisos">Ver más avisos</a></p>
+                </td>
+              </tr>
+         
+              <tr>
+              	<td style="font-family:Arial, Helvetica, sans-serif; font-size:15px; line-height:18px; padding-top:60px;">
+                	¡Éxitos!<br><br><strong>El equipo EMPLEOBUSCO</strong>.
+                </td>
+              </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+<map name="Map">
+  <area shape="rect" coords="171,127,433,167" href="<?=SITE_URL.'/perfil-destacado'?>" target="_blank">
+</map>

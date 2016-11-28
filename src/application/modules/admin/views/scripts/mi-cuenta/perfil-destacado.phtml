@@ -1,0 +1,107 @@
+<?= $this->partial('_partials/_navigation.phtml', array('menu_sel' => $this->menu_sel, 'isAuth' => $this->isAuth, "flashMessages" => $this->flashMessages)) ?>
+<div id="wrapper" class="row">
+    <?= $this->partial('_partials/_messages.phtml', array("flashMessages" => $this->flashMessages)) ?>
+    <h5 class="h5TitleAdm">Módulo de Administración</h5>
+    <?= $this->partial('_partials/_accion-admin.phtml', array('nombres' => $this->nombres, 'apellidos' => $this->apellidos, 'urlvolver' => $this->urlvolver, 'activo' => $this->activo, 'idPostulante' => $this->idPostulante)) ?>
+    <?= $this->partial('mi-cuenta/_sidebar-menu.phtml', array('menu_sel_side' => $this->menu_sel_side, 'rel' => $this->idPostulante)) ?>
+    <div class="grids-7">
+        <h2 class="mT10">Mi Perfil Destacado</h2>
+        <table class="tbl-admin" summary="Información de las postulaciones">
+            <thead>
+                <tr>
+                    <?
+                    $base = array('module' => 'admin', 'controller' => 'mi-cuenta',
+                        'action' => 'perfil-destacado', 'rel' => $this->idPostulante);
+                    ?>
+                    <?
+                    $col = 'tipo'
+                    ?>
+                    <?
+                    $ord = $this->col == $col && $this->ord == 'asc' ? 'desc' : 'asc'
+                    ?>
+                    <?
+                    $classOrd = $ord == 'asc' ? 'up' : 'down'
+                    ?>
+                    <?
+                    $url = $this->url(array_merge($base, array('col' => $col, 'ord' => $ord)), 'default', false)
+                    ?>
+                    <th class="data4">
+                        <a href="<?= $url ?>" class="rel">Tipo<span class="icon-tiny <?= $classOrd ?>"></span>
+                        </a>
+                    </th>
+                    <?
+                    $col = 'inicio'
+                    ?>
+                    <?
+                    $ord = $this->col == $col && $this->ord == 'asc' ? 'desc' : 'asc'
+                    ?>
+                    <?
+                    $classOrd = $ord == 'asc' ? 'up' : 'down'
+                    ?>
+                    <?
+                    $url = $this->url(array_merge($base, array('col' => $col, 'ord' => $ord)), 'default', false)
+                    ?>
+                    <th class="data2">
+                        <a href="<?= $url ?>" class="rel">Fecha Inicio<span class="icon-tiny <?= $classOrd ?>"></span>
+                        </a>
+                    </th>
+                    <th class="data2">
+                        Fecha Fin
+                    </th>
+                    <th class="data5">Monto</th>
+                    <th class="data4">Medio de Pago</th>
+                    <th class="data5">Fecha Pago</th>
+                    <?
+                    $col = 'activo'
+                    ?>
+                    <?
+                    $ord = $this->col == $col && $this->ord == 'asc' ? 'desc' : 'asc'
+                    ?>
+                    <?
+                    $classOrd = $ord == 'asc' ? 'up' : 'down'
+                    ?>
+                    <?
+                    $url = $this->url(array_merge($base, array('col' => $col, 'ord' => $ord)), 'default', false)
+                    ?>
+                    <th class="data5">
+                        <a href="<?= $url ?>" class="rel">Estado<span class="icon-tiny <?= $classOrd ?>"></span>
+                        </a>
+                    </th>
+                </tr>
+                <?php
+                $count = 1;
+                ?>
+                <?php
+                foreach ($this->perfil as $perfil) {
+                    $class = '';
+                    if ($perfil['activo'] == 'Activo') {
+                        $class = 'important';
+                    }
+                    
+                    $cip = '';
+                    if (!is_null($perfil['cip'])) {
+                        $cip = '<br>CIP: (' . $perfil['cip'] . ")";
+                    }
+                    ?>
+                    <tr class="<?= $class ?>">
+                        <td class="data4 txt_left"><?= "Perfil Destacado (" . $perfil['meses'] . ")" ?></td>
+                        <td class="data2"><?= $perfil['inicio'] ?></td>
+                        <td class="data2"><?= $perfil['fin'] ?></td>
+                        <td class="data5"><?= "$this->moneda " . $perfil['precio'] ?></td>
+                        <td class="data4"><?= ucfirst($perfil['tipoDoc']) . "<br>" . $perfil['medio'] . $cip ?></td>
+                        <td class="data5 txt_left"><?= $perfil['fh_confirmacion'] ?></td>
+                        <td class="data5"><?= $perfil['activo'] ?></td>
+                    </tr>
+                <?php } ?>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <div class="pagination all">
+            <?=
+            $this->paginationControl($this->perfil, 'Sliding', '_partials/_pag.phtml')
+            ?>
+        </div>
+    </div>
+</div>
+

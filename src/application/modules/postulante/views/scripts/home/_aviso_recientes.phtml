@@ -1,0 +1,47 @@
+<section class="avisos-recientes">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <div class="a-destacados-titular">
+                    <p class="azul">Avisos Recientes</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <?php foreach ($this->avisoResientes as $key => $value) { ?>
+                <div class="col-md-4 mg-tb-30 portfolio-item">
+                    <a href="#">
+                        <img width="700" height="400" class="img-responsive" src="<?=$this->E()->getElementLogos($value['logoanuncio'])?>" alt="">
+                    </a>
+                    <div class="caption">
+                        <h3><?=$value['puesto']?></h3>
+                        <small><i class="fa fa-clock-o" aria-hidden="true"></i> <?= $this->Hace($value['fh_pub']) ?> <span>|</span> <?=$value['ubicacion']?></small>
+                        <p><?=$value['description']?></p>
+                        <div class="text-center">
+                            <a href="#" class="buttom-blue-w">Ver anuncio</a>
+                        </div>         
+                    </div>
+                </div>
+            <?php } ?>
+        </div>
+
+    </div>
+</section>
+<section class="separador">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="text-center pd-tp-50">
+                    <a href="#" class="buttom-blue-w ver-mas">Ver más</a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="text-center">
+                    <hr class="linea">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

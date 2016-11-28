@@ -1,0 +1,80 @@
+<?=
+   $this->partial('_partials/_navigation.phtml',
+       array('menu_sel' => $this->menu_sel, 'isAuth' => $this->isAuth))
+   ?>
+<div id="wrapper" class="row">
+   <div class="head-title row">
+      <div class="title-step">
+         <h1>Ingrese el aviso web</h1>
+      </div>
+   </div>
+   <div class="row">
+      <p class="right bold">Los campos con <span class="req">*</span> son necesarios</p>
+      <h2 class="title-big">Datos del aviso web</h2>
+   </div>
+   <?=$this->partial('_partials/_messages.phtml',array("flashMessages"=>$this->flashMessages))?>
+   <form action="" id="frmPublishAd" method="post" <?= isset($this->showLogoEmpresa)?'enctype="multipart/form-data"':''?>  class="frm-horizontal wrap-register" autocomplete="off">
+      <?php
+         echo $this->partial('_partials/_paso2_aviso.phtml', 'empresa',
+             array(
+             'form' => $this->form, 'isDato' => $this->isDato,
+             'numPalabraPuesto' => $this->numPalabraPuesto,
+             'numPalabraOtroNombre' => $this->numPalabraOtroNombre,
+             'modulo' => $this->modulo,
+             'formEstudio' => $this->formEstudio, 'managerEstudio' => $this->managerEstudio,
+             'isEstudio' => $this->isEstudio, 'isEditarEstudio' => $this->isEditarEstudio,
+             'formExperiencia' => $this->formExperiencia, 'managerExperiencia' => $this->managerExperiencia,
+             'isExperiencia' => $this->isExperiencia, 'isEditarExperiencia' => $this->isEditarExperiencia,
+             'formOtroEstudio' => $this->formOtroEstudio, 'managerOtroEstudio' => $this->managerOtroEstudio,
+             'isOtroEstudio' => $this->isOtroEstudio, 'isEditarOtroEstudio' => $this->isEditarOtroEstudio,
+             'formIdioma' => $this->formIdioma, 'managerIdioma' => $this->managerIdioma,
+             'isIdioma' => $this->isIdioma, 'isEditarIdioma' => $this->isEditarIdioma,
+             'formPrograma' => $this->formPrograma, 'managerPrograma' => $this->managerPrograma,
+             'isPrograma' => $this->isPrograma, 'isEditarPrograma' => $this->isEditarPrograma,
+             'formPregunta' => $this->formPregunta, 'managerPregunta' => $this->managerPregunta,
+             'isPregunta' => $this->isPregunta, 'isEditarPregunta' => $this->isEditarPregunta,
+             'frmUbigeo' => $this->frmUbigeo,
+             'falla' => $this->falla,'lock'=> $this->lock,
+             'showLogoEmpresa' => isset($this->showLogoEmpresa)?true:false,
+             'formEmpresa' => isset($this->frmEmpresa)?$this->frmEmpresa:''
+             )
+         );
+         ?>
+      <div class="wrap-btn right mT20">
+         <span id="spanResponse" class="response bad hide"></span>
+         <?php
+            if ($this->tarifa == 1) {
+                ?>
+         <a href="<?php
+            echo $this->url(array(
+                'module' => 'empresa', 'controller' => 'publica-aviso',
+                'action' => 'index'), false, true);
+            ?>" id="backEmpP1" class="btn btn-default">Regresar</a>
+         <input onclick="ga('send', 'event', 'P2_Gratuito', '<?php echo $this->empresaId?>' , 'P2_Gratuito');" id="aSetep2" class="btn btn-primary" type="submit" value="Continuar >"/>
+         <?php } else { ?>
+         <a href="<?php
+            echo $this->url(array(
+                'module' => 'empresa', 'controller' => 'publica-aviso',
+                'action' => 'paso1'), false, true);
+            ?>" id="backEmpP1" class="btn btn-default">Regresar</a>
+         <input onclick="ga('send', 'event', 'P2_Economico_<?php echo $this->producto['desc']?>', '<?php echo $this->empresaId?>' , '<?php echo $this->producto['medio_publicacion']?>');" id="aSetep2" class="btn btn-primary" type="submit" value="Continuar >"/>
+         <?php } ?>
+      </div>
+   </form>
+   <?php
+      echo $this->partial('_partials/_paso2_aviso_blank.phtml', 'empresa',
+          array(
+          'managerEstudio' => $this->managerEstudio,
+          'managerOtroEstudio' => $this->managerOtroEstudio,
+          'managerExperiencia' => $this->managerExperiencia,
+          'managerIdioma' => $this->managerIdioma,
+          'managerPrograma' => $this->managerPrograma,
+          'managerPregunta' => $this->managerPregunta,
+          )
+      );
+      ?>
+</div>
+<!-- Start of aquiesta Zendesk Widget script -->
+<script>/*<![CDATA[*/window.zEmbed||function(e,t){var n,o,d,i,s,a=[],r=document.createElement("iframe");window.zEmbed=function(){a.push(arguments)},window.zE=window.zE||window.zEmbed,r.src="javascript:false",r.title="",r.role="presentation",(r.frameElement||r).style.cssText="display: none",d=document.getElementsByTagName("script"),d=d[d.length-1],d.parentNode.insertBefore(r,d),i=r.contentWindow,s=i.document;try{o=s}catch(e){n=document.domain,r.src='javascript:var d=document.open();d.domain="'+n+'";void(0);',o=s}o.open()._l=function(){var o=this.createElement("script");n&&(this.domain=n),o.id="js-iframe-async",o.src=e,this.t=+new Date,this.zendeskHost=t,this.zEQueue=a,this.body.appendChild(o)},o.write('<body onload="document._l();">'),o.close()}("//assets.zendesk.com/embeddable_framework/main.js","todobusco.zendesk.com");
+/*]]>*/</script>
+<!-- End of aquiesta Zendesk Widget script -->

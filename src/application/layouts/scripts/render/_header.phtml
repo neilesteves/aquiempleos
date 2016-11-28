@@ -1,0 +1,103 @@
+<header class="contenedor-header-empleBusco">
+    <nav class="navbar
+         navbar-default navbar-fixed-top">
+
+        <div class="container">
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/"> <img src="<?= $this->S('/img/logo_empleobusco.png'); ?>" alt="AquiEmpleos" width="130" height="75" ></a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav top-a">
+                    <li class="categoria mcl"><?= ucwords(MODULE); ?></li>
+                </ul>
+
+                <div class="bienvenido-user">
+                    <? if (isset($this->auth)): ?>
+                        <? if ($this->auth['usuario']->rol == 'postulante'):?>
+                            <? $rol = 'postulante'; ?>
+                            <a href="<?=$this->url(array('module' => $rol,
+                                                  'controller' => 'mi-cuenta'),
+                                                  'default', true)
+                                      ?>">
+                            <span class="name-user">Hola,</span>
+                            <span><?= $this->auth['postulante']['nombres'] ?></span>
+                            <span>(<?= $this->auth['usuario']->email ?>)</span>
+                            </a>
+                        <? else: ?>
+                            <? $rol = 'empresa'; ?>
+                            <a href="<?=$this->url(array('module' => $rol,
+                                                  'controller' => 'mi-cuenta'),
+                                                  'default', true)
+                                      ?>">
+                            <span class="name-user">Bienvenido(a),</span>
+                            <span><?= $this->auth['usuario-empresa']['nombres'] ?> <?= $this->auth['usuario-empresa']['apellidos'] ?></span>
+                            <span>(<?= $this->auth['empresa']['razon_social']; ?>)</span>
+                            </a>
+                        <? endif; ?>
+                    <? endif; ?>
+                </div>
+
+                <? if (!isset($this->auth)): ?>
+                    <? if (MODULE == App_Controller_Action::USUARIO_POSTULANTE): ?>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="btn-registra"><a href="#modalRegisterUser" data-toggle="modal">Registrate</a></li>
+                        </ul>
+                    <? else: ?>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="btn-registra"><a href="<?=
+                                $this->url(array('module' => 'empresa',
+                                    'controller' => 'registro-empresa'),
+                                    'default', true)
+                                ?>">Registrate</a></li>
+                        </ul>
+    <? endif; ?>
+                    <ul> </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="btn-sesion"><a href="#modalLoginUser" data-toggle="modal">Ingresa</a></li>
+                    </ul>
+<? else: ?>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="btn-cuenta "><a href="<?=
+                                                   $this->url(array('module' => $rol,
+                                                       'controller' => 'mi-cuenta'),
+                                                       'default', true)
+                                                   ?>">Mi cuenta</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="btn-sesion"><a href="/logout"> Cerrar sesion</a></li>
+                    </ul>
+                <? endif; ?>
+                <? if (MODULE == App_Controller_Action::USUARIO_POSTULANTE): ?>
+                    <?
+                    if (isset($this->auth['postulante'])) {
+                        $fancybox = 'data-toggle="modal"';
+                        $url      = '#modalMsgSoyEmpresa';
+                    } else {
+                        $fancybox = 'data-toggle="modal';
+                        $url      = $this->url(array('module' => 'empresa'),
+                            'default', true);
+                    }
+                    ?>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="btn-empresa"><a data-toggle="modal" href="<?= $url ?>">Soy una empresa</a></li>
+                    </ul>
+                                               <? else: ?>
+                    <ul class="nav navbar-nav navbar-right">
+
+                        <li class="btn-empresa"><a href="<?=
+                                                   $this->url(array('module' => 'postulante'),
+                                                       'default', true)
+                                                   ?>">Soy un postulante</a></li>
+
+                    </ul>
+<? endif; ?>
+            </div>
+        </div>
+    </nav>
+
+</header>

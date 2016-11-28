@@ -1,0 +1,24 @@
+<br><p align=center><font size=3>
+<b>Su aviso "<?= $this->nombrePuesto ?>" está por vencer en <?= $this->dias ?> día<?= ($this->dias > 1?'s':''); ?></b></font></P>
+<br>
+Sus datos de acceso son: <BR>
+<span style="color:#000000;font-size:13px"><b>Empresa    : </b></span><span style="color:#3366ff;font-size:13px"><b><?= $this->empresa ?></b></span><BR>
+<span style="color:#000000;font-size:13px"><b>Usuario    : </b></span><span style="color:#3366ff;font-size:13px"><b><?= $this->usuario ?></b></span>
+<br><br>
+El aviso <span style="color:#3366ff"><b>"<?= $this->nombrePuesto ?>"</b></span> que publicó el <?= $this->FechaFullEspanol($this->fechaPub) ?> caducará el próximo <?= $this->FechaFullEspanol($this->fechaVenc) ?>. Cuando el aviso vence los candidatos no podrán visualizarlo por la web, y su empresa no tendrá opción de recibir más postulantes.
+<br><br>
+<p align=center style="color:#3366ff"><a href="<?=SITE_URL?><?= $this->url(array('url_id' => $this->urlId, 'slug'=> $this->slug), 'aviso', true) ?>"><b>Ver Aviso</b></a></p>
+El Proceso de Selección asociado a este aviso continuará activo para que usted pueda seguir revisando y seleccionando candidatos para el puesto solicitado. 
+<br><br>
+No olvide que puede ampliar su proceso, con los cual el mismo aviso estará publicado más días; conservará los postulantes que hasta el momento han postulado y nuevos postulantes podrán aplicar a su proceso:
+<br><br>
+<p align=center style="color:#3366ff"><a href="<?=SITE_URL.'/empresa/mis-procesos/index/extender/'.$this->urlId?>#winExtendN"><b>Ampliar el Proceso</b></a></p>
+
+También puede generar un nuevo Proceso de Selección publicando un nuevo aviso, ya sea con un texto idéntico (republicar) o distinto al anterior (nuevo aviso):
+<br><br>
+<p align=center style="color:#3366ff"><a href="<?=SITE_URL?><?= $this->url(array('republica' => $this->avisoId), 'republica_aviso', true) ?>"><b>Republicar el Aviso</b></a></p>
+
+<!--<p align=center style="color:#3366ff"><a href="<?=SITE_URL?><?= $this->url(array(), 'mis_avisos', true) ?>"><b>Ir a Mis Avisos</b></a></p>-->
+<p align=center style="color:#3366ff"><a href="<?=SITE_URL.'/empresa/publica-aviso/paso1'?>"><b>Publicar Nuevo Aviso</b></a></P>
+<br>¡Gracias por anunciar en EMPLEOBUSCO!
+<br><br>

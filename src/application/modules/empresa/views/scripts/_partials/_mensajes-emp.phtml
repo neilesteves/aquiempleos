@@ -1,0 +1,95 @@
+<div class="cntFormMsjF">
+    <div class="loading hide showLoadF"></div>
+    <form class="formFields" action="" method="post" enctype="multipart/form-data">
+        <div class="<?= $this->mensaje['id_mensaje'] != -1 ? 'blockHideC' : 'hide' ?>" <?= $this->mensaje['id_mensaje'] != -1 ? '' : 'id="creatorMensaje"' ?> >
+
+            <?php if ($this->mensaje['id_mensaje'] != -1) { ?>
+                <div class="blockHsty blockDropDown msjShot <?= $this->mensaje['mostrar'] != true ? '' : 'flagBlockEP' ?>" >
+                    <div class="txtHsty icoMsjPrePE"><span class="boldBlockH bold"><?= $this->mensaje['tipo_mensaje'] != Application_Model_Mensaje::ESTADO_PREGUNTA ? 'Mensaje' : 'Pregunta' ?> <span class="msjItemsP"><?= $this->mensaje['contar'] ?></span></span> <span class="boldBlockH bold"><?= $this->FriendlyDate($this->mensaje['fecha']) ?></span>
+                    </div>		
+                </div>
+            <?php } ?>
+
+            <blockquote class="blockInH <?= $this->mensaje['mostrar'] != true ? 'hide' : '' ?>">
+                <div class="blockInnerH">
+                    <?php if (isset($this->mensaje['tipo_mensaje']) && $this->mensaje['tipo_mensaje'] == Application_Model_Mensaje::ESTADO_PREGUNTA) { ?>
+                        <div class="actionsELP preguntaMsjT">
+                            <?= $this->mensaje['tipo_mensaje'] == Application_Model_Mensaje::ESTADO_PREGUNTA ? 'Pregunta : ' . $this->form->cuerpo->getValue() : '' ?>
+
+                            <?php if ($this->mensaje['id_mensaje'] == -1) { ?>
+                                <a class="deleteEPL deleteMsjEPA sptIcoEmp right winAlertM" href="#winAlert" rel="<?= $this->form->id_mensaje->getValue(); ?>" href="#" title="¿Está seguro que desea eliminar el mensaje?">Eliminar</a>
+                            <?php } ?>
+                        </div>
+                    <?php } ?>
+
+                    <?php if ($this->mensaje['id_mensaje'] != -1) { ?>
+
+                        <?php
+                        $inicio = 0;
+                        $fin = 50;
+                        if ($this->mensaje['tipo_mensaje'] == Application_Model_Mensaje::ESTADO_PREGUNTA) {
+                            $canTexto = strlen($this->mensaje['respuesta']);
+                            //$pregTexto = $this->mensaje['cuerpo'];
+                            $pregTexto = $this->mensaje['respuesta'];
+                        } else {
+                            $canTexto = strlen($this->mensaje['cuerpo']);
+                            $pregTexto = $this->mensaje['cuerpo'];
+                        }
+                        if ($canTexto > $fin) {
+                            $textCort = substr($pregTexto, $inicio, $fin) . '...';
+                        } else {
+                            $textCort = $pregTexto;
+                        }
+                        ?>
+
+                        <div class="dataHideFlagE">
+                            <?php if ($this->mensaje['tipo_mensaje'] != Application_Model_Mensaje::ESTADO_PREGUNTA) { ?>
+                                <div class="textbIn"><?= $textCort ?></div>
+                                <div class="textbInAll breakWord hide"><?= $this->mensaje['cuerpo'] ?></div>
+                            <?php } else { ?>
+                                <div class="textbIn">  <?= $textCort == null ? 'Pregunta no Respondida.' : 'Respuesta : ' . $textCort ?></div>
+                                <div class="textbInAll hide">Respuesta : <?= $this->mensaje['respuesta'] ?></div>
+                            <?php } ?>
+
+                            <?php if ($this->mensaje['id_mensaje'] != -1 && $canTexto > $fin) { ?>
+                                <div class="asideBIn alignR"><a class="aBtnIn f11" href="#">Leer más</a></div>
+                            <?php } ?>
+                        </div>
+                    <?php } ?>
+
+                    <div class="hide">
+                        <?= $this->form->id_mensaje; ?>
+                    </div>
+                    <div class="hide">
+                        <input type="hidden" name="iP" id="iP" value="<?= $this->idPostulacion ?>">
+                    </div>
+                    <div class="hide">
+                        <input type="hidden" id="iU" name="iU" value="<?= $this->postulante['postulante']['idusuario'] ?>" >
+                    </div>
+                    <?php if ($this->mensaje['id_mensaje'] == -1) { ?>
+                        <div class="editFormEP all">
+                            <?php
+                            $disabled = 'data-tool';
+                            $btn = '';
+                            if ($this->tipoEmpresa != 'C') {
+                                $disabled = 'disabled';
+                                $btn = 'disabled';
+                            }
+                            ?>
+                            <?= $this->form->cuerpo->setAttribs(array('class' => 'dataTextEP', 'cols' => '25', 'rows' => '3', $disabled => $disabled))->renderViewHelper(); ?>
+                            <div id="errorMsjPEP" class="error hide"></div>
+                            <fieldset class="blockFltEP all">
+                                <label class="" for="optCheckP2">
+                                    <?= $this->form->tipo_mensaje->setAttribs(array('id' => 'optCheckP2', 'class' => 'noBdr', 'checked' => 'checked', $disabled => $disabled))->renderViewHelper(); ?>
+                                    Requiere Respuesta 
+                                </label>
+
+                                <button <?= $btn ?> class="dataBtnEP msjBtnAjax right btnSptEmp btn btn-primary" type="submit">Enviar</button>
+                            </fieldset>
+                        </div>
+                    <?php } ?>	
+                </div>	
+            </blockquote>	
+        </div>
+    </form>
+</div>

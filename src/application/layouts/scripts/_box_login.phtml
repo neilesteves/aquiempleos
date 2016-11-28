@@ -1,0 +1,122 @@
+<div id="loginP" class="row
+     " style="display:none;">
+    <div class="login-left">
+        <h2 class="text-mediumx">INGRESA A EMPLEOBUSCO</h2>
+        <form id="fLoginWMH" action="<?= $this->baseUrl('/auth/login') ?>" method="post" class="frm-login frm-horizontal" <? //=(APPLICATION_ENV != 'development')?'autocomplete="off"':''                              ?> >
+            <?php if (!empty($this->ingresaSelectorForm->userPEI)) {?>
+            <div class="cgroup-inline">
+                <div class="control-label">Ingresa como:</div>                    
+                <div class="control-group fix-options">                        
+                    <? $hasError = $this->ingresaSelectorForm->userPEI->hasErrors(); ?>
+                    <?= $this->ingresaSelectorForm->userPEI->setAttribs(array('class' => '', 'tabindex' => '10'))->renderViewHelper(); ?>
+                </div>
+                <span class="response cGray left<?=$hasError ? ' bad' : ''?>"><?=$hasError ? $this->ingresaSelectorForm->userPEI->errMsg : '' ?> </span>
+            </div>
+            <?php }?>
+            <div class="control-group">
+                <label for="txtMail" class="control-label">E-mail</label>
+                <div class="controls last">
+                    <?=
+                    $this->loginForm->userEmail->setAttribs(array(
+                        'id' => 'wmMail',
+                        'class' => 'input-xxmiddle','autocomplete'=>'off'))->renderViewHelper()
+                    ?>
+                    <div class="hide respW">&nbsp;</div>
+                </div>
+            </div>
+            <div class="control-group">
+                <label for="txtClave" class="control-label">Clave</label>
+                <div class="controls">
+                    <?=
+                    $this->loginForm->userPass->setAttribs(array(
+                        'id' => 'wmPass',
+                        'class' => 'input-xxmiddle','autocomplete'=>'off'))->renderViewHelper()
+                    ?>
+                    <div class="hide respW">&nbsp;</div>
+
+                    <p>
+                        <label class="ioption">
+                            <?=
+                            $this->loginForm->save->setAttribs(array(
+                                'id' => 'saveKeyWM', 'class' => 'mR5 noBdr', 'checked' => 'checked'))->renderViewHelper()
+                            ?>
+                            No cerrar sesión
+                        </label>
+                    </p>                        
+                    <p><a href="javascript:;" id="forgotPass">¿Olvidaste tu clave?</a></p>
+                    <!--<a href="#olvidasteClave" id="forgotEmail" class="row-inline">¿Olvidaste con qué correo te registraste?</a>-->
+                    <p><?=$this->loginForm->Ingresar->setAttribs(array('id' => 'btnSignIn', 'class' => 'btn btn-primary','value' => 'Ingresar'))->renderViewHelper()?>
+                        <span id="divRespLogin" class="response"></span>
+                    </p>
+                    <p class="is-register">¿No estás registrado? <a href="<?=
+                        $this->modulo == Application_Form_Login::ROL_EMPRESA
+                                ? $this->url(array(
+                                'module' => 'empresa',
+                                'controller' => 'registro-empresa'),
+                                'default', true) :
+                            $this->url(array(
+                                'controller' => 'registro'), 'default', true)
+                        ?>">Regístrate</a></p>
+                </div>
+            </div>
+            <?= $this->loginForm->auth_token->renderViewHelper() ?>
+            <?= $this->loginForm->return; ?>
+            <input type="hidden" name="id_tarifa" id="hideLoginReg" value=""/>
+        </form>
+    </div>
+    
+    <?/*
+    <!-- Postulante Forget Email Form Start -->
+    <div id="cntForgotE_P" class="row hide">
+        <a href="#Login" id="backLogWM_L">&laquo; Volver a Login</a>
+        <h2 class="title">¿Cual es mi correo de Registro?</h2>
+        <p><b>Ingresa tu numero le CI para indicarte con que correo estás registrado en TRABAJOBUSCO.</b></p><br>
+        <form id="fForgotEmail" action="<?= $this->baseUrl('/registro/validar-dni-email') ?>" method="post" <?=
+        (APPLICATION_ENV != 'development') ? 'autocomplete="off"' : ''
+        ?> class="frm-horizontal">
+            
+            <div class="cgroup-inline">
+                <div class="control-label">CI:</div>
+                <div class="control-group">
+                    <?=
+                    $this->postulanteDni->num_doc->setAttribs(array(
+                        'id' => 'textForgotPE', 'class' => 'input-xxmiddle'))->renderViewHelper()
+                    ?>
+                </div>
+                <div class="control-group last">
+                    <?=
+                    $this->postulanteDni->Validar->setAttribs(array(
+                        'id' => 'sendForgotPE', 'class' => 'btn btn-primary'))->renderViewHelper()
+                    ?>
+                </div>
+            </div>
+            <div id="responseFP_L"  class="box-message hide"></div>
+        </form>
+        <div id="errorCmp_L" class="box-message hide"></div>
+        <div id="loadingCFP_L" class="hide"></div>
+        <div id="central_de" class="msn-forgot">Si este no es tu correo por favor comunicarte con nuestra
+            <br><a href="http://centraldeayuda.EMPLEOBUSCO.com/home" >central de ayuda</a></div>
+    </div>
+    <!-- Postulante Forget Email Form End -->
+    */?>
+</div>
+
+<div id="cntForgotP"   style="display:none;">
+    <a href="javascript:;" id="backLogWM">&laquo; Volver a Login</a>
+    <h2 class="text-mediumx center">Cambia tu contraseña</h2>
+    <p class="mB10">Ingresa tu  dirección de e-mail con la que registraste tu <b> cuenta de <span id="typeLoginF">postulante</span> </b> y te enviaremos instrucciones para cambiar tu contraseña.</p>
+    <form id="frmForgotPass" action="<?= $this->baseUrl('/auth/recuperar-clave') ?>" method="post" <?=(APPLICATION_ENV != 'development') ? 'autocomplete="off"' : ''?>>
+        <div class="cgroup-inline">
+            <div class="control-group"><label class="control-label">Email:</label></div>
+            <div class="control-group">
+                <?= $this->recuperarClaveForm->recuperar_token->renderViewHelper() ?>
+                <?= $this->recuperarClaveForm->email->setAttribs(array('id' => 'textForgotP', 'class' => 'input-xxmiddle'))->renderViewHelper() ?>
+            </div>
+            <div class="control-group last">
+                <?=$this->recuperarClaveForm->Enviar->setAttribs(array('id' => 'sendForgotP', 'class' => 'btn btn-primary input-xmini', 'value' => 'Cambiar Contraseña'))->renderViewHelper()?>
+            </div>
+        </div>
+        <div class="load-wrap fix hide"></div>
+    </form>
+    <div class="response hide"></div>
+</div>

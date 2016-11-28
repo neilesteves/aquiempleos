@@ -1,0 +1,64 @@
+<div class="control-group">
+	<label for="fPais" class="control-label"><span class="req">*</span> País:</label>
+	<div class="controls">
+		<?=
+        $this->formEmpresa->pais_residencia->setAttribs(array('id' => 'fPais', 'class' => 'sel-medium', 'required' => '', 'pattern' => '[1-9]', 'rel' => Application_Model_Ubigeo::PERU_UBIGEO_ID, 'data-parsley-excluded' => '[disabled]'))->renderViewHelper();
+        ?>
+	</div>
+</div>
+
+<div class="control-group">
+	<label for="fDepart" class="control-label"><span class="req">*</span> Región:</label>
+	<div class="controls">
+		<?=
+        $this->formEmpresa->id_departamento->setAttribs(array('id' => 'fDepart', 'class' => 'sel-medium ubigeo', 'required' => '', 'pattern' => '[1-9]', 'rel' => Application_Model_Ubigeo::LIMA_UBIGEO_ID, 'data-parsley-excluded' => '[disabled]'))->renderViewHelper();
+        ?>
+	</div>
+</div>
+	<div class="control-group">
+            <label for="fProvin" class="control-label"><span class="req">*</span> Ciudad:</label>
+            <div class="controls">
+            
+            <?php 
+            if ($this->formEmpresa->id_departamento->getValue() == Application_Model_Ubigeo::LIMA_UBIGEO_ID) { 
+                echo 
+                $this->formEmpresa->id_provincia->setAttribs(array(
+                    'id' => 'fProvin', 
+                    'class' => 'sel-medium', 
+                    'required' => '', 
+                    'pattern' => '[1-9]', 
+                    'rel' => Application_Model_Ubigeo::LIMA_PROVINCIA_UBIGEO_ID, 
+                    'data-callao' => Application_Model_Ubigeo::CALLAO_PROVINCIA_UBIGEO_ID, 
+                    'data-lima' => Application_Model_Ubigeo::LIMA_PROVINCIA_UBIGEO_ID, 
+                    'data-parsley-excluded' => '[disabled]'
+                    ))->renderViewHelper(); 
+            } else {
+                echo $this->formEmpresa->id_provincia->setAttribs(array(
+                
+                'id' => 'fProvin', 
+                'class' => 'sel-medium', 
+                'required' => '', 
+                'pattern' => '[1-9]', 
+                'rel' => Application_Model_Ubigeo::LIMA_PROVINCIA_UBIGEO_ID, 
+                'data-callao' => Application_Model_Ubigeo::CALLAO_PROVINCIA_UBIGEO_ID, 
+                'data-lima' => Application_Model_Ubigeo::LIMA_PROVINCIA_UBIGEO_ID, 
+                
+                ))->renderViewHelper();
+            } 
+            ?>    
+                
+            </div>
+		
+	</div><?php /*
+	<div class="control-group">
+            <label for="fDistri" class="control-label"><span class="req">*</span> Distrito:</label>
+            <div class="controls">
+                
+            <?php/*if ($this->formEmpresa->id_provincia->getValue() == Application_Model_Ubigeo::LIMA_PROVINCIA_UBIGEO_ID) { ?>
+            <?=$this->formEmpresa->id_distrito->setAttribs(array('id' => 'fDistri', 'class' => 'sel-medium', 'required' => '', 'pattern' => '[1-9]', 'data-parsley-excluded' => '[disabled]'))->renderViewHelper(); ?>
+            <?php } else { ?>
+            <?=$this->formEmpresa->id_distrito->setAttribs(array('disabled' => '','id' => 'fDistri', 'class' => 'sel-medium', 'required' => '', 'pattern' => '[1-9]', 'data-parsley-excluded' => '[disabled]'))->renderViewHelper(); ?>     
+            <?php }
+                
+            </div>
+	</div> */ ?>

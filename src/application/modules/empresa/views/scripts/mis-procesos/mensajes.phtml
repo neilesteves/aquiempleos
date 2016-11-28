@@ -1,0 +1,57 @@
+<div id="main" class="all empMiCuenM">
+    <div class="innerAll">
+        <div class="bgAll gridS20">
+            <?=
+            $this->partial('_partials/_navigation.phtml',
+                array('menu_sel' => $this->menu_sel, 'isAuth' => $this->isAuth, "flashMessages" => $this->flashMessages))
+            ?>
+            <div class="gridTab">
+                <div class="gridIT">
+                    <?=
+                    $this->partial('mi-cuenta/_sec-menu.phtml',
+                        array('menu_post_sel' => $this->menu_post_sel, "tieneBuscador" => $this->tieneBuscador))
+                    ?>
+                    <div class="iAccount contraido rel" id="innerMain">
+                        <?=
+                        $this->partial('mis-procesos/_sidebar-menu.phtml',
+                            array('menu_sel_side' => $this->menu_sel_side,
+                            'verSugerenciaCandidatos' => $this->verSugerenciaCandidatos))
+                        ?>
+                        <div class="blockAR alpha right" id="gridTableR">
+                            <div class="all pmsg-title" id="linkHeadMFC">
+                                <h2>
+                                    Puesto: <?=$this->postulacion['puesto']?><br>
+                                    Empresa: <span><?=$this->empresa['razon_social']?></span><br>
+                                    Postulante: <span><?=$this->postulacion['nombres']?> <?=$this->postulacion['apellidos']?></span>
+                                </h2>
+                                <div class="alignR all">
+                                    <a class="f14" href="<?= $this->url(array('module' => 'empresa', 'controller' => 'mis-procesos', 'action' => 'ver-proceso', 'id' => $this->postulacion['anuncio_id']), false, true)?>">« Volver al Proceso de Publicación</a>
+                                </div>
+                            </div>
+                            <div class="pmsg-content">
+                                <?php foreach($this->mensajes as $mensaje):?>
+                                    <div class="pmsg-answer">
+                                        <img src="<?= ($this->empresa['logo'] == '')? $this->S('/images/empresa/photoEmpDefault.png'):ELEMENTS_URL_LOGOS.$this->empresa['logo']."?".time(); ?>" width="57" height="57" title="<?=$this->empresa['razon_social']?>" />
+                                        <div class="pmsg-cnt">
+                                            <h3><?= date('d-m-Y H:i:s', strtotime($mensaje['fecha']))?> &nbsp;&nbsp;<strong><?=$this->empresa['razon_social']?></strong> pregunta...</h3>
+                                            <p><?=$mensaje['cuerpo']?></p>
+                                        </div>
+                                    </div>
+                                    <?php if(!is_null($mensaje['respuesta'])): ?>
+                                    <div class="pmsg-rspta">
+                                        <img src="<?= ($this->postulacion['foto_postulante'] == '')? $this->S('/images/photoDefault.jpg'):ELEMENTS_URL_IMG.$this->postulacion['foto_postulante']."?".time(); ?>" width="57" height="57" title="<?=$this->postulacion['nombres']?> <?=$this->postulacion['apellidos']?>" />
+                                        <div class="pmsg-cnt">
+                                            <h3><?= date('d-m-Y H:i:s', strtotime($mensaje['respuesta_fecha']))?> &nbsp;&nbsp;<strong><?=$this->postulacion['nombres']?> <?=$this->postulacion['apellidos']?></strong> responde...</h3>
+                                            <p><?=$mensaje['respuesta']?></p>
+                                        </div>
+                                    </div>
+                                    <?php endif;?>
+                                <?php endforeach;?>                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

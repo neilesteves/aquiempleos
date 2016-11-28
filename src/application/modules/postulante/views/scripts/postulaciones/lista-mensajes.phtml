@@ -1,0 +1,66 @@
+<div id="innerloadData" class="all">
+    <h3 class="titleAPLR">Mensajes</h3>
+    <div class="innerMjs">
+        <ul class="ulListData">
+            <li class="liListData">Aviso: <span class="empMod bold"><?= $this->puesto ?> - <?= $this->empresa ?></span></li>
+            <li class="liListData">Postulación: <span class="dateMod bold"><?= $this->fecha ?></span></li>
+        </ul>
+        <div id="dataMsjOver">
+	        <table summary="Información de los mensajes" id="dataMjsOne" class="dataGrid">
+	            <thead>
+	                <tr class="trHead">
+	                    <th class="data1 titleGrid">Fecha</th>
+	                    <th class="data3 titleGrid">Tipo</th>
+	                    <th class="data3 titleGrid">Mensaje</th>
+	                </tr>
+	            </thead>
+	            <tbody>
+	                <? foreach ($this->mensajes as $item): ?>
+	                    <tr class="trGrid <?= ( $item['respondido'] == '1' )? 'pEnviado' : (($item['leido'] == '1')?'pLeido':'pNoLeido') ?>" rel="<?= $item['tipo_mensaje'] ?>#<?= $item['id'] ?>" id="tr_<?= $item['id'] ?>">
+	                        <td class="data1"><?= date("d/m/Y", strtotime($item['fh'])) ?></td>
+	                        <td class="data3"><span class="questionMsj icoSpt <?= ( $item['respondido'] == '1' )? 'qSend' : (($item['leido'] == '1')?'qRead':'qNoRead') ?>"><?= ucwords($item['tipo_mensaje']) ?></span></td>
+	                        <td class="data3"><?= substr($item['cuerpo'], 0, 30) ?>...</td>											
+	                    </tr>
+	                <? endforeach; ?>
+	            </tbody>
+	        </table>
+        </div>								
+    </div>
+    <div id="loadDataMC" class="loading hide"></div>
+    <div id="errorNL" class="hide error"></div>
+    <div id="mensajes" class="mensajes allMensaje">
+        <? foreach ($this->mensajes as $item): ?>
+            <div class="<?=$item['tipo_mensaje']=='pregunta'?'cntPregunta':'cntNotificaciones'?> <?=$item['leido']?'pLeido':'pNoLeido'?> allMensaje hide <?=$item['tipo_mensaje'].$item['id']?> ">
+                <?=($item['tipo_mensaje']=='pregunta'&&$item['respondido']=='0')?'<form action="/" class="formResponseM">':'' ?>
+                    <div class="dataLoadMsj">			   			
+                        <h6 class="titleMsjI"><?=($item['tipo_mensaje']=='pregunta')?'Pregunta':'Mensaje'?></h6>
+                        <div class="responseMsj">
+                            <?=$item['cuerpo']?>
+                        </div>
+                        <? if($item['tipo_mensaje']=='pregunta'):?>
+                            <? if($item['respondido']=='0'):?>
+                                <div class="flagMensaje" id="area_<?=$item['tipo_mensaje']."-".$item['id']?>" rel="noLeido">
+                                    <h6 class="titleMsjI">Respuesta <span class="txtCountM">(Máximo <span class="numCountM">300</span> caracteres)</span></h6>
+                                    <textarea class="areaResMsj"></textarea>
+                                    <div class="areaCharsM">Te quedan <span class="countAreaCh">264</span> Caracteres</div>      			
+                                </div>
+                                <div class="flagMensaje" rel="noLeido">
+                                    <div class="wrap-btn center">
+                                        <input rel="<?=$item['id']?>" type="submit" class="submitResM btn btn-primary" value="Aceptar" />
+                                    </div>
+                                    <div class="errorRpta hide error"></div>
+                                    <div class="loadRpta hide"></div>
+                                </div>		      		 
+                            <? else: ?>
+                                <h6 class="titleMsjI">Respuesta</h6>
+                                <div class="responseMsj">
+                                    <?=$item['respuesta']?>
+                                </div>  			      			    					    								      	
+                            <? endif ?>
+                        <? endif ?>
+                    </div>				      	
+                <?=$item['tipo_mensaje']=='pregunta'&&$item['respondido']=='0'?'</form>':'' ?>
+            </div>	
+        <? endforeach ?>
+    </div>
+</div>

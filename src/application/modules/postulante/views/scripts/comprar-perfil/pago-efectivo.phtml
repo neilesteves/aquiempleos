@@ -1,0 +1,35 @@
+<nav class="cont-menu row">
+    <br>
+</nav>
+<div id="wrapper" class="row">
+    <div class="head-title row">
+        <ul class="steps">
+            <li>Escoge<span></span></li>
+            <li class="act">Paga<span></span></li>
+            <li>Verifica<span></span></li>
+        </ul>
+        <div class="title-step">
+            <div class="legend">
+                <a href="<?= SITE_URL ?>">Inicio</a> »
+                <span class="noLink">Perfil Destacado</span>
+
+            </div>
+            <h2>Pague su Perfil</h2>
+        </div>
+    </div>
+
+    <?=
+    $this->partial('_partials/_messages.phtml', array("flashMessages" => $this->flashMessages))
+    ?>
+    <?=
+    $this->partial('_partials/_voucher_pago_efectivo.phtml', array(
+          "cip" =>$this->perfil["cip"],
+        "perfil" => $this->perfil,
+        "fhCierre" => $this->fhCierre,
+        "usuario" => $this->auth["usuario"],
+        "moneda" => $this->moneda,
+        "igv" => $this->igv
+            )
+    )
+    ?>
+</div>

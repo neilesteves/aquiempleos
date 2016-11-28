@@ -1,0 +1,94 @@
+<?=
+$this->partial('_partials/_navigation.phtml',
+	 array('menu_sel' => $this->menu_sel, 'isAuth' => $this->isAuth))
+?>
+
+
+<div id="wrapper" class="row">
+	 <?= $this->partial('_partials/_messages.phtml', array("flashMessages" => $this->flashMessages)) ?>
+	 <div class="products">
+	 <?php if(isset($this->layout()->auth['empresa']['membresia_info']['membresia'])){?>
+		  <div class="choose-ads not-blocka" itemscope itemtype="http://schema.org/Product">
+				<div class="title-ads"><h2 class="title-big" itemprop="name">AVISO <br> WEB</h2></div>
+				<div class="image-ads web-tiny"></div>
+				<p class="text-big" itemprop="description">Gratis</p>
+				<div class="box"><p class="title text-medium">Su Aviso de Empleo Web Gratuitamente</p><p>en el Portal de Empleos más utilizado por las mejores empresas de Perú.</p></div>
+				<?php if ($this->layout()->auth != null && array_key_exists('empresa',$this->layout()->auth)):?>
+					 <form action="<?=$this->url(array('module' => 'empresa', 'controller' => 'publica-aviso','action' => 'paso1'), false, true)?> " id="fStep1hb" method="post" >
+						  <input type="hidden" name="id_tarifa" value="1" />
+						  <button type="submit" id="segOptP1" class="btn btn-primary medium min406 iBtn1S2M">Publicar un Aviso Web</button>
+					 </form>
+				<?php else: ?>
+					 <a data-id="1" id="primOptP1" href="#loginP" data-href="/empresa/publica-aviso/paso2/tarifa/1" class="login_modal btn btn-primary medium min406 loginPrimP1" title="">Publicar un Aviso Web </a>
+				<?php endif; ?>
+				</div>
+	 <?php } else {?>
+		  <div class="choose-ads not-blocka" itemscope itemtype="http://schema.org/Product">
+				<div class="title-ads"><h2 class="title-big" itemprop="name">AVISO <br> WEB</h2></div>
+				<div class="image-ads web-tiny"></div>
+			<span class="text-white-tiny"><?php echo $this->moneda?> <?php echo number_format($this->productos['destacado']['0']['valor'],0)?></span>
+			<p class="text-big"><?php echo $this->moneda?> <?php echo number_format($this->productos['destacado']['0']['valor']*(100-$this->productos['extracargo']['valorExtracargo'])/100,0)?></p>
+				<div class="box"  itemprop="description"><p class="title text-medium">Su Aviso de Empleo Web</p><p>en el Portal de Empleos más utilizado por las mejores empresas de Perú.</p></div>
+				 <?php if ($this->layout()->auth != null && array_key_exists('empresa',$this->layout()->auth)):?>
+					 <a itemprop="url" href="<?= SITE_URL ?>/empresa/publica-aviso-destacado/paso2" class="btn btn-primary medium min406">Publicar un Aviso Web</a>
+				<?php else: ?>
+					 <a data-id="1" id="primOptP2" href="#loginP" data-href="/empresa/publica-aviso-destacado/paso2" class="login_modal btn btn-primary medium min406 loginPrimP1" title="">Publicar un Aviso Web </a>
+				<?php endif; ?>
+		  </div>
+	 <?php }?>
+		  <div class="choose-ads blue"  itemscope itemtype="http://schema.org/Product">
+				<div class="title-ads"><h2 class="title-big" itemprop="name">AVISO ECONÓMICO</h2></div>
+				<div class="image-ads economic-tiny"></div>
+				<!--
+				<p class="text">Desde</p>
+				<p class="text-big">$<?php echo number_format($this->productos['economicos']['0']['valor'],0)?></p>
+				<div class="box"><p class="title text-medium">Su aviso Web con ubicación Preferencial</p><p>También publíquelo el día domingo en la sección:</p></div>
+				<p class="text-benefits"><span>Beneficios</span></p>
+				<ul class="check-list"  itemprop="description">
+					 <li><span class="icon-check"></span><b>CLASIFICADOS</b> (por palabras) del Suplemento <b>AquiEmpleos</b> del diario <b>La Prensa</b> y del diario <b>El trome (El Talán).</b></li>
+				</ul>
+				<a  itemprop="url" href="<?= SITE_URL ?>/empresa/publica-aviso/paso1" class="btn btn-primary medium">Publicar Aviso Económico</a>
+				-->
+		  </div>
+
+		  <div class="choose-ads orange"  itemscope itemtype="http://schema.org/Product">
+				<div class="title-ads"><h2 class="title-big" itemprop="name">AVISO PREFERENCIAL</h2></div>
+				<div class="image-ads preference-tiny"></div>
+				<!--
+				<p class="text">Desde</p>
+				<p class="text-big">$<?php echo number_format($this->productos['preferencial']['0']['valor'],0)?></p>
+				<div class="box"><p class="title text-medium">Su aviso Web con ubicación Preferencial</p><p>También publíquelo el día domingo en la sección:</p></div>
+				<p class="text-benefits"><span>Beneficios</span></p>
+				<ul class="check-list"  itemprop="description">
+					 <li><span class="icon-check"></span><b>PREFERENCIALES</b> del Suplemento <b>AquiEmpleos</b> del diario <b>La Prensa</b> y del diario <b>El trome (El Talán).</b></li>
+				</ul>
+				<a  itemprop="url" href="<?= SITE_URL ?>/empresa/publica-aviso-preferencial/paso1" class="btn btn-primary medium">Publicar Aviso Preferencial</a>
+				-->
+		  </div>
+
+		  <div class="choose-ads" itemscope itemtype="http://schema.org/Product">
+				<div class="title-ads"><h2 class="title-big" itemprop="name">MEMBRESÍA ANUAL</h2></div>
+				<div class="image-ads memeber-year"></div>
+				<p class="text">Proximamente</p>
+				<!--
+				<p class="text">&nbsp;</p>
+				<p class="text-big">Ilimitados</p>
+				<div class="box">Para mayor información <p class="text-medium bold">311-6707 Opción 3</p><p>Con un plan de membresía anual puedes acceder a los siguientes beneficios:</p></div>
+				<p class="text-benefits"><span>Beneficios</span></p>
+				<ul class="check-list"  itemprop="description">
+					 <li><span class="icon-check"></span>Acceso a la base de datos de CVs.</li>
+					 <li><span class="icon-check"></span>Ubicación preferencial del aviso web.</li>
+					 <li><span class="icon-check"></span>Carpetas de CVs.</li>
+					 <li><span class="icon-check"></span>Aplicación "Trabaje con Nosotros" desde tu web.</li>
+					 <li><span class="icon-check"></span>Evaluaciones en línea AquiEmpleos.Match.</li>
+					 <li><span class="icon-check"></span>Descuentos en Avisos Impresos.</li>
+					 <li><span class="icon-check"></span>Avisos impresos "MARCA EMPLEADOR" gratuitos.</li>
+					 <li><span class="icon-check"></span>Diseños de avisos impresos desde la web.</li>
+					 <li><span class="icon-check"></span>Reportes con los datos del postulante.</li>
+
+				</ul>
+				<a  itemprop="url" href="<?= SITE_URL ?>/empresa/home/membresia-anual" class="btn btn-primary medium">Ver Planes de Membresía</a>
+				-->
+		  </div>
+	 </div>
+</div>

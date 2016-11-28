@@ -1,0 +1,41 @@
+<?= $this->partial('_partials/_navigation.phtml',
+    array('menu_sel' => $this->menu_sel, 'isAuth' => $this->isAuth))
+?>
+<?= $this->partial('mi-cuenta/_sec-menu.phtml',
+    array('menu_post_sel' => $this->menu_post_sel))
+?>
+<div id="wrapper" class="row">
+    <?=$this->partial('_partials/_messages.phtml',array("flashMessages"=>$this->flashMessages))?>
+    <h2>Subir mi CV</h2>
+    <form action="" method="post" id="cvF" enctype="multipart/form-data" onsubmit="return false;">
+        <div class="wrap-controls" style="position: relative">
+            <div class="cgroup-inline m0">
+                <div class="control-group">
+                    <label for="txtRuc" class="control-label">CV Personalizado:</label>
+                </div>
+                <div class="control-group">
+                    <?= $this->frm->path_cv->setAttribs(array(
+                        'id' => 'pCV', 'name' => 'path_cv',
+                        'value' => 'Examinar'))->renderFile();
+                    ?>
+                    <input type="hidden" id="hidGaq" value="<?= $this->usuario->id ?>">
+                    <p class="txt_small">Tamaño máximo del archivo 2MB</p>
+                </div>
+                <div class="control-group">
+                    <p class="response"><?
+                    if ($this->frm->path_cv->hasErrors()) {
+                        foreach ($this->frm->path_cv->getMessages() as $error) {
+                            echo $error . "<br>";
+                        }
+                    }
+                    ?></p>
+                </div>
+            </div>
+            <div class="message_upcv row <?= ($this->path_cv != "")?'': 'hide' ?>">
+                <span>Ya cuentas con un una versión de tu CV <a class="icon_doc" target="_blank" href="<?= ($this->path_cv != "")? ELEMENTS_URL_CVS . $this->path_cv : '' ?>" title="Descargar cv"></a></span>
+                <button id="deleteCvP" class="btn btn-default mL20" type="button"> Eliminar</button>
+            </div>
+        </div>
+    </form>
+</div>
+

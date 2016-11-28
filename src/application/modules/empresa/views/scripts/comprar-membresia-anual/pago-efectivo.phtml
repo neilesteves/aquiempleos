@@ -1,0 +1,53 @@
+<nav class="cont-menu row">
+    <br>
+</nav>
+<div id="wrapper" class="row">
+    <div class="head-title row">
+        <ul class="steps">
+            <li>Escoge<br>Membresía<span></span></li>
+            <li class="act">Verifica<br> tus datos<span></span></li>
+        </ul>
+        <div class="title-step">
+            <div class="legend">
+                <?php
+                    if (substr($this->rol, 0, 5) != Application_Form_Login::ROL_ADMIN) :
+                    ?>
+                    <a href="<?php
+                    echo $this->url(array(
+                        'module' => 'empresa', 'controller' => 'mi-cuenta', 'action' => 'index'),
+                        false, true)
+                    ?>">Inicio</a> »
+                   <?php else : ?>
+                    <a href="<?php
+                    echo $this->url(array(
+                        'module' => 'admin', 'controller' => 'gestion', 'action' => 'index'),
+                        false, true)
+                    ?>">Inicio</a> »
+                   <?php endif; ?>
+                <span class="noLink">Membresía web</span>
+
+            </div>
+            <h2>Pague su Membresía Web</h2>
+        </div>
+    </div>
+
+    <?=
+    $this->partial('_partials/_messages.phtml',
+        array("flashMessages" => $this->flashMessages))
+    ?>
+
+
+    <div class="gridIStepEmp" class="all">
+        <?=
+        $this->partial('_partials/_voucher_pago_efectivo_membresia.phtml',
+            array(
+            "cip" =>$this->membresia["cip"],
+            "membresia" => $this->membresia,
+            "fhCierre" => $this->fhCierre,
+            "moneda" => $this->moneda,
+            "igv" => $this->igv
+            )
+        )
+        ?>
+    </div>
+</div>

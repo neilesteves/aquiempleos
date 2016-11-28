@@ -1,0 +1,79 @@
+<?php 
+$ind = (isset($this->indice)) ? $this->indice : 'blank';
+?>
+<div id="e<?php echo $ind ?>_expeN" class="skillN" rol="<?= $this->form->id_estudio!=null? ( $this->form->id_estudio->getValue()==''? '-1':$this->form->id_estudio->getValue() ):'-1';?>" >			
+	<div id="e<?php echo $ind ?>_expTDiv" class="expTDiv">
+	<?php if ($this->totalEstudio > 1 || isset($this->isEditar)) { ?>
+	<blockquote class="addReg">
+		<span class="wCount left">
+			<span class="countN"><?php echo $ind + 1; ?></span>
+		</span>
+		<span class="wJob left">
+			<span class="jobReg bold"><?=$this->escape($this->form->id_nivel_estudio->getMultiOption($this->form->id_nivel_estudio->getValue())); ?></span>
+			<?php if ($this->form->id_nivel_estudio->getValue() != 1 && $this->form->id_nivel_estudio->getValue() != 2 && $this->form->id_nivel_estudio->getValue() != 3) : ?>
+			en 
+			<span class="eJob bold"><?=$this->escape($this->form->id_carrera->getMultiOption($this->form->id_carrera->getValue())); ?></span>
+			<?php endif; ?>
+		</span>
+		<a href="#Editar" class="editB hide" title="Editar"><span class="sEditB f11">Editar</span></a>
+		<?php if (isset($this->form->id_estudio)) : ?>
+		<?php $value = $this->form->id_estudio->getValue(); ?>
+		<?php endif; ?>
+		<a rel="#e<?php echo $ind ?>_expeN" rol="#winAlert" href="#winAlert" class="deleteB winAlertM<?=isset($value)?' eliminarItemEmp':''?>" title="¿Está seguro que desea eliminar el estudio seleccionado?"><span class="sDeleteB f11">Eliminar</span></a>
+	</blockquote>
+	<?php } ?>
+	</div>
+	<?php $isError = $this->form->isErrors(); ?>
+	<div id="e<?php echo $ind ?>_fSkill" class="fSkill <?=(!$isError && ($this->totalEstudio > 1 || isset($this->isEditar)))?'hide':''?>" >
+		<div class="block" rel="sectionEst">
+			<label for="<?=$this->form->id_nivel_estudio->getAttrib('id')?>" class="labelN"> Nivel:</label>
+				<?php $hasError = $this->form->id_nivel_estudio->hasErrors(); ?>
+				<?php if (!$hasError && isset($this->isEstudio)) { ?>
+				<?=$this->form->id_nivel_estudio->setAttribs(array('class'=>'selectN left selectEstR selectReq ready'))->renderViewHelper(); ?>
+				<?php } else { ?>
+				<?=$this->form->id_nivel_estudio->setAttribs(array('class'=>'selectN left selectEstR selectReq'))->renderViewHelper(); ?>
+				<?php } ?>
+			<span class="response def cGray left<?=$hasError?' bad':''?>"><?=$hasError?$this->form->id_nivel_estudio->errMsg:''?></span>
+		</div>
+		
+		<div class="block selectCar" rel="sectionEst">
+			<label for="<?=$this->form->id_tipo_carrera->getAttrib('id')?>" class="labelN"> Tipo de Carrera:</label>
+				<?php $hasError = $this->form->id_tipo_carrera->hasErrors(); ?>
+				<?php if (!$hasError && isset($this->isEstudio)) { ?>
+    			<?=$this->form->id_tipo_carrera->setAttribs(array('class'=>'fNiv selectN tipoCarreraN left selectEstH selectReq ready'))->renderViewHelper(); ?>
+    			<?php } else { ?>
+    			<?=$this->form->id_tipo_carrera->setAttribs(array('class'=>'fNiv selectN tipoCarreraN left selectEstH selectReq'))->renderViewHelper(); ?>
+    			<?php } ?>
+				<span class="response def cGray left<?=$hasError?' bad':''?>"><?=$hasError?$this->form->id_tipo_carrera->errMsg:''?></span>
+		</div>
+		
+		<div class="block selectCar" rel="sectionEst">
+			<label for="<?=$this->form->id_carrera->getAttrib('id')?>" class="labelN"> Carrera:</label>
+				<?php $hasError = $this->form->id_carrera->hasErrors(); ?>
+				<?php if (!$hasError && isset($this->isEstudio)) { ?>
+    			<?=$this->form->id_carrera->setAttribs(array('class'=>'fNiv selectN left selectEstH selectReq ready'))->renderViewHelper(); ?>
+    			<?php } else { ?>
+    			<?=$this->form->id_carrera->setAttribs(array('class'=>'fNiv selectN left selectEstH selectReq'))->renderViewHelper(); ?>
+    			<?php } ?>
+				<span class="response def cGray left<?=$hasError?' bad':''?>"><?=$hasError?$this->form->id_carrera->errMsg:''?></span>
+		</div>
+                <div class="<?=$this->form->id_carrera->getAttrib('id')?> hide" rel="sectionEst">
+           <?
+             if(!isset($this->isEditar) ):?>
+            <label for="<?= $this->form->otra_carrera->getAttrib('id') ?>" class="labelN">
+                <span class="req" title="Requerido">*</span> Otra carrera :</label>
+            <?php $hasError = $this->form->otra_carrera->hasErrors(); ?>
+            <?php if (!$hasError && isset($this->isEstudio) && $this->totalEstudio > 0) { ?>
+                <?= $this->form->otra_carrera->setAttribs(array('class' => 'inputN other_career left inputReq ready', 'disable' => ($condicion) ? '' : 'disable'))->renderViewHelper(); ?>
+            <?php } else { ?>
+                <?= $this->form->otra_carrera->setAttribs(array('class' => 'inputN other_career left inputReq', 'disable' => ($condicion) ? '' : 'disable'))->renderViewHelper(); ?>
+            <?php } ?>
+            <span class="response def cGray left<?= $hasError ? ' bad' : '' ?>"><?= $hasError ? $this->form->otra_carrera->errMsg : '' ?></span>
+            <?endif;?>
+        </div>
+		<div class="hide">
+		<?=$this->form->id_estudio;?>
+		</div>
+	</div>
+</div>
+

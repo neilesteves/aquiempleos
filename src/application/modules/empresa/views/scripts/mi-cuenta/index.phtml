@@ -1,0 +1,161 @@
+<?=
+$this->partial('_partials/_navigation.phtml',
+	 array('menu_sel' => $this->menu_sel, 'isAuth' => $this->isAuth))
+?>
+<?=
+$this->partial('mi-cuenta/_sec-menu.phtml',
+	 array('menu_post_sel' => $this->menu_post_sel, "tieneBuscador" => $this->tieneBuscadorEMPLEOBUSCO,
+		  'tieneBolsaCVs' => $this->tieneBolsaCVs ,'Look_Feel'=>$this->Look_Feel))
+?>
+<div id="wrapper" class="row">
+	 <?=
+	 $this->partial('_partials/_messages.phtml',
+		  array("flashMessages" => $this->flashMessages))
+	 ?>
+	 <div class="centerMC ieEmpDash" id="dashMC">
+		  <div class="dashboardMC left heightDMEP">
+				<h6 class="black-title small">Mis Procesos</h6>
+				<div class="iDashMC iDashMCEM r5B bLBlue">
+					 <div class="hightColEM">
+						  <?php
+						  if (count($this->postulaciones) != 0) {
+								?>
+								<ul class="listDMC all mB20">
+									 <?php foreach ($this->postulaciones as $index => $x): ?>
+										  <?php if ($this->nprocesos != $index) : ?>
+												<li class="itemDMC"><a title="<?=(strlen($x["puesto"]) < $this->ncaracteres) ? '' : $x["puesto"] ?>"
+												  href="<?=$this->url(array( 'module' => 'empresa', 'controller' => 'mis-procesos', 'action' => 'ver-proceso', 'id' => $x["id"]),"default", true); ?>">
+												  <?=(strlen($x["puesto"])< $this->ncaracteres)? utf8_decode($x["puesto"]) : mb_substr($x["puesto"],0,$this->ncaracteres,'UTF-8'). '...'?></a>
+													 <span class="c6 emRel">(<?=
+														  $x["nnuevos"] != null ? $x["nnuevos"]
+																	 : 0;
+														  ?> nuevos)</span>
+													 <span class="emBlock enumDMC alignR txtEnfasis right">Total <?=
+														  ($x["ntotal"] != null) ? $x["ntotal"]
+																	 : 0
+														  ?></span>
+												</li>
+												<?php
+													 else : break;
+												  endif;
+										  ?>
+									 <?php endforeach; ?>
+								</ul>
+						  <?php } else { ?>
+								<div class="pTxtPubishAdv">
+									 <div class="txtPubA1">Actualmente no tiene procesos activos.</div>
+									 <div class="txtPubA2">
+										  Puede comenzar a <a href="<?=
+										  $this->url(array(
+												'module' => 'empresa',
+												'controller' => 'publica-aviso',
+												'action' => 'index'), "default", true)
+										  ?>">Publicar Avisos</a>. Por cada uno que registre se le creará un Proceso de Selección.
+									 </div>
+								</div>
+						  <?php } ?>
+					 </div>
+					 <div class="wrap-btn center">
+						  <?php
+						  if (count($this->postulaciones) != 0) {
+								?>
+								<a href="<?=
+								$this->url(array(
+									 'module' => 'empresa', 'controller' => 'mis-procesos',
+									 'action' => 'index'), "default", true)
+								?>" class="btn btn-primary" id="btnDashViewAll">Ver mis procesos</a>
+							  <?php } ?>
+					 </div>
+				</div>
+		  </div>
+		  <?php
+		  if ($this->verSugerenciaCandidatos == 1 && $this->tieneBuscadorEMPLEOBUSCO) {
+				?>
+
+				<div class="dashboardMC middleMC left heightDMEP">
+					 <h6 class="black-title small">Publicar un Aviso</h6>
+					 <div class="iDashMC iDashMCEM r5B bLBlue">
+						  <div class="hightColEM">
+								<div id="bgPublishAdv"><img src="<? echo $this->S('/images/empresa/imgDashEmp.jpg'); ?>" alt="Publicar aviso" /></div>
+								<div class="txtPubishAdv">
+									 <p class="pTxtPubishAdv">Al publicar un aviso tendrá la oportunidad de encontrar al candidato idóneo para su Proceso de Selección, a menos costo y en el menor tiempo.</p>
+								</div>
+						  </div>
+						  <div class="wrap-btn center">
+								<a href="<?=
+								$this->url(array(
+									 'module' => 'empresa', 'controller' => 'publica-aviso',
+									 'action' => 'index'), "default", true)
+								?>" class="btn btn-primary" id="btnDashPublish">Publicar Aviso</a>
+						  </div>
+					 </div>
+				</div>
+		  <?php } else { ?>
+				<div class="dashboardMC middleMC left heightDMEP">
+					 <h6 class="black-title small">Publicar un Aviso</h6>
+					 <div class="iDashMC iDashMCEM r5B bLBlue">
+						  <div class="hightColEM">
+								<div id="bgPublishAdv"><img src="<? echo $this->S('/images/empresa/imgDashEmp.jpg'); ?>" alt="Publicar aviso" /></div>
+								<div class="txtPubishAdv">
+									 <p class="pTxtPubishAdv box-text">Al publicar un aviso tendrá la oportunidad de encontrar al candidato idóneo para su Proceso de Selección, a menos costo y en el menor tiempo.</p>
+								</div>
+						  </div>
+						  <div class="wrap-btn center">
+								<a href="<?=
+								$this->url(array(
+									 'module' => 'empresa', 'controller' => 'publica-aviso',
+									 'action' => 'index'), "default", true)
+								?>" class="btn btn-primary" id="btnDashPublish">Publicar Aviso</a>
+						  </div>
+					 </div>
+				</div>
+		  <?php } ?>
+		  <div class="dashboardMC left heightDMEP">
+				<h6 class="black-title small">Beneficios AquiEmpleos</h6>
+				<div class="iDashMC iDashMCEM r5B bLBlue">
+					 <div>
+						  <div id="bgDashBoardMC">
+								<h6 class="titleDashTop">Buscar en AquiEmpleos</h6>
+								<? if ($this->tieneBuscadorEMPLEOBUSCO) : ?>
+									 <div class="pAllDashTop">
+										  <a href="<?="/empresa/buscador-EMPLEOBUSCO?token={$this->token}"
+										  /*$this->url(array(
+												'module' => 'empresa', 'controller' => 'buscador-AquiEmpleos',
+												'action' => 'index'), "default", true)*/
+										  ?>" class="aDashMiddle">Encuentre al<br/>candidato ideal</a>
+										  <p class="pDashMiddle">en nuestra base<br/>de datos AquiEmpleos.</p>
+										  <img class="imgDashM" src="<? echo $this->S('/images/empresa/lupaDashMiddle.png'); ?>" alt="EMPLEOBUSCO" />
+									 </div>
+								<? else : ?>
+									 <div class="pAllDashTop2">
+										  <div class="aDashMiddle">Encuentre al<br/>candidato ideal</div>
+										  <p class="pDashMiddle">en nuestra base<br/>de datos AquiEmpleos.</p>
+										  <img class="imgDashM" src="<? echo $this->S('/images/empresa/lupaDashMiddle2.png'); ?>" alt="EMPLEOBUSCO" />
+									 </div>
+								<? endif; ?>
+						  </div>
+						  <div id="bgDashBoardMC2">
+								<h6 class="titleDashTop">Carpetas de CVs</h6>
+								<? if ($this->tieneBolsaCVs) : ?>
+									 <div class="pAllDashTop">
+										  <a href="<?=
+										  $this->url(array(
+												'module' => 'empresa', 'controller' => 'bolsa-cvs',
+												'action' => 'index'), "default", true)
+										  ?>" class="aDashMiddle">Agrupe y Clasifique<br/>los CVs</a>
+										  <p class="pDashMiddle">de los candidatos<br/>potenciales para<br/>su empresa.</p>
+										  <img class="imgDashM imgTopM" src="<? echo $this->S('/images/empresa/folioDashM.png'); ?>" alt="EMPLEOBUSCO" />
+									 </div>
+								<? else : ?>
+									 <div class="pAllDashTop2">
+										  <div class="aDashMiddle">Agrupe y Clasifique<br/>los CVs</div>
+										  <p class="pDashMiddle">de los candidatos<br/>potenciales para<br/>su empresa.</p>
+										  <img class="imgDashM imgTopM" src="<? echo $this->S('/images/empresa/folioDashM2.png'); ?>" alt="EMPLEOBUSCO" />
+									 </div>
+								<? endif; ?>
+						  </div>
+					 </div>
+				</div>
+		  </div>
+	 </div>
+</div>

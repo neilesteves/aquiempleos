@@ -1,0 +1,13 @@
+
+    <?php foreach ($this->flashMessages as $msg) : ?>
+
+        <div class="hide flash-message <?=$msg->level ?>">
+            <div class="msgsTime msgYTIE">
+               <div class="contenidoFlashMessage <?=($msg->level=="success"?"msgYellow":(
+                               $msg->level=="info"?"msgBlue":(
+                               $msg->level=="error"?"msgRed":"")))?> mB10 r5">
+                <?=$this->escape($msg->message) ?>
+               </div>
+            </div>
+        </div>
+    <?php endforeach; ?>

@@ -1,0 +1,50 @@
+<div class="bgAll gridS20">
+  <div class="gridForm">
+    <div class="legend history legendFloat">    	
+    	<h2 id="titleRelF" class="titleInDB left mB0">Nuevo Testimonio</h2>
+    	<a href="/admin/gestion/testimonios/" class="f14 right" id="backToProcess">« Volver</a>
+    </div>
+    <div class="gridIFormEmp gridFullF">
+      <div id="innerMain" class="center">
+            <?php if(isset($this->mensajeSuperado)){
+                if(($this->mensajeSuperado != '') & ($this->mensajeSuperado > 0)) { ?>
+                  <div class="msgYellow">                      
+                      Sólo puede registrar <?= $this->testimoniosActivos ?> testimonios activos como máximo. 
+                      Si desea puede registrar uno nuevo con el estado inactivo. Si lo registra como activo, 
+                      éste tomará el lugar de aquel que ya tiene el orden indicado, dejando inactivo al testimonio afectado.
+                  </div>
+            <?php } } ?>
+        <div id="content" class="formRegister">
+          <div id="formReg">
+            <form action="/admin/testimonio/registrar-testimonio" method="post" id="datoBasicoF" enctype="multipart/form-data">
+                <div class="all">
+                    <fieldset class="blockField r2">
+                        <?= $this->partial(
+                            'testimonio/_form.phtml',
+                            'admin',
+                            array(
+                                'formRegistroTestimonio' => $this->formRegistroTestimonio,
+                                'numtestimonio' => $this->numtestimonio,
+                                'testimoniosActivos' => $this->testimoniosActivos,
+                                'maxcaracteres' => $this->maxcaracteres,
+                                'razonsocial' => $this->razonsocial,
+                                'action' => 'insert'
+                            )
+                        ); ?>
+                    </fieldset>
+                </div>
+                <div id="fieldsFootReg" class="all">               
+                	<p id="infoRelADM" class="txtReq left bold">Los datos con <span class="req">*</span> son obligatorios</p>
+                     <fieldset id="submOptAdm" class="btnSubmitAdm right send6 btnImg">
+                        <input type="submit" class="right active sptAdm winAlert" value="" id="fSubmit" rel="<?= $this->mensajeSuperado; ?>" />
+                        <div id="errorMsgRE" class="right error msgErrorDef"></div>
+                        <a href="#winAlertEliminarAdm" id="saveModal" class="winModal"></a><!-- winAlert  -->
+                     </fieldset>
+             	</div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

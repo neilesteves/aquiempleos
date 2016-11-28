@@ -1,0 +1,12 @@
+<?php
+if(!empty($this->beneficios)){?>
+	<div class="mB10"><b>Beneficios</b></div>
+	<ul>
+	<?php foreach ($this->beneficios as $key => $value) { ?>
+		<li><i class="icon icon_check"></i><span><?php echo $value['nombre']; ?></span></li>
+	<?php }?>
+	</ul>
+<?php
+}
+?>
+<input type="hidden" name="txtMontoMem" id="txtMontoMem" value="<?php echo $this->monto; ?>"></input>

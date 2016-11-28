@@ -1,0 +1,15 @@
+.text-no-encontrado{
+	font-weight: bold;
+	text-align: center;
+}
+.btn-home{
+	background: #2A5D99;
+	padding: 0.5em 1em;
+	text-align: center;
+}
+.btn-publicar, .btn-buscar{
+	background: #FEA203;
+	padding: 0.5em 1em;
+	float: right;
+	text-align: center;
+}

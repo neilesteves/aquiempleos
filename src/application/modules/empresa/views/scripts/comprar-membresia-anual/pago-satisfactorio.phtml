@@ -1,0 +1,39 @@
+<nav class="cont-menu row">
+    <br>
+</nav>
+<div id="wrapper" class="row">
+    <div class="head-title row">
+        <div class="title-step">
+            <div class="legend">
+                <?php
+                if (substr($this->rol, 0, 5) != Application_Form_Login::ROL_ADMIN) :
+                    ?>
+                    <a href="<?=SITE_URL?>">Inicio</a> »
+                   <?php else : ?>
+                    <a href="<?php
+                    echo $this->url(array(
+                        'module' => 'admin', 'controller' => 'gestion', 'action' => 'index'),
+                        false, true)
+                    ?>">Inicio</a> »
+                   <?php endif; ?>
+                <span class="noLink"><?=$this->textoMembresia?></span>
+            </div>
+        </div>
+    </div>
+    
+    <?=
+    $this->partial('_partials/_messages.phtml',
+        array("flashMessages" => $this->flashMessages))
+    ?>
+    
+    <?=
+    $this->partial('_partials/_pago_satisfactorioMembresia.phtml',
+        array(
+            'aw' => $this->compra, 
+            'tipoContrato' => $this->tipoContrato, 
+            'saldoFinal' => $this->saldoFinal,
+            'rol' => $this->auth["usuario"]->rol,
+            'moneda' => $this->moneda)
+        );
+    ?>
+</div>

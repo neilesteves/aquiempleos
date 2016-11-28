@@ -1,0 +1,28 @@
+<aside>
+  <?php if (!$this->dataperfil['postulante']['destacado']) { ?>
+<!--  <div class="aside_banner_highlights">
+      <a href="<?=$this->url(array('module'=>'postulante','controller'=>'home','action'=>'perfil-destacado'))?>">
+      <h2>Destácate entre todos los perfiles</h2><span class="btn btn_discover">Descubre cómo</span>
+      </a>
+  </div>-->
+  <?php } ?>  
+  <div class="banner">
+<!--      <div class="eplanning advertisement" data-section="Right1"></div>-->
+  </div>
+  <?php if (count($this->dataperfil['total_incompleto']) > 0) :?>
+  <div class="aside_list_highlights">
+    <h3> <span>Temas por completar</span><i class="shape_clip"></i></h3>
+    <ul>
+        <?php foreach ($this->dataperfil['total_incompleto'] as $value) { ?>
+            <li>
+                <a href="<?=$value['link'];?>"><small><?=$value['item'];?></small><i class="<?=$this->IcoPostulante($value['item'])?>"><span class="level_complete"><?=$value['porcentaje'];?>%</span></i></a>
+            </li>       
+        <?php  }?>
+    </ul>
+  </div>
+  <?php endif; ?>
+  <?php /*
+  <div class="aside_certified_highlights"><span></span>
+    <h3>Certifica tus conocimientos en idiomas e informática</h3>
+  </div>*/ ?>
+</aside>

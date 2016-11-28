@@ -1,0 +1,7 @@
+<? $active = "active"; ?>
+<ul id="navigation" class="gridS20">
+    <li class="home itemNav first<?=$this->menu_sel==App_Controller_Action_Postulante::MENU_INICIO?$active:''?>"><a class="btnH linkNav" href="<?=$this->url(array('module'=>'postulante','controller'=>'home','action'=>'index'),null,true)?>">Inicio</a></li>
+    <li class="jobPost itemNav<?=$this->menu_sel==App_Controller_Action_Postulante::MENU_AVISOS?$active:''?>"><a class="btnJ linkNav" href="<?=$this->url(array('module'=>'postulante','controller'=>'buscar','action'=>'index'),null,true)?>">Avisos de Empleo</a></li>
+    <li class="account itemNav<?=$this->menu_sel==App_Controller_Action_Postulante::MENU_MI_CUENTA?$active:''?>"><a class="btnA linkNav" href="<?=$this->url(array('module'=>'postulante','controller'=>'mi-cuenta','action'=>'index'),null,true)?>">Mi Cuenta</a></li>
+    <li class="whatis itemNav last<?=$this->menu_sel==App_Controller_Action_Postulante::MENU_QUE_ES_EMPLEOBUSCO?$active:''?>"><a class="btnW linkNav" href="<?=$this->url(array('module'=>'postulante','controller'=>'home','action'=>'que-es-EMPLEOBUSCO'),null,true)?>">¿ Que es AquiEmpleos ?</a></li>
+</ul>

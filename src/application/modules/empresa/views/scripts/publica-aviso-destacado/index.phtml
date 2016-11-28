@@ -1,0 +1,38 @@
+<nav class="cont-menu row">
+    <br>
+</nav>
+<div id="wrapper" class="row">
+    <div class="head-title row">
+        <ul class="steps">
+            <li class="act">Escoge<br> el Aviso<span></span></li>
+            <li>Datos<br> del Aviso<span></span></li>
+            <li>Aviso<br> Impreso<span></span></li>
+            <li>Verifica<br> tus datos<span></span></li>
+        </ul>
+        <div class="title-step">
+            <div class="legend">
+                <?php
+                if ($this->auth != null) {
+                    ?>
+                    <a href="<?php
+                    echo $this->url(array('module' => 'empresa',
+                        'controller' => 'mi-cuenta', 'action' => 'index'),
+                        false, true)
+                    ?>">Inicio</a> »
+                   <?php } else { ?>
+                    <a href="<?php
+                    echo $this->url(array(
+                        'module' => 'empresa', 'controller' => 'home', 'action' => 'index'),
+                        false, true)
+                    ?>">Inicio</a> »
+                   <?php } ?>
+                <span class="noLink">Paso 1 - Elija su aviso</span>
+            </div>
+            <h1>Elija su aviso</h1>
+        </div>
+    </div>
+    <?php
+    echo $this->partial('publica-aviso/_paso1a.phtml', 'empresa',
+        array('republica' => $this->republica, 'extiende' => $this->extiende,'moneda'=>$this->moneda));
+    ?>
+</div>

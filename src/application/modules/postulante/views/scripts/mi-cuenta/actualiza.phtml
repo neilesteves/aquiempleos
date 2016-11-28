@@ -1,0 +1,239 @@
+<?=
+$this->partial('_partials/_navigation.phtml',
+	array('menu_sel' => $this->menu_sel))
+?>
+<div id="wrapper" class="row">
+	<?= $this->partial('_partials/_messages.phtml', array("flashMessages" => $this->flashMessages)) ?>
+	<div class="head-title row">
+		<ul class="steps">
+			<li>Tus<br> Datos<span></span></li>
+			<li class="act">Tu Perfil<br> Profesional<span></span></li>
+                        <li><br>¡Listo!<span></span></li>
+		</ul>
+		<div class="title-step">
+			<div class="legend">
+				<a href="<?=$this->url(array( 'controller' => 'home', 'action' => 'index'), false, true)?>">Inicio</a> » <span class="noLink">Actualización de datos del Postulante</span>
+			</div>
+			<h1>Actualiza los datos de tu Perfil profesional</h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="grids-300"><h2 class="title-big">Tu Perfil profesional</h2></div>
+		<div class="grids-300">&nbsp;</div>
+		<div class="grids-300"><p class="right bold">Los campos con <span class="req">*</span> son necesarios</p></div>
+	</div>
+	
+	<form action="" id="frmUpdate" enctype="multipart/form-data" method="post" class="wrap-register">
+		<?php $totalExperiencia = count($this->formExperiencia) - 1; ?>
+		<h3 class="blue-title"><span class="icon-tiny white down"></span>EXPERIENCIA
+			<span class="nSkillA"><?//=(isset($this->isExperiencia)) ? '(' . $totalExperiencia . ')': '' ?></span> 
+		</h3>
+		<div id="experienceF" class="frm-horizontal wrap-controls open" data-delete="/mi-cuenta/borrar-experiencia">
+            	<input type="hidden" name="managerExperiencia" class="delete_reference">
+			<ul class="wrap-skills<?= ($this->isExperiencia == true || !isset($this->isExperiencia)) ? '' : ' hide' ?>">
+				<?php $more = (count($this->formExperiencia) > 1) ? 'otra' : ''; ?>
+				<?php
+					$contador = 0;
+					foreach ($this->formExperiencia as $indExp => $formExperiencia) {
+						echo $this->partial('registro/_experiencia_paso2.phtml', 'postulante', array(
+							'form' => $formExperiencia,
+							'manager' => $this->managerExperiencia,
+							'indice' => $indExp,
+							'index' => $indExp,
+							'total' => $totalExperiencia,
+                                                        'moneda' => $this->moneda,
+							'isLinkedin' => (Count($this->formExperiencia) - 1) == $contador ? null : $this->isLinkedin,
+							'isExperiencia' => (Count($this->formExperiencia) - 1) == $contador ? false : $this->isExperiencia,
+							'idPostulante' => $this->idPostulante)
+						);
+						$contador++;
+					}
+				?>                        
+			</ul>
+			<div class="wrap-btn right">
+				<span class="response bad hide"></span>
+				<button id="btnExperience" type="button" class="btn btn-default" data-more="Añadir otra experiencia">Añadir <?=$more?> experiencia</button>
+			</div>
+		</div>
+
+
+		<?php $totalEstudio = count($this->formEstudio) - 1; ?>
+		<h3 class="blue-title"><span class="icon-tiny white down"></span>ESTUDIOS 
+			<span class="nSkillA"><?//=(isset($this->isEstudio)) ? '(' . $totalEstudio . ')': ''?></span> 
+		</h3>
+		<div id="studyF" class="frm-horizontal wrap-controls open" data-delete="/mi-cuenta/borrar-estudio">
+            	<input type="hidden" name="managerEstudio" class="delete_reference">
+			<ul class="wrap-skills<?= ($this->isEstudio == true || !isset($this->isEstudio)) ? '' : ' hide' ?>">
+				<?php
+					$contador = 0;
+					foreach ($this->formEstudio as $indEst => $formEstudio) {
+						echo $this->partial('registro/_estudio_paso2.phtml', 'postulante', array(
+							'form' => $formEstudio,
+							'manager' => $this->managerEstudio,
+							'indice' => $indEst,
+							'total' => $totalEstudio,
+							'isLinkedin' => (Count($this->formEstudio) - 1) == $contador ? null : $this->isLinkedin,
+							'isEstudio' => (Count($this->formEstudio) - 1) == $contador ? false : $this->isEstudio,
+							'idPostulante' => $this->idPostulante)
+						);
+						$contador++;
+					}
+				?>
+			</ul>
+			<div class="wrap-btn right">
+				<span class="message bad hide"></span>
+				<button id="btnStudy" type="button" class="btn btn-default" data-default="Añadir estudio">Añadir <?=$more?> estudio</button>
+			</div>
+		</div>
+
+
+
+		<?php $totalOtroEstudio = count($this->formOtroEstudio) - 1; ?>
+		<h3 class="blue-title"><span class="icon-tiny white up"></span>OTROS ESTUDIOS (opcional) 
+			<span class="nSkillA"></span> 
+		</h3>
+		<div id="studyOtherF" class="frm-horizontal wrap-controls<?= ($this->isOtroEstudio === false ? ' open' : ' close') ?>" data-delete="/mi-cuenta/borrar-estudio">
+			<ul class="wrap-skills">
+				<?php $more = (count($this->formOtroEstudio) > 1) ? 'otro' : ''; ?>
+				<?php 
+				$contador = 0; 
+				foreach ($this->formOtroEstudio as $indEst => $formOtroEstudio) : ?>
+					<?php 
+					echo $this->partial('registro/_otro_estudio_paso2.phtml','postulante',
+						array('form' => $formOtroEstudio
+						, 'manager' => $this->managerOtroEstudio
+						, 'indice' => $indEst
+						, 'total' => $totalOtroEstudio
+						, 'isOtroEstudio' => (Count($this->formOtroEstudio) - 1) == $contador ? true : $this->isOtroEstudio
+						, 'idPostulante' => $this->idPostulante));
+					$contador++;
+					?>
+				<?php endforeach; ?>
+			</ul>
+			<div class="wrap-btn right">
+				<span class="response bad hide"></span>
+				<button type="button" class="btn btn-default" data-default="Añadir estudio">Añadir <?=$more?> estudio</button>
+			</div>
+		</div>
+
+
+		<?php $totalIdioma = count($this->formIdioma) - 1; ?>
+		<h3 class="blue-title"><span class="icon-tiny white up"></span>IDIOMAS (opcional)
+			<span class="nSkillA"><?//=(isset($this->isIdioma)) ? '(' . $totalIdioma . ')' : '' ?></span> 
+		</h3>
+		<div id="languagesF" class="frm-horizontal wrap-controls<?= ($this->isIdioma === false ? ' open' : ' close') ?>" data-delete="/mi-cuenta/borrar-idioma">
+            	<input type="hidden" name="managerIdioma" class="delete_reference">
+			<ul class="wrap-skills">
+				<?php
+					$contador = 0;
+					foreach ($this->formIdioma as $indIdi => $formIdioma) {
+						echo $this->partial('registro/_idioma_paso2.phtml', 'postulante', array(
+							'form' => $formIdioma,
+							'manager' => $this->managerIdioma,
+							'indice' => $indIdi,
+							'total' => $totalIdioma,
+							'isLinkedin' => (Count($this->formIdioma) - 1) == $contador ? null : $this->isLinkedin,
+							'isIdioma' => (Count($this->formIdioma) - 1) == $contador ? true : $this->isIdioma,
+							'idPostulante' => $this->idPostulante)
+						);
+						$contador++;
+					}
+				?>
+			</ul>
+			<div class="wrap-btn right">
+				<span class="response bad hide"></span>
+				<button type="button" class="btn btn-default" data-default="Añadir idioma">Añadir <?=$more?> idioma</button>
+			</div>
+		</div>
+
+
+
+		<?php $totalPrograma = count($this->formPrograma) - 1; ?>
+		<h3 class="blue-title"><span class="icon-tiny white up"></span>PROGRAMAS DE COMPUTADORA (opcional)
+			<span class="nSkillA"><?//=(isset($this->isPrograma)) ? '(' . $totalPrograma . ')' : ''?></span> 
+		</h3>
+		<div id="programsF" class="frm-horizontal wrap-controls<?= ($this->isPrograma === false ? ' open' : ' close') ?>" data-delete="/mi-cuenta/borrar-programa">
+            	<input type="hidden" name="managerPrograma" class="delete_reference">
+			<ul class="wrap-skills">
+				<?php
+					$contador = 0;
+					foreach ($this->formPrograma as $indProg => $formPrograma) {
+						echo $this->partial('registro/_programa_paso2.phtml', 'postulante', array(
+							'form' => $formPrograma,
+							'manager' => $this->managerPrograma,
+							'indice' => $indProg,
+							'total' => $totalPrograma,
+							'isPrograma' => (Count($this->formPrograma) - 1) == $contador ? true : $this->isPrograma,
+							'idPostulante' => $this->idPostulante)
+						);
+						$contador++;
+					}
+				?>
+			</ul>
+			<div class="wrap-btn right">
+				<span class="response bad hide"></span>
+				<button type="button" class="btn btn-default" data-default="Añadir programa">Añadir <?=$more?> programa</button>
+			</div>
+		</div>
+
+
+		<h3 class="blue-title"><span class="icon-tiny white up"></span>SUBE TU CV</h3>
+		<div id="cvF" class="close">
+			<div class="wrap-controls">
+				<div class="cgroup-inline m0">
+					<div class="control-group">
+						<label for="txtRuc" class="control-label">CV Personalizado:</label>
+					</div>
+					<div class="control-group">
+						<input type="hidden" name="MAX_FILE_SIZE" value="2097152" id="MAX_FILE_SIZE" />
+						<input type="file" name="path_cv" id="pCV" errMsg="El archivo es incorrecto" /> 
+						<input type="hidden" id="hidGaq" value="<?= $this->usuario->id ?>">
+						<p class="txt_small">Tamaño máximo del archivo 2MB</p>
+					</div>
+					<div class="control-group">
+						<p class="response"></p>
+					</div>
+				</div>
+				<div class="message_upcv row <?= ((int) $this->cv > 0)?'': 'hide' ?>">
+					<span>Ya cuentas con un una versión de tu CV <a class="icon_doc" target="_blank" href="<?= ($this->path_cv != "")? ELEMENTS_URL_CVS . $this->path_cv : '' ?>" title="Descargar cv"></a></span>
+					<button id="deleteCvP" class="btn btn-default mL20" type="button"> Eliminar</button>
+				</div>
+			</div>
+		</div>
+
+
+		<fieldset id="checksOpt" class="bgDOptChk">
+				<?php
+				echo $this->partial('registro/_alertas_paso2.phtml',
+					array('formAlertas' => $this->formAlertas));
+				?>
+		</fieldset>
+		<div class="wrap-btn right">
+			<span id="spanResponse" class="response bad hide"></span>
+            <a href="/registro/paso1-modificar" class="btn btn-default input-small">Regresar</a>
+			<button class="btn btn-primary input-xsmall" type="submit">Grabar</button>
+		</div>
+	</form>
+
+</div>
+
+<script id="tplExperience" type="text/template">
+	<?= $this->partial('registro/_experiencia_paso2.phtml', 'postulante', array('form' => $this->managerExperiencia->getForm('blank'),'moneda'=>$this->moneda));
+	?>
+</script>
+<script id="tplStudy" type="text/template">
+	<?= $this->partial('registro/_estudio_paso2.phtml', 'postulante', array('form' => $this->managerEstudio->getForm('blank')));
+	?>
+</script>
+<script id="tplStudyOther" type="text/template">
+	<?= $this->partial('registro/_otro_estudio_paso2.phtml' , 'postulante', array('form' => $this->managerOtroEstudio->getForm('blank')));
+	?>
+</script>
+<script id="tplLanguage" type="text/template">
+	<?= $this->partial('registro/_idioma_paso2.phtml' , 'postulante', array('form' => $this->managerIdioma->getForm('blank')));
+	?>
+</script>
+<script id="tplPrograms" type="text/template">
+	<?= $this->partial('registro/_programa_paso2.phtml' , 'postulante', array('form' => $this->managerPrograma->getForm('blank')));
+	?>
+</script>

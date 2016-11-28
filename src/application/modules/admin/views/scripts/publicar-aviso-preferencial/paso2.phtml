@@ -1,0 +1,108 @@
+<div class="bgAll gridS20">
+    <div class="gridForm">
+        <div class="legend">
+            <a href="<?= $this->url(array('module' => 'admin', 'controller' => 'gestion', 'action' => 'index'), false, true) ?>">Inicio</a> » <span class="noLink">Paso 2 - Ingrese el Perfil del puesto</span>
+        </div>
+        <h1 class="titleOrig">Ingrese el perfil del puesto</h1>
+        <blockquote id="modStepsForm"><img src="<?= $this->S('/images/empresa/avisoPaso2.jpg'); ?>" alt="Paso 2" /></blockquote>
+        <?= $this->partial('_partials/_messages.phtml', array("flashMessages" => $this->flashMessages)) ?>
+
+        <?php if ($this->dataPosicion['data'] != null) : ?>
+            <div class="flash-message success msgVisible">
+                <div class="msgsTime msgYTIE">
+                   	<div class="contenidoFlashMessage msgYellow mB10 r5">
+                        Su aviso se guardó correctamente. Tiene grabados <span><?= $this->dataPosicion['totalReady'] ?></span> de <span><?= $this->maximoAnuncios ?></span> avisos. Si desea terminar de ingresar perfiles ahora, seleccione 
+                        <a class="anclaNextP3" href="<?= $this->url(array('module' => 'admin', 'controller' => 'publicar-aviso-preferencial', 'action' => 'paso3', 'impreso' => $this->dataPosicion['anuncioImpreso']), false, true) ?>">Ir a completar aviso impreso</a>               
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <div class="gridIFormEmp resG">
+            <div id="innerMain">
+                <div id="content" class="formRegister">
+                    <div id="cntEmpRelF">
+                        <h2 id="titleRelF" class="titleInDB left mB0">Datos del puesto</h2>
+                        <p id="infoRelF" class="alignR txtReq right bold">Los campos con <span class="req">*</span> son necesarios</p>
+                    </div>
+                    <div class="cntPagerAP">
+                        <p class="f14 cntPuestosW">Puestos</p>
+                        <p class="pTextAPW">(Para ingresar un nuevo puesto debe haber completado los anteriores)</p>
+                        <div class="allDivAPP">
+                            <?= $this->ListaPreferencial('listPagerAP1', $this->maximoAnuncios, $this->dataPosicion) ?>
+                            <div id="btnsDivAP">
+                                <!--
+                                <h3 class="left titlePagerM">Rellene los datos del Puesto Número <span><?= $this->dataPosicion['current'] ?></span> </h3>
+                                -->
+                                <?php if (isset($this->avisoWebId)) : ?>
+                                    <a id="btnDeleteP" class="btnPink right btnSptEmp" href="<?= $this->url(array('module' => 'admin', 'controller' => 'publicar-aviso-preferencial', 'action' => 'eliminar-aviso', 'aviso' => $this->avisoWebId), false, true) ?>">
+                                        Eliminar
+                                    </a>
+                                    <?php if ($this->dataPosicion['totalReady'] < $this->maximoAnuncios) : ?>
+                                        <a id="btnDuplicarP" class="btnPink right btnSptEmp" href="<?= $this->url(array('module' => 'admin', 'controller' => 'publicar-aviso-preferencial', 'action' => 'duplicar-aviso', 'aviso' => $this->avisoWebId), false, true) ?>">
+                                            Duplicar puesto
+                                        </a>
+                                    <?php endif; ?>
+                                <?php else: ?>
+                                    <a id="btnClearAP" class="btnPink right btnSptEmp" href="#">
+                                        Limpiar
+                                    </a>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <form action="" id="frmPublishAd" method="post" class="noBgLineR">
+                        <?php
+                        echo $this->partial('_partials/_paso2_aviso.phtml', 'empresa', array(
+                            'form' => $this->form, 'isDato' => $this->isDato,
+                            'modulo' => $this->modulo,
+                            'nombreComercial' => $this->nombreComercial,
+                            'formEstudio' => $this->formEstudio, 'managerEstudio' => $this->managerEstudio, 'isEstudio' => $this->isEstudio, 'isEditarEstudio' => $this->isEditarEstudio,
+                            'formOtroEstudio' => $this->formOtroEstudio, 'managerOtroEstudio' => $this->managerOtroEstudio, 'isOtroEstudio' => $this->isOtroEstudio, 'isEditarOtroEstudio' => $this->isEditarOtroEstudio,
+                            'formExperiencia' => $this->formExperiencia, 'managerExperiencia' => $this->managerExperiencia, 'isExperiencia' => $this->isExperiencia, 'isEditarExperiencia' => $this->isEditarExperiencia,
+                            'formIdioma' => $this->formIdioma, 'managerIdioma' => $this->managerIdioma, 'isIdioma' => $this->isIdioma, 'isEditarIdioma' => $this->isEditarIdioma,
+                            'formPrograma' => $this->formPrograma, 'managerPrograma' => $this->managerPrograma, 'isPrograma' => $this->isPrograma, 'isEditarPrograma' => $this->isEditarPrograma,
+                            'formPregunta' => $this->formPregunta, 'managerPregunta' => $this->managerPregunta, 'isPregunta' => $this->isPregunta, 'isEditarPregunta' => $this->isEditarPregunta, 'frmUbigeo' => $this->frmUbigeo
+                                )
+                        );
+                        ?>
+
+                        <!-- navegacion -->
+                        <div class="cntPagerAP2">
+                            <p class="f14 cntPuestosW">Puestos</p>
+                            <p class="pTextAPW">(Para ingresar un nuevo puesto debe haber completado los anteriores)</p>
+                            <?= $this->ListaPreferencial('listPagerAP2', $this->maximoAnuncios, $this->dataPosicion) ?>
+                            <input id="btnSubmitFFP" type="submit" value="Aceptar" class="btnPink savePAPV right btnSptEmp"/>
+                        </div>    
+                        <!-- /navegacion -->
+
+                        <fieldset class="asideAds send6 btnImg alignR all">
+                            <?php if ($this->dataPosicion['data'] != null) : ?>
+                                <a href="<?= $this->url(array('module' => 'admin', 'controller' => 'publicar-aviso-preferencial', 'action' => 'paso3', 'impreso' => $this->dataPosicion['anuncioImpreso']), false, true) ?>" id="aSetep2" class="tooltipApt btn btn-primary btnSptEmp right btnPaso3AP" title="Siguiente Paso">Guardar y Continuar</a>
+                            <?php endif; ?>
+                            <a href="#escapeFormAP" id="backEmpP1" class="btnGrey right btnSptEmp winModal">Regresar</a>
+                            <!--a href="/empresa/publica-aviso-preferencial/paso1" id="backEmpP1" class="sptEmp right btnSptEmp"><span class="hide">Regresar</span></a-->
+                            <span id="msgErrorStep2" class="right error"></span>
+                            <input type="hidden" name="redirctGua" value="" id="redirctGua" />
+                        </fieldset>
+                    </form>
+                    <?php
+                    echo $this->partial('_partials/_paso2_aviso_blank.phtml', 'empresa', array(
+                        'managerEstudio' => $this->managerEstudio,
+                        'managerOtroEstudio' => $this->managerOtroEstudio,
+                        'managerExperiencia' => $this->managerExperiencia,
+                        'managerIdioma' => $this->managerIdioma,
+                        'managerPrograma' => $this->managerPrograma,
+                        'managerPregunta' => $this->managerPregunta,
+                            )
+                    );
+                    ?>
+
+                </div>
+            </div>
+        </div>
+        <a id="linkBtnFPaso" href="#escapeFormPaso" class="winModal"></a>
+    </div>
+</div>
+

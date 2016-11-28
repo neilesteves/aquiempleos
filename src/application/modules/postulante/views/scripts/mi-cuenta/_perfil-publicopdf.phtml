@@ -1,0 +1,323 @@
+<?php
+$leng = strlen($this->postulante['estado_civil']);
+$tieneReferidos = false;
+if(!empty($this->postulante['path_foto'])) {
+    $fotoPostulante = ELEMENTS_URL_IMG . $this->postulante['path_foto'];
+} else {
+    $fotoPostulante = $this->S('/images/profile-default.jpg');
+}
+if(count($this->experiencias) > 0) {
+    foreach ($this->experiencias as $it) {
+        if(isset($it['referencias']) && count($it['referencias'])) {
+            $tieneReferidos = true;
+            break;
+        }
+    }
+}
+?>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+</head>
+<body>
+<section class="profile_wrapper" id="print_page">
+    <div class="center_box"> 
+        <div class="content_body profile_detail_wrapper">
+            <form id="frmRegisterComplete" autocomplete="off" class="type1 form_registration">
+                <div class="actions_cv_wrapper">
+                    <div class="form_box center_image">
+                        <div class="content_accordion personal_data_container" >
+                            <div class="form_row accordion">
+                                <div class="form_col12">
+                                    <h2>Datos Personales</h2>
+                                    <span class="right blue">www.TRABAJOBUSCO.com</span>
+                                </div>
+                            </div>
+                            <div class="form_row">
+                                <div class="form_col3 personal_image">
+                                    <div class="profile_image">
+                                        <div class="crop_image center_image">
+                                            <div class="crop_image_cont">
+                                                <img src="<?= $fotoPostulante ?>"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form_col9 personal_data">
+                                    <div class="form_col12">
+                                        <h2><?= $this->postulante['nombres'] ?> <?= $this->postulante['apellidos'] ?></h2>
+                                        <?php if(count($this->experiencias) > 0) : ?>
+                                            <?php $puesto = (isset($this->experiencias[0]['puesto']))?$this->experiencias[0]['puesto']:isset($this->experiencias[0]['nombre_puesto'])?$this->experiencias[0]['nombre_puesto']:''; ?>
+                                            <p><?= (count($this->experiencias) > 0) ? '(' . $puesto . ' en ' . $this->experiencias[0]['empresa'] . ')' : ''; ?></p>
+                                        <?php endif; ?>
+                                        <a href="#" class="btn btn_edit"><i class="icon icon_pencil"></i></a>
+                                        <?php $estadoCV = ($this->postulante['estado_civil']) ? $this->postulante['estado_civil'] : 'vacio' ?>
+                                        <p><?= $this->Edad($this->postulante['fecha_nac']) ?> años<br><?= ucfirst(Application_Model_Postulante::$estadoCivil[$estadoCV]) ?><br>
+                                            <?= strtoupper($this->postulante['tipo_doc']) ?> <?= $this->postulante['num_doc'] ?><br>
+                                            <?= ($this->postulante['fijo']) ? 'F. ' . $this->postulante['fijo'] : '' ?> 
+                                            <?= ($this->postulante['celular']) ? 'C. ' . $this->postulante['celular'] : '' ?><br><span class="blue"><?= $this->postulante['email'] ?></span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content_accordion">
+                            <div class="form_row accordion">
+                                <div class="form_col12">
+                                    <h2>Ubicación</h2>
+                                </div>
+                            </div>
+                            <div class="form_row">
+                                <div class="form_col12">
+                                    <p><?= $this->postulante['nombre'] ?></p>
+                                    <?php if($this->postulante['idpaisres'] == Application_Model_Ubigeo::PERU_UBIGEO_ID) : ?>
+                                        <p><?= $this->postulante['ubicacion'] ?></p>
+                                    <?php endif; ?>
+                                    <p> <?= ($this->postulante['extranjero'] == 1) ? 'Tengo disponibilidad para trabajar en provincia/extranjero' : '' ?>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>              
+                        <?php if($this->postulante['presentacion'] != '') { ?>
+                            <div class="content_accordion">
+                                <div class="form_row accordion">
+                                    <div class="form_col12">
+                                        <h2>Acerca de ti</h2>
+                                    </div>
+                                </div>
+                                <div class="form_row">
+                                    <div class="form_col12">
+                                        <p><?= $this->postulante['presentacion'] ?></p>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php } ?>                
+                        <?php if(count($this->experiencias) > 0) { ?>
+                            <div class="content_accordion">
+                                <div class="form_row accordion">
+                                    <div class="form_col12">
+                                        <h2>Experiencia</h2>
+                                    </div>
+                                </div>
+                                <div class="form_row">
+                                    <div class="form_col12">
+                                        <div class="title_content_edit">
+                                            <div class="title_skills">
+                                                <?php foreach ($this->experiencias as $exp) { ?>
+                                                    <div class="block_skill_content">
+                                                        <h2><?= $exp['empresa'] ?></h2>
+                                                        <p><?= ($exp['nombre_puesto'] == 'OTROS') ? strtoupper($exp['puesto']) : $exp['nombre_puesto']; ?></p>
+                                                        <p><?= App_Util::setMonth($exp['inicio_mes']) ?> <?= $exp['inicio_ano'] ?> - 
+                                                            <?= ($exp['actualmente'] == 1) ? 'Actualidad' : App_Util::setMonth($exp['fin_mes']) . ' ' . $exp['fin_ano']; ?> </p>
+                                                        <p>Industria: <?= $exp['rubro'] ?></p>
+                                                        <?php if($exp['comentarios'] != '') { ?>
+                                                            <p>Descripción de tareas:</p> 
+                                                            <p><?= $exp['comentarios'] ?></p>
+                                                        <?php } ?>
+                                                    </div>
+                                                <?php } ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php } ?>                
+                        <?php if(count($this->estudios) > 0) { ?>
+                            <div class="content_accordion">
+                                <div class="form_row accordion">
+                                    <div class="form_col12">
+                                        <h2>Estudios</h2>
+                                    </div>
+                                </div>
+                                <div class="form_row">
+                                    <div class="form_col12">
+                                        <div class="title_content_edit">
+                                            <div class="title_skills">
+                                                <?php foreach ($this->estudios as $est) { ?>
+                                                    <div class="block_skill_content">
+                                                        <h2><?= $est['institucion'] ?></h2>
+                                                        <h2><?= $est['titulo'] ?> (<?= $est['nivel_nombre'] ?> - <?= $est['nivel_tipo_nombre'] ?>)</h2>
+                                                        <p> <?= App_Util::setMonth($est['inicio_mes']) ?> <?= $est['inicio_ano'] ?> - 
+                                                            <?= ($est['actualmente'] == 1) ? 'Actualidad' : App_Util::setMonth($est['fin_mes']) . ' ' . $est['fin_ano']; ?> </p>
+                                                    </div>
+                                                <?php } ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php } ?>
+                        <?php if(count($this->otrosEstudios) > 0) { ?>
+                            <div class="content_accordion">
+                                <div class="form_row accordion">
+                                    <div class="form_col12">
+                                        <h2>Otros Estudios</h2>
+                                    </div>
+                                </div>
+                                <div class="form_row">
+                                    <?php foreach ($this->otrosEstudios as $campo => $item) { ?>
+                                        <div class="form_col12">
+                                            <div class="title_content_edit">
+                                                <div class="title_skills">
+                                                    <div class="block_text">
+                                                        <h2><?= $this->escape($item['titulo']) ?></h2>
+                                                        <p><?= $this->escape($item['institucion']) ?> </p>
+                                                        <p><i href="#" class="icon icon_calendar"></i><?= $this->ItemList('Mes', $item['inicio_mes']) ?>  <?= $this->escape($item['inicio_ano']) ?>   <?= !empty($item['actualmente']) ? 'Actualidad' : ' Inicio'; ?>
+                                                            <?php if(empty($item['actualmente'])) { ?>
+                                                                - <?= $this->ItemList('Mes', $item['fin_mes']) ?>  <?= $this->escape($item['fin_ano']) ?> <?= !empty($item['actualmente']) ? '' : ' Fin'; ?>
+                                                            <?php } ?>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <?php } ?>
+                                </div>
+                            </div>
+                        <?php } ?>
+                        <?php if(count($this->idiomas) > 0) { ?>
+                            <div class="content_accordion">
+                                <div class="form_row accordion">
+                                    <div class="form_col12">
+                                        <h2>Idiomas</h2>
+                                    </div>
+                                </div>
+                                <div class="form_row">
+                                    <div class="form_col12">
+                                        <div class="title_content_edit">
+                                            <div class="title_skills">
+                                                <?php foreach ($this->idiomas as $idi) { ?>
+                                                    <div class="block_skill_content">
+                                                        <h2><?= $idi['nombreIdioma'] ?></h2>
+                                                        <p>Escrito (<?= $idi['selLevelWritten'] ?>)</p>
+                                                        <p>Oral (<?= $idi['selLevelOral'] ?>)</p>
+                                                        <br>
+                                                    </div>
+                                                <?php } ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php } ?>                
+                        <?php if(count($this->programas) > 0) { ?>
+                            <div class="content_accordion">
+                                <div class="form_row accordion">
+                                    <div class="form_col12">
+                                        <h2>Informática</h2>
+                                    </div>
+                                </div>
+                                <div class="form_row">
+                                    <div class="form_col12">
+                                        <div class="title_content_edit">
+                                            <div class="title_skills">
+                                                <?php foreach ($this->programas as $pro) { ?>
+                                                    <div class="block_skill_content">
+                                                        <p class="skill"><?= $pro['programa'] ?> <i>(<?= $pro['nivel'] ?>)</i></p>
+                                                    </div>
+                                                <?php } ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php } ?>                
+                        <?php if($tieneReferidos) { ?>
+                            <div class="content_accordion">
+                                <div class="form_row accordion">
+                                    <div class="form_col12">
+                                        <h2>Referencias</h2>
+                                    </div>
+                                </div>
+                                <div class="form_row">
+                                    <?php foreach ($this->experiencias as $ex) { ?>
+                                        <div class="form_col12">
+                                            <?php if(isset($ex['referencias']) && count($ex['referencias'])) { ?>
+                                                <div class="form_col6">
+                                                    <p>Puesto que desempeñabas: </p>
+                                                    <p><?= ($ex['nombre_puesto'] == 'OTROS') ? strtoupper($ex['puesto']) : $ex['nombre_puesto']; ?> - <?= $ex['empresa'] ?></p>
+                                                    <p>Referencia<?= (count($ex['referencias']) > 1) ? 's' : '' ?>:</p>
+                                                </div>
+                                                <?php foreach ($ex['referencias'] as $ref) { ?>
+                                                    <div class="form_col6">                      
+                                                        <p><b><?= $ref['nombre'] ?></b><br>
+                                                            <?= $ref['cargo'] ?> <br>
+                                                            <?= ($ref['telefono'] != '') ? 'T. ' . $ref['telefono'] . '<br>' : '' ?> 
+                                                            <?= ($ref['telefono2'] != '') ? 'C. ' . $ref['telefono2'] . '<br>' : '' ?> 
+                                                            <span class="blue"><?= $ref['email'] ?></span></p>
+                                                    </div>
+                                                <?php } ?>
+                                            <?php } ?>
+                                        </div>
+                                    <?php } ?>
+                                </div>
+                            </div>
+                        <?php } ?>                
+                        <?php if(count($this->logros) > 0) { ?>
+                            <div class="content_accordion">
+                                <div class="form_row accordion">
+                                    <div class="form_col12">
+                                        <h2>Logros</h2>
+                                    </div>
+                                </div>
+                                <div class="form_row">
+                                    <?php foreach ($this->logros as $log) { ?>
+                                        <div class="form_col12">
+                                            <h2><?= $log['logro'] ?> - <?= $log['ano'] ?></h2>
+                                            <p>Otorgado por: <?= $log['institucion'] ?></p>
+                                            <p><?= $log['descripcion'] ?></p>
+                                        </div>
+                                    <?php } ?>
+                                </div>
+                            </div>
+                        <?php } ?>
+                        <?php if(count($this->aptitudes) > 0) { ?>
+                            <div class="content_accordion">
+                                <div class="form_row accordion">
+                                    <div class="form_col12">
+                                        <h2>Aptitudes</h2>
+                                    </div>
+                                </div>
+                                <div class="form_row">
+                                    <div class="form_col12">
+                                        <div class="title_content_edit">
+                                            <div class="title_skills">
+                                                <?php foreach ($this->aptitudes as $apt) { ?>
+                                                    <div class="block_skill_content">
+                                                        <p class="mi_skill"><?= $apt['mostrar'] ?></p>
+                                                    </div>
+                                                <?php } ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php } ?>
+
+                        <?php if(!empty($this->postulante['discapacidad'])) { ?>
+                            <div class="content_accordion">
+                                <div class="form_row accordion">
+                                    <div class="form_col12">
+                                        <h2>Discapacidad</h2>
+                                    </div>
+                                </div>
+                                <div class="form_row">
+                                    <div class="form_col12">
+                                        <div class="title_content_edit">
+                                            <?php if(empty($this->postulante['conadis'])) { ?>
+                                                <p>El postulante es una persona con discapacidad</p>
+                                            <?php } else { ?>
+                                                <p>El postulante es una persona con discapacidad registrada en el Consejo Nacional para la Integración de la Persona con Discapacidad (CONADIS)</p>
+                                            <?php } ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php } ?>
+                    </div>        
+                </div>
+            </form>
+        </div>   
+    </div>
+</section>
+</body>
+</html>

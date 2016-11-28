@@ -1,0 +1,25 @@
+<div class="bgAll gridS20">
+	<div class="gridForm">
+		<div class="legend">
+			<a href="<?= $this->url(array('module' => 'admin', 'controller' => 'gestion', 'action' => 'index'), false, true) ?>">Inicio</a> »
+			<span class="noLink">Paso 4 - Pague su Aviso</span>
+		</div>
+            <?=$this->partial('_partials/_messages.phtml',array("flashMessages"=>$this->flashMessages))?>
+		<h1 class="titleOrig">Pague su Aviso</h1>
+		<blockquote id="modStepsForm"><img src="<?=$this->S('/images/empresa/avisoPaso4.jpg');?>" alt="Paso 4"/></blockquote>
+		<div class="gridIStepEmp" class="all">
+			<?= 
+			    $this->partial('_partials/_pagar_aviso_preferencial.phtml', 'empresa',$this);
+/*    			    array(
+    			    	"dataAnuncio"=>$this->dataAnuncio,
+    			    	'membresia'=> $this->membresia,
+    			        'formAvisoPref' => $this->formAvisoPref,
+    			        'saldoMembresia' => $this->saldoMembresia,
+    			        'descuentoAviso' => $this->descuentoAviso,
+    			        'afectaMembresia' => $this->afectaMembresia
+                        )
+		        )*/
+	        ?>
+		</div>
+	</div>
+</div>

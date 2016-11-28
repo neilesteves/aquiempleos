@@ -1,0 +1,26 @@
+<?php
+	 $pass = new Zend_Session_Namespace('pass');
+	 $token = $pass->token;
+?>
+<? $active = "active"; ?>
+<div class="ctn-smenu">
+	 <ul class="row">
+		  <li><a class="<?=$this->menu_post_sel==App_Controller_Action_Empresa::MENU_POST_INICIO?$active:''?>" href="<?=$this->url(array('module'=>'empresa','controller'=>'mi-cuenta','action'=>'index'), 'default',true)?>">Inicio</a></li>
+		  <? if ($this->layout()->auth['usuario-empresa']['creador'] == Application_Model_UsuarioEmpresa::PRINCIPAL) : ?>
+				<li><a class="<?=$this->menu_post_sel==App_Controller_Action_Empresa::MENU_POST_MIS_DATOS?$active:''?>" href="<?=$this->url(array('module'=>'empresa','controller'=>'mi-cuenta','action'=>'datos-empresa'),"default",true)?>">Mis datos</a></li>
+		  <? else:?>
+				<li><a class="<?=$this->menu_post_sel==App_Controller_Action_Empresa::MENU_POST_MIS_DATOS?$active:''?>" href="<?=$this->url(array('module'=>'empresa','controller'=>'mi-cuenta','action'=>'mis-avisos'),"default",true)?>">Mis datos</a></li>
+		  <? endif?>
+		  <li><a class="<?=$this->menu_post_sel==App_Controller_Action_Empresa::MENU_POST_MIS_PROCESOS?$active:''?>" href="<?=$this->url(array('module'=>'empresa','controller'=>'mis-procesos','action'=>'index'),"default",true)?>">Mis procesos</a></li>
+		  <li><a class="<?=$this->menu_post_sel==App_Controller_Action_Empresa::MENU_POST_PUBLICA_AVISO?$active:''?>" href="<?=$this->url(array('module'=>'empresa','controller'=>'publica-aviso','action'=>'index','tarifa'=>1),"default",true)?>">Publicar un aviso</a></li>
+		  <!--<li><a class="<?=$this->menu_post_sel==App_Controller_Action_Empresa::MENU_POST_BUSCA_APTITUS?$active:''?>" href="<?=/*$this->url(array('module'=>'empresa','controller'=>'buscador-EMPLEOBUSCO','action'=>'index'),"default",true)*/"/empresa/buscador-empleo-busco"?>">Buscar Postulantes</a></li>-->
+		  <? if ($this->layout()->auth['usuario-empresa']['creador'] == Application_Model_UsuarioEmpresa::PRINCIPAL) : ?>
+				<li><a class="<?=$this->menu_post_sel==App_Controller_Action_Empresa::MENU_POST_MI_ESTADO_CUENTA?$active:''?>" href="<?=$this->url(array('module'=>'empresa','controller'=>'mi-estado-cuenta','action'=>'index'),"default",true)?>">Mi estado de cuenta</a></li>
+		  <? endif ?>
+
+		  <li><a class="<?=$this->menu_post_sel==App_Controller_Action_Empresa::MENU_POST_BOLSA_CVS?$active:''?>" href="<?=$this->url(array('module'=>'empresa','controller'=>'bolsa-cvs','action'=>'index'),"default",true)?>">Carpetas de CVs</a></li>
+		  <?php if($this->Look_Feel) :?>
+		  <li><a class="<?=$this->menu_post_sel==App_Controller_Action_Empresa::MENU_POST_LOOK_AND_FEEL?$active:''?>" href="<?=$this->url(array('module'=>'empresa','controller'=>'look-and-feel','action'=>'index'),"default",true)?>">Look & Feel</a></li>
+		  <?php endif;?>
+	 </ul>
+</div>

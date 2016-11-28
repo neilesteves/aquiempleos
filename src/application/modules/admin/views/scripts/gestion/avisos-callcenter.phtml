@@ -1,0 +1,482 @@
+<div id="main" class="all">
+    <div class="innerAll">
+        <div class="bgAll gridS20">
+            <?=
+            $this->partial('_partials/_navigation.phtml', 'admin',
+                array('isAuth' => $this->isAuth, 'auth' => $this->auth, "flashMessages" => $this->flashMessages))
+            ?>
+            <div class="gridTab">
+                <div class="gridIT">
+                    <h5 class="h5TitleAdm">Módulo de Administración</h5>
+                    <div class="iAccount" id="innerMain">
+
+                        <div id="admLeftNM" class="blockAL grid4 omega left">
+                            <?=
+                            $this->partial('gestion/_sidebar-menu.phtml',
+                                array('menu_sel_side' => $this->menu_sel_side, 'rol' => $this->rol))
+                            ?>
+                        </div>
+
+                        <div class="blockAR alpha right blockFix">
+                            <div class="iBlockAR">
+                                <h2 class="titleMAU">Listado de Avisos</h2>
+                                <form action="<?=
+                                $this->url(array(
+                                    'module' => 'admin',
+                                    'controller' => 'gestion',
+                                    'action' => 'avisos-callcenter'
+                                    ), 'default', true);
+                                ?>" method="get" id="frmBuscar_avisos_call" class="r2 fieldsetAdm">
+                                    <div class="block">
+                                        <label for="fBirthDate" class="labelN"> Fecha de inicio:</label>
+                                        <div class="blockBDC alignMeses left">
+                                            <?
+                                            $hasError = $this->formAviso->fh_pub->hasErrors();
+                                            ?>
+                                            <?
+                                            if ($hasError != 0) {
+                                                $ErrorFecNac = $this->formAviso->fh_pub->getErrors();
+                                                $errMsg      = Application_Form_Paso1Postulante::$errorsFechaNac[$ErrorFecNac[0]];
+                                            } else {
+                                                $errMsg = '';
+                                            }
+                                            ?>
+                                            <?=
+                                            $this->formAviso->fh_pub->setAttribs(array(
+                                                'class' => 'datepicker', 'data-date-format' => 'mm-dd-yyyy',
+                                                'id' => 'fh_pub'))->renderViewHelper();
+                                            ?>
+
+                                        </div>
+                                        <span class="response cGray left<?=
+                                        $hasError ? ' bad' : ''
+                                        ?>"><?= $errMsg ?> </span>
+                                    </div>
+                                    <div class="block">
+                                        <label for="fBirthDate2" class="labelN">  Fecha de Fin:</label>
+                                        <div class="blockBDC alignMeses left">
+                                            <?
+                                            $hasError = $this->formAviso->fh_pub_fin->hasErrors();
+                                            ?>
+                                            <?
+                                            if ($hasError != 0) {
+                                                $ErrorFecNac = $this->formAviso->fh_pub_fin->getErrors();
+                                                $errMsg      = Application_Form_Paso1Postulante::$errorsFechaNac[$ErrorFecNac[0]];
+                                            } else {
+                                                $errMsg = '';
+                                            }
+                                            ?>
+                                            <?=
+                                            $this->formAviso->fh_pub_fin->setAttribs(array(
+                                                'id' => 'fh_pub_fin',
+                                                'class' => 'datepicker', 'data-date-format' => 'mm-dd-yyyy',
+                                            ))->renderViewHelper();
+                                            ?>
+                                        </div>
+                                        <span class="response cGray left<?=
+                                        $hasError ? ' bad' : ''
+                                        ?>"><?= $errMsg ?> </span>
+                                    </div>
+                                    <div class="block">
+                                        <label for="Tipo de Destaque Web" class="labelN"> Tipo de Destaque Web  :</label>
+                                        <?
+                                        $hasError = $this->formAviso->tipo_destaque->hasErrors();
+                                        ?>
+                                        <?=
+                                        $this->formAviso->tipo_destaque->setAttribs(array(
+                                            'id' => 'tipo_destaque', 'class' => 'fields inputN left replaceNbsp',
+                                        ))->renderViewHelper();
+                                        ?>
+                                        <span id="resSuggest" class="response left<?=
+                                        $hasError ? ' bad' : ''
+                                        ?>"><?=
+                                                  $hasError ? $this->formAviso->tipo_destaque->errMsg
+                                                          : ''
+                                                  ?></span>
+                                    </div>
+                                    <div class="block" id="fRucVal">
+                                        <label for="Tipo de Aviso Impreso" class="labelN"> Tipo de Aviso Impreso :</label>
+                                        <?
+                                        $hasError = $this->formAviso->tipo_impreso->hasErrors();
+                                        ?>
+                                        <?=
+                                        $this->formAviso->tipo_impreso->setAttribs(array(
+                                            'id' => 'tipo_impreso', 'class' => 'fields inputN left replaceNbsp',
+                                        ))->renderViewHelper();
+                                        ?>
+                                        <span class="response cGray left<?=
+                                        $hasError ? ' bad' : ''
+                                        ?>"><?=
+                                                  $hasError ? $this->formAviso->tipo_impreso->errMsg
+                                                          : ""
+                                                  ?> </span>
+                                    </div>
+
+                                    <div class="block">
+                                        <label class="labelN left" id="lblP3" for="optCheckP3">
+                                            Estado
+                                        </label>
+                                        <?
+                                        $hasError = $this->formAviso->estado->hasErrors();
+                                        ?>
+                                        <?=
+                                        $this->formAviso->estado->setAttribs(array(
+                                            'id' => 'estado', 'class' => 'fields inputN left replaceNbsp ',
+                                        ))->renderViewHelper();
+                                        ?>
+                                    </div>
+                                    <div class="all">
+
+                                        <button id="fSendRS"  type="submit" class="active btnSptAdm sptAdm right btn-gestion" value="">Buscar</button>
+                                        <button id="fResetRS"  type="reset" class="active btnSptAdm sptAdm right btn-gestion" value="">Limpiar</button>
+                                    </div>
+                                    <?= $this->formAviso->token ?>
+                                </form>
+                            </div>
+                            <?php
+                            if (count($this->arrayBusqueda) > 0) {
+                                ?>
+                                <div class="iBlockAR btn-exportar">
+                                    <?php
+                                    $params        = array_merge($this->params,
+                                        array(
+                                        'module' => 'admin',
+                                        'controller' => 'gestion',
+                                        'action' => 'exportar-avisos'
+                                        ))
+                                    ?>
+                                    <a href="<?=
+                                    $this->url($params, 'default', true);
+                                    ?>">Exporta excel</a>
+                                </div>
+                                <div class="gridYScroll">
+
+                                    <table summary="Administradores" id="dataAadmins" class="dataGrid pdg-box">
+                                        <thead>
+                                            <?php
+                                            $base          = $this->avisoAdminUrl;
+                                            $base['otken'] = $this->formAviso->token->getValue();
+                                            ?>
+                                            <tr>
+                                                <th class="data10 titleGrid pad"> --  Acción --</th>
+                                                <th class="data2 titleGrid linkTitleG pdg">
+                                                    <?
+                                                    $col           = 'Portal'
+                                                    ?>
+                                                    <?
+                                                    $ord           = $this->col == $col
+                                                        && $this->ord == 'ASC' ? 'DESC'
+                                                            : 'ASC'
+                                                    ?>
+                                                    <?
+                                                    $base['col']   = $col;
+                                                    $base['ord']   = $ord;
+                                                    $url           = $this->url($base,
+                                                        'default', true)
+                                                    ?>
+                                                    <a href="<?= $url ?>" class="rel relArrow">Portal<span class="arrowDG <?= strtolower($ord) ?>">&nbsp;</span></a>
+                                                </th>
+
+                                                <th class="data2 titleGrid linkTitleG pdg">
+                                                    <?
+                                                    $col           = 'url_id'
+                                                    ?>
+                                                    <?
+                                                    $ord           = $this->col == $col
+                                                        && $this->ord == 'ASC' ? 'DESC'
+                                                            : 'ASC'
+                                                    ?>
+                                                    <?
+                                                    $base['col']   = $col;
+                                                    $base['ord']   = $ord;
+                                                    $url           = $this->url($base,
+                                                        'default', true)
+                                                    ?>
+                                                    <a href="<?= $url ?>" class="rel relArrow">Id Aviso<span class="arrowDG <?= strtolower($ord) ?>">&nbsp;</span></a>
+                                                </th>
+
+                                                <th class="data3 titleGrid linkTitleG">
+                                                    <?
+                                                    $col           = 'Fecha_de_Publicacion'
+                                                    ?>
+                                                    <?
+                                                    $ord           = $this->col == $col
+                                                        && $this->ord == 'ASC' ? 'DESC'
+                                                            : 'ASC'
+                                                    ?>
+                                                    <?
+                                                    $base['col']   = $col;
+                                                    $base['ord']   = $ord;
+                                                    $url           = $this->url($base,
+                                                        'default', true)
+                                                    ?>
+                                                    <a href="<?= $url ?>" class="rel relArrow">Fecha de Publicación<span class="arrowDG <?= strtolower($ord) ?>">&nbsp;</span></a>
+                                                </th>
+                                                <th class="data4 titleGrid linkTitleG">
+                                                    <?
+                                                    $col           = 'Fecha_de_cierre'
+                                                    ?>
+                                                    <?
+                                                    $ord           = $this->col == $col
+                                                        && $this->ord == 'ASC' ? 'DESC'
+                                                            : 'ASC'
+                                                    ?>
+                                                    <?
+                                                    $base['col']   = $col;
+                                                    $base['ord']   = $ord;
+                                                    $url           = $this->url($base,
+                                                        'default', true)
+                                                    ?>
+                                                    <a href="<?= $url ?>" class="rel relArrow">Fecha de cierre/fi<span class="arrowDG <?= strtolower($ord) ?>">&nbsp;</span></a>
+                                                </th>
+                                                <th class="data5 titleGrid linkTitleG">
+                                                    <?
+                                                    $col           = 'Tipo_Destaque';
+                                                    $ord           = $this->col == $col
+                                                        && $this->ord == 'ASC' ? 'DESC'
+                                                            : 'ASC';
+                                                    $base['col']   = $col;
+                                                    $base['ord']   = $ord;
+                                                    $url           = $this->url($base,
+                                                        'default', true)
+                                                    ?>
+                                                    <a href="<?= $url ?>" class="rel relArrow">Tipo de Destaque Web<span class="arrowDG <?= strtolower($ord) ?>">&nbsp;</span></a>
+                                                </th>
+                                                <th class="data6 titleGrid linkTitleG">
+                                                    <?
+                                                    $col           = 'Medio_de_Pago_Web';
+                                                    $ord           = $this->col == $col
+                                                        && $this->ord == 'ASC' ? 'DESC'
+                                                            : 'ASC';
+                                                    $base['col']   = $col;
+                                                    $base['ord']   = $ord;
+                                                    $url           = $this->url($base,
+                                                        'default', true)
+                                                    ?>
+                                                    <a href="<?= $url ?>" class="rel relArrow">Medio de Pago Web	<span class="arrowDG <?= strtolower($ord) ?>">&nbsp;</span></a>
+                                                </th>
+                                                <th class="data7 titleGrid linkTitleG">
+                                                    <?php
+                                                    $col           = 'Monto_Web';
+                                                    ?>
+                                                    <?php
+                                                    $ord           = $this->col == $col
+                                                        && $this->ord == 'ASC' ? 'DESC'
+                                                            : 'ASC'
+                                                    ?>
+                                                    <?
+                                                    $base['col']   = $col;
+                                                    $base['ord']   = $ord;
+                                                    $url           = $this->url($base,
+                                                        'default', true)
+                                                    ?>
+                                                    <a href="<?= $url ?>" class="rel relArrow">Monto Web<span class="arrowDG <?= strtolower($ord) ?>">&nbsp;</span></a>
+                                                </th>
+                                                <th class="data7 titleGrid linkTitleG">
+                                                    <?php
+                                                    $col           = 'Tipo_Aviso_Impreso';
+                                                    ?>
+                                                    <?php
+                                                    $ord           = $this->col == $col
+                                                        && $this->ord == 'ASC' ? 'DESC'
+                                                            : 'ASC'
+                                                    ?>
+                                                    <?
+                                                    $base['col']   = $col;
+                                                    $base['ord']   = $ord;
+                                                    $url           = $this->url($base,
+                                                        'default', true)
+                                                    ?>
+                                                    <a href="<?= $url ?>" class="rel relArrow">Tipo de Aviso Impreso<span class="arrowDG <?= strtolower($ord) ?>">&nbsp;</span></a>
+                                                </th>
+                                                <th class="data7 titleGrid linkTitleG">
+                                                    <?
+                                                    $col           = 'Medio_de_Pago_Impreso'
+                                                    ?>
+                                                    <?
+                                                    $ord           = $this->col == $col
+                                                        && $this->ord == 'ASC' ? 'DESC'
+                                                            : 'ASC'
+                                                    ?>
+                                                    <?
+                                                    $base['col']   = $col;
+                                                    $base['ord']   = $ord;
+                                                    $url           = $this->url($base,
+                                                        'default', true)
+                                                    ?>
+                                                    <a href="<?= $url ?>" class="rel relArrow">Medio de Pago Impreso<span class="arrowDG <?= strtolower($ord) ?>">&nbsp;</span></a>
+                                                </th>
+                                                </th>
+                                                <th class="data7 titleGrid linkTitleG">
+                                                    <?
+                                                    $col           = 'Monto_Impreso'
+                                                    ?>
+                                                    <?
+                                                    $ord           = $this->col == $col
+                                                        && $this->ord == 'ASC' ? 'DESC'
+                                                            : 'ASC'
+                                                    ?>
+                                                    <?
+                                                    $base['col']   = $col;
+                                                    $base['ord']   = $ord;
+                                                    $url           = $this->url($base,
+                                                        'default', true)
+                                                    ?>
+                                                    <a href="<?= $url ?>" class="rel relArrow">Monto Impreso	<span class="arrowDG <?= strtolower($ord) ?>">&nbsp;</span></a>
+                                                </th>
+                                                <th class="data7 titleGrid linkTitleG correo">
+                                                    <?
+                                                    $col           = 'Correo'
+                                                    ?>
+                                                    <?
+                                                    $ord           = $this->col == $col
+                                                        && $this->ord == 'ASC' ? 'DESC'
+                                                            : 'ASC'
+                                                    ?>
+                                                    <?
+                                                    $base['col']   = $col;
+                                                    $base['ord']   = $ord;
+                                                    $url           = $this->url($base,
+                                                        'default', true)
+                                                    ?>
+                                                    <a href="<?= $url ?>" class="rel relArrow">Correo<span class="arrowDG <?= strtolower($ord) ?>">&nbsp;</span></a>
+                                                </th>
+
+                                                </th>
+                                                <th class="data7 titleGrid linkTitleG title-aviso">
+                                                    <?
+                                                    $col           = 'Titulo_del_Aviso'
+                                                    ?>
+                                                    <?
+                                                    $ord           = $this->col == $col
+                                                        && $this->ord == 'ASC' ? 'DESC'
+                                                            : 'ASC'
+                                                    ?>
+                                                    <?
+                                                    $base['col']   = $col;
+                                                    $base['ord']   = $ord;
+                                                    $url           = $this->url($base,
+                                                        'default', true)
+                                                    ?>
+                                                    <a href="<?= $url ?>" class="rel relArrow">Titulo del Aviso	<span class="arrowDG <?= strtolower($ord) ?>">&nbsp;</span></a>
+                                                </th>
+                                                </th>
+                                                <th class="data7 titleGrid linkTitleG">
+                                                    <?
+                                                    $col           = 'Estado'
+                                                    ?>
+                                                    <?
+                                                    $ord           = $this->col == $col
+                                                        && $this->ord == 'ASC' ? 'DESC'
+                                                            : 'ASC'
+                                                    ?>
+                                                    <?
+                                                    $base['col']   = $col;
+                                                    $base['ord']   = $ord;
+                                                    $url           = $this->url($base,
+                                                        'default', true)
+                                                    ?>
+                                                    <a href="<?= $url ?>" class="rel relArrow">Estado<span class="arrowDG <?= strtolower($ord) ?>">&nbsp;</span></a>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="contenedor-data">
+                                            <?php
+                                            if (count($this->arrayBusqueda) > 0) {
+                                                $cantidad = 5; //$this->arrayBusqueda->getCurrentItemCount()
+                                                $count    = ($this->pagina - 1) * $cantidad
+                                                    + 1;
+                                            }
+                                            ?>
+                                            <?php foreach ($this->arrayBusqueda as $key => $item) { ?>
+                                                <tr>
+                                                    <td class="data10 pdg">
+                                                        <? if ($item['online']
+                                                            == 0): ?>
+                                                            <? if ($item['estado']
+                                                                == Application_Model_AnuncioWeb::ESTADO_BANEADO): ?>
+                                                                <div class="blockAdmEPI"><a href="#winAlertBloquearAviso" class="desblockAviso avi winModal" rel="<?= $item['id'] ?>">Desbloquear</a></div>
+                                                            <? endif; ?>
+                                                        <? else: ?>
+                                                            <? if ($item['estado']
+                                                                == Application_Model_AnuncioWeb::ESTADO_PAGADO): ?>
+                                                                <div class="blockAdmEPI"><a href="#winAlertBloquearAviso" class="blockAviso avi winModal" rel="<?= $item['id'] ?>">Bloquear</a></div>
+                                                            <? endif; ?>
+        <? endif; ?>
+
+                                                        <? if ($item['online']
+                                                            == '1'): ?>
+                                                            <a name="destaque"  class="btn-destaque" href="<?= $this->url() ?>" data-token="<?= $this->csrfhash ?>" data-tipo="1" rel="<?= $item['id'] ?>"  > Dar destaque Oro</a>
+                                                            <a  name="destaque"  class="btn-destaque" href="<?= $this->url() ?>" data-token="<?= $this->csrfhash ?>" data-tipo="2" rel="<?= $item['id'] ?>" > Dar destaque Plata</a>
+        <? endif; ?>
+                                                    </td>
+                                                    <td class="data2"><?= $item['Portal'] ?></td>
+
+                                                    <td class="data3">
+                                                        <a href="<?=
+                                                        $this->url(array(
+                                                            'module' => 'postulante',
+                                                            'controller' => 'aviso',
+                                                            'action' => 'ver',
+                                                            'url_id' => $item['url_id'],
+                                                            'empresaslug' =>$this->Util()->cleanString($item['empresaslug']),
+                                                            'ubicacionslug' =>$this->Util()->cleanString($item['ubicacionslug']),
+                                                            'slug' =>  $item['slug']
+                                                            ), 'aviso_detalle',
+                                                            true);
+                                                        ?>" >
+        <?= $item['url_id'] ?>
+                                                        </a>
+                                                    </td>
+
+                                                    <td class="data4"><?= $item['Fecha_de_Publicacion'] ?></td>
+                                                    <td class="data5"><?= $item['Fecha_de_cierre'] ?></td>
+                                                    <td class="data6"><?= $item['Tipo_Destaque'] ?></td>
+                                                    <td class="data7"><?= $item['Medio_de_Pago_Web'] ?></td>
+                                                    <td class="data8"><?= $item['Monto_Web'] ?></td>
+                                                    <td class="data9"><?= $item['Tipo_Aviso_Impreso'] ?></td>
+                                                    <td class="data9"><?=
+                                                !empty($item['Tipo_Aviso_Impreso'])
+                                                        ? $item['Medio_de_Pago_Impreso']
+                                                        : ''
+                                                ?></td>
+                                                    <td class="data9"><?= $item['Monto_Impreso'] ?></td>
+                                                    <td class="data9"><?= $item['Correo'] ?></td>
+                                                    <td class="data9"><?= $item['Titulo_del_Aviso'] ?></td>
+                                                    <td class="data9"><?= $item['estado'] ?>
+
+                                                    </td>
+                                                </tr>
+                                    <?php } ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                    <?php
+                                    if (count($this->arrayBusqueda) != 0) {
+                                        ?>
+                                    <div class="pagination all">
+        <?=
+        $this->paginationControl($this->arrayBusqueda, 'Sliding',
+            'gestion/_pag.phtml',
+            array('token' => $this->formAviso->token->getValue()))
+        ?>
+                                    </div>
+    <?php } else { ?>
+                                    <div class="pagination all">
+                                        <div class='pagUl theta alignL'> - No existen avisos para la búsqueda realizada </div>
+                                    </div>
+    <?php } ?>
+<?php } ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">    
+$(function(){
+    $('.gridYScroll').jScrollPane();
+});
+</script>

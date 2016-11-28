@@ -1,0 +1,388 @@
+<?php if ($this->module == 'postulante') : ?>
+	 <?php
+	 $urlAviso = SITE_URL . $this->url(array(
+				'slug' => $this->aviso["slug"],
+				'empresaslug' => App_Util::validateSlugEmpresa($this->aviso["empresaslug"],$this->aviso['mostrar_empresa']),
+				'ubicacionslug' => $this->aviso["ubicacionslug"],
+				'url_id' => $this->aviso["url_id"],
+				),
+				'aviso_detalle', true);
+	 ?>
+<?php endif; ?>
+<?php echo $this->module == 'postulante' ? '' : '<div class="cntModalAEmp">'?>
+<div class="job_box_wrapper presentation_card">
+	 <div class="job_box_title">Datos de la Empresa</div>
+	 <div class="job_box_information">
+				<div class="job_box_image_container">
+					 <div class="center_image">
+				<?php
+					 $fixClass = "";
+					 if ($this->aviso['mostrar_empresa'] != "0" && ($this->aviso['logo_empresa'] != "" || $this->aviso['logo_empresa'] != null)) {
+						  ?>
+					 <?php if (isset($this->aviso['slug_empresa'])) { ?>
+					<a href='<?=$this->url(array('pais'=>'peru','empresa'=>$this->aviso['slug_empresa']),'buscar',false);?>' title="<?= $this->escape($this->aviso['nombre_empresa']) ?>">
+						 <img alt="<?= $this->escape($this->aviso['nombre_empresa']) ?>" src="<?= ELEMENTS_URL_LOGOS . $this->aviso['logo_empresa'] ?>" title="<?= $this->escape($this->aviso['nombre_empresa']) ?>"></a>
+						  <?php } else { ?>
+					<a title="<?= $this->escape($this->aviso['nombre_empresa']) ?>">
+						 <img alt="<?= $this->escape($this->aviso['nombre_empresa']) ?>" src="<?= ELEMENTS_URL_LOGOS . $this->aviso['logo_empresa'] ?>" title="<?= $this->escape($this->aviso['nombre_empresa']) ?>">
+					</a>
+						  <?php } ?>
+					 <?php } else { ?>
+					<a title="<?= $this->escape($this->aviso['nombre_empresa']) ?>">
+						 <img alt="<?= $this->escape($this->aviso['nombre_empresa']) ?>" src="<?= $this->S('/images/' . $this->LogoDefecto) ?>" title="<?= $this->escape($this->aviso['nombre_empresa']) ?>">
+					</a>
+					 <?php }?>
+					 </div>
+				</div>
+			  <div class="job_box_company">
+					<?php
+						 if ($this->aviso['mostrar_empresa'] != 0) {
+						 if (isset($this->aviso['slug_empresa'])) { ?>
+							  <h2><a href='<?=$this->url(array('pais'=>'peru','empresa'=>$this->aviso['slug_empresa']),'buscar',false);?>' target="_blank" title="<?= $this->escape($this->aviso['nombre_empresa']); ?>"><?= $this->escape($this->aviso['nombre_empresa']); ?></a></h2>
+						 <?php } else { ?>
+							  <h2><?= $this->escape($this->aviso['nombre_empresa']); ?></h2>
+						 <?php }
+						 ?>
+					<?php } else { ?>
+						 <h2><?= $this->escape($this->aviso['nombre_comercial']); ?></h2>
+					<?php } ?>
+					<span itemprop="jobLocation" itemtype="http://schema.org/Place"><?= $this->escape($this->aviso['ciudad']); ?></span>
+			  </div>
+
+	 </div>
+</div>
+
+<div class="mobile_presentation_card">
+	 <div class="mobile_job_box_information row">
+		  <div class="mobile_job_box_image_container">
+				<div class="center_image">
+				<?php if ($this->aviso['mostrar_empresa'] != 0 && ($this->aviso['logo_empresa'] != "" || $this->aviso['logo_empresa'] != null)) { ?>
+				<?php if (isset($this->aviso['slug_empresa'])) { ?>
+					<a href='<?=$this->url(array('pais'=>'peru','empresa'=>$this->aviso['slug_empresa']),'buscar',false);?>' target="_blank" title="<?= $this->escape($this->aviso['nombre_empresa']) ?>">
+						 <img alt="<?= $this->escape($this->aviso['nombre_empresa']) ?>" src="<?= ELEMENTS_URL_LOGOS . $this->aviso['logo_empresa'] ?>" title="<?= $this->escape($this->aviso['nombre_empresa']) ?>">
+					</a>
+				<?php } else { ?>
+					<a title="<?= $this->escape($this->aviso['nombre_empresa']) ?>">
+						 <img alt="<?= $this->escape($this->aviso['nombre_empresa']) ?>" src="<?= ELEMENTS_URL_LOGOS . $this->aviso['logo_empresa'] ?>" title="<?= $this->escape($this->aviso['nombre_empresa']) ?>">
+					</a>
+				<?php }
+
+				}  else { ?>
+					<a title="<?= $this->escape($this->aviso['nombre_empresa']) ?>">
+						 <img alt="<?= $this->escape($this->aviso['nombre_empresa']) ?>" src="<?= $this->S('/images/' . $this->LogoDefecto) ?>" title="<?= $this->escape($this->aviso['nombre_empresa']) ?>">
+					</a>
+				<?php }?>
+				</div>
+		  </div>
+		  <div class="mobile_job_box_company">
+				<?php
+					if ($this->aviso['mostrar_empresa'] != 0) {
+						 if (isset($this->aviso['slug_empresa'])) { ?>
+							  <h3><a href='<?=$this->url(array('pais'=>'peru','empresa'=>$this->aviso['slug_empresa']),'buscar',false);?>' target="_blank"><?= $this->escape($this->aviso['nombre_empresa']); ?></a></h3>
+						 <?php } else { ?>
+							  <h3><?= $this->escape($this->aviso['nombre_empresa']); ?></h3>
+						 <?php } ?>
+					<?php } else { ?>
+						 <h3><?= $this->escape($this->aviso['nombre_comercial']); ?></h3>
+					<?php } ?>
+				<span><?= $this->escape($this->aviso['ciudad']); ?></span>
+				<div class="mobile_job_box_options">
+					 <span><i class="icon icon_star"></i></span>
+					 <?php /* <span class="mobile_job_box_options_time">2m</span>*/ ?>
+				</div>
+		  </div>
+	 </div>
+</div>
+
+
+
+
+<div class="job_options_wrapper mobile_job_options_share">
+	 <div data-email="<?=$urlAviso;?>" data-url="<?=$urlAviso;?>" data-title="<?= $this->aviso['puesto']; ?>" class="job_options_share"><span>Comparte</span>
+		  <ul>
+				<li><a class="btn_share_social linkedin" title="Comparte por Linkedin" href="javascript:;" onClick="ga('send','event','Avisos de Empleo','oferta_trabajo','compartir_<?=$this->aviso["url_id"];?>_<?=$this->postulante;?>_linkedin');"><i class="icon icon_linkedin"></i></a></li>
+				<li><a class="btn_share_social twitter" title="Comparte en Twitter" href="javascript:;" onClick="ga('send','event','Avisos de Empleo','oferta_trabajo','compartir_<?=$this->aviso["url_id"];?>_<?=$this->postulante;?>_twitter');"><i class="icon icon_twitter"></i></a></li>
+				<li><a class="btn_share_social fb" title="Comparte en Facebook" href="javascript:;" onClick="ga('send','event','Avisos de Empleo','oferta_trabajo','compartir_<?=$this->aviso["url_id"];?>_<?=$this->postulante;?>_facebookr');"><i class="icon icon_facebook"></i></a></li>
+				<li><a class="btn_share_social mail" title="Comparte por email" href="javascript:;" onClick="ga('send','event','Avisos de Empleo','oferta_trabajo','compartir_<?=$this->aviso["url_id"];?>_<?=$this->postulante;?>_email');"><i class="icon icon_email"></i></a></li>
+		  </ul>
+	 </div>
+</div>
+
+
+
+
+	 <?php if ($this->AnuncioHelper($this->aviso)->showContent()) : ?>
+
+	 <div class="job_box_wrapper">
+		  <h3 class="job_box_title">Descripción del Puesto</h3>
+		  <div class="job_box_information" itemprop="description">
+				<?= nl2br($this->escape($this->aviso['funciones'])); ?>
+		  </div>
+	 </div>
+
+	 <?php if (!empty($this->aviso['responsabilidades'])){?>
+	 <div class="job_box_wrapper">
+		  <h3 class="job_box_title">Otros</h3>
+		  <div class="job_box_information">
+				<?= nl2br($this->escape($this->aviso['responsabilidades'])); ?>
+		  </div>
+	 </div>
+	 <?php }?>
+
+		  <?php
+		  if (count($this->aviso['programas']) > 0 ||
+					 count($this->aviso['idiomas']) > 0 ||
+					 count($this->aviso['experiencias']) > 0 ||
+					 count($this->aviso['estudios']) > 0) :
+				?>
+				<div class="job_box_wrapper">
+					 <h3 class="job_box_title">REQUISITOS</h3>
+					 <div class="job_box_information">
+						  <ul><?php
+						  if (count($this->aviso['estudios']) > 0) : ?>
+						  <?php
+						  foreach ($this->aviso['estudios'] as $a) :
+								if($a['nivel_estudio']=='Otros Estudios') :
+								?><li  itemprop="educationRequirements">
+									 <?php
+									 if ($a['nivel_estudio_tipo']=='Otros') : ?>
+									 <?= ($a['otra_carrera'] != '' || $a['otra_carrera'] !=NULL)?'':$this->escape($a['nivel_estudio']) ?>
+									 <?=($a['otra_carrera'] != '' || $a['otra_carrera'] !=NULL)?$a['nivel_estudio'].': '.$this->escape($a['otra_carrera']):(($a['carrera'] != '') ? ': ' . $this->escape($a['carrera']): '')?>.
+									 <?php else : ?>
+									 <?= ($a['otra_carrera'] != '' || $a['otra_carrera'] !=NULL)?'':$this->escape($a['nivel_estudio'].': '.$a['nivel_estudio_tipo']) ?>
+									 <?=($a['otra_carrera'] != '' || $a['otra_carrera'] !=NULL)?$a['nivel_estudio'].': '.$a['nivel_estudio_tipo'].' en '.$this->escape($a['otra_carrera']):(($a['carrera'] != '') ? ' en ' . $this->escape($a['carrera']): '')?>.
+									 <?php endif; ?>
+								</li>
+								<?php else : ?>
+								<li  itemprop="educationRequirements">
+									 <?= ($a['otra_carrera'] != '' || $a['otra_carrera'] !=NULL)?'':$this->escape($a['nivel_estudio'].' '.$a['nivel_estudio_tipo']) ?>
+									 <?=($a['otra_carrera'] != '' || $a['otra_carrera'] !=NULL)?$a['nivel_estudio'].' '.$a['nivel_estudio_tipo'].' en '.$this->escape($a['otra_carrera']):(($a['carrera'] != '') ? ' en ' . $this->escape($a['carrera']): '')?>.
+								</li>
+								<?php endif; ?>
+								<?php endforeach; ?>
+					 <?php endif; ?>
+					 <?php if (count($this->aviso['experiencias']) > 0) : ?>
+						  <?php foreach ($this->aviso['experiencias'] as $e) : ?>
+								<li itemprop="experienceRequirements">Experiencia:
+									 <?= $this->escape($e['nombre_puesto']) ?> en el área de <?= $this->escape($e['nombre_area']) ?><?=
+									 ($this->Meses($e['experiencia'])) ? ' con ' . $this->Meses($e['experiencia']) . ' de experiencia.'
+												: '.'
+									 ?>
+								</li>
+						  <?php endforeach; ?>
+					 <?php endif; ?>
+					 <?php if (count($this->aviso['idiomas']) > 0) : ?>
+						  <?php foreach ($this->aviso['idiomas'] as $i) : ?>
+								<li itemprop="skills">Idioma
+									 <?=
+									 $this->escape($this->ItemList('idioma', $i['idioma']))
+									 ?> a nivel <?=
+									 $this->escape($i['nivel_idioma'] == 'basico' ? 'básico'
+													 : $i['nivel_idioma'])
+									 ?>
+								</li>
+						  <?php endforeach; ?>
+					 <?php endif; ?>
+					 <?php if (count($this->aviso['programas']) > 0): ?>
+						  <li itemprop="skills">Manejo de programas:
+								<?php
+								for ($i
+								= 0; $i < count($this->aviso['programas']); $i++):
+									 ?>
+									 <?= $this->escape($this->aviso['programas'][$i]['nombre_programa']) ?> a nivel <?=
+									 $this->escape($this->aviso['programas'][$i]['nivel_programa']
+										  == 'basico' ? 'básico' : $this->aviso['programas'][$i]['nivel_programa'])
+									 ?><?=
+									 ($i + 1 == count($this->aviso['programas'])) ? '.' : ', '
+									 ?>
+								<?php endfor; ?>
+						  </li>
+					 <?php endif; ?>
+						  </ul>
+					 </div>
+				</div>
+		  <?php endif; ?>
+		  <?php if ($this->aviso['mostrar_salario'] == 1 && !($this->aviso['salario_min'] == null && $this->aviso['salario_max'] == null)) : ?>
+				<h3 class="job_box_title">Condiciones Salariales</h3>
+				<div class="job_box_information">
+					 <ul>
+						  <?php if ($this->aviso['salario_min'] == 0) : ?>
+						  <li>Sueldo: Menor a <?php echo $this->moneda?> <?= $this->aviso['salario_max']; ?></li>
+						  <?php elseif ($this->aviso['salario_max'] == '') : ?>
+						  <li>Sueldo: Mayor a <?php echo $this->moneda?> <?= $this->aviso['salario_min']; ?></li>
+						  <?php elseif ($this->aviso['salario_min'] != $this->aviso['salario_max']) : ?>
+						  <li>Sueldo: Entre <?php echo $this->moneda?> <?= $this->aviso['salario_min']; ?> y <?php echo $this->moneda?> <?= $this->aviso['salario_max']; ?></li>
+						  <?php else : ?>
+						  <li>Sueldo: <?php echo $this->moneda?> <?= $this->aviso['salario_min']; ?></li>
+						  <?php endif; ?>
+					 </ul>
+				</div>
+		  <?php endif;
+		  endif; ?>
+		 <?php if ($this->module == 'postulante') : ?>
+	 <div class="job_options_wrapper">
+		  <div data-email="<?=$urlAviso;?>" data-url="<?=$urlAviso;?>" data-title="<?= $this->aviso['puesto']; ?>" class="job_options_share"><span>Comparte</span>
+				<ul>
+				  <li><a class="btn_share_social mail" title="Comparte por email" href="javascript:;" onClick="ga('send','event','Avisos de Empleo','oferta_trabajo','compartir_<?=$this->aviso["url_id"];?>_<?=$this->postulante;?>_email');" ><i class="icon icon_email"></i></a></li>
+				  <li><a class="btn_share_social fb" title="Comparte en Facebook" onClick="ga('send','event','Avisos de Empleo','oferta_trabajo','compartir_<?=$this->aviso["url_id"];?>_<?=$this->postulante;?>_facebook');"><i class="icon icon_facebook"></i></a></li>
+				  <li><a class="btn_share_social twitter" title="Comparte en Twitter" href="javascript:;" onClick="ga('send','event','Avisos de Empleo','oferta_trabajo','compartir_<?=$this->aviso["url_id"];?>_<?=$this->postulante;?>_twitter');"><i class="icon icon_twitter"></i></a></li>
+				  <li><a class="btn_share_social linkedin" title="Comparte por Linkedin" href="javscript:;" onClick="ga('send','event','Avisos de Empleo','oferta_trabajo','compartir_<?=$this->aviso["url_id"];?>_<?=$this->postulante;?>_linkedin');"><i class="icon icon_linkedin"></i></a></li>
+				</ul>
+		  </div>
+		  <?php
+		  $winModal = 'winModal';
+		  if ($this->auth == null) :
+				$winModal  = 'login_modal';
+		  endif;
+		  ?>
+		  <?php
+		  /*
+		  <a class="report <?=$winModal?>" href="<?=
+		  ($this->auth == null) ? '#loginP' : '#reportAbuse'
+		  ?>" return="<?=
+			  ($this->auth == null) ? $this->urlAviso . '/#reportAbuse' : $this->urlAviso
+			  ?>" title="">Reportar abuso</a>
+			  */
+		  ?>
+		  <div class="button_container">
+		  <?php if ($this->AnuncioHelper($this->aviso)->showBtnPostular()) : ?>
+		  <?php if ($this->isAuth === false ||(isset( $this->auth['usuario']) && $this->auth['usuario']->rol === 'postulante')) : ?>
+				<?php if ($this->hasPostulado === false && ($this->hasDesPostulado === false)) : ?>
+					 <?php if ($this->cuestionario === true) : ?>
+						  <?php
+								$urlPostula = '#questionsWM';
+								$winModal = 'show_questions';
+
+								if ($this->updateCV) :
+									 $urlPostula = '#winUpdateCV';
+									 $winModal = 'trigger_modal_not_enough_information';
+								endif;
+								if($this->auth == null) :
+									 $winModal = 'login_init';
+								endif;
+						  ?>
+						  <a class="btn btn_apply_job <?= $winModal?>"
+								  onClick="ga('send', 'event', 'postulacion','oferta_trabajo','<?= $this->aviso['area_puesto_slug'] ?>_<?= $this->aviso['nivel_puesto_slug'] ?>_<?= $this->aviso['url_id'] ?>_<?=$this->postulante?>');"
+								  href="javascript:;"
+								  data-href="<?= ($this->auth == null) ? $this->urlAviso .$urlPostula : $this->urlAviso ?>" title="Postula"
+								  data-trigger-modal="<?=$urlPostula?>"
+								  ><span>Postular</span></a>
+
+						 <?php else : ?>
+						 <?php
+
+									 $resParams = $this->searchResultsUrl == '' ? '' : '/es-resultado/true';
+									  $urlPostula = 'javascript:;';
+									  $winModal = '';
+									 if ($this->auth == null) :
+										  $urlPostula = 'javascript:;';
+										  $winModal = 'login_init';
+									 else : //update CV
+										  if ($this->updateCV) :
+												$urlPostula = '#winUpdateCV';
+												$winModal = 'trigger_modal_not_enough_information';
+										  else :
+												$urlPostula =  $this->urlAviso. '/postular' . $resParams;
+												$winModal = 'winModal';
+										  endif;
+									  endif;   ?>
+									 <a class="btn btn_apply_job <?=$winModal?>"
+										  onClick="ga('send', 'event', 'postulacion','oferta_trabajo','<?= $this->aviso['area_puesto_slug'] ?>_<?= $this->aviso['nivel_puesto_slug'] ?>_<?= $this->aviso['url_id'] ?>_<?=$this->postulante?>');"
+										  href="<?= (empty($winModal)) ? $this->urlAviso. '/postular' : $urlPostula; ?>"
+										  data-href="<?= ($this->auth == null) ? $this->urlAviso . '/postular' . $resParams : $this->urlAviso ?>"
+											 data-trigger-modal="<?=$urlPostula?>"
+										  title="Postula"><span>Postula</span></a>
+						 <?php endif; ?>
+					<?php endif; ?>
+			  <?php endif; ?>
+			<?php endif; ?>
+		  </div>
+	 </div>
+
+<?php endif; ?>
+
+
+
+<?php if ($this->AnuncioHelper($this->aviso)->showBtnPostular()) : ?>
+		  <?php if ($this->isAuth === false ||  $this->auth['usuario']->rol === 'postulante') : ?>
+				<?php if ($this->hasPostulado === false && ($this->hasDesPostulado === false)) : ?>
+
+<div class="job_options_button_mobile">
+	<?php if ($this->AnuncioHelper($this->aviso)->showBtnPostular()) : ?>
+		  <?php if ($this->isAuth === false ||(isset( $this->auth['usuario']) && $this->auth['usuario']->rol === 'postulante')) : ?>
+				<?php if ($this->hasPostulado === false && ($this->hasDesPostulado === false)) : ?>
+					 <?php if ($this->cuestionario === true) : ?>
+						  <?php
+								$urlPostula = '#questionsWM';
+								$winModal = 'show_questions';
+
+								if ($this->updateCV) :
+									 $urlPostula = '#winUpdateCV';
+									 $winModal = 'trigger_modal_not_enough_information';
+								endif;
+								if($this->auth == null) :
+									 $winModal = 'login_init';
+								endif;
+						  ?>
+						  <a class="btn btn_apply_job <?= $winModal?>"
+								  onClick="ga('send', 'event', 'postulacion','oferta_trabajo','<?= $this->aviso['area_puesto_slug'] ?>_<?= $this->aviso['nivel_puesto_slug'] ?>_<?= $this->aviso['url_id'] ?>_<?=$this->postulante?>');"
+								  href="javascript:;"
+								  data-href="<?= ($this->auth == null) ? $this->urlAviso .$urlPostula : $this->urlAviso ?>" title="Postula"
+								  data-trigger-modal="<?=$urlPostula?>"
+								  ><span>Postular</span></a>
+
+						 <?php else : ?>
+						 <?php
+
+									 $resParams = $this->searchResultsUrl == '' ? '' : '/es-resultado/true';
+									  $urlPostula = 'javascript:;';
+									  $winModal = '';
+									 if ($this->auth == null) :
+										  $urlPostula = 'javascript:;';
+										  $winModal = 'login_init';
+									 else : //update CV
+										  if ($this->updateCV) :
+												$urlPostula = '#winUpdateCV';
+												$winModal = 'trigger_modal_not_enough_information';
+										  else :
+												$urlPostula =  $this->urlAviso. '/postular' . $resParams;
+												$winModal = 'winModal';
+										  endif;
+									  endif;   ?>
+									 <a class="btn btn_apply_job <?=$winModal?>"
+										  onClick="ga('send', 'event', 'postulacion','oferta_trabajo','<?= $this->aviso['area_puesto_slug'] ?>_<?= $this->aviso['nivel_puesto_slug'] ?>_<?= $this->aviso['url_id'] ?>_<?=$this->postulante?>');"
+										  href="<?= (empty($winModal)) ? $this->urlAviso. '/postular' : $urlPostula; ?>"
+										  data-href="<?= ($this->auth == null) ? $this->urlAviso . '/postular' . $resParams : $this->urlAviso ?>"
+											 data-trigger-modal="<?=$urlPostula?>"
+										  title="Postula"><span>Postula</span></a>
+						 <?php endif; ?>
+					<?php endif; ?>
+			  <?php endif; ?>
+			<?php endif; ?>
+</div>
+				<?php endif; ?>
+		  <?php endif; ?>
+<?php endif; ?>
+
+
+
+<?php
+/*
+<div id="winUpdateCV" class="window fix">
+		  <a class="closeWM icon-close big" href="#Cerrar" title="Cerrar ventana">Cerrar</a>
+		  <h2 class="title">Felicidades, acabas de postular al puesto <?=strtoupper($this->aviso['puesto'])?></h2>
+		  <div class="msjReemplazo">
+				<p>Ten en cuenta que tu perfil no ha sido actualizado en 4 meses, te<br>
+				recomendamos actualizar tus datos para obtener mayores posibilidades de <br>
+				éxito en tu postulación.</p>
+		  </div>
+		  <div class="wrap-btn center">
+				<a class="btn btn-primary" href="/registro/paso1-modificar" title="Actualiza tus datos">Actualiza tus datos</a>
+				<a class="btn btn-default" href="/postulante/mi-cuenta/update-info" title="Mis datos siguen vigentes">Mis datos siguen vigentes</a>
+		  </div>
+</div>
+*/
+
+?>
+
+<? /* echo $this->module == 'postulante' ? '' : '</div>' */ ?>

@@ -1,0 +1,129 @@
+<div class="row products products_row_3">
+	 <?php //if(isset($this->layout()->auth['empresa']['membresia_info']['membresia'])){?>
+	 <div class="choose-ads">
+		  <div class="title-ads"><h2 class="title-big">Aviso<br>Web Gratuito</h2><span class="text-white">Gratuito</span></div>
+		  <div class="image-ads web-tiny"></div>
+		  <p class="box">Publique su aviso gratuitamente en www.aquiempleos.com</p>
+		  <p class="text-benefits"><span>Beneficios</span></p>
+		  <ul class="check-list bold">
+				<li><i class="icon icon_check"></i>Aviso Online x 30 días.</li>
+				<li><i class="icon icon_check"></i>Utilización según fecha de publicación.</li>
+		  </ul>
+		  <div class="wrap-btn center">
+				<?php
+				if ($this->layout()->auth != null && array_key_exists('empresa',
+						  $this->layout()->auth)):
+					 ?>
+					 <form action="<?=
+					 $this->url(array(
+						  'module' => 'empresa', 'controller' => 'publica-aviso',
+						  'action' => 'paso1'), false, true)
+					 ?> " id="fStep1hb" method="post" >
+						  <input type="hidden" name=extiende value="<?php echo $this->extiende ?>" />
+						  <input type="hidden" name="republica" value="<?php echo $this->republica ?>" />
+						  <input type="hidden" name="id_tarifa" value="1" />
+						  <input type="submit" onclick="ga('send', 'event', 'P1_Gratuito', '<?php echo $this->empresaId?>' , 'P1_Gratuito');" id="segOptP1" value="Continuar >" class="btn btn-primary medium continNAdv1 iBtn1S2M"/>
+					 </form>
+				<?php else: ?>
+					 <a rel="{id:'1'}" onclick="ga('send', 'event', 'P1_Gratuito', '<?php echo $this->empresaId?>' , 'P1_Gratuito');" id="primOptP1" href="#loginP" data-href="/empresa/publica-aviso/paso2/tarifa/1" class="login_modal btn btn-primary medium loginPrimP1" title="">Continuar ></a>
+				<?php endif; ?>
+		  </div>
+	 </div>
+	 <?php /*//} else { ?>
+	 <div class="choose-ads green" itemscope itemtype="http://schema.org/Product">
+		  <div class="title-ads"><h2 class="title-big" itemprop="name">Aviso<br>Web</h2>
+				<span class="text-white text-white-tiny">$<?php echo number_format($this->productos['destacado']['0']['valor'],0)?></span><br>
+				<span class="text-white">Ahora $<?php echo number_format($this->productos['destacado']['0']['valor']*(100-$this->productos['extracargo']['valorExtracargo'])/100,0)?></span></div>
+		  <div class="image-ads web-tiny"></div>
+		  <p class="box">Su aviso estará publicado en la web.<br/>
+		  Válido hasta el 31 de Diciembre del 2015.
+		  </p>
+		  <p class="text-benefits"><span>Beneficios</span></p>
+		  <ul class="check-list bold" itemprop="description">
+				<li><i class="icon icon_check"></i>Aviso Online x 30 días.</li>
+				<li><i class="icon icon_check"></i>Administración del proceso de selección desde la web.</li>
+		  </ul>
+		  <div class="wrap-btn center">
+				<?php
+				if (isset($this->republica)) {
+					 $url = SITE_URL . '/empresa/publica-aviso-destacado/paso2/republica/' . $this->republica;
+				} else if (isset($this->extiende)) {
+					 $url = SITE_URL . '/empresa/publica-aviso-destacado/paso2/extiende/' . $this->extiende;
+				} else {
+					 $url = SITE_URL . '/empresa/publica-aviso-destacado/paso2/';
+				}
+				?>
+				<?php
+				if ($this->layout()->auth != null && array_key_exists('empresa',
+						  $this->layout()->auth)):
+					 ?>
+					 <a href="<?= $url ?>" onclick="ga('send', 'event', 'P1_Destacado', '<?php echo $this->empresaId?>' , 'P1_Destacado');" class="btn btn-primary medium">Continuar ></a>
+				<?php else: ?>
+					 <a rel="{id:'1'}" onclick="ga('send', 'event', 'P1_Destacado', '<?php echo $this->empresaId?>' , 'P1_Destacado');" id="primOptP2" href="#loginP" data-href="/empresa/publica-aviso-destacado/paso2/" class="login_modal btn btn-primary medium loginPrimP1" title="">Continuar ></a>
+				<?php endif; ?>
+		  </div>
+	 </div>
+	 <?php }  */?>
+	 <div class="choose-ads blue" itemscope itemtype="http://schema.org/Product">
+		  <div class="title-ads"><h2 class="title-big" itemprop="name">Aviso<br>Económico</h2>Desde
+				<span class="text-white"><?php echo $this->moneda?><?php echo number_format($this->productos['economicos']['0']['valor'],0)?></span>
+		  </div>
+		  <div class="image-ads economic-tiny"></div>
+		  <p class="box">Su aviso web se publicará el día domingo en Los Clasificados del suplemento AquiEmpleos de:<br>
+				<br><b>Diario La Prensa y/o <br> diario El Trome</b></p>
+
+
+		  <p class="text-benefits"><span>Beneficios</span></p>
+		  <ul class="check-list bold" itemprop="description">
+				<li><i class="icon icon_check"></i>Aviso Online x 30 días.</li>
+				<li><i class="icon icon_check"></i>Ubicación según fecha de publicación.</li>
+				<li><i class="icon icon_check"></i>Mejor ubicación sobre el aviso web gratuito.</li>
+				<li><i class="icon icon_check"></i>Utilización de filtros de postulantes.</li>
+				<li><i class="icon icon_check"></i>Administración del proceso de selección desde la web.</li>
+				<li><i class="icon icon_check"></i>Aviso Impreso por palabras en el Diario.</li>
+		  </ul>
+		  <div class="wrap-btn center">
+				<?php
+				if (isset($this->republica)) {
+					 $url = SITE_URL . '/empresa/publica-aviso/paso1/republica/' . $this->republica;
+				} else if (isset($this->extiende)) {
+					 $url = SITE_URL . '/empresa/publica-aviso/paso1/extiende/' . $this->extiende;
+				} else {
+					 $url = SITE_URL . '/empresa/publica-aviso/paso1/';
+				}
+				?>
+				<a href="<?= $url ?>" onclick="ga('send', 'event', 'P1_Economico', '<?php echo $this->empresaId?>' , 'P1_Economico');" class="btn btn-primary medium">Continuar ></a>
+		  </div>
+	 </div>
+	 <div class="choose-ads orange" itemscope itemtype="http://schema.org/Product">
+		  <div class="title-ads"><h2 class="title-big" itemprop="name">Aviso<br>Preferencial</h2>Desde
+				<span class="text-white"><?php echo $this->moneda?><?php echo number_format($this->productos['preferencial']['0']['valor'],0)?></span></div>
+		  <div class="image-ads preference-tiny"></div>
+		  <p class="box">Su aviso web se publicará el día domingo en la sección de avisos Preferenciales del suplemento AquiEmpleos de:
+				<br><b>Diario La Prensa y/o <br> diario El Trome</b></p>
+		  <p class="text-benefits"><span>Beneficios</span></p>
+		  <ul class="check-list bold" itemprop="description">
+				<li><i class="icon icon_check"></i>Aviso Online x 30 días.</li>
+				<li><i class="icon icon_check"></i>Ubicación preferencial x 2 días.</li>
+				<li><i class="icon icon_check"></i>Mejor ubicación sobre el aviso web gratuito y económico.</li>
+				<li><i class="icon icon_check"></i>Utilización de filtros de postulantes.</li>
+				<li><i class="icon icon_check"></i>Administración del proceso de selección desde la web.</li>
+				<li><i class="icon icon_check"></i>Aviso Impreso Preferencial en el Diario.</li>
+				<li><i class="icon icon_check"></i>Postulación mediante el código del aviso.</li>
+				<li><i class="icon icon_check"></i>Acceso a la base de CV´s x 5 días.</li>
+
+		  </ul>
+		  <div class="wrap-btn center">
+				<?php
+				if (isset($this->republica)) {
+					 $url = SITE_URL . '/empresa/publica-aviso-preferencial/paso1/republica/' . $this->republica;
+				} else if (isset($this->extiende)) {
+					 $url = SITE_URL . '/empresa/publica-aviso-preferencial/paso1/extiende/' . $this->extiende;
+				} else {
+					 $url = SITE_URL . '/empresa/publica-aviso-preferencial/paso1/';
+				}
+				?>
+				<a href="<?= $url ?>" onclick="ga('send', 'event', 'P1_Preferencial', '<?php echo $this->empresaId?>' , 'P1_Preferencial');" class="btn btn-primary medium">Continuar ></a>
+		  </div>
+	 </div>
+</div>
