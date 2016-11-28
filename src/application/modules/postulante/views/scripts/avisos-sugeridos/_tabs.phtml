@@ -1,8 +1,0 @@
-<?php
-   $active = !isset($this->tab) ? 'sugerencias'  : $this->tab;
-?>
-<ul class="suggested_tabs_header">
-    <li <?=($active==Postulante_AvisosSugeridosController::sugerencias)? 'class="is_active"' : ''?>><a href="/avisos-sugeridos/"><i class="icon icon_reload"></i><span class="number"><?=($this->tab==Postulante_AvisosSugeridosController::sugerencias)?$this->totalAvisosSugeridos:'';?></span> <span>Sugerencias</span></a></li>
-    <li <?=($active==Postulante_AvisosSugeridosController::favoritos)? 'class="is_active"' : ''?>><a href="/avisos-sugeridos/favoritos"><i class="icon icon_star"></i><span class="number"><?=($this->tab==Postulante_AvisosSugeridosController::favoritos)?$this->totalAvisosFavorito:'';?></span> <span>Favoritos</span></a></li>
-    <li <?=($active==Postulante_AvisosSugeridosController::eliminados)?'class="is_active"' : ''?>><a href="/avisos-sugeridos/eliminados"><i class="icon icon_delete2"></i><span class="number"><?=($this->tab==Postulante_AvisosSugeridosController::eliminados)?$this->totalAvisosEliminado:'';?></span> <span>Eliminados</span></a></li>
-</ul>

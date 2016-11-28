@@ -1,3 +1,0 @@
-<dataSource type="JdbcDataSource" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://104.196.59.19:3306/db_empleobusco_pre?zeroDateTimeBehavior=convertToNull" 
-  user="u_tbusco_des"  password="aij0Oek1anaivi"  />
-   

@@ -1,2 +1,0 @@
-<dataSource type="JdbcDataSource" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://104.196.45.76:3306/db_empleos?zeroDateTimeBehavior=convertToNull" 
-  user="u_tbusco_des"  password="aij0Oek1anaivi"  />
