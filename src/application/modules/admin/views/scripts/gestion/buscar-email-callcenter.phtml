@@ -1,0 +1,118 @@
+<?php if ($this->cliente != null): ?>
+    <div class="row">
+        <div class="grids-5">
+           <b>Cliente:</b> <?= $this->cliente["nombres"] . " " . $this->cliente["apellidos"] ?> (<?= $this->cliente["razonsocial"] ?>)
+        </div>
+        <div class="grids-1">
+            <input id="btnLlamadaCliente" type="button" totalllamadas="<?= count($this->listaContactos) ?>" rel="<?= $this->cliente["idempresa"] ?>" class="btn btn-primary" value="LLamando al cliente" />
+        </div>
+    </div>
+    <div class="block">
+        <div class="gridYScroll">  
+            <table style="width: 100%;" class="mT10">
+                <tr>
+                    <td class="bGray" style="width: 400px; border-width:1px 1px 0 0;">
+                        <table >
+                            <tr>
+                                <td class="noBdr">
+                                    <label class="bold">Nombres</label>
+                                </td>
+                                <td class="noBdr">
+                                    <span class="mL20"><?= $this->cliente["nombres"] ?></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="noBdr">
+                                    <label class="bold">Apellidos</label>
+                                </td>
+                                <td class="noBdr">
+                                    <span class="mL20"><?= $this->cliente["apellidos"] ?></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="noBdr">
+                                    <label class="bold">Puesto</label>
+                                </td>
+                                <td class="noBdr">
+                                    <span class="mL20"><?=
+                                        ($this->cliente["puesto"] == "" ? "Ninguno"
+                                                : $this->cliente["puesto"])
+                                        ?></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="noBdr">
+                                    <label class="bold">Area</label>
+                                </td>
+                                <td class="noBdr">
+                                    <span class="mL20"><?=
+                                        ($this->cliente["area"] == "" ? "Ninguno"
+                                                : $this->cliente["area"])
+                                        ?></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="noBdr">
+                                    <label class="bold">Email</label>
+                                </td>
+                                <td class="noBdr">
+                                    <span class="mL20"><?=
+                                        ($this->cliente["email"] == "" ? "Ninguno"
+                                                : $this->cliente["email"])
+                                        ?></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="noBdr">
+                                    <label class="bold">Telefono fijo/celular</label>
+                                </td>
+                                <td class="noBdr">
+                                    <span class="mL20"><?=
+                                        $this->cliente["telefono"] . ($this->cliente["anexo"]
+                                        != "" ? " - Anx:" . $this->cliente["anexo"]
+                                                : "")
+                                        ?></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="noBdr">
+                                    <label class="bold">Telefono fijo/celular</label>
+                                </td>
+                                <td class="noBdr">
+                                    <span class="mL20"><?=
+                                        $this->cliente["telefono2"] . ($this->cliente["anexo2"]
+                                        != "" ? " - Anx:" . $this->cliente["anexo2"]
+                                                : "")
+                                        ?></span>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td  class="bGray " style="width: 200px; border-width:1px 0 0 0; vertical-align: top">
+                        <div id="listaContacts" class="center grid3">
+                            <?
+                            $ultimo
+                                = count($this->listaContactos);
+                            ?>
+                            <?
+                            foreach ($this->listaContactos as $index => $item):
+                                ?>
+                                <div class="bold mB5 itemRegistro">Contacto <span class="countLlamada"><?= ($ultimo) ?></span> : <?= $item["fecha_registro"] ?>.</div>
+                                <? $ultimo--; ?>
+                            <? endforeach; ?>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+        <?php if($this->navegarUsu):?>
+            <div class="txt_right">
+                <a id="btnUserNavigator" class="btn btn-primary" target="_blank" href="/empresa/publica-aviso">Navegar como usuario</a>
+            </div>
+        <?php endif; ?>
+<?php else: ?>
+    <div class="box-message">
+        No se encontró ningún registro.
+    </div>
+<?php endif; ?>

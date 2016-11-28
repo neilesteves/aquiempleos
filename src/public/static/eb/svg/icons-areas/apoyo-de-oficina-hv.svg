@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 18.1.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="175.6 0 128 128" enable-background="new 175.6 0 128 128" xml:space="preserve">
+<g>
+	<g>
+		<path fill="#FFA200" d="M274.2,64.6c0-19.9-16.6-36.1-36.8-35.1c-18.2,0.9-32.9,15.8-33.6,33.8c-0.6,17.4,11.4,32,27.6,35.6
+			l2.4,3.6c2.3,4,8,4,10.2,0l2.4-3.6C262.2,95.4,274.2,81.4,274.2,64.6z"/>
+	</g>
+	<defs>
+		<filter id="Adobe_OpacityMaskFilter" filterUnits="userSpaceOnUse" x="203.7" y="29.4" width="70.4" height="76">
+			<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+		</filter>
+	</defs>
+	<mask maskUnits="userSpaceOnUse" x="203.7" y="29.4" width="70.4" height="76" id="SVGID_4_">
+		<g filter="url(#Adobe_OpacityMaskFilter)">
+			
+				<image overflow="visible" enable-background="new    " width="54" height="59" xlink:href="1CAB09DD8E2199B5.jpg"  transform="matrix(1.4222 0 0 1.4222 200.4579 25.823)">
+			</image>
+		</g>
+	</mask>
+	<g opacity="0.4" mask="url(#SVGID_4_)">
+		<path d="M274.1,64.6c0-19.9-16.6-36.1-36.8-35.1c-18.2,0.9-32.9,15.8-33.6,33.8c-0.6,17.4,11.4,32,27.6,35.6l2.4,3.6
+			c2.3,4,8,4,10.2,0l2.4-3.6C262.2,95.4,274.1,81.4,274.1,64.6z"/>
+	</g>
+</g>
+<g>
+	<g>
+		<circle fill="#FFFFFF" cx="238.9" cy="64.7" r="30.6"/>
+	</g>
+	<defs>
+		<filter id="Adobe_OpacityMaskFilter_1_" filterUnits="userSpaceOnUse" x="208.3" y="34.1" width="61.2" height="61.2">
+			<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+		</filter>
+	</defs>
+	<mask maskUnits="userSpaceOnUse" x="208.3" y="34.1" width="61.2" height="61.2" id="SVGID_1_">
+		<g filter="url(#Adobe_OpacityMaskFilter_1_)">
+			
+				<image overflow="visible" enable-background="new    " width="48" height="48" xlink:href="1CAB09DD8E2199B7.jpg"  transform="matrix(1.4222 0 0 1.4222 204.786 30.0897)">
+			</image>
+		</g>
+	</mask>
+	<g opacity="0.3" mask="url(#SVGID_1_)">
+		<circle cx="238.9" cy="64.7" r="30.6"/>
+	</g>
+</g>
+<g>
+	<g>
+		<path fill="#FFA200" d="M256.7,51.1L256.7,51.1l-2.7-2.6l-3.8-3.6l0,0l-2.6-2.4l-0.1-0.1c-1.4-1.3-3.1-1.7-3.8-1l-19.3,19.3
+			c-0.4,0.4-0.4,1.3,0,1.7l1.6,1.6l0,0l2.8,2.7l0,0l3.6,3.3l2.8,2.7l0,0l1.3,1.3c0.4,0.4,1.1,0.4,1.6,0l19.5-19.3
+			C258.1,53.8,257.8,52.5,256.7,51.1z"/>
+		<path fill="#FFA200" d="M232.2,71.5l-4.6-4.4l-4.6-4.4c-0.1-0.1-0.4,0-0.6,0.1l-1.4,9.2l0.4,0.4l4.6,4.4l0.3,0.3l9-1.7
+			c0.4-0.1,0.6-0.6,0.3-0.9L232.2,71.5z"/>
+		<path fill="#FFA200" d="M226.1,77.1l-1.6-1.6h-0.1l-1.3-1.3l-0.1-0.1l-1.1-1.1l-0.1-0.1l-0.6-0.6l-0.1,1l-0.6,3.7l0,0l-0.1,1
+			c0,0.3,0.1,0.4,0.4,0.4l1.1-0.3l4.7-0.9L226.1,77.1z"/>
+		<path fill="#FFA200" d="M255.7,78.4h-27.7l-8,1.4l35.6,0.6c0.3,0,0.4-0.1,0.4-0.3v-1.3C256.1,78.5,255.8,78.4,255.7,78.4
+			L255.7,78.4z"/>
+	</g>
+</g>
+</svg>

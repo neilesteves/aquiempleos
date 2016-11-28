@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://ogp.me/ns/fb#">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="language" content="es">
+
+        <meta name="title" content="Bolsa de Trabajo y Ofertas de Empleo en Perú - AquiEmpleos | aquiempleos.com">
+        <title>Bolsa de Trabajo y Ofertas de Empleo en Perú - AquiEmpleos | aquiempleos.com</title>
+
+        <meta property="og:description" content="Encuentra  las mejores Ofertas de Trabajo en Perú. Actualiza tu curriculum y postula a los puestos de trabajo de acuerdo a tu Perfil.">
+        <meta property="og:image" content="">
+        <meta property="og:image:height" content="250">
+        <meta property="og:image:type" content="image/jpg">
+        <meta property="og:image:width" content="250">
+        <meta property="og:site_name" content="Empleos">
+        <meta property="og:title" content="Bolsa de Trabajo y Ofertas de Empleo en Perú - AquiEmpleos | aquiempleos.com">
+        <meta property="og:type" content="article">
+        <meta property="og:url" content="/">
+        <meta name="DC.Contributor" content="Empleos.com">
+        <meta name="DC.Creator" content="Empleos">
+        <meta name="DC.Description" content="Encuentra  las mejores Ofertas de Trabajo en Perú. Actualiza tu curriculum y postula a los puestos de trabajo de acuerdo a tu Perfil.">
+        <meta name="DC.Language" content="es">
+        <meta name="DC.Publisher" content="La Prensa">
+        <meta name="DC.Subject" content="Bolsa de Trabajo y Ofertas de Empleo en Perú - AquiEmpleos | aquiempleos.com">
+        <meta name="DC.Title" content="Bolsa de Trabajo y Ofertas de Empleo en Perú - AquiEmpleos | aquiempleos.com">
+        <meta name="author" content="Empleos.com">
+        <meta name="description" content="Encuentra  las mejores Ofertas de Trabajo en Perú. Actualiza tu curriculum y postula a los puestos de trabajo de acuerdo a tu Perfil.">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="geo.placename" content="Peru">
+        <meta name="geo.position" content="-12.0478;-77.0622">
+        <meta name="geo.region" content="PE-LIM">
+        <meta name="ICBM" content="-12.0478, -77.0622">
+        <meta name="keywords" content="Ofertas de trabajo, Bolsas de trabajo, avisos de trabajo, solr_trabajobusco_dev lima, buscar empleo, aptitus empleo, búsqueda de empleo, búsqueda de trabajo, empleo comercio">
+        <meta name="msvalidate.01" content="050EB16938699EA18AA37FCBD106D6FE">
+        <meta name="robots" content="index,follow">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+        <link rel="canonical" href="">
+        <link href="<?= $this->S('/eb/css/empleo.busco.css'); ?>" media="all" rel="stylesheet" type="text/css">
+        <link href="<?= $this->S('/eb/css/bootstrap-theme.min.css'); ?>" media="all" rel="stylesheet" type="text/css">
+        <link href="<?= $this->S('/eb/font-awesome/css/font-awesome.min.css'); ?>" media="all" rel="stylesheet" type="text/css">
+        <link href="<?= $this->S('/eb/css/modal-registro.css'); ?>" media="all" rel="stylesheet" type="text/css">
+        <link href="<?= $this->S('/eb/css/utilities.css'); ?>" media="all" rel="stylesheet" type="text/css">
+        <link href="<?= $this->S('/eb/css/header.css?'); ?>" media="all" rel="stylesheet" type="text/css">
+        <link href="<?= $this->S('/eb/css/footer.css'); ?>" media="all" rel="stylesheet" type="text/css">
+        <link href="<?= $this->S('/eb/css/error404.css'); ?>" media="all" rel="stylesheet" type="text/css">
+        <link href="<?= $this->S('/img/favicon.ico'); ?>" rel="icon" type="image/vnd.microsoft.icon" />
+        <link href="<?= $this->S('/img/favicon.ico'); ?>" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+        <link href="<?= $this->S('/img/favicon.ico'); ?>" rel="shortcut icon" type="image/x-icon" />
+        <link href="<?= $this->S('/img/favicon.ico'); ?>" rel="image_src" type="image/ico" />
+    </head>
+    <body>
+        <div class="page_default">
+            <?php
+            echo $this->partial('render/_header.phtml',
+                array(
+                'layout' => $this->layout(),
+                'auth' => $this->layout()->auth));
+            ?>
+            <?php echo $this->layout()->content ?>
+            <?php
+            echo $this->partial('render/_footer.phtml',
+                array(
+                'auth' => $this->layout()->auth))
+            ?>
+            <?php echo $this->ModalBoxes($this->layout()); ?>
+        </div>
+
+
+        <style type="text/css">
+            .errorMesajes{
+                color: #BB4C4C;
+                text-align: center;
+            }
+        </style>
+        <script type="text/javascript" src="<?= $this->S('/eb/js/jquery.js'); ?>"></script>
+        <script type="text/javascript" src="<?= $this->S('/eb/js/bootstrap.min.js'); ?>"></script>
+        <script type="text/javascript" src="<?= $this->S('/eb/slick/slick.js'); ?>"></script>
+        <script type="text/javascript" src="<?= $this->S('/eb/js/main.js'); ?>"></script>
+        <script type="text/javascript" src="<?= $this->S('/eb/js/empleo-busco.js'); ?>"></script>
+        <script type="text/javascript" src="<?= $this->S('/eb/js/src/lib/jquery.easy-autocomplete.min.js'); ?>"></script>
+        <script type="text/javascript" src="<?= $this->S('/eb/js/postulante/home/index.js'); ?>"></script>
+        <script type="text/javascript" src="<?= $this->S('/eb/plugin/owl/owl.carousel.js'); ?>"></script>
+        <script type="text/javascript" src="<?= $this->S('/eb/js/postulante/home/home.js'); ?>"></script>
+
+    </body>
+</html>

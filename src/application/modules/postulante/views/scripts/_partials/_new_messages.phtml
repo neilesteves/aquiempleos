@@ -1,0 +1,13 @@
+<?php if (is_array($this->flashMessages)) : ?>
+    <?php foreach ($this->flashMessages as $msg) : ?>
+    <?php $icon = ($msg->level == 'error') ? 'icon_cross' : 'icon_check';?>
+        <section class="message_box <?=$msg->level;?>">
+          <div class=" row center_box">
+            <div class="message">
+            	<i class="icon <?=$icon?>"></i>
+            	<span><?=$this->escape($msg->message) ?></span>
+            </div>
+          </div>
+        </section>
+    <?php endforeach; ?>
+<?php endif; ?>

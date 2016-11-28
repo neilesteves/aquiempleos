@@ -1,0 +1,350 @@
+/*
+layout
+*/
+@font-face {
+    font-family: 'MuseoSans300';
+    src: url('../fonts/Museo300-Regular-webfont.eot');
+    src: url('../fonts/Museo300-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/Museo300-Regular-webfont.woff') format('woff'),
+         url('../fonts/Museo300-Regular-webfont.ttf') format('truetype'),
+         url('../fonts/Museo300-Regular-webfont.svg#MuseoSans500') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+#wrap{ min-width: 1000px;}
+#header{ 
+    position:relative; 
+    padding: 29px 0 0; 
+    /*height: 60px; */
+    overflow: hidden 
+}
+#asideHead{ width: 61% }
+#logoSlogan{ width:360px; margin-top:5px }
+#logo, #linkLogo{ width: 180px; height: 85px; overflow: hidden }
+#linkLogo{ display: block; background-position:0 0 }
+#menuHead{ margin-top:10px; width: 100%; height:31px }
+/*#main{ background: url(../images/bgMain.png) repeat-x center 0; min-width:1000px; margin-bottom: 10px }*/
+#main{ /* background: url(../images/bgMain.png) repeat-x center -10px;*/ min-width:1000px; margin-bottom: 10px;position:relative}
+
+#navigation{ height: 50px; overflow: hidden }
+#modSteps{ margin:0 auto 10px; height:58px }
+
+#promotion_box{
+    position: relative;
+    height: 165px;
+    background: url(../images/promotion_box_bg.jpg) repeat-x 0 0;
+    margin: 20px 10px 10px 10px;
+}
+    #promotion_box #promotion_title{
+        width: 239px;
+        height: 125px;
+        text-align: right;
+        float: left;
+        font-size: 23px;
+        margin-top: 24px;
+        line-height: 24px;
+        font-family: 'MuseoSans300';
+    }
+        #promotion_title span{font-size: 31px;line-height: 45px;color: #FFF;}
+    
+    #promotion_box #promotion_videos{
+        width: 726px;
+        height: 125px;
+        margin: 20px 0 0 0;
+        float: right;
+        overflow: hidden;
+    }
+        #promotion_box #promotion_videos li{list-style: none; border: 1px solid #000; margin-right: 18px; position: relative; width: 220px; height: 123px; float: left; overflow: hidden; background: #000; cursor: pointer;}
+        #promotion_box #promotion_videos li img{position: absolute; top: -22px; left: 0px;}
+        #promotion_box #promotion_videos li .play-icon{width: 30px; height: 30px; position: absolute; bottom: 7px; right: 7px; z-index: 3; background: url(../images/prom-icons.png) 0 0;}
+
+    #promotion_box .close-icon{width: 20px; height: 20px; position: absolute; top: -7px; right: -5px; z-index: 2; background: url(../images/prom-icons.png) -30px 0; cursor: pointer;}
+
+
+/*#formFind{ 
+    position: relative; 
+    padding:0 0 10px;
+    margin:0; 
+    width:100%; 
+    overflow: hidden 
+}*/
+#filterProcEmp{
+    position: relative;
+}
+#logoEcoFB{ 
+    position:absolute; 
+    left:322px; 
+    top:10px; 
+    z-index:2;
+    background-position:-96px -67px;
+    width:119px;
+    height:18px
+}
+/*#sbtSearch{ background-position:0 -127px; height:50px; width:127px }*/
+#footer{ background:#005480 url(../images/bgFoot.png) repeat-x center 0; padding: 20px 0 10px;*zoom:1 }
+/*#innerFoot{ overflow:hidden }*/
+#footerLinks{ background-color: #313131 }
+.c-flinks{height:34px;margin: 0 auto;padding:3px 0 8px;width:928px}
+.c-flinks span{color:#FFB700;float: left;font-weight:700;padding-top:2px;width:90px}
+.c-flinks ul{float:left;font:11px Arial;width:838px}
+.c-flinks li{border-right:1px solid #FFF;float:left;height:12px;margin-top:5px;padding:0 6px}
+.c-flinks .fix{border:none;width:226px}
+.c-flinks a{color:#FFF;display:block;line-height:12px}
+.c-flinks .last{border:none}
+#asideFooter{background:url(../images/bgFootEco.png) no-repeat top center;margin:0;padding:15px 0 5px;position:relative}
+#repCV{padding:8px 5px}
+#fieldCV{padding:0 0 10px;margin:0 0 0 10px}
+#txtPuntoCom{background-position:0 -42px;width:51px;height:17px;top:32px;left:182px}
+#txtEmpresas{background-position:-53px -42px;width:118px;height:18px;top:28px;left:185px}
+#boxes, #mask{height:100%}
+#mask{display:none;background-color:black;position:absolute;left:0;top:0;z-index:9000;min-width:1000px;width:100%}
+#winVerProceso,
+#winPagoEfectivo{padding:0;margin:-280px 0 0 -296px;width:592px;height:250px}
+#winInvitarProceso{padding:0;margin:-180px 0 0 -200px;width:408px;height:250px}
+#winVerHistorial{padding:0;margin:-228px 0 0 -337px;width:674px;height:250px}
+#winRegistrarReferenciado{padding:0;margin:-240px 0 0 -335px;width:670px;height:auto;position:absolute}
+#winRegistrarInvitacionBuscador{padding:0;margin:-240px 0 0 -305px;width:610px;height:250px}
+#winAnadirNotas, #winAnadirMensaje{padding:0;margin:-228px 0 0 -255px;width:510px;height:250px}
+#winAlertVerProceso,
+#editAdmL{padding:0;margin:-140px 0 0 -285px;width:574px;height:280px}
+#editAdmL{margin-top:-200px;height:400px}
+#winAlertEliminarProceso,#winAlertAnularCip, #winAlertBloquearUsuApi{padding:0;margin:-100px 0 0 -200px;width:404px;height:280px}
+#winAlertEliminarAviso{padding:0;margin:-100px 0 0 -200px;width:404px;height:280px}
+#winAlertBajaAviso{padding:0;margin:-100px 0 0 -200px;width:404px;height:280px}
+#winAlertEliminarAdm,
+#winAlertEliminarprocess,
+#iwinAlertVerRecom,
+#winQuitarPostulante,
+#winAlertEliminarAllprocess{padding:0;margin:-100px 0 0 -200px;width:404px;height:280px}
+#winPromotion{max-width:854px;max-height:544px;width:70%;height:70%;top:5%;left:16%;}
+#winPromotion .inWindow{padding:5px;}
+#winPromotion .closeWM{top:20px;*top:11px;right:21px;}
+#winAlertPrivilegioAdm{padding:0;margin:-100px 0 0 -200px;width:404px;height:280px}
+#content-winVerProceso{width:100%;min-height:160px}
+#content-winVerHistorial{width:100%;height:380px}
+#content-winRegistrarReferenciado,
+#content-winAnadirNotas,
+#content-winAnadirMensaje{width:100%;overflow:hidden}
+#content-winRegistrarReferenciado{width:100%;overflow:hidden}
+#iLoginP{padding:0;overflow:hidden}
+#inLoginP{width:564px}
+#ilP{background-color:white;padding:20px;width:518px;overflow-y:hidden}
+#formShort{margin:30px auto}
+#datosB{background-color:white;width:500px}
+#iFile{position:absolute;left:0;top:0;z-index:2;cursor:pointer}
+#lPhotoF{width:130px;height:130px}
+#fPhoto{padding:0;width:118px;text-indent:0}
+#txtPass{width:90px}
+#formReg{padding:20px 0 0;width:100%;overflow:hidden}
+#passStrong{position: relative;padding: 5px 0 0 240px;width: 190px;height: 15px;clear: both;}
+.gridIT #passStrong{padding-left:38px}
+#imgPerfilPC{width:132px;height:132px;overflow:hidden}
+#imgPerfilPC img, #imgPPubPC img{border:5px solid #C6C6C6}
+#imgPPubPC{width:110px;height:110px;overflow:hidden}
+#escapeForm, #escapeFormAP,
+#nextFormAP, #escapeFormPaso{padding:0;margin:-98px 0 0 -250px;width:500px;height:196px}
+#checksOpt{background-position:center top;margin-top:20px}
+#modStepsForm{margin:0 0 10px;height:98px;overflow:hidden}
+#efSex{width:200px;}
+#efSex input{margin-right:7px;}
+#facebookWM, #googleWM{display:block;margin-left:auto;margin-right:auto;width:121px}
+#facebookWM{background-position:-470px -203px;height:22px;width:160px}
+#googleWM{background-position:-494px -163px;height:22px;width:136px}
+#viewAllA{background-position:0 -187px;width:163px}
+#secMenu{line-height:1;padding-bottom:10px;border-bottom:1px solid #E0E0E0}
+#goAccount{display:block;position:absolute;right:10px;top:10px;z-index:2}
+#goAptitus{display:block;background-position:0 0;position:absolute;right:0;bottom:0;z-index:2;width:249px;height:62px}
+#myAccount #respFFP{width:170px}
+#fIRSearch .fieldCodeH{width:125px;padding:7px 5px;font-size:11px}
+#closeWFA{position:absolute;z-index:2;right:10px;top:5px}
+#fSaveC1{background-position:0 0;width:153px;margin:0 0 0 15px}
+#btnNSh{background-position:-262px -53px;margin:0 0 0 10px;width:213px}
+#btnCEscp,
+#btnNPasosNext{background-position:-262px 0;width:144px}
+#btnEscpO{background-position:-372px 0;margin:0 15px 0 0;width:60px}
+#loadMFF{margin:20px 0;width:100%;line-height:1}
+#shareMail, #reportAbuse{width:487px;margin:-195px 0 0 -275px;}
+#questionsWM{position:absolute;top:50px!important;margin:0 0 0 -254px;width:550px;}
+#btnCanc, #btnCancelCA{background-position:-330px -114px;width:87px}
+#fSendCA{background-position:-177px -161px;margin:0 0 0 15px;width:69px}
+#fNDoc{width:260px}
+#myAccount #fNDoc{width:110px}
+#myAccount #fBirthDate{width:80px}
+#myAccount #navigation{height:50px}
+#optShareMC{margin-bottom:20px}
+#btnSaveChCP{background-position:0 -435px;margin:0 0 0 15px;width:142px;cursor:pointer}
+#btnSendDCP{background-position:0 -168px;width:69px;margin:0 0 0 15px}
+#btnPrintDCP{background-position:-71px -168px;width:77px}
+#ulShareCP{background-position:-648px 0;position:relative;width:312px;height:47px}
+#divShareCP{background:url(../images/bgShareL.png) left top no-repeat;padding:0 0 17px 10px;width:295px;height:33px}
+#iDivShareCP{background:url(../images/bgShareR.png) right top no-repeat;padding:0 10px 17px 0;width:285px;height:33px}
+#shareCPI{width:85px;left:1px}
+#sendCPI, #pdfCPI{width:110px}
+#sendCPI{left:87px}
+#pdfCPI{left:200px}
+#aShareCPI{background-position:-939px -169px;padding-left:24px}
+#aSendCPI{background-position:-937px -140px;padding-left:26px}
+#aPdfCPI{background-position:-936px -111px;padding-left:28px}
+#infoPerfilCP{background:white url(../images/bgDataPCP.png) 0 0 repeat-x;padding:10px;width:407px}
+#infoPPubPC{width:280px;overflow:hidden}
+#summaryPPC{width:285px}
+#fNoExp, #checkWorkE,#fNoEstudy, #fNoEst, #checkEst{margin-top:9px}
+#myAccount #checkWorkE, #myAccount #checkEst{margin-left:10px}
+#txtP3{width:620px}
+#urlPublic{background:white url(../images/bgDataPCP2.png) 0 0 repeat-x;width:708px;overflow:hidden}
+#myAccount #repCV{width:420px}
+#optRedSocial{border-top:1px solid #ccc;margin:0 auto}
+#faceAdd{width:160px;height:22px}
+#googAdd{width:136px;height:22px}
+#addSincRS, #addSincNo{margin-left:auto;margin-right:auto;padding:5px 0 25px;width:303px;height:22px}
+#sharePPublic{position:absolute;left:418px;top:24px;z-index:2;background:url(../images/bgSharePPB.png) 0 bottom no-repeat;width:87px;height:42px;overflow:hidden}
+#iSharePP{border-top:1px solid #ccc;margin:0 auto;width:73px;height:30px}
+#twitterSPP, #facebookSPP{position:absolute;top:13px;z-index:2;display:block;width:16px;height:16px}
+#bPublicFU #sharePPublic{left:568px;top:23px}
+#twitterSPP{background-position:-41px -561px;left:39px}
+#facebookSPP{background-position:-20px -561px;left:18px}
+#winAlertBCV{padding:0;margin:-40px 0 0 -160px;width:320px;height:80px;}
+#winAtencionN{padding:0;margin:-200px 0 0 -275px;width:550px;height:400px;}
+#winExtendN{padding:0;margin:-200px 0 0 -275px;width:550px;height:400px;}
+#btnQ, #btnQEmpR, #btnQBCV{margin:0 auto;padding:0 10px;width:188px;overflow:hidden}
+#msgErrorF, #msgErrorStudy, #msgErrorLang, #msgErrorProg,
+#msgErrorStep2, #msgErrorRefe, #msgErrorPreg{margin:10px 20px 0 0}
+#importLinkedin{display: block;z-index: 2;background-position: 0 0;width: 262px;height: 39px;overflow: hidden;}
+#dataAppli, #dataNotif{width:940px}
+#dataMsjs{padding:0;margin:-300px 0 0 -287px;width:574px;height:450px}
+#dataMjsOne{margin:0 0 15px;border-left:0 none;width:500px}
+#dataNotifs{padding:0;margin:0 auto;width:574px;height:450px;}
+#loadingCFP, #cntLoading{width:100%}
+#cntLoading{height:250px}
+#cntFieldCV{display:block;padding:0;width:67px;height:44px;margin:0 0 0 10px;overflow:hidden}
+#responseCV{padding-left:210px}
+#errorNL{padding:0 10px}
+#cntDataRelF{overflow: hidden;padding: 18px 0 20px 19px;position: relative;}
+#titleRelF{font-size:24px;}
+#infoRelF{padding:5px 10px 0 0}
+#dataMsjs{padding:0;margin:0 auto;width:574px;height:auto}
+#atencionModl{display:block;background-position:left -647px;position:absolute;right:0;top:0;z-index:2;padding:5px 0 5px 30px}
+#titleModSP{padding-right:110px}
+#cntAteMsjNotif{background:url(../images/cntAteMsjNotif.png) 0 top repeat-x;padding:20px 20px 0}
+#triggerUpA{left:10px;bottom:0}
+#fPhoto{right:150px}
+#errorBadPos{width:500px;padding:0 0 0 220px}
+#errorBadUrl{display:block;border:0 none;width:430px;padding:0 0 0 200px}
+#allBkSendPreg{background:url(../../images/empresa/bgEmpPaso2.jpg) center bottom no-repeat;padding:0 0 45px 0}
+#allSendPreg{padding:0 0 10px 10px;font-size:14px}
+#preguntasF{margin-bottom:0}
+#fCACustomMsg{width:470px}
+#cntRegisterWM #msgMailFRP,
+#cntRegisterWM #msgRUCFRP,
+#cntRegisterWM #msgRAZONSOCIALFRP{background-image:none;margin:0 0 10px;padding:0 0 0 6px;width:100%;text-align:left;font-size:11px;line-height:1}
+#cntNCaracterP{color:#333}
+#msgResgiRap{margin:0 0 10px;height:50px;text-align:left}
+.btnQAllR{margin:0 auto;padding:0 10px;width:188px;overflow:hidden}
+#dayjFunctions{margin:0 5px 0 0;width:80px}
+#dayjFunctionsFin{margin:0 5px 0 0;width:80px}
+
+#monthjFunctions{margin:0 5px 0 0;width:150px}
+#monthjFunctionsFin{margin:0 5px 0 0;width:150px}
+
+#yearjFunctions{margin:0;width:80px}
+#yearjFunctionsFin{margin:0;width:80px}
+
+#myAccount #dayjFunctions{width:60px}
+#myAccount #monthjFunctions{width:115px}
+#myAccount #yearjFunctions{width:73px}
+#myAccount .blockBDC{width:261px}
+#perfilContainer, #ajax-loading{display:none}
+#attrUpCv{position:absolute;left:150px;top:0;z-index:2}
+#contentRetM{padding:0 10px}
+#claveRetM{margin:0 0 50px;width:695px;overflow:hidden}
+#btnRetPagIni{margin:0 auto;width:160px}
+#cntFormRetC{margin:0 0 50px}
+#centerDashPos{width:865px}
+#cntAutoComplete{position:absolute;z-index:9;background-color:white;border:1px solid #B2E0F5;width:232px}
+#cntScrollData{width:474px;overflow-x:hidden;overflow-y:auto}
+#bPublicF dd{margin:0;line-height:16px;}
+#bPublicF a{text-decoration:underline;}
+#bPublicF a:hover{color:#FF1956}
+#bPublicF p{padding-bottom:5px;}
+#perfilReg #cntAutoComplete{width:432px}
+.overflowAuto{height:200px;overflow-y:scroll;overflow-x:hidden}
+#loadPagTable{width:100%;height:400px}
+#acItems{width:232px;overflow:hidden}
+.overflowAuto #acItems{width:217px}
+#perfilReg #acItems{width:432px}
+#perfilReg .overflowAuto #acItems{width:417px}
+#searchApt{display:block;background-position:0 -494px;width:161px;height:45px}
+#cntErrorPag,
+#cntErrorPag2{border:1px solid #FFE222;background-color:#FFFBE2;margin:0 auto 30px;overflow:hidden}
+#dashMC{width:868px}
+#cntErrorPag{padding:50px 224px;width:550px}
+#cntErrorPag2{padding:50px 149px;width:700px}
+#cntMsjPrivate{padding:20px 0 0;margin:0 auto;width:1000px;overflow:hidden}
+#cntMsjPrivarePag{background:url('../images/iconBgMsgPrivate.png') 25px 40px no-repeat;border:1px solid #8DC8E0;background-color:#D7EBF4;margin:0 auto 30px;padding:50px 25px 40px 100px;overflow:hidden;font:16px/1.2 "Tahoma", Geneva, sans-serif;color:#333}
+#btnAptL{background-position:right -485px;width:164px;height:58px}
+#pagErrorApt .innerAll,
+#pagErrorApt #main{background-image:none}
+#pagErrorApt #header{margin-bottom:20px;height:auto}
+#slideImg, .slideImg{width:598px;height:90px;overflow:hidden}
+#slideImg{position:relative}
+#editorScot1{width:450px;height:200px}
+#inSectionP4{margin:0 auto;width:950px}
+#linkBM{margin-bottom:0}
+#iSectionPayNew{width:600px;overflow:hidden}
+#iSectionPayNew .cntAdvClas{width:600px;height:auto}
+#iSectionPayNew .inCntAdvP4{padding-top:0}
+#iSectionPayNew .txtTipoAdvEmp{width:auto}
+#iSectionPayNew .imgBarEmpB{left:90px}
+#iSectionPayNew #codeBarPayEmp{margin-bottom:10px}
+#iSectionPayNew .divLeftINM{width:270px}
+#iSectionPayNew{border:1px solid #9C9C9C}
+#iSectionPayNew .cntAdvClas,
+#iSectionPayNew .topRoundEPA{background-image:none}
+#iSectionPayNew .txtPriceFlEmp{width:300px}
+#iSectionPayNew #widthINM{padding-top:0;margin-top:0}
+.titleNumPE{font-size:12px;padding:0;margin:0 0 5px;line-height:1.2;color:#333}
+.listNumeric{margin-bottom:10px;font-size:12px}
+.listNumeric li{margin-left:20px;list-style:decimal;line-height:1.2;color:#333}
+.lineDownMrg{padding-bottom:10px;margin-bottom:10px;border-bottom:1px solid #ccc}
+.lineUpMrg{border-top:1px solid #ccc}
+#cntFootHelp{background:url(../images/bgFootHelp.gif) no-repeat 0 0;width:230px;height:112px;overflow:hidden}
+#txtFootHelp{padding:10px 10px 0 80px;line-height:1.2}
+#btnHelpCHere{display:block;background:url(../images/btnFootHelp.png) no-repeat 0 0;margin:0 auto;width:100px;height:40px;overflow:hidden}
+.titulotipo{background-image:url(../images/busines-icon.png);background-repeat:no-repeat;display:block;padding:15px 0 0 40px;font-size:14px;color:#000}
+.a-user-postulante{background-image:url(../images/user-icon.png);background-repeat:no-repeat;display:block;padding:15px 0 0px 40px;font-size:14px;color:#000;}
+#cntLeftBLK{width:370px;overflow:hidden}
+#divLoginFix{width:100px;height:45px;overflow:hidden}
+#homeAdmin #divLoginFix{width:77px}
+#wrap .noCursorActive *{cursor:default}
+#heightGHT{height:45px}
+#txtFelizNavidad{background:url("../images/feliznavidad.jpg") no-repeat scroll 0 0 transparent;height:37px;left:225px;overflow:hidden;position:absolute;top:12px;width:112px;}
+#notice{background-color:#FFEFB7;border:2px solid #FFB710;margin:0 auto 15px;padding:10px;}
+#notice p{margin:0;padding:0}
+.w975{display:block;margin:0 auto;position:relative;width:975px;}
+.none{display:none;}
+#end-message{position:absolute;width:100%;height:712px;top:40px;left:-10px;background:url('../images/empresa/end-message.png?v=4as50') center 90px fixed no-repeat;background-size: 586px;z-index:2;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(
+        src='../images/empresa/end-message.png?v=4as50',
+        sizingMethod='scale');
+
+    -ms-filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(
+        src='../images/empresa/end-message.png?v=4as50',
+        sizingMethod='scale');
+}
+#banned-message{position:absolute;width:654px;height:312px;top:43px;left:-10px;background:url('../images/empresa/banned-message.png?v=s4nD') 0 0 no-repeat;z-index:2;}
+#cntAdvPe .modListBEP{width:608px;height:426px;background:url('../images/print-edition.jpg?v=4as50') -1px 9px no-repeat;}
+#cntAdvPe a{display:block;width:607px;height:385px;background:transparent;}
+
+.suggest-ads{padding:0 0 15px 0;}
+#slider-code{overflow:hidden;position:relative;background:#EDFAFE;}
+#slider-code .viewport{background:url(../images/loading.gif) no-repeat center;float:left;width:939px;height:120px;margin:0 20px;overflow:hidden;position:relative;}
+#slider-code .buttons{position:absolute;display:none;width:23px;height:46px;z-index:1;top:36px;text-indent:9999px}
+#slider-code .next{right:0;background:url(../images/rows-slider.png) -23px 0;}
+#slider-code .prev{left:0;background:url(../images/rows-slider.png) 0 0;}
+#slider-code .disable{visibility:hidden;}
+#slider-code .overview{list-style:none;position:absolute;padding:14px 0;margin:0;left:0;top:0;display:none}
+#slider-code .overview li{float:left;margin:0 10px;height:92px;border-right:1px solid #dcdcdc;width:197px;padding:0 10px;}
+#slider-code .overview li h3{font-weight:bold;font-size:14px;color:#007FD2;border:none;margin:0;padding:0;text-decoration:underline;}

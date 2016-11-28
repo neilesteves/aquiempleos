@@ -1,0 +1,154 @@
+<? $isError = $this->form->isErrors(); ?>
+<div id="f0_fDatosPuestoEM" class="fSkill" >
+    <?php if (!empty($this->form->id_puesto)) {?>
+    <div class="<?= ($this->form->id_puesto->getValue()) == Application_Model_Puesto::OTROS_PUESTO_ID ? ' hide' : 'block'; ?>" rel="sectionDat">
+        <label class="labelN" for="id_puesto">
+        <span class="req" title="Requerido">*</span> Tipo del puesto:</label>
+            <? $hasError = $this->form->id_puesto->hasErrors(); ?>
+            <?php if (!$hasError && $this->isExperiencia) : ?>
+                <?= $this->form->id_puesto->setAttribs(array('class' => 'selectN left selectReq ready'))->renderViewHelper(); ?>
+            <?php else: ?>
+                <?= $this->form->id_puesto->setAttribs(array('class' => 'selectN left selectReq'))->renderViewHelper(); ?>
+            <?php endif; ?>
+        <span class="response def cGray left<?= $hasError ? ' bad' : '' ?>"><?= $hasError ? $this->form->id_puesto->errMsg : '' ?></span>
+    </div>
+    <?php }?>
+    <div class="block" rel="sectionDat">
+        <label class="labelN" for="nombre_puesto">
+        <span class="req" title="Requerido">*</span> Nombre del puesto:</label>
+            <? $hasError = $this->form->nombre_puesto->hasErrors(); ?>
+            <?php if (!$hasError && $this->isExperiencia): ?>
+                <?= $this->form->nombre_puesto->setAttribs(array('class' => 'fEmp inputN left inputReq fMinChar ready ' . (isset($this->modulo) ? 'noValidInput' : ''), 'words-limit' => $this->numPalabraPuesto))->renderViewHelper(); ?>
+            <?php else: ?>
+                <?= $this->form->nombre_puesto->setAttribs(array('class' => 'fEmp inputN left fMinChar inputReq ' . (isset($this->modulo) ? 'noValidInput' : ''), 'words-limit' => $this->numPalabraPuesto))->renderViewHelper(); ?>
+            <?php endif; ?>
+            <?
+            if ($hasError != 0) {
+                $ErrorOtroMensaje = $this->form->nombre_puesto->getErrors();
+                $errMsg = Application_Form_Paso2PublicarAviso::errorsOtroPuesto($ErrorOtroMensaje[0]);
+            } else {
+                $errMsg = '';
+            }
+            ?>
+        <span class="response def cGray left<?= $hasError ? ' bad' : '' ?>"><?= $errMsg ?></span>
+    </div>
+    <div class="block" rel="sectionDat">
+        <label class="labelN" for="id_nivel_puesto"><span class="req"
+                                                          title="Requerido">*</span> Nivel del puesto:</label>
+            <? $hasError = $this->form->id_nivel_puesto->hasErrors(); ?>
+            <?php if (!$hasError && $this->isExperiencia) : ?>
+                <?= $this->form->id_nivel_puesto->setAttribs(array('class' => 'fNom selectN left selectReq ready'))->renderViewHelper(); ?>
+            <?php else : ?>
+                <?= $this->form->id_nivel_puesto->setAttribs(array('class' => 'fNom selectN left selectReq'))->renderViewHelper(); ?>
+            <?php endif; ?>
+        <span class="response def cGray left<?= $hasError ? ' bad' : '' ?>"><?= $hasError ? $this->form->id_nivel_puesto->errMsg : '' ?></span>
+    </div>
+    <div class="block" rel="sectionDat">
+        <label class="labelN" for="id_area"><span class="req"
+                                                  title="Requerido">*</span> Área:</label>
+            <? $hasError = $this->form->id_area->hasErrors(); ?>
+            <?php if (!$hasError && $this->isExperiencia) : ?>
+                <?= $this->form->id_area->setAttribs(array('class' => 'fNom selectN left selectReq ready'))->renderViewHelper(); ?>
+            <?php else: ?>
+                <?= $this->form->id_area->setAttribs(array('class' => 'fNom selectN left selectReq'))->renderViewHelper(); ?>
+            <?php endif; ?>
+        <span class="response def cGray left<?= $hasError ? ' bad' : '' ?>"><?= $hasError ? $this->form->id_area->errMsg : '' ?></span>
+    </div>
+    <div class="block" rel="sectionDat">
+        <label class="labelN" for="funciones"><span class="req"
+                                                    title="Requerido">*</span> Funciones:</label>
+            <? $hasError = $this->form->funciones->hasErrors(); ?>
+            <?= $this->form->funciones->setAttribs(array('class' => 'msgTask inputReq areaN left', 'rows' => '3', 'cols' => '20'))->renderViewHelper(); ?>
+        <span class="response def cGray left<?= $hasError ? ' bad' : '' ?>"><?= $hasError ? $this->form->funciones->errMsg : '' ?></span>
+    </div>
+    <div class="block" rel="sectionDat">
+        <label class="labelN" for="responsabilidades"><span class="req"
+                                                            title="Requerido">*</span> Responsabilidades:</label>
+            <? $hasError = $this->form->responsabilidades->hasErrors(); ?>
+            <?= $this->form->responsabilidades->setAttribs(array('class' => 'msgTask inputReq areaN left', 'rows' => '3', 'cols' => '20'))->renderViewHelper(); ?>
+        <span class="response def cGray left<?= $hasError ? ' bad' : '' ?>"><?= $hasError ? $this->form->responsabilidades->errMsg : '' ?></span>
+    </div>
+    <div class="block" rel="sectionDat">
+        <label for="salario" class="labelN noReq"><span class="req"
+                                                        title="Requerido">&nbsp;</span> Salario:</label>
+
+        <div class="fieldMiddleB left">
+            <? $hasError = $this->form->salario->hasErrors(); ?>
+            <?php if (!$hasError && $this->isExperiencia) { ?>
+                <?= $this->form->salario->setAttribs(array('class' => 'fNom selectN fieldSalar left ready'))->renderViewHelper(); ?>
+            <?php } else { ?>
+                <?= $this->form->salario->setAttribs(array('class' => 'fNom selectN fieldSalar left'))->renderViewHelper(); ?>
+            <?php } ?>
+            <label for="mostrar_salario" class="labelNBM mostrarAviso left"><?= $this->form->mostrar_salario->setAttribs(array('class' => 'ckeckNMB noBdr'))->renderViewHelper(); ?> Mostrar en el aviso</label>
+        </div>
+
+    </div>
+    <div class="block rel" rel="sectionDat">
+        <label for="nombre-empresa" class="labelN noReq"><span class="req"
+                                                               title="Requerido">&nbsp;</span> Nombre de la empresa en aviso:</label>
+        <div class="fieldMiddleB left">
+            <?php
+            /*if (isset($this->modulo) && $this->modulo == Application_Form_Login::ROL_ADMIN) {
+                $nombreEmpresa = $this->nombreComercial;
+            } else {*/
+                $nombreEmpresa = $this->layout()->auth['empresa']['nombre_comercial'];
+            //}
+            ?>
+            <? $hasError = $this->form->otro_nombre_empresa->hasErrors(); ?>
+            <?php $dataTexto = $this->form->otro_nombre_empresa->getValue() ?>
+            <?php
+            if ($dataTexto == $nombreEmpresa) {
+                $dataTexto = 'Importante Empresa';
+            }
+            ?>
+            <?php if ($this->form->mostrar_empresa->getValue() == 1) : ?>
+                <?= $this->form->otro_nombre_empresa->setAttribs(array('class' => 'ckeckN MB left ' . (isset($this->modulo) ? 'noValidInput' : ''), 'words-limit' => $this->numPalabraOtroNombre, 'data-empresa' => $nombreEmpresa, 'data-texto' => $dataTexto))->renderViewHelper(); ?>
+            <?php else : ?>
+                <?= $this->form->otro_nombre_empresa->setAttribs(array('class' => 'ckeckNMB left ' . (isset($this->modulo) ? 'noValidInput' : ''), 'words-limit' => $this->numPalabraOtroNombre, 'data-empresa' => $nombreEmpresa, 'data-texto' => $dataTexto, 'readonly' => 'readonly'))->setValue($nombreEmpresa)->renderViewHelper(); ?>
+            <?php endif; ?>
+            <?
+            if ($hasError != 0) {
+                $ErrorOtroMensaje = $this->form->otro_nombre_empresa->getErrors();
+                $errMsg = Application_Form_Paso2PublicarAviso::errorsOtroNombre($ErrorOtroMensaje[0]);
+            } else {
+                $errMsg = '';
+            }
+            ?>
+            <?php if ($this->form->mostrar_empresa->getValue() == 1) : ?>
+                <label for="mostrar_empresa_opcion" id="showLabelIpt" class="labelNBM labelFixNBM left"><?= $this->form->mostrar_empresa_opcion->setAttribs(array('class' => 'ckeckNMB noBdr'))->setValue(false)->renderViewHelper(); ?> Mostrar otro nombre</label>
+            <?php else : ?>
+                <label for="mostrar_empresa_opcion" id="showLabelIpt" class="labelNBM labelFixNBM left"><?= $this->form->mostrar_empresa_opcion->setAttribs(array('class' => 'ckeckNMB noBdr'))->setValue(true)->renderViewHelper(); ?> Mostrar otro nombre</label>
+            <?php endif; ?>
+        </div>
+        <span class="response def cGray left<?= $hasError ? ' bad' : '' ?>"><?= $errMsg ?></span>
+        <div id="dataInfoCDT" class="cGray">Este texto reemplaza el nombre de la empresa.<br/>Si desea puede cambiarlo por otro.</div>
+        <?= $this->form->mostrar_empresa; ?>
+    </div>
+    
+    
+    <?php if (isset($this->modulo)) {
+            if ($this->modulo == 'admin') {
+    ?>
+    <div class="block" rel="sectionDat">
+        <label for="fEmail" class="labelN noReq"><span class="req" title="Requerido">&nbsp;</span> Correo electrónico:</label>
+        <?$hasError = $this->form->correo->hasErrors(); ?>
+        <?=$this->form->correo->setAttribs(array('id'=>'fEmail','class'=>'fields inputN left'.((!$hasError && $this->idPostulante==null) ?'':' ready'),'tabindex'=>1))->renderViewHelper(); ?>
+        <?  if ($hasError != 0){
+                $Error= $this->form->correo->getErrors();
+                $errMsg = Application_Form_Paso2PublicarAviso::$errorsEmail[$Error[0]];
+            } else{
+                $errMsg ='';
+            }
+        ?>
+        <span class="response cGray left<?=$hasError?' bad':''?>"><?=$errMsg?></span>
+        <p id="pMsnfEmail">* Puede ingresar hasta 70 caracteres. | <span>0</span> c.</p>
+   </div>
+   <?php }} ?>
+    
+    
+    <div class="hide">
+        <?= $this->form->id_aviso; ?>
+        <?= $this->form->id_tarifa; ?>
+        <?= $this->form->token->renderViewHelper() ?>
+    </div>
+</div>

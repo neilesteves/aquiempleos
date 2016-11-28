@@ -1,0 +1,106 @@
+<?=Application_Model_Partials::getMenuPostulante(); ?>
+<section class="profile_wrapper">
+  <div class="center_box">
+    <div class="content_body profile_detail_wrapper">
+      <?=Application_Model_Partials::getPerfilPorcentaje(); ?>
+      <?=$this->formExperiencia->hidToken->setAttribs(array('id'=>'hidToken'))->renderViewHelper();?>
+      <div class="skill_body">
+        <div class="skill_buttons row">
+          <?php /* <button class="btn btn_cuaternary">Importar CV</button> */ ?>
+          <h2 class="skill_category"><i class="icon icon_tie"></i>Experiencias</h2>
+          <button class="btn btn_white flt_right" id="btnAddSkill" <?=(count($this->itemExperiencias)>0) ? '':'disabled="disabled"'?> >Agregar Otro</button>
+
+          <?php /*if ($this->showImport) : ?>
+          <a href='/mi-cuenta/importar-datos/param1/mis-experiencias' class="btn btn_import_linkedin flt_right" title="Importar datos desde LinkedIn"> <i class="icon icon_linkedin"> </i><span>Importar</span></a>
+          <?php endif;*/ ?>
+
+          <a class="btn btn_print flt_right" title="Imprimir" target="_blank" href="<?=$this->url(array(
+              'module' => 'postulante',
+              'controller' => 'mi-cuenta',
+              'action' => 'pdf',
+              'slug' => $this->slug), "default", true)?>">
+              <i class="icon icon_print"></i></a>
+
+        </div>
+        <?php if (count($this->itemExperiencias)>0) : ?>
+          <ul class="title_content_edit">
+            <?php foreach ($this->itemExperiencias as $value ) :  ?>
+            <li>
+              <div class="title_skills row">
+                <div class="block_text">
+                  <h2><?=$value['otra_empresa']?></h2>
+                  <h3><?=$value['id_puesto'] == Application_Form_MisExperiencia::OTRO_PUESTO ?  $value['otro_puesto']: $value['nombre_puesto']?><i> (<?=$value['nivel_puesto']?>)</i></h3>
+                  <p> <i class="icon icon_calendar"></i><?=$this->meses[$value['inicio_mes']]?> <?=$value['inicio_ano']?> - <?=($value['en_curso'] == 1) ? 'Actualidad' : $this->meses[$value['fin_mes']].' '.$value['fin_ano']?></p>
+                </div>
+                <div class="block_buttons">
+                  <button class="btn btn_delete" data-id="<?=$value['id_Experiencia']?>" <?=$value['is_disabled']==1?'disabled="true"':''?>>
+                    <span class="btn_label"><i class="icon icon_delete2"></i></span>
+                    <span class="btn_spinner"></span>
+                  </button>
+                  <button class="btn btn_edit" data-id="<?=$value['id_Experiencia']?>" <?=$value['is_disabled']==1?'disabled="true"':''?>>
+                    <span class="btn_label"><i class="icon icon_pencil"></i></span>
+                    <span class="btn_spinner"></span>
+                  </button>
+                </div>
+
+                <div class="body_content_edit">
+                  <?php if($value['otro_rubro'] != ""){ ?>
+                  <h2>Industria: <?=$value['otro_rubro']?></h2>
+                  <?php } ?>
+                  <?php if($value['comentarios'] != ""){ ?>
+                  <div class="section_content"><i class="icon icon_scuare_only"></i>
+                    <div class="section_content_into"><?=$value['comentarios']?></div>
+                  </div>
+                  <?php } ?>
+                </div>
+              </div>
+            </li>
+            <?php endforeach; ?>
+          </ul>
+        <?php else :  ?>
+          <?=$this->partial('mi-cuenta/_experiencias.phtml', array('formExperiencia' => $this->formExperiencia, 'noneSkill' => true,'moneda'=>$this->moneda));?>
+          <ul class="title_content_edit hide"></ul>
+        <?php endif; ?>
+      </div>
+    </div>
+    <aside><?php Application_Model_Partials::getAvisosSugeridos(); ?></aside>
+  </div>
+</section>
+
+<script id="tplUserExperience" type="text/template">
+    <?=$this->partial('mi-cuenta/_experiencias.phtml', array('formExperiencia' => $this->formExperiencia, 'noneSkill' => true,'moneda'=>$this->moneda));?>
+</script>
+<script id="tplSkillTitle" type="text/template">
+  <div class="block_text">
+    <h2><%=txtExperience%></h2>
+    <h3><%=txtJob%> <i><%=selLevelJobLbl%></i></h3>
+    <p> <i class="icon icon_calendar"></i><%=selMonthBeginLbl%> <%=txtYearBegin%> - <%if(chkInProgress == 1 ){%>Actualidad<%}else{%><%=selMonthEndLbl%> <%=txtYearEnd%><%}%></p>
+  </div>
+  <div class="block_buttons">
+    <button class="btn btn_delete" data-id="<%=hidExperiences%>">
+      <span class="btn_label"><i class="icon icon_delete2"></i></span>
+      <span class="btn_spinner"></span>
+    </button>
+    <button class="btn btn_edit" data-id="<%=hidExperiences%>">
+      <span class="btn_label"><i class="icon icon_pencil"></i></span>
+      <span class="btn_spinner"></span>
+    </button>
+  </div>
+  <div class="body_content_edit">
+    <% if(txtIndustry != ""){%>
+    <h2>Industria: <%=txtIndustry%></h2>
+    <%}%>
+    <% if(txaComments != ""){%>
+    <div class="section_content"><i class="icon icon_scuare_only"></i>
+      <div class="section_content_into"><%=txaComments%></div>
+    </div>
+    <%}%>
+  </div>
+</script>
+<script id="tplSkillBox" type="text/template">
+  <li>
+    <div class="title_skills row">
+      <% include tplSkillTitle %>
+    </div>
+  </li>
+</script>

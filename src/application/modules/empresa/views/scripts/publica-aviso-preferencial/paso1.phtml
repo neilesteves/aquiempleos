@@ -1,0 +1,87 @@
+<nav class="cont-menu row">
+    <br>
+</nav>
+<div id="wrapper" class="row">
+    <div class="head-title row">
+        <ul class="steps">
+            <li class="act">Escoge<br> el Aviso<span></span></li>
+            <li>Datos<br> del Aviso<span></span></li>
+            <li>Aviso<br> Impreso<span></span></li>
+            <li>Verifica<br> tus datos<span></span></li>
+        </ul>
+        <div class="legend">
+            <?php
+            if ($this->auth != null) {
+                ?>
+                <a href="<?php
+                echo $this->url(array('module' => 'empresa',
+                    'controller' => 'mi-cuenta', 'action' => 'index'), false,
+                    true)
+                ?>">Inicio</a> »
+               <?php } else { ?>
+                <a href="<?php
+                echo $this->url(array(
+                    'module' => 'empresa', 'controller' => 'home', 'action' => 'index'),
+                    false, true)
+                ?>">Inicio</a> »
+               <?php } ?>
+            <span class="noLink">Paso 1 - Elija su aviso</span>
+        </div>
+    </div>
+    <h1>Elija su tipo de Aviso Preferencial</h1>
+    <div class="gridIStepEmp" class="all">
+        <h6 id="countWordEM" class="titleGrayEM"></h6>
+        <div id="sectionsEM" class="sectionEM sectionAP openSection<?= $this->slide ?>" style="height:780px">
+            <div id="innerSectionEmp" class="sectionEM" style="height:780px">                
+                <div id="section2AP" class="sectionEM" style="height:770px">
+                    <?php
+                    echo $this->partial(
+                        'publica-aviso-preferencial/_paso1b_ap.phtml',
+                        'empresa',
+                        array(
+                        'empresaId' => $this->empresaId,
+                        'arrayPreferencial' => $this->arrayPreferencial,
+                        'moneda' => $this->moneda
+                        )
+                    );
+                    ?>
+                </div>
+                <div id="section3AP" class="sectionEM">
+                    <?php
+                    echo $this->partial(
+                        'publica-aviso-preferencial/_paso1c_ap.phtml',
+                        'empresa',
+                        array(
+                        'empresaId' => $this->empresaId,
+                        'formAvisoPref' => $this->formAvisoPref,
+                        'arrayArmado' => $this->arrayArmado,
+                        'fchPubsImp' => $this->fchPubsImp,
+                        'fchCierreImp' => $this->fchCierreImp,
+                        'moneda'=>$this->moneda
+                        )
+                    );
+                    ?>
+                </div>
+            </div>
+        </div>
+        <div class="asideFootAX">
+            <?php
+            if (isset($this->extiende)) {
+                $url = $this->url(array('module' => 'empresa', 'controller' => 'publica-aviso',
+                    'action' => 'index', 'extiende' => $this->extiende), null,
+                    true);
+            } elseif (isset($this->republica)) {
+                $url = $this->url(array('module' => 'empresa', 'controller' => 'publica-aviso',
+                    'action' => 'index', 'republica' => $this->republica), null,
+                    true);
+            } else {
+                $url = $this->url(array('module' => 'empresa', 'controller' => 'publica-aviso',
+                    'action' => 'index'), null, true);
+            }
+            ?>
+            <a href="<?= $url ?>" id="backEmpXF" class="btn btn-default right btnSptEmp">
+                Regresar
+            </a>		
+        </div> 			
+    </div>
+</div>

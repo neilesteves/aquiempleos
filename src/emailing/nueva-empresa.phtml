@@ -1,0 +1,55 @@
+ <table width="88%" style="margin: 10px 0px 0px 10px" align="center" border="0">
+	 <tr>
+	 <td colspan="2" height="25"></td>
+	 </tr>
+	 <tr>
+		  <td colspan="2" align="center" valign="top" style="font-weight:bold;padding-bottom:10px;"><span style="color:#100F0F;font-size:28px;">¡ AquiEmpleos le da la bienvenida a <?=$this->empresa?> !</span></td>
+	 </tr>
+	 <tr>
+		  <td colspan="2" align="center" style="font-size: 15px;"><!--Sus datos de acceso son: --><br />
+				<span style="">Usuario : </span><a style="color: #007FD2;text-decoration:none;" href="#"><?=$this->to?></a>
+		  </td>
+	 </tr>
+	 <tr><td height="10" colspan="2"></td></tr>
+	 <tr>
+		 <td colspan="2" align="left" style="font-size: 16px;font-weight:bold;">
+			  Su empresa acaba de unirse al más importante portal de empleos de Perú, ingrese a <a style="color: #007FD2;text-decoration:none;font-weight:normal;" href="<?=SITE_URL?>/empresa/mi-cuenta"><?=SITE_URL?>/empresa</a> y podrá:
+		  </td>
+	 </tr>
+	 <tr><td height="5" colspan="2"></td></tr>
+</table>
+
+<table cellspacing="6" border="0" cellpadding="0" width="750">
+	 <tr>
+		  <td align="center">
+				<table width="95%" cellspacing="5" border="0" cellpadding="2">
+					 <tr>
+						  <td width="2%" valign="top" align="right">&raquo;</td>
+						  <td width="42%" style="font-size:13px;padding-bottom:8px;">Publicar desde la Web anuncios de empleo en el Suplemento AquiEmpleos del diario La Prensa.</td>
+						  <td width="2%" valign="top" align="right">&raquo;</td>
+						  <td width="48%" style="font-size:13px;">
+								Acceder a la mejor y más grande Base de Datos de Candidatos del país.
+						  </td>
+					 </tr>
+					 <tr>
+						  <td valign="top" align="right">&raquo;</td>
+						  <td style="font-size:13px;">Administrar sus Procesos de selección en el menor tiempo y de una manera práctica y eficiente.</td>
+						  <td valign="top" align="right"></td>
+						  <td style="font-size:14px;" align="center">
+							  <a style="color: #007FD2;" href="<?=SITE_URL?><?= $this->url(array('module' => 'empresa', 'controller' => 'publica-aviso', 'action' => 'paso1'), 'default', true) ?>">Publicar un anuncio</a>
+						  </td>
+					 </tr>
+				</table>
+		  </td>
+	 </tr>
+</table>
+
+<table style="border-left-color: #fff; border-top-color: #fff; border-bottom: #fff 1px solid; border-right-color: #fff"
+	 cellspacing="0" cellpadding="0" border="0">
+	 <tr><td height="25">&nbsp;</td></tr>
+	 <tr>
+		  <td align="left" width="750" style="padding-left:30px;padding-bottom:10px;">
+				<h1 style="padding-right: 0px; padding-left: 20px;font-weight: bold; font-size: 17px; margin: 0px; color: #222222; padding-top: 10px; padding-bottom: 10px;"><span style="font-family:Arial, Helvetica, sans-serif;font-weight:normal;">&iexcl;Gracias por anunciar en AquiEmpleos!</span><br /><span style="color:#000;font-family: Arial, Helvetica, sans-serif">El equipo AquiEmpleos</span></h1>
+		  </td>
+	 </tr>
+</table>

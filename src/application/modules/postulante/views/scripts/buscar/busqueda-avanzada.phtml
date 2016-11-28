@@ -1,0 +1,116 @@
+   <div class="center_box">
+        <h2 class="advanced_search_title_header">Encuentra tu proximo trabajo</h2>
+        <form class="advanced_search" method="post">
+          <div class="advanced_search_one_card row">
+            <div class="advanced_search_sub_card_one">
+              <h2 class="advanced_search_title">Puedes elegir hasta 3 áreas.</h2>
+              <fieldset class="advanced_search_sub_card_one_fieldset_select select_areas"><?=$this->form->areas1->setAttribs(array( 'id' => 'selArea1','class' => 'pretty_select_2' ) )->renderViewHelper();?></fieldset>
+              <fieldset class="advanced_search_sub_card_one_fieldset_select select_areas"><?=$this->form->areas2->setAttribs(array( 'id' => 'selArea2', 'class' => 'pretty_select_2'))->renderViewHelper();?></fieldset>
+              <fieldset class="advanced_search_sub_card_one_fieldset_select select_areas"><?=$this->form->areas3->setAttribs(array( 'id' => 'selArea3', 'class' => 'pretty_select_2'))->renderViewHelper();?></fieldset>
+            </div>
+            <div class="advanced_search_sub_card_one">
+              <h2 class="advanced_search_title">Puedes elegir hasta 3 niveles.</h2>
+              <fieldset class="advanced_search_sub_card_one_fieldset_select select_levels"><?=$this->form->nivelPuestos1->setAttribs(array( 'id' => 'selNivel1', 'class' => 'pretty_select_2'))->renderViewHelper();?></fieldset>
+              <fieldset class="advanced_search_sub_card_one_fieldset_select select_levels"><?=$this->form->nivelPuestos2->setAttribs(array(  'id' => 'selNivel2', 'class' => 'pretty_select_2'))->renderViewHelper();?></fieldset>
+              <fieldset class="advanced_search_sub_card_one_fieldset_select select_levels"><?=$this->form->nivelPuestos3->setAttribs(array( 'id' => 'selNivel3', 'class' => 'pretty_select_2'))->renderViewHelper(); ?></fieldset>
+            </div>
+            <div class="advanced_search_sub_card_one salary_section">
+              <h2 class="advanced_search_title">Salario</h2>
+              <?=$this->BusquedaAvanzada($this)->Salario($this->salario)?>     
+            </div>
+          </div>
+          <div class="advanced_search_two_card row">
+            <div class="advanced_search_sub_card_two_area">
+              <h2 class="advanced_search_title">                 
+                Carrera<span id="currentCarrerSelected" data-current-area="" class="current_carrer_selected_close"></span>
+              </h2>  
+                <div class="advanced_search_sub_card_two_wrapper_list">
+                <ul class="advanced_search_sub_card_two_list_areas">
+                        <?php $desCarrera=array();$slugCarrera=array();?>
+                        <?php foreach ($this->carrera as $key =>$value) { 
+                                 $desCarrera[$key] = explode('.', $value['des_carrera']);
+                                 $slugCarrera[$key] = explode(',', $value['slug_carrera']);?>
+                                <li data-area="<?=$key?>" class="advanced_search_sub_card_two_list_areas_item"><i class="icon icon_arrow_right_tin"></i><span><?=$value['nombre']?></span></li>                     
+                        <?php } ?>                
+                </ul>
+                <ul class="advanced_search_sub_card_two_list_careers">
+                <?php foreach ($slugCarrera as $e =>$value ) { ?>
+                      <?php foreach ($value as $i =>$value) { ?>
+                        <li data-career="<?=$i?>" data-area="<?=$e?>" data-value="<?=$value?>"  class="advanced_search_sub_card_two_list_careers_item"><span><?=$desCarrera[$e][$i]?></span></li>
+                       <?php } ?>   
+                <?php } ?>          
+                </ul>
+              </div>
+              <div class="advanced_search_sub_card_two_tags_selection"></div>
+              <div class="advanced_search_sub_card_two_tags_message_selection"><i class="icon icon_check"></i>Se agrego la carrera<span class="carrerName">Sin list</span>a la lista</div>
+            </div>
+            <div class="advanced_search_sub_card_two_date">
+              <h2 class="advanced_search_title">Fecha</h2>
+              <?=$this->BusquedaAvanzada($this)->Fecha($this->fecha)?>     
+            </div>
+          </div>
+          <div class="advanced_search_three_card row">
+            <div class="advanced_search_sub_card_three_location">
+              <h2 class="advanced_search_title">Ubicación</h2>
+              <fieldset class="advanced_search_sub_card_three_fieldset_input" id="advancedSearchSubCardThreeFieldsetUbigeo">
+                <label class="advanced_search_sub_card_three_label_ubigeo">
+                  <input type="text" id="txtUbigeo" name="txtUbigeo" autocomplete="off" placeholder="Ingresa distrito, provincia, departamento">       
+                </label>
+              </fieldset>
+              <div class="advanced_search_sub_card_three_container_tag" id="advancedSearchSubCardThreeFieldsetUbigeoTag">
+              </div>
+            </div>
+            <div class="advanced_search_sub_card_three_company">
+              <h2 class="advanced_search_title">Empresa</h2>
+              <fieldset class="advanced_search_sub_card_three_fieldset_input" id="advancedSearchSubCardThreeFieldsetCompany">
+                <label class="advanced_search_sub_card_three_label_company">
+                  <input type="text" name="txtCompany" autocomplete="off" placeholder="Ejm: Grupo La Prensa" id="txtCompany">
+                </label>
+              </fieldset>
+              <div class="advanced_search_sub_card_three_container_tag" id="advancedSearchSubCardThreeFieldsetCompanyTag">
+              </div>
+            </div>
+            <div class="advanced_search_sub_card_three_keywords">
+              <h2 class="advanced_search_title">Palabras claves</h2>
+              <fieldset class="advanced_search_sub_card_three_fieldset_input">
+                <label>
+                  <input type="text" name="togglefields" placeholder="Ingrese las palabras claves">
+                </label>
+              </fieldset>
+            </div>
+          </div>
+          <div class="advanced_search_four_card row"><button class="btn btn_save">Regresar</button><button class="btn btn_advancd_search">Buscar<i class="icon icon_lens"></i></button></div>
+        </form>
+      </div>
+<script type="text/template" id="tplCurrentArea">
+  <a href='javascript:;' title='regresar' class='icon <%= title_career_selected_close %> rotate180'></a>
+</script>
+<script type="text/template" id="tplItemSelected">
+  <div class='<%= list_sub_careers_item %>' data-area='<%= area %>' data-career='<%= carrera %>'>
+    <span class='text'><%= text %></span>
+    <a href='javascript:;' class='<%= list_sub_careers_item_close %>'>X</a>
+    <input id="chkArqui" name="radCarrera[]" value="<%= value %>" type="hidden">
+  </div>
+</script>
+<script type='text/template' id="tplItemUbigeoTag">
+  <div class='advanced_search_sub_card_three_tag_item <%= classItem %>' data-value="<%= value %>" data-id="<%= id %>">
+    <label><%= value %></label>
+    <span class='<%= classClose %>'>X</span>
+    <% if(id==''){ %>
+      <input type="hidden" value="<%= value %>" name="ubicacion[]">
+    <% }else{ %>
+      <input type="hidden" value="<%= id %>" name="ubicacion[]">
+    <% } %>
+  </div>
+</script>
+<script type='text/template' id="tplItemCompanyTag">
+  <div class='advanced_search_sub_card_three_tag_item <%= classItem %>' data-value="<%= value %>" data-id="<%= id %>">
+    <label><%= value %></label>
+    <span class='<%= classClose %>'>X</span>
+    <% if(id==''){ %>
+      <input type="hidden" value="<%= value %>" name="empresa[]">
+    <% }else{ %>
+      <input type="hidden" value="<%= id %>" name="empresa[]">
+    <% } %>
+  </div>
+</script>

@@ -1,0 +1,31 @@
+<h3 class="titleBBig"><?= $this->detalle['membresia']['m_tipo']=='bonificado'? 
+				    'Bonificado '.$this->escape($this->detalle['membresia']['m_nombre']):
+				    'Membresía '.$this->escape($this->detalle['membresia']['m_nombre']) ?>
+</h3>
+<div class="iContenNotaEPA">
+    <div id="cargando" class="hide"></div>
+    <form method="post" name="frm" id="frm" class="formDataNotaEPA">
+        <input type="hidden" name="id" value="" />
+        <div class="all cntNotaDataEPA" >
+            <div class="infoMembresiaAP r5">Esta membresía cuenta con los siguientes beneficios:</div>
+        </div>
+        <div class="all">
+            <? $simbolo = array('porcentaje' => '%', 'caracteristica' => '', 'cantidad' => '') ?>
+            <? foreach($this->detalle['beneficios'] as $beneficio) :?>
+                <p class="chkOpEBAP">
+                <? if ($beneficio['med_codigo'] == Application_Model_Beneficio::CODE_DESC_EMPLEOBUSCO || $beneficio['med_codigo'] == Application_Model_Beneficio::CODE_DESC_TALAN) :
+                       echo $beneficio['med_valor'] . $simbolo[$beneficio['med_tipo_beneficio']] . ' ' . $beneficio['med_descripcion'];
+                   else :
+                       echo $beneficio['med_descripcion'];
+                   endif; 
+                ?>
+                </p>
+            <? endforeach ?>
+        </div>
+        <div id="msgErrorNotas" class="error hide">*</div>
+        <div class="btnsEBCVS">
+<!--            <a id="" class="sptEmp btnSptEmp left cancelHEPA" href="#"></a>-->
+<!--            <input id="" class="sptEmp btnSptEmp right aceptEBCVS" href="#" value="" type="button"/>-->
+        </div>
+    </form>
+</div>

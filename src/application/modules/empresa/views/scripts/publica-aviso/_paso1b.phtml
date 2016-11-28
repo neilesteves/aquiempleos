@@ -1,0 +1,122 @@
+<div id="iSection2EM" class="sectionEM">
+	 <?php $i = 1; ?>
+	 <?php
+	 foreach ($this->arrayClasificado as $row) {
+		  ?>
+		  <?php $i = $i + 1 ?>
+		  <div id="iBlock<?= $i ?>S2M" class="cntTopTitP2 formatAdv formatAdv<?=
+		  $i - 1?> left">
+				<div class="topTitP2 topTitP2AP topTitP2S<?= $i - 1 ?>" <?=
+				$i == 1 ? 'id="freeAdv"' : ''
+				?> >
+					 <h3 style="font-size: 27px;text-align: center;padding-top: 20px;">Aviso Económico <b><?=$row['0']['descripcion'] == 'Sólo Web' ? '' : '' . mb_strtoupper($row['0']['descripcion'])?></b></h3>
+					 <div class="desdeAP">Desde</div>
+					 <div class="priceP2 priceDef">
+						  <?php echo $this->moneda?><?=
+						  $i == 1 ? '20' :round(number_format($row['0']['valor'],2), 0, PHP_ROUND_HALF_EVEN);
+						  ?>
+					 </div>
+				</div>
+				<div class="topbodyP2 row<?= $row['0']['id'] ?>EM">
+					 <div class="cntBodyP2">
+						  <?php
+						  $valor2
+								= explode(',', $row['1']['valor'])
+						  ?>
+						  <ul>
+								<li class="liArrowIW liLineHL">
+									 <span class="br liTxtSmall">Usuario y cuenta en AquiEmpleos</span>
+								</li>
+								<li class="liArrowIW liLineHL">
+									 <span class="br liTxtSmall">Utilización de Filtros de CVs</span>
+								</li>
+								<li class="liArrowIW liLineHL">
+									 <span class="br liTxtSmall">4 Semanas</span>
+									 <span class="br liTxtSmallL">de publicación Web</span>
+								</li>
+								<li class="liArrowIW liLineHL">
+									 <span class="br liTxtSmall">Ubicación Preferencial</span>
+									 <span class="br liTxtSmallL">del aviso web sobre los Avisos Solo Web (2 días)</span>
+								</li>
+								<?php
+								if ($i != 1) {
+									 ?>
+									 <?php
+									 $valor2 = explode(',', $row['1']['valor'])
+									 ?>
+									 <li class="liArrowIW liLineHL">
+										  <span class="br liTxtSmall">Compra de <?= $valor2['1'] ?> palabras en el aviso impreso </span>
+										  <span class="br liTxtSmallL">en el suplemento AquiEmpleos del Diario La Prensa y/o en El Talan del Diario El Trome desde la web de AquiEmpleos</span>
+									 </li>
+								<?php } ?>
+						  </ul>
+					 </div>
+					 <?php
+					 if ($i == 1) {
+						  ?>
+						  <div class="all alignC"><a class="winModal viewShowEjm" rel="web.jpg" href="#ejmsAviso">Ver ejemplo</a></div>
+						  <?php
+					 } elseif ($i == 2) {
+						  ?>
+						  <div class="all alignC"><a class="winModal viewShowEjm" rel="ejemplo-impreso-economico.jpg" href="#ejmsAviso">Ver ejemplo</a></div>
+						  <?php
+					 } elseif ($i == 3) {
+						  ?>
+						  <div class="all alignC"><a class="winModal viewShowEjm" rel="ejemplo-impreso-oro.jpg" href="#ejmsAviso">Ver ejemplo</a></div>
+						  <?php
+					 } elseif ($i == 4) {
+						  ?>
+						  <div class="all alignC"><a class="winModal viewShowEjm" rel="ejemplo-impreso-platinium.jpg" href="#ejmsAviso">Ver ejemplo</a></div>
+					 <?php } ?>
+						  <br>
+					 <div class="wrap-btn center">
+						  <!-- flag -->
+						  <?php
+						  $precio
+								= explode(',', $row['2']['valor'])
+						  ?>
+						  <?php
+						  $id
+								= explode(',', $row['2']['id'])
+						  ?>
+						  <?php if ($i == 1) {
+								?>
+								<?php
+								if ($this->layout()->auth != null && array_key_exists('empresa',
+										  $this->layout()->auth)):
+									 ?>
+									 <form action="" id="fStep1hb" method="post" >
+										  <input type="hidden" name="id_tarifa" value="1" />
+										  <input type="submit" id="segOptP1" value="Continuar >" class="btn btn-primary logoutPrimP1 continNoP2 btnSptEmp iBtn1S2M"/>
+									 </form>
+								<?php else: ?>
+									 <a rel="{id:'<?= $id['0'] ?>'}" id="primOptP1" href="#loginP" class="btn btn-primary login_modal loginPrimP1 continNoP2 iBtn<?= $i ?>S2M" title="">
+										  Continuar >
+									 </a>
+								<?php endif; ?>
+								<?php
+						  } elseif ($i == 2) {
+								?>
+								<a rel="{id1:'<?= $id['0'] ?>',id2:'<?= $id['1'] ?>',id3:'<?= $id['2'] ?>',words:'<?= $valor2['1'] ?> palabras',precio1:'<?= number_format($precio['0'],0) ?>',precio2:'<?= number_format($precio['1'],0) ?>',precio3:'<?= number_format($precio['2']) ?>'}" onclick="ga('send', 'event', 'P1.1_Economico_Clasico', '<?php echo $this->empresaId?>' , 'P1.1_Economico_Clasico');" href="#2" class="btn btn-primary continP2 btnSptEmp iBtn<?= $i ?>S2M" data-type="Clasico">
+									 Continuar >
+								</a>
+								<?php
+						  } elseif ($i == 3) {
+								?>
+								<a rel="{id1:'<?= $id['0'] ?>',id2:'<?= $id['1'] ?>',id3:'<?= $id['2'] ?>',words:'<?= $valor2['1'] ?> palabras',precio1:'<?= number_format($precio['0'],0) ?>',precio2:'<?= number_format($precio['1'],0) ?>',precio3:'<?= number_format($precio['2']) ?>'}" onclick="ga('send', 'event', 'P1.1_Economico_Oro', '<?php echo $this->empresaId?>' , 'P1.1_Economico_Oro');" href="#3" class="btn btn-primary continP2 btnSptEmp iBtn<?= $i ?>S2M" data-type="Oro">
+									 Continuar >
+								</a>
+								<?php
+						  } elseif ($i == 4) {
+								?>
+								<a rel="{id1:'<?= $id['0'] ?>',id2:'<?= $id['1'] ?>',id3:'<?= $id['2'] ?>',words:'<?= $valor2['1'] ?> palabras',precio1:'<?= number_format($precio['0'],0) ?>',precio2:'<?= number_format($precio['1'],0) ?>',precio3:'<?= number_format($precio['2']) ?>'}" onclick="ga('send', 'event', 'P1.1_Economico_Platinum', '<?php echo $this->empresaId?>' , 'P1.1_Economico_Platinum');" href="#4" class="btn btn-primary continP2 btnSptEmp iBtn<?= $i ?>S2M" data-type="Platinum">
+									 Continuar >
+								</a>
+						  <?php } ?>
+						  <br>
+					 </div>
+						  <br>
+				</div>
+		  </div>
+	 <?php } ?>
+</div>

@@ -1,0 +1,23 @@
+<script id="tplExperience" type="text/template">
+	<?= $this->partial('publica-aviso/_experiencia_paso2.phtml', 'empresa', array('form' => $this->managerExperiencia->getForm('blank')));
+	?>
+</script>
+<script id="tplStudy" type="text/template">
+	<?= $this->partial('publica-aviso/_estudio_paso2.phtml', 'empresa', array('form' => $this->managerEstudio->getForm('blank')));
+	?>
+</script>
+<script id="tplStudyOther" type="text/template">
+	<?= $this->partial('publica-aviso/_otro_estudio_paso2.phtml' , 'empresa', array('form' => $this->managerOtroEstudio->getForm('blank')));
+	?>
+</script>
+<script id="tplLanguage" type="text/template">
+	<?= $this->partial('publica-aviso/_idioma_paso2.phtml' , 'empresa', array('form' => $this->managerIdioma->getForm('blank')));
+	?>
+</script>
+<script id="tplPrograms" type="text/template">
+	<?= $this->partial('publica-aviso/_programa_paso2.phtml' , 'empresa', array('form' => $this->managerPrograma->getForm('blank')));
+	?>
+</script>
+<script id="tplQuestions" type="text/template">
+<?php echo $this->partial('publica-aviso/_pregunta_paso2.phtml', 'empresa', array('form' => $this->managerPregunta->getForm('blank'))); ?>
+</script>

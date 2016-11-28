@@ -1,0 +1,43 @@
+<br><P align=center><font size=3>
+<b>Su aviso "<?= $this->nombrePuesto ?>" está registrado</b></font></P>
+<br>
+<span style="color:#000000;font-size:13px"><b>Usuario    : </b></span><span style="color:#3366ff;font-size:13px"><b><?= $this->usuario ?></b></span><BR>
+<br><br>
+Al registrar su aviso usted escogió como medio de pago <b>Pago Efectivo</b> para su
+aviso de "<?= $this->nombrePuesto ?>". Hasta no realizar el pago del aviso no podrá ser publicado.
+<br><br>
+Su aviso ha sido registrado con las siguientes características:
+<br><br>
+</td></tr>
+<tr><td>
+
+<table cellpadding=0 cellspacing=0 width="90%" align=center>
+<tr><td style="text-align:justify;font-family:verdana;font-size:12px;width:30%">
+Puesto solicitado</td>
+<td style="text-align:justify;font-family:verdana;font-size:12px">
+: <b><?= $this->nombrePuesto ?></b>
+</td></tr><tr><td style="text-align:justify;font-family:verdana;font-size:12px">
+Empresa</td>
+<td style="text-align:justify;font-family:verdana;font-size:12px">
+: <b>"<?= $this->empresa ?>"</b>
+</td></tr><tr><td style="text-align:justify;font-family:verdana;font-size:12px">
+Precio</td>
+<td style="text-align:justify;font-family:verdana;font-size:12px">
+: <b>S/ "<?= $this->precio ?>"</b>
+</td></tr><tr><td style="text-align:justify;font-family:verdana;font-size:12px">
+Medio de Pago</td>
+<td style="text-align:justify;font-family:verdana;font-size:12px">
+: <b>Pago Efectivo</b>
+</td></tr></table>
+
+</td></tr>   
+<tr><td style="text-align:justify;font-family:verdana;font-size:12px">
+<br>En unos momentos <b>Pago Efectivo</b> le enviará un correo con el código generado
+para que pueda pagar el aviso en cualquier agencia del Banco de Crédito del Perú (BCP) o Banco Continental (BBVA) y por internet a través de <span style="color:#3366ff"><b>www.viabcp.com</b></span> y <span style="color:#3366ff"><b>www.bbvabancocontinental.com</b></span> respectivamente.
+<br><br>
+Tu aviso está guardado como borrador y puede revisarlo y editarlo antes de 
+realizar el pago.
+<br><br>
+<p align=center style="color:#3366ff"><a href="<?=SITE_URL?><?= $this->url(array('module' => 'postulante', 'controller' => 'aviso', 'action' => 'ver', 'url_id' => $this->urlId, 'slug'=> $this->slug), 'aviso', true) ?>"><b>Ver Aviso</b></a></p>
+<br>¡Gracias por anunciar en EMPLEOBUSCO!
+<br><br>

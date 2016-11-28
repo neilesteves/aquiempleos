@@ -1,0 +1,75 @@
+<nav class="cont-menu row">
+    <br>
+</nav>
+<div id="wrapper">
+    <div class="head-title row">
+        <ul class="steps">
+            <li>Escoge<br> el Aviso<span></span></li>
+            <li class="act">Datos<br> del Aviso<span></span></li>
+            <?php if ($this->tipoAviso == Application_Model_AnuncioWeb::TIPO_PREFERENCIAL
+                    || $this->tipoAviso == Application_Model_AnuncioWeb::TIPO_CLASIFICADO) { ?>
+            <li>Aviso<br> Impreso<span></span></li>
+                    <?php } ?>
+            <li>Verifica<br> tus datos<span></span></li>
+        </ul>
+        <div class="title-step">
+            <div class="legend">
+                <a href="<?php
+                echo $this->url(array(
+                    'module' => 'empresa', 'controller' => 'mi-cuenta', 'action' => 'index'),
+                    false, true)
+                ?>">Inicio</a> » <span class="noLink">Publica un aviso</span>
+            </div>
+            <h2>Datos del puesto</h2>
+        </div>
+    </div>
+    <p class="bold txt_right mB20">Los datos con <span class="req">*</span> son obligatorios</p>
+    
+    <?=$this->partial('_partials/_messages.phtml',array("flashMessages"=>$this->flashMessages))?> 
+    
+    <form action="" id="frmPublishAd" method="post" class="frm-horizontal wrap-register">
+        <?php if (isset($this->back)) : ?>
+            <input type="hidden" value="true" name="back" />
+        <?php endif; ?>
+        <?php
+        echo $this->partial('_partials/_paso2_aviso.phtml', 'empresa',
+            array(
+            'form' => $this->form, 'isDato' => $this->isDato,
+            'idPost' => $this->idPost,
+            'online' => $this->online,
+            'numPalabraPuesto' => $this->numPalabraPuesto,
+            'numPalabraOtroNombre' => $this->numPalabraOtroNombre,
+            'formEstudio' => $this->formEstudio, 'managerEstudio' => $this->managerEstudio,
+            'isEstudio' => $this->isEstudio, 'isEditarEstudio' => $this->isEditarEstudio,
+            'formExperiencia' => $this->formExperiencia, 'managerExperiencia' => $this->managerExperiencia,
+            'isExperiencia' => $this->isExperiencia, 'isEditarExperiencia' => $this->isEditarExperiencia,
+            'formOtroEstudio' => $this->formOtroEstudio, 'managerOtroEstudio' => $this->managerOtroEstudio,
+            'isOtroEstudio' => $this->isOtroEstudio, 'isEditarOtroEstudio' => $this->isEditarOtroEstudio,
+            'formIdioma' => $this->formIdioma, 'managerIdioma' => $this->managerIdioma,
+            'isIdioma' => $this->isIdioma, 'isEditarIdioma' => $this->isEditarIdioma,
+            'formPrograma' => $this->formPrograma, 'managerPrograma' => $this->managerPrograma,
+            'isPrograma' => $this->isPrograma, 'isEditarPrograma' => $this->isEditarPrograma,
+            'formPregunta' => $this->formPregunta, 'managerPregunta' => $this->managerPregunta,
+            'isPregunta' => $this->isPregunta, 'isEditarPregunta' => $this->isEditarPregunta,
+            'frmUbigeo' => $this->frmUbigeo
+            )
+        );
+        ?>
+        <div class="wrap-btn right mT20"> 
+            <span id="msgErrorStep2" class="response error mR10"></span>
+            <input id="aSetep2" class="btn btn-primary" type="submit" value="Continuar >"/> 
+        </div>
+    </form>
+    <?php
+    echo $this->partial('_partials/_paso2_aviso_blank.phtml', 'empresa',
+        array(
+        'managerEstudio' => $this->managerEstudio,
+        'managerOtroEstudio' => $this->managerOtroEstudio,
+        'managerExperiencia' => $this->managerExperiencia,
+        'managerIdioma' => $this->managerIdioma,
+        'managerPrograma' => $this->managerPrograma,
+        'managerPregunta' => $this->managerPregunta,
+        )
+    );
+    ?>
+</div>

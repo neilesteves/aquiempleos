@@ -1,0 +1,44 @@
+LEVANTAR EL PROYECTO EN LOCAL
+
+-Clonar repo, crear virtualhost, y apuntar a  Proyecto-E-business/aquiempleos/src/public
+EN EL LINK EXPLICA COMO CREAR VIRTUALHOST:
+https://gist.github.com/neilesteves/cdfc51f8224029c630ffe60a1f399d91
+
+-Ir a /aquiempleos/src/  y ejecutar
+sudo php composer.phar update
+php composer.phar install
+
+-crear carpeta logs,cache en /aquiempleos/src/
+sudo chmod 777 -R logs
+sudo chmod 777 -R cache
+
+-CREAR(comando: mkdir) LAS SIGUIENTES CARPETAS, SI YA ESTAN CREADAS SÓLO EJECUTAR COMANDO (chmod)
+mkdir aquiempleos/src/public/elements;
+mkdir aquiempleos/src/public/elements/empleo;
+mkdir aquiempleos/src/public/elements/empleo/notas;
+mkdir aquiempleos/src/public/elements/empleo/img;
+mkdir aquiempleos/src/public/elements/empleo/logos;
+mkdir aquiempleos/src/public/elements/empleo/cvs;
+mkdir aquiempleos/src/public/elements/fotos;
+mkdir aquiempleos/src/public/elements/fotos/temp;
+sudo chmod 777 -R trabajobusco/src/public/elements/*
+
+- INSTALAR EXTENSIÓN MONGO
+sudo apt-get install php5.6-mongo
+
+-DIRIGIRSE A /etc/php5.6/apache2, abrir el archivo php.ini y colocar lo siguiente (en cualquier parte):
+extension=mongo.so
+
+
+-CONFIGURACIONES (ejecutar comandos si es necesario):
+sudo apt-get -y install curl
+
+sudo apt-get install curl php5.6-cli git
+
+curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
+
+-INSTALANDO MEMCACHED
+sudo apt-get install mysql-server php5.6-mysql php5.6 php5.6-memcached memcached
+
+-INSTALANDO MEMCACHE
+sudo apt-get install php-memcache

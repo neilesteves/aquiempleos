@@ -1,0 +1,342 @@
+<?php if ($this->module == 'postulante') : ?>
+    <?php
+    $urlAviso = SITE_URL . $this->url(array(
+            'slug' => $this->aviso["slug"], 'url_id' => $this->aviso["url_id"]),
+            'aviso', true);
+    ?>
+<?php endif; ?>
+<?php $onclick = ''; ?>
+<?php echo $this->module == 'postulante' ? '' : '<div class="cntModalAEmp">' ?>
+
+<h1><?php echo $this->aviso['puesto']; ?></h1>
+
+<?php
+if ($this->hasPostulado != false) :
+    ?>
+    <div class="box-message">
+        <?php 
+        
+        echo strtotime(date('Y-m-d H:i:s')) < (strtotime($this->hasPostulado) + 12) 
+            ? 'Acabas de postular' : 'Ya postulaste';
+        ?> al puesto <b><?= $this->escape($this->aviso['puesto']); ?></b>
+        -
+        <?php
+        if ($this->aviso['mostrar_empresa'] != "0") :
+            ?>
+            <b><?= $this->escape($this->aviso['nombre_empresa']); ?></b>
+        <?php else : ?>
+            <b><?= $this->escape($this->aviso['nombre_comercial']); ?></b>
+        <?php endif; ?>
+    </div>
+<?php endif; ?>
+<?php
+if (isset($this->auth['usuario']->rol) && $this->auth['usuario']->rol != 'postulante'
+    && $this->module == 'postulante') :
+    ?>
+    <div class="box-message">Para postular al aviso debe estar logueado como postulante.</div>
+<?php endif; ?>
+
+<div class="black-title txt-left">DATOS DE LA EMPRESA</div>
+<div class="wrap_notice head-job">
+         <?php
+         $fixClass = "";
+         if ($this->aviso['mostrar_empresa'] != "0" && ($this->aviso['logo_empresa']
+             != "" || $this->aviso['logo_empresa'] != null)) {
+             ?>
+    <?php if (isset($this->aviso['slug_empresa'])) { ?>
+        <a class="grids-1 center-img" href='/buscar/empresa/<?=$this->aviso['slug_empresa']?>' target="_blank" title="maestro">
+            <img alt="maestro" src="<?= ELEMENTS_URL_LOGOS . $this->aviso['logo_empresa'] ?>" title="<?= $this->escape($this->aviso['nombre_empresa']) ?>"></a>
+            <?php } else { ?>
+        <a class="grids-1 center-img"  title="maestro">
+            <img alt="maestro" src="<?= ELEMENTS_URL_LOGOS . $this->aviso['logo_empresa'] ?>" title="<?= $this->escape($this->aviso['nombre_empresa']) ?>">
+        </a>
+            <?php } ?>
+             <?php } else  { $fixClass = 'fix'; ?>
+             <?php } ?>
+
+    <div class="wrap-left <?= $fixClass; ?>" >
+        <?php
+        if ($this->aviso['mostrar_empresa'] != "0") {
+            if (isset($this->aviso['slug_empresa'])) { ?>
+                <h2><a href='/buscar/empresa/<?=$this->aviso['slug_empresa']?>' target="_blank"><?= $this->escape($this->aviso['nombre_empresa']); ?></a></h2>
+            <?php } else { ?>
+                <h2><?= $this->escape($this->aviso['nombre_empresa']); ?></h2>
+            <?php }
+            ?>  
+        <?php } else { ?>
+            <h2><?= $this->escape($this->aviso['nombre_comercial']); ?></h2>
+        <?php } ?>
+        <h3><?= $this->escape($this->aviso['ciudad']); ?></h3>
+    </div>
+
+    <?php
+    if ($this->module == 'postulante') :
+        ?>
+        <div class="wrap-right">
+            <?php
+            if ($this->AnuncioHelper($this->aviso)->showBtnPostular()):
+                ?>
+                <?php
+                if ($this->isAuth === false || $this->auth['usuario']->rol === 'postulante') :
+                    ?>
+                    <?php
+                    if ($this->hasPostulado === false) :
+                        ?>
+                        <div class="wrap-btn right">
+                            <?php
+                            if ($this->cuestionario === true) :
+                                $urlPostula = '#questionsWM';
+                                $onclick = 'onclick="$(\'#winUpdateCV\').hide()"';
+                                $winModal = 'winModal';
+                                if (!$this->updateCV)
+                                    $urlPostula = '#winUpdateCV';
+                                
+                                if ($this->auth == null){
+                                    $winModal = 'login_modal';
+                                    $urlPostula = '#loginP';
+                                }
+                                ?>
+                                <a class="btn btn-primary btn-big <?=$winModal?>" onClick="ga('send', 'event', 'postulaciones', '<?= $this->aviso['area_puesto'] ?> - <?= $this->aviso['nivel_puesto_nombre'] ?>', '<?= $this->aviso['slug'] ?>');" href="<?= ($this->auth == null) ? '#loginP' : $urlPostula ?>" return="<?= ($this->auth == null) ? $this->urlAviso .$urlPostula : $this->urlAviso ?>" title="">Postular</a>
+                               <?php else : ?>
+                                   <?php
+                                    $resParams = $this->searchResultsUrl == '' ? '' : '/es-resultado/true';
+                                    $urlPostula = '#loginP';
+                                    $winModal = '';
+                                   if ($this->auth == null){
+                                       $winModal = 'login_modal';
+                                       $urlPostula = '#loginP';
+                                   }
+                                   else //update CV
+                                       if ($this->updateCV)
+                                        $urlPostula =  $this->urlAviso. '/postular' . $resParams;
+                                       else {
+                                         $winModal = 'winModal';
+                                         $urlPostula = '#winUpdateCV';
+                                       }
+                                         
+                                   ?>
+                                <a class="btn btn-primary btn-big <?=$winModal?>" onClick="ga('send', 'event', 'postulaciones', '<?= $this->aviso['area_puesto'] ?> - <?= $this->aviso['nivel_puesto_nombre'] ?>', '<?= $this->aviso['slug'] ?>');"  
+                                href="<?=$urlPostula?>" 
+                                return="<?= ($this->auth == null) ? $this->urlAviso . '/postular' . $resParams
+                                           : $this->urlAviso?>" title="">Postular</a>
+                               <?php endif; ?>
+                        </div>
+                    <?php endif; ?>
+                <?php endif; ?>
+
+                <ul class="share-box row">
+                    <li class="share">Comparte:</li>
+                    <li><a class="email winModal" href="#shareMail" title="Compartir por correo"><span class="hide">Compartir</span></a></li>
+                    <li><a class="fb" href="http://www.facebook.com/sharer.php?u=<?= $urlAviso ?>" target="_blank" alt="Facebook" title="Facebook">Facebook</a></li>
+                    <li><a class="tw" href="http://twitter.com/home?status=<?= $this->twitterMessage ?> <?= $urlAviso ?>" target="_blank" alt="Twitter" title="Twitter" >Twitter</a></li>
+                    <li><a class="lnk" href="http://www.linkedin.com/shareArticle?mini=true&url=<?= $urlAviso ?>&title=<?= $this->seo['title']; ?>&source=<?= SITE_URL; ?>&summary=<?= $this->escape($this->seo['description']) ?>" target="_blank" alt="Linked in" title="Linked in" >LinkedIn</a></li>
+                </ul>
+            
+            <?php endif; ?>
+        </div>
+    <?php endif; ?>
+</div>
+
+<div class="content-job <?=$this->module == 'postulante' ? '' : 'modalAvisoE modalAvisoCnt'?>">
+         <?php
+         if ($this->AnuncioHelper($this->aviso)->showContent()):
+             ?>
+        <h6 class="black-title txt-left"><? $this->escape($this->aviso['funciones']) ?>FUNCIONES Y RESPONSABILIDADES</h6>
+        <h3 class="detail-wrap">
+            <?= nl2br($this->escape($this->aviso['funciones'])) . "<br>" . nl2br($this->escape($this->aviso['responsabilidades'])); ?>
+        </h3>
+        <?php
+        if (count($this->aviso['programas']) > 0 || count($this->aviso['idiomas'])
+            > 0 || count($this->aviso['experiencias']) > 0 || count($this->aviso['estudios'])
+            > 0):
+            ?>
+            <h6 class="black-title txt-left">REQUISITOS</h6>
+            <ul class="detail-wrap">
+                <?php
+                if (count($this->aviso['estudios']) > 0):
+                    ?>
+                    <?php
+                    foreach ($this->aviso['estudios'] as $a) :
+                        ?>
+                        <li>
+                            <?= ($a['otra_carrera'] != '' || $a['otra_carrera'] !=NULL)?'':$this->escape($a['nivel_estudio']) ?>
+                        <?=($a['otra_carrera'] != '' || $a['otra_carrera'] !=NULL)?$a['nivel_estudio'].' en '.$a['otra_carrera']:(($a['carrera'] != '') ? ' en ' . $this->escape($a['carrera']): '')?>.
+                        <?php endforeach; ?>
+                    </li>
+                <?php endif; ?>
+                <?php
+                if (count($this->aviso['experiencias']) > 0):
+                    ?>
+                    <?php
+                    foreach ($this->aviso['experiencias'] as $e) :
+                        ?>
+                        <li>Experiencia: 
+                            <?= $this->escape($e['nombre_puesto']) ?> en el área de <?= $this->escape($e['nombre_area']) ?><?=
+                            ($this->Meses($e['experiencia'])) ? ' con ' . $this->Meses($e['experiencia']) . ' de experiencia.'
+                                    : '.'
+                            ?>
+                        </li>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+                <?php
+                if (count($this->aviso['idiomas']) > 0):
+                    ?>
+                    <?php
+                    foreach ($this->aviso['idiomas'] as $i):
+                        ?>
+                        <li>Idioma 
+                            <?=
+                            $this->escape($this->ItemList('idioma', $i['idioma']))
+                            ?> a nivel <?=
+                            $this->escape($i['nivel_idioma'] == 'basico' ? 'básico'
+                                        : $i['nivel_idioma'])
+                            ?>
+                        </li>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+                <?php
+                if (count($this->aviso['programas']) > 0):
+                    ?>
+                    <li>Manejo de programas: 
+                        <?php
+                        for ($i
+                        = 0; $i < count($this->aviso['programas']); $i++):
+                            ?>
+                            <?= $this->escape($this->aviso['programas'][$i]['nombre_programa']) ?> a nivel <?=
+                            $this->escape($this->aviso['programas'][$i]['nivel_programa']
+                                == 'basico' ? 'básico' : $this->aviso['programas'][$i]['nivel_programa'])
+                            ?><?=
+                            ($i + 1 == count($this->aviso['programas'])) ? '.' : ', '
+                            ?>
+                        <?php endfor; ?>
+                    </li>
+                <?php endif; ?>
+            </ul>
+        <?php endif; ?>
+        <?php
+        if ($this->aviso['mostrar_salario'] == 1 && !($this->aviso['salario_min']
+            == null && $this->aviso['salario_max'] == null)) :
+            ?>
+            <h6 class="black-title txt-left">CONDICIONES SALARIALES</h6>
+            <ul class="detail-wrap">
+                <?php
+                if ($this->aviso['salario_min'] == 0) :
+                    ?>
+                    <li>Sueldo: Menor a <?php echo $this->moneda?> <?= $this->aviso['salario_max']; ?></li>
+                    <?php
+                elseif ($this->aviso['salario_max'] == '') :
+                    ?>
+                    <li>Sueldo: Mayor a <?php echo $this->moneda?> <?= $this->aviso['salario_min']; ?></li>
+                    <?php
+                elseif ($this->aviso['salario_min'] != $this->aviso['salario_max']) :
+                    ?>
+                    <li>Sueldo: Entre <?php echo $this->moneda?> <?= $this->aviso['salario_min']; ?> y <?php echo $this->moneda?> <?= $this->aviso['salario_max']; ?></li>
+                <?php else: ?>
+                    <li>Sueldo: <?php echo $this->moneda?> <?= $this->aviso['salario_min']; ?></li>
+                <?php endif; ?>
+            </ul>
+        <?php endif; ?>
+    <?php endif; ?> 
+</div>
+
+<?php
+if ($this->module == 'postulante') :
+    ?>
+    <div class="footer-job">
+        <ul class="share-box row">
+            <li class="share">Comparte:</li>
+            <li><a class="email winModal" href="#shareMail" title="Compartir por correo">Compartir</a></li>
+            <li><a class="fb" href="http://www.facebook.com/sharer.php?u=<?= $urlAviso ?>" target="_blank" alt="Facebook" title="Facebook">Facebook</a></li>
+            <li><a class="tw" href="http://twitter.com/home?status=<?= $this->twitterMessage ?> <?= $urlAviso ?>" target="_blank" alt="Twitter" title="Twitter" >Twitter</a></li>
+            <li><a class="lnk" href="http://www.linkedin.com/shareArticle?mini=true&url=<?= $urlAviso ?>&title=<?= $this->seo['title']; ?>&source=<?= SITE_URL; ?>&summary=<?= $this->escape($this->seo['description']) ?>" target="_blank" alt="Linked in" title="Linked in" >LinkedIn</a></li>
+        </ul>
+        
+        <?php
+        $winModal = 'winModal';
+        if ($this->auth == null)
+            $winModal  = 'login_modal'
+        ?>
+        <a class="report <?=$winModal?>" href="<?=
+        ($this->auth == null) ? '#loginP' : '#reportAbuse'
+        ?>" return="<?=
+           ($this->auth == null) ? $this->urlAviso . '/#reportAbuse' : $this->urlAviso
+           ?>">Reportar abuso</a>
+        
+        <div class="wrap-btn right">
+        <?php
+        if ($this->isAuth === false || $this->auth['usuario']->rol === 'postulante') :
+            ?>
+            <?php
+            if ($this->hasPostulado === false) :
+                ?>
+                <?php
+                if ($this->cuestionario === true) :
+                    ?>
+                    <?php 
+
+                        $urlPostula = '#questionsWM';
+                        $onclick = 'onclick="$(\'#winUpdateCV\').hide()"';
+                        $winModal = 'winModal';
+                        if (!$this->updateCV)
+                            $urlPostula = '#winUpdateCV';
+                        
+                        if ($this->auth == null){
+                            $winModal = 'login_modal';
+                        }
+                    ?>
+                    <a class="btn btn-primary btn-big <?=$winModal?>" onClick="ga('send', 'event', 'postulaciones', '<?= $this->aviso['area_puesto'] ?> - <?= $this->aviso['nivel_puesto_nombre'] ?>', '<?= $this->aviso['slug'] ?>');" href="<?= ($this->auth == null) ? '#loginP' : $urlPostula
+                                ?>" return="<?=
+                                   ($this->auth == null) ? $this->urlAviso .$urlPostula
+                                           : $this->urlAviso
+                                   ?>" title="">Postular</a>
+                   <?php else : ?>
+                    <?php
+                                   $resParams
+                                       = $this->searchResultsUrl == '' ? '' : '/es-resultado/true';
+                                   
+                                    $urlPostula = '#loginP';
+                                    $winModal = '';
+                                   if ($this->auth == null){
+                                       $urlPostula = '#loginP';
+                                       $winModal = 'login_modal';
+                                   }
+                                   else //update CV
+                                       if ($this->updateCV)
+                                        $urlPostula =  $this->urlAviso. '/postular' . $resParams;
+                                       else {
+                                         $urlPostula = '#winUpdateCV';
+                                         $winModal = 'winModal';
+                                       }
+                                         
+                                   ?>
+                                <a class="btn btn-primary btn-big <?=$winModal?>" onClick="ga('send', 'event', 'postulaciones', '<?= $this->aviso['area_puesto'] ?> - <?= $this->aviso['nivel_puesto_nombre'] ?>', '<?= $this->aviso['slug'] ?>');"  
+                                href="<?=$urlPostula?>" 
+                                return="<?=
+                                   ($this->auth == null) ? $this->urlAviso . '/postular' . $resParams
+                                           : $this->urlAviso
+                                   ?>" title="">Postular</a>
+                   <?php endif; ?>
+               <?php endif; ?>
+           <?php endif; ?>
+        </div>
+    </div>
+
+<?php endif; ?>
+
+<div id="winUpdateCV" class="window fix">
+        <a class="closeWM icon-close big" href="#Cerrar" title="Cerrar ventana">Cerrar</a>
+        <h2 class="title">Felicidades, acabas de postular al puesto <?=strtoupper($this->aviso['puesto'])?></h2>
+        <div class="msjReemplazo">
+            <p>Ten en cuenta que tu perfil no ha sido actualizado en 4 meses, te<br>
+            recomendamos actualizar tus datos para obtener mayores posibilidades de <br>
+            éxito en tu postulación.</p>
+        </div>
+        <div class="wrap-btn center">
+            <a class="btn btn-primary" href="/registro/paso1-modificar" title="Actualiza tus datos">Actualiza tus datos</a>
+            <a class="btn btn-default" href="/postulante/mi-cuenta/update-info" title="Mis datos siguen vigentes">Mis datos siguen vigentes</a>
+        </div>
+</div>
+
+<?=
+$this->module == 'postulante' ? '' : '</div>'
+?>

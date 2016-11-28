@@ -1,0 +1,56 @@
+<script>
+    var maximo_palabras = <?=$this->npalabras["valor"]?>;
+</script>
+<pre>
+</pre>
+<div class="bgAll gridS20">
+	<div class="gridForm">
+		<div class="legend">
+			<a href="<?= $this->url(array('module' => 'admin', 'controller' => 'gestion', 'action' => 'index'), false, true) ?>">Inicio</a> »
+			<span class="noLink">Paso 3 - Complete su aviso Impreso</span>
+		</div>
+		<h1 class="titleOrig">Complete su aviso Impreso</h1>
+		<blockquote id="modStepsForm"><img src="<?=$this->S('/images/empresa/avisoPaso3.jpg');?>" alt="Paso 3"/></blockquote>
+		<div class="gridIStepEmp" class="all">
+			<h2 id="countWordEM" class="titleGrayEM">
+			Aviso <?=$this->dataAnuncio['nombreProducto']?> Web + <?=str_replace(array('EMPLEOBUSCO', 'talan'),array('EMPLEOBUSCO', 'El Talán'),$this->dataAnuncio['medioPublicacion'])?>, <?php echo $this->moneda?><?=ucfirst($this->dataAnuncio['tarifaPrecio'])?>:  
+			<span id="cantPalabbras"><?=$this->npalabras["valor"]?></span> palabras</h2>
+			<div id="sectionsP3EM">			
+			<form id="formCountCP" action="" method="POST">
+				<div class="iSectionP3 mB25">
+					<h6 class="titleAdvClas inSectionP3">Escriba las palabras con las que desea describir su aviso impreso.</h6>
+					<div class="cntAdvP3Clas">
+						<div class="cntTxtP3Emp" id="cntAdvTPYU">
+							<?$hasError = $this->form->texto->hasErrors(); ?>
+							<?=$this->form->texto->setAttribs(array('id'=>'areaCountCP', 'onpaste' => 'return false'))->renderViewHelper(); ?>
+							<?=$this->form->id_aviso;?>
+                                                        <?=$this->form->tok->renderViewHelper();?>
+							<div id="countCntP3">Le queda <span id="countCharP3" class="bold"><?=$this->npalabras["valor"]?></span> palabras</div>
+							<span class="response def cGray left<?=$hasError?' bad':''?>"><?=$hasError?$this->form->texto->errMsg:''?></span>
+							<div id="msjAdvTRY"><span class="bold blackTxtv">¡Atención!</span> <span class="c6">Una palabra debe contener hasta 12 caracteres como máximo, de lo contrario se considerará 2 palabras</span></div>
+						</div>
+					</div>
+				</div>
+
+				<div class="iSectionP3">
+					<h6 class="titleAdvClas inSectionP3">Vista referencial del aviso impreso (<span id="cantPalabrP3"><?=$this->npalabras["valor"]?></span> palabras)</h6>
+					<div class="cntAdvP3Clas">
+						<div class="cntTxtP3Emp">
+							<div id="txtAdvP3Emp">
+              <span class="estatico hide"><?=$this->anuncio["tipo_puesto"]; ?></span>&nbsp;
+              <div class="variable"></div>
+          </div>
+						</div>
+					</div>
+				</div>
+				
+				<div id="footEmpP3" class="all">
+					<input type="submit" id="nextEmpP3" value="Siguiente" class="btnPink loginEmp right btnSptEmp"/>
+					<a href="<?=$this->url(array('module' => 'admin','controller'=>'aviso','action'=>'editar', 'id' => $this->anuncio['id'], 'back' => 'true'),false,true)?>" id="backEmpP1" class="btnGrey right btnSptEmp">Regresar</a>
+					<div id="msgErrorEmpP3" class="msgErrorDef right error"></div>
+				</div>
+			</form>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,23 @@
+<form class="frm_privacy_option" action="#" method="post" id="frmPrivacyOption">
+	 <input type="hidden" value="<?= CSRF_HASH ?>" id="ocultohash" name="csrfhash">
+	 <div class="form_control">
+		  <label for="fPrivac0-0" class="ioption">
+				<input type="radio" errmsg="Campo Requerido" <?=($this->privacidadPostulante==0 ? 'checked="checked"':'') ?> value="0" id="fPrivac0-0" name="fPrivacCP">
+				<div class="option_info">
+					 <p>Público</p>
+					 <p>Los datos básicos de tu perfil estarán siempre visibles desde cualquier acceso desde nuestro portal. </p>
+					 <?php /*<a href="javascript:;">Otras opciones de privacidad </a>*/ ?>
+				</div>
+		  </label>
+	 </div>
+	 <div class="form_control">
+		  <label for="fPrivac0-1" class="ioption">
+				<input type="radio" errmsg="Campo Requerido" <?=($this->privacidadPostulante==1 ? 'checked="checked"':'') ?> value="1" id="fPrivac0-1" name="fPrivacCP">
+				<div class="option_info">
+					 <p>Privado</p>
+					 <p>Tu perfil no será considerado en resultados de Búsqueda en AquiEmpleos.</p>
+				</div>
+		  </label>
+	 </div>
+	 <button class="btn btn_save" type="submit">Guardar</button>
+</form>

@@ -1,0 +1,126 @@
+<div class="control-group">
+    <label for="txtNombreComercial" class="control-label"><span class="req">*</span> Nombre Comercial:</label>
+    <div class="controls">
+        <?= $this->formEmpresa->nombrecomercial->setAttribs(array('id' => 'txtNombreComercial', 'class' => 'input-xmedium', 
+            'rel' => $this->idEmpresa, 'autocomplete' => 'off', 'data-parsley-wordsLimit' => $this->numPalabraRazonComercial, 'required' => '', 'data-parsley-trigger' => 'change', 'data-parsley-errors-container' => '#responseTradeName'))->renderViewHelper(); ?>
+        <div class="parsley_info" id="responseTradeName"></div>
+
+        <?php if ($this->formEmpresa->nombrecomercial->hasErrors()): ?>
+            <div class="has-error">
+                <span id="" class="help-block">
+                    <?php foreach ($this->formEmpresa->nombrecomercial->getMessages() as $error): ?>
+                        <small><?php echo $error ?></small> <br>			
+                    <?php endforeach ?>
+                </span>
+            </div>
+        <?php endif ?>
+    </div>
+</div>
+<div class="control-group">
+    <label for="txtRazonSocial" class="control-label"><span class="req">*</span> Razón Social:</label>
+    <div class="controls">
+        <?= $this->formEmpresa->razonsocial->setAttribs(array('id' => 'txtRazonSocial', 'class' => 'input-xmedium', 'rel' => $this->idEmpresa, 'data-parsley-wordsLimit' => $this->numPalabraRazonSocial, 'autocomplete' => 'off', 'required' => '', 'data-parsley-trigger' => 'change', 'data-parsley-errors-container' => '#responseRazonSocial'))->renderViewHelper(); ?>
+        <div class="parsley_info" id="responseRazonSocial"></div>
+
+        <?php if ($this->formEmpresa->razonsocial->hasErrors()): ?>
+            <div class="has-error">
+                <span id="" class="help-block">
+                    <?php foreach ($this->formEmpresa->razonsocial->getMessages() as $error): ?>
+                        <small><?php echo $error ?></small> <br>			
+                    <?php endforeach ?>
+                </span>
+            </div>
+        <?php endif ?>
+    </div>
+</div>
+<div class="control-group">
+    <label for="txtRuc" class="control-label"><span class="req">*</span> Tipo Documento:</label>
+    <div class="controls">
+        <?= $this->formEmpresa->tipo_doc->setAttribs(array('id' => 'tipo_doc', 'class' => 'sel-medium', 'required' => '', ))->renderViewHelper(); ?>
+
+        <?php if ($this->formEmpresa->rubro->hasErrors()): ?>
+            <div class="has-error">
+                <span id="" class="help-block">
+                    <?php foreach ($this->formEmpresa->tipo_doc->getMessages() as $error): ?>
+                        <small><?php echo $error ?></small> <br>            
+                    <?php endforeach ?>
+                </span>
+            </div>
+        <?php endif ?>
+
+    </div>
+
+</div>
+<div class="control-group">
+    <label for="txtRuc" class="control-label"><span class="req">*</span> N&uacute;mero Documento:</label>
+    <div class="controls">
+        <?= $this->formEmpresa->num_ruc->setAttribs(array('id' => 'txtRuc', 'class' => 'input-xmedium', 'rel' => $this->idEmpresa, 'data-parsley-errors-container' => '#responseRuc'))->renderViewHelper(); ?>
+        <div class="parsley_info" id="responseRuc"></div>
+
+        <?php if ($this->formEmpresa->num_ruc->hasErrors()): ?>
+            <div class="has-error">
+                <span id="" class="help-block">
+                    <?php foreach ($this->formEmpresa->num_ruc->getMessages() as $error): ?>
+                        <small><?php echo $error ?></small> <br>			
+                    <?php endforeach ?>
+                </span>
+            </div>
+        <?php endif ?>
+    </div>
+
+</div>
+<div class="control-group">
+    <label for="txtRubro" class="control-label"><span class="req">*</span> Rubro:</label>
+    <div class="controls">
+        <?= $this->formEmpresa->rubro->setAttribs(array('id' => 'txtRubro', 'class' => 'sel-medium', 'required' => '', 'data-parsley-trigger' => 'change', 'pattern' => '[1-9]'))->renderViewHelper(); ?>
+
+        <?php if ($this->formEmpresa->rubro->hasErrors()): ?>
+            <div class="has-error">
+                <span id="" class="help-block">
+                    <?php foreach ($this->formEmpresa->rubro->getMessages() as $error): ?>
+                        <small><?php echo $error ?></small> <br>			
+                    <?php endforeach ?>
+                </span>
+            </div>
+        <?php endif ?>
+
+    </div>
+</div>
+
+<div id="divWrapFile" class="control-group">
+    <label for="fPhoto" class="control-label no-req">Logotipo:
+        <br/><br/>
+        <p class="txt_small">Tamaño máximo <?php echo $this->config->formatSizeLogo ?></p>
+        <p class="txt_small">Formatos permitidos: JPG, PNG</p>
+        <p class="txt_small">Los archivos no deben medir<br/> más de 640px X 480px</p>
+    </label>
+    <div class="controls">
+        <div id="divImage" class="img-upload center-img">
+            <img src="<?= ($this->imgPhoto == '') ? $this->S('/images/icon-empresa-blank.png') : ELEMENTS_URL_LOGOS . $this->imgPhoto . "?" . time(); ?>" alt="Logo" />
+        </div>
+        <div class="img-actions">
+            <?php
+            $dataFile = '';
+            if ($this->imgPhoto != '')
+                $dataFile = ' data-exits="1"';
+            ?>
+            <input type="hidden" name="filesize" value="<?php echo $this->config->app->maxSizeLogo ?>" id="MAX_FILE_SIZE">
+            <input type="hidden" name="tipo" value="emp">
+            <a id="divDelFot" href="javascript:;" title="Eliminar foto" data-rel="<?= $this->idEmpresa ?>" class="icon-trash <?= $this->imgPhoto != '' && $this->idEmpresa != null ? '' : 'hide' ?>" <?= $dataFile ?>></a>
+            <input type="file" name="logotipo" id="txtLogo" class="medium">
+            <? $hasError = $this->formEmpresa->logotipo->hasErrors(); ?>
+            <br>
+            <span class="response <?= $hasError ? ' bad' : '' ?>">
+                <?
+                if ($this->formEmpresa->logotipo->hasErrors()) {
+                    foreach ($this->formEmpresa->logotipo->getMessages() as $error) {
+                        echo $error . "<br>";
+                    }
+                }
+                ?>
+            </span>             
+        </div>
+    </div>
+</div>
+<?= $this->formEmpresa->tok_emp_paso1->renderViewHelper(); ?>
+

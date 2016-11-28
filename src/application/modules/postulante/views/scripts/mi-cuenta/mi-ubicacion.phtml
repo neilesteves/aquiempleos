@@ -1,0 +1,109 @@
+<?=Application_Model_Partials::getMenuPostulante(); ?>
+
+<?php 
+$erroresForm = '';
+if (count($this->form->getMessages()) > 0) {    
+    foreach ($this->form->getElements() as $key => $element) {
+        $arMessages = $this->form->getMessages($key,true);
+        if (count($arMessages) > 0) {
+            $erroresForm .= implode(', ', $arMessages).'. ';
+        }
+    }
+} 
+?>
+
+<?php if (!empty($erroresForm)) : ?>
+<section class="message_box error">
+    <div class="center_box">
+      <div class="message"><i class="icon icon_check"></i><span><?=$erroresForm?></span></div>
+      <i class="icon icon_cross"></i>
+    </div>
+</section>
+<?php endif; ?>
+
+<section class="profile_wrapper">
+  <div class="center_box"> 
+    <div class="content_body profile_detail_wrapper">
+      <?=Application_Model_Partials::getPerfilPorcentaje(); ?>
+      <div class="skill_body">
+        <div class="skill_buttons row">
+            <?php /*<button class="btn btn_cuaternary">Importar CV</button> */ ?>            
+            <h2 class="skill_category"><i class="icon icon_arrow"></i>Ubicación</h2>
+            <?php /*if ($this->showImport) : ?>
+            <a href='/mi-cuenta/importar-datos/param1/mi-ubicacion' class="btn btn_import_linkedin flt_right"> <i class="icon icon_linkedin"> </i><span>Importar</span></a>
+            <?php endif;*/ ?>
+            <a class="btn btn_print flt_right" target="_blank" href="<?=$this->url(array(
+                'module' => 'postulante', 'controller' => 'mi-cuenta',
+                'action' => 'pdf',
+                'slug' => $this->slug), "default", true)?>">
+                <i class="icon icon_print"></i></a>
+        </div>
+
+        <form id="frmLocation" autocomplete="off" class="type1 mt20">
+          <?= $this->form->txtIdUbigeo->renderViewHelper(); ?>
+          <div class="form_box border_grey">
+            <div class="form_row">
+              <div class="form_col12">
+                <fieldset>
+                  <label>País</label>
+                  <?= $this->form->selPais->setAttribs(array('class' => 'pretty_select_2', 'required'=>''))->renderViewHelper(); ?>
+                </fieldset>
+              </div>
+            </div>
+            <div class="form_row">
+              <div class="form_col12">
+                <fieldset<?=$this->form->selPais->getValue() != Application_Model_Ubigeo::PERU_UBIGEO_ID ? " disabled='disabled'" : ""?>>
+                  <label>Ubicación</label>
+                    <?= $this->form->txtUbigeo->setAttribs(array('maxlength'=>'160','placeholder' => 'Ingresa ciudad, región', 'required'=>''))->renderViewHelper(); ?>
+                </fieldset>
+              </div>
+            </div>
+            <div class="form_row">
+              <div class="form_col12">
+                <fieldset>
+                  <label class="lbl_control" for="rdDispProvincia"> 
+                    <?= $this->form->rdDispProvincia->setAttribs(array('class' => ''))->renderViewHelper(); ?>
+                    Tengo disponibilidad para trabajar en provincia / extranjero
+                  </label>
+                </fieldset>
+              </div>
+            </div>
+            <div class="form_row">
+              <div class="form_col6">
+                <fieldset>
+                  <label>Facebook</label>
+                    <?= $this->form->txtFacebook->setAttribs(array('maxlength'=>'70','placeholder' => 'https://www.facebook.com/ejemplo'))->renderViewHelper(); ?>
+                </fieldset>
+              </div>
+              <div class="form_col6">
+                <fieldset>
+                  <label>Twitter</label>
+                   <?= $this->form->txtTwitter->setAttribs(array('maxlength'=>'16','placeholder' => '@ejemplo'))->renderViewHelper(); ?>
+                </fieldset>
+              </div>
+            </div>
+            <div class="form_row">
+              <div class="form_col12">
+                <div class="form-group">
+                  <fieldset>
+                    <label class="col-sm-3">Acerca de ti</label>
+                      <?= $this->form->txtPresentacion->setAttribs(array('maxlength'=>'300','class' => 'form_textarea', 'placeholder' => 'Realización de piezas gráficas, mailings, etc.'))->renderViewHelper(); ?>
+                    <p class="max_nummber">(Te quedan 300 caracteres)</p>
+                  </fieldset>
+                </div>
+              </div>
+            </div>
+            <div class="form_row align_right">
+                 <?=$this->form->hidToken->setAttribs(array('id'=>'hidToken'))->renderViewHelper();?> 
+              <button class="btn btn_save mt20 mb20 pad20l" disabled>
+                <span class="btn_label">Guardar</span>
+                <span class="btn_spinner"></span>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>   
+    </div>
+    <aside><?php Application_Model_Partials::getAvisosSugeridos(); ?></aside>
+  </div>
+</section>

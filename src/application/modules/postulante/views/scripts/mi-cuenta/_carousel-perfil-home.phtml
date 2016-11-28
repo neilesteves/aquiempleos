@@ -1,0 +1,78 @@
+ <div class="status_wrapper">
+      <div class="home_status_header">
+        <p>Hola <?=$this->dataperfil['postulante']['nombres']?>,<br>Tu perfil está completado al</p>
+        <div><div id="progressProfile" class="progress_profile" data-percent="<?= $this->dataperfil['total_completado']?>"></div></div>
+      </div>
+      <div class="home_status_body">
+        <p class="jobs_found"><span><?= $this->dataperfil['sugerencias']['total']?></span> puestos encontrados</p>
+        <div class="see_post"><a class="btn btn_tertiary" href="<?= SITE_URL.'/avisos-sugeridos'; ?>" title="Ver puestos sugeridos.">Ver puestos</a></div>
+        <p class="mt10">Temas pendientes por completar:</p>
+      </div>
+      <div id="statusSlider" class="home_status_slider row">
+          
+        <?php foreach ($this->dataperfil['porcentaje'] as $key => $item) :?>  
+        <div class="icon_profile <?=($this->dataperfil['porcentaje'][$key]['completed'] == true) ? 'is_passed' : ''?>">
+            <a href="<?=$this->dataperfil['porcentaje'][$key]['url']?>" title='<?=$this->dataperfil['porcentaje'][$key]['title']?>'> 
+                <i class="icon <?=$this->dataperfil['porcentaje'][$key]['icon']?>"></i>
+                <span class="percentage"> 
+                    <span class="text_number"><?=$this->dataperfil['porcentaje'][$key]['total']?>%+</span><span class="icon icon_check"></span>                        
+                </span>
+                <div class="selection_title">
+                    <p><?=$this->dataperfil['porcentaje'][$key]['title']?></p>
+                </div>
+            </a>
+        </div>
+        <?php endforeach; ?>
+          
+<?php /* ?>          
+        <div class="icon_profile"><a href="#"> <i class="icon icon_person2"></i><span class="percentage"> <span class="text_number"><?=$this->porcentajes['porcentaje']['perfil']['total']?>%+</span><span class="icon icon_check"></span></span>
+            <div class="selection_title">
+              <p>Perfil</p>
+            </div></a></div>
+        <div class="icon_profile"><a href="#"> <i class="icon icon_arrow"></i><span class="percentage"> <span class="text_number"><?=$this->porcentajes['porcentaje']['ubicacion']['total']?>%+</span><span class="icon icon_check"></span></span>
+            <div class="selection_title">
+              <p>Ubicación</p>
+            </div></a></div>
+        <div class="icon_profile"><a href="#"> <i class="icon icon_education"></i>
+                <span class="percentage"> <span class="text_number"><?=$this->porcentajes['porcentaje']['estudios']['total']?>%</span><span class="icon icon_check"></span></span>
+            <div class="selection_title">
+              <p>Estudios</p>
+            </div></a></div>
+
+        <div class="icon_profile">
+            <a href="#">
+                <i class="icon icon_tie"></i>
+                <span class="percentage"> 
+                    <span class="text_number"><?=$this->porcentajes['porcentaje']['experiencia']['total']?>%</span>
+                    <span class="icon icon_check"></span>                                
+                </span>
+                <div class="selection_title">
+                    <p>Experiencia</p>
+                </div>
+            </a>
+        </div>
+
+        <div class="icon_profile"><a href="#"> <i class="icon icon_speak"></i><span class="percentage"> <span class="text_number"><?=$this->porcentajes['porcentaje']['idiomas']['total']?>%</span><span class="icon icon_check"></span></span>
+            <div class="selection_title">
+              <p>Idiomas</p>
+            </div></a></div>
+        <div class="icon_profile"><a href="#"> <i class="icon icon_mouse"></i><span class="percentage"> <span class="text_number"><?=$this->porcentajes['porcentaje']['informatica']['total']?>%</span><span class="icon icon_check"></span></span>
+            <div class="selection_title">
+              <p>Informatica</p>
+            </div></a></div>
+        <div class="icon_profile"><a href="#"> <i class="icon icon_books"></i><span class="percentage"> <span class="text_number"><?=$this->porcentajes['porcentaje']['otrosestudios']['total']?>%+</span><span class="icon icon_check"></span></span>
+            <div class="selection_title">
+              <p>Otros Estudios</p>
+            </div></a></div>
+        <div class="icon_profile"><a href="#"> <i class="icon icon_medal"></i><span class="percentage"> <span class="text_number"><?=$this->porcentajes['porcentaje']['logros']['total']?>%+</span><span class="icon icon_check"></span></span>
+            <div class="selection_title">
+              <p>Logros</p>
+            </div></a></div>
+        <div class="icon_profile"><a href="#"> <i class="icon icon_guitar"></i><span class="percentage"> <span class="text_number"><?=$this->porcentajes['porcentaje']['hobbies']['total']?>%+</span><span class="icon icon_check"></span></span>
+            <div class="selection_title">
+              <p>Hobbies</p>
+            </div></a></div>
+ <?php */ ?>          
+          
+      </div>
+</div>

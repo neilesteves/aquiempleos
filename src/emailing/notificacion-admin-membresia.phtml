@@ -1,0 +1,90 @@
+<table width="760" cellspacing="0" cellpadding="0" border="0" align="center" style="color:#666; background-color:#fff; font-family:Arial, Helvetica, sans-serif; font-size:12px">
+	 <tbody>
+	 <tr>
+		  <td width="680px" style="padding:20px;">
+
+
+		  <table width="680" border="0" cellspacing="0" cellpadding="0" style="color:#333">
+				<tr>
+					  <td style="text-align:left; padding-bottom:20px;">
+						 <p style="color: #333; font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:16px; margin:0; padding:0 0 5px;">Hola <strong><?=$this->nombreUsuario?></strong></p>
+					 </td>
+				  </tr>
+				  <tr>
+					  <td style="text-align:center; padding-bottom:40px; vertical-align:top">
+						 <h2 style="color: #333; font-family:Arial, Helvetica, sans-serif; font-size:27px; line-height:28px; margin:0; padding:0 0 5px;">¡Gracias!</h2>
+								<p style="font-family:Arial, Helvetica, sans-serif; font-size:16px; line-height:17px; margin:0; padding:0">Por adquirir el plan de Membresía <strong><?php echo strtoupper($this->nombreMembresia);?></strong></p>
+					 </td>
+				  </tr>
+				  <tr>
+					  <td style="vertical-align:top; text-align: left; ">
+						  <p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:18px;margin:0; padding:0 0 20px;">
+								<?php if ($this->tipoMembresia != 7) : ?>
+
+									 <?php if(strtotime($this->fecha_inicio)<=strtotime(date ( 'Y-m-d' , strtotime ( '+1 day' , strtotime ( date('Y-m-j') ) ) ))){?>
+									 Se procederá a activar su Plan en un Plazo de 24 horas en aquiempleos.com:
+									 <?php }else{?>
+									 Su plan se activará cuando caduque su plan vigente
+									 <?php }?>
+								<?php else : ?>
+									 <?php if(strtotime($this->fecha_inicio)<=strtotime(date ( 'Y-m-d' , strtotime ( '+1 day' , strtotime ( date('Y-m-j') ) ) ))){?>
+									 A partir de ahora y durante <?=$this->tiempo?>  podrá acceder a los siguientes beneficios en aquiempleos.com:
+									 <?php }else{?>
+									 Su plan se activará cuando caduque su plan vigente
+									 <?php }?>
+
+								<?php endif; ?>
+						  </p>
+					 </td>
+				  </tr>
+				  <tr>
+					  <td style="padding-bottom:20px">
+						  <table width="700" border="0" cellspacing="0" cellpadding="0">
+								<?php foreach ($this->beneficios as $beneficio) : ?>
+								 <tr>
+									 <td width="25" style="vertical-align:top; padding-left:10px"><img src="<?=SITE_URL?>static/images/emailing/arrow.jpg" width="16" height="13"  alt="-"></td>
+									 <td style="text-align:left; color:#333;font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:16px;margin:0; padding:0 0 7px;vertical-align:top"><?php echo $beneficio['descripcion'];?></td>
+								 </tr>
+								<?php endforeach;?>
+						  </table>
+					 </td>
+				  </tr>
+
+				  <tr>
+					  <td style="background-color:#F4F7F7; padding:20px; vertical-align:top">
+						  <table width="680" border="0" cellspacing="0" cellpadding="0">
+							 <tr>
+								<td width="140" style="text-align: left; color:#333;font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:16px;margin:0; padding:0 0 7px;vertical-align:top">Inicio de Plan:</td>
+								<td style="text-align: left; color:#333;font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:16px;margin:0; padding:0 0 7px;vertical-align:top"><?php echo $this->inicio_plan; ?></td>
+							 </tr>
+							 <tr>
+								<td width="140" style="text-align: left; color:#333;font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:16px;margin:0; padding:0 0 7px;vertical-align:top">Fin de Plan:</td>
+								<td style="text-align: left; color:#333;font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:16px;margin:0; padding:0 0 7px;vertical-align:top"><?php echo $this->fin_plan; ?></td>
+							 </tr>
+							 <tr>
+								<td width="140" style="text-align: left; color:#333;font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:16px;margin:0; padding:0 0 7px;vertical-align:top">Usuario:</td>
+								<td style="text-align: left; color:#333;font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:16px;margin:0; padding:0 0 7px;vertical-align:top"><?php echo $this->usuario; ?></td>
+							 </tr>
+							 <tr>
+								<td width="140" style="text-align: left; color:#333;font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:16px;margin:0; padding:0;vertical-align:top">Empresa:</td>
+								<td style="text-align: left; color:#333;font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:16px;margin:0; padding:0;vertical-align:top"><?php echo $this->empresa; ?></td>
+							 </tr>
+						  </table>
+					 </td>
+				  </tr>
+				  <tr>
+					  <td style="padding-top:20px; vertical-align:top; text-align: left; ">
+						 <p style="text-align: left; font-family:Arial, Helvetica, sans-serif; font-size:13px; line-height:18px;margin:0; padding:0 0 20px;">Contáctenos: 311-6500 Anexos 3726 / 2146<br>También puedes ingresar a tu cuenta en AquiEmpleos para revisar este y todos tus mensajes en el siguiente enlace: <br><a style="color:#009FEB; font-size:14px; line-height:16px; text-decoration:none;" href="<?=SITE_URL?>/empresa/mi-cuenta" target="_blank" title="Ver Mi Cuenta AquiEmpleos">Mi Cuenta AquiEmpleos</a>.</p>
+					 </td>
+				  </tr>
+				  <tr>
+					  <td style="text-align: left; font-family:Arial, Helvetica, sans-serif; font-size:15px; line-height:16px; padding-top:40px;">
+						 ¡Éxitos!<br><br><strong>El equipo AquiEmpleos</strong>.
+					 </td>
+				  </tr>
+				</table>
+
+		  </td>
+	 </tr>
+
+</tbody></table>

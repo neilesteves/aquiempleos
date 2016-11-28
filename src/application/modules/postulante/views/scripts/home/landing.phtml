@@ -1,0 +1,78 @@
+  <section>
+    <div class="container portada_empleoBusco containerseccion">
+      <div class="row pd sin-margin">
+        <div class="col-xs-12 col-sm-3 col-md-3 sin-padding">
+          <div class="logo_empleo">
+            <img class="img-responsive" src="<?= $this->S('/eb/img/landing/empleos-fondo-blanco.png'); ?>"/>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-9 col-md-9 sin-padding">
+          <div class="texto-centrado">El portal donde las oportunidades de crecimiento te esperan. <br> Consigue tus objetivos en poco tiempo. Aquí te mostramos los empleos más vistos.</div>
+        </div>
+      </div>
+      <div class="bgr_portada">
+        <img class="img-responsive" src="<?= $this->S('/eb/img/landing/ImagenPrincipal.jpg'); ?>"/>
+        <div class="col-md-6 box-text-description">
+          <p>Nosotros buscamos y encontramos nuestra vocación laboral. Qué esperas en hacerlo tu también.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="container content-views containerseccion">
+      <div class="title-view pd">
+        <p>Avisos más Vistos</p>
+        <div class="line-botton"></div>
+      </div>
+      <div class="row pd">
+        <div class="col-xs-12 col-sm-6 col-md-6">
+          <div class="bgr-section-view">
+            <img class="img-responsive" src="<?= $this->S('/eb/img/landing/BannerTop.jpg'); ?>"/>
+            <div class="box-text-description text-center">
+              <span>No dejes la oportunidad de buscar tu vocación,</span>
+              <span>AquiEmpleos te muestra los avisos más vistos.</span>
+            </div>
+          </div>
+        </div>
+        <?php foreach ($this->listAviso as $key => $value) {
+    
+            ?>
+        <div  class="col-xs-12 col-sm-6 col-md-6 contenedor-anuncio">
+            <div class="content_aviso">
+              <div class="contenedor-img-anuncio">
+                  <img class="img-anuncio" src="<?=$this->E()->logolandin($value['logo'])?>" alt="" class="logo"/>
+              </div>
+              <div class="text-puesto">
+                <span><?=$value['puesto']?></span>
+              </div>
+              <div class="row sin-margin text-description-aviso">
+                  <div class="col-xs-12 col-sm-6 col-md-6">
+                    <p><span class="gray">Ciudad:</span> <span class="blue"><?=$value['ciudad']?></span></p>
+                    <p><span class="gray">Area:</span> <span class="blue"><?=$value['area']?></span></p>
+                    <p><span class="gray">Remuneración:</span><span class="blue"><?=$value['remuneracion']?></p> </p>
+                  </div>
+                  <div class="col-xs-12 col-sm-6 col-md-6">
+                    <p><span class="gray">Tipo de puesto:</span><span class="blue"><?=$value['nivel']?></span></p>
+                    <p><span class="gray">Empresa:</span> <span class="blue"><?=$value['empresa']?> </span></p>
+                  </div>  
+              </div>
+              <div class="contenedor-boton">
+                  <a class="btn-ver" href="<?=$value['url']?>">Ver aviso</a>
+              </div>
+            </div>
+        </div>
+        <?php } ?>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="container pd containerseccion">
+      <div class="bgr-footer">
+        <img class="img-responsive" src="<?= $this->S('/eb/img/landing/BannerFooter.jpg'); ?>"/>
+        <div class="box-text-description text-center">
+          <p> No esperes más. Visita nuestra pagina en aquiempleos.com</p>
+          <a href="<?=SITE_URL?>" class="btn-ir_empleo">Ir a AquiEmpleos</a>
+        </div>
+      </div>
+    </div>
+  </section>

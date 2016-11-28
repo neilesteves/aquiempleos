@@ -1,0 +1,82 @@
+<?php
+$ind = (isset($this->indice)) ? $this->indice : 'blank';
+
+if($this->form->id_dominioComputo != null &&  $this->form->id_dominioComputo->getValue() != ''){
+	$dataRol = 'data-rol="'.$this->form->id_dominioComputo->getValue().'"';
+}
+if(isset($this->idPostulante)){
+	$dataRel = 'data-rel="'.$this->idPostulante.'"';
+} 
+$dataInd = 'data-index="' . $ind . '"';
+?>
+<?php if ($this->form->is_disabled->getValue()) { ?>
+	<li <?= $dataRol?> <?= $dataRel?> <?= $dataInd ?>>
+		<?php if ($this->isPrograma === false) : ?>
+			<ul class="skill-title row">
+				<li><?php echo $ind + 1; ?>. </li> 
+				<li><?php if ($this->form->id_programa_computo->getValue() != "0") : ?>
+						<b><?= $this->escape($this->form->nombre->getValue()); ?></b>
+					<?php endif; ?>
+					 nivel 
+					<?php if ($this->form->nivel->getValue() != "0") : ?>
+						<b><?= $this->escape($this->form->nivel->getMultiOption($this->form->nivel->getValue())); ?></b>
+					<?php endif; ?>
+				</li>
+				<li class="last">
+					<a href="javascript:;" class="action-icons delete" title="Eliminar"></a>
+				</li>
+			</ul>
+		<?php endif; ?>
+	</li>
+	<?php
+} else {
+	?>
+	<li <?= isset($dataRol) ? $dataRol : '' ?> <?= isset($dataRel) ? $dataRel : ''?> <?= $dataInd ?>>
+            <?php if ($this->isPrograma === false) : ?>
+                    <?php if ($this->form->id_programa_computo->getValue() != "0" && $this->form->nivel->getValue() != "0") : ?>
+			<ul class="skill-title row">
+				<li><?php echo $ind + 1; ?>. </li> 
+				<li><?php if ($this->form->id_programa_computo->getValue() != "0" ) : ?>
+						<b><?= $this->escape($this->form->id_programa_computo->getMultiOption($this->form->id_programa_computo->getValue())); ?></b>
+					<?php endif; ?>
+					 nivel 
+					<?php if ($this->form->nivel->getValue() != "0") : ?>
+						<b><?= $this->escape($this->form->nivel->getMultiOption($this->form->nivel->getValue())); ?></b>
+					<?php endif; ?>
+				</li> 
+				<li class="last">
+					<a href="#Editar" class="action-icons edit" title="Editar"></a>
+					<a href="javascript:;" class="action-icons delete" title="Eliminar"></a>
+				</li>
+			</ul>
+                            <?php endif; ?>
+		<?php endif; ?>
+		<? $isError = $this->form->isErrors(); ?>
+		<div class="skill-content<?= ($isError || !isset($this->isPrograma) || $this->isPrograma == true) ? '' : ' hide' ?><?= $isError ? ' active' : '' ?>">
+			<div class="control-group">
+				<label for="" class="control-label"><em>*</em> Programa:</label>
+				<div class="controls">
+					<? $hasError = $this->form->id_programa_computo->hasErrors(); ?>
+					<?= $this->form->id_programa_computo->setAttribs(array('class' => 'sel-medium first_title require'))->renderViewHelper(); ?>
+					<span class="response<?= $hasError ? ' bad' : '' ?>"><?= $hasError ? $this->form->id_programa_computo->errMsg : '' ?></span>
+				</div>
+			</div>
+			<div class="control-group">
+				<label for="" class="control-label"><em>*</em> Nivel:</label>
+				<div class="controls">
+					<? $hasError = $this->form->nivel->hasErrors(); ?>
+					<?= $this->form->nivel->setAttribs(array('class' => 'sel-medium second_title require'))->renderViewHelper(); ?>
+					<span class="response<?= $hasError ? ' bad' : '' ?>"><?= $hasError ? $this->form->nivel->errMsg : '' ?></span>
+				</div>
+			</div>
+			<div class="hide">
+				<?= $this->form->id_dominioComputo; ?>
+				<?= $this->form->cabecera_programa; ?>
+				<?= $this->form->cabecera_nivel; ?>
+				<?= $this->form->is_disabled; ?>
+				<?= $this->form->nombre; ?>
+			</div>
+		</div>
+	</li>
+<?php } ?>
+

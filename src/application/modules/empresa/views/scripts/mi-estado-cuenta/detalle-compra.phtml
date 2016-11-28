@@ -1,0 +1,159 @@
+<?=
+$this->partial('_partials/_navigation.phtml',
+    array('menu_sel' => $this->menu_sel, 'isAuth' => $this->isAuth))
+?>
+<?=
+$this->partial('mi-cuenta/_sec-menu.phtml',
+    array('menu_post_sel' => $this->menu_post_sel, "tieneBuscador" => $this->tieneBuscador,'Look_Feel'=>$this->Look_Feel))
+?>
+<div id="wrapper" class="row">
+    <?=
+    $this->partial('_partials/_messages.phtml',
+        array("flashMessages" => $this->flashMessages))
+    ?>  
+
+    <div id="cntTitlesEF" class="cntTitlePEL">
+        <h2>Cuenta de empresa: <b><?= $this->detalleCompra['razonSocial'] ?></b> </h2>		
+    </div>
+    <h6 class="titleDetEP r5">Detalle</h6>
+    <div id="cntDetailEPC" class="all">
+        <ul class="listDetaME left">
+            <li class="liDetaME">
+                <span class="spanDetaMEL">Aviso:</span> 
+                <span class="spanDetaMER"><?= $this->detalleCompra['anuncioPuesto'] ?></span>
+            </li>
+            <li class="liDetaME">
+                <span class="spanDetaMEL">Fecha:</span> 
+                <span class="spanDetaMER"><?= $this->detalleCompra['fechaPago'] ?></span>
+            </li>
+            <li class="liDetaME">
+                <span class="spanDetaMEL">Tipo:</span> 
+                <span class="spanDetaMER"><?= $this->detalleCompra['productoNombre'] ?></span>
+            </li>
+        </ul>
+        <div class="optsDetME right">
+            <a id="historyBackA" href="<?=
+            $this->url(array(
+                'module' => 'empresa', 'controller' => 'mi-estado-cuenta'),
+                'default', true)
+            ?>" class="f14">&laquo; Volver</a>
+            <div class="all">
+                <span class="spanDetaMEL">Estado:</span> 
+                <span class="spanDetaMER"><?=
+                    $this->ItemList('EstadoCompra',
+                        $this->detalleCompra['compraEstado'])
+                    ?></span>                           	
+            </div>
+        </div>
+    </div> 
+    <h6 class="titleDetEPNB">Pago</h6>
+    <div class="blockEPNB r5">
+        <ul class="listInnerME all">
+            <li class="liInnerME all">
+                <span class="spanInnerMEL left">Monto:</span> 
+                <span class="spanInnerMER left"><?php echo $this->moneda?><?= $this->detalleCompra['montoTotal'] ?></span>
+            </li>
+            <li class="listInnerME all">
+                <span class="spanInnerMEL left">Medio de Pago:</span> 
+                <span class="spanInnerMER left">
+                    <?=
+                    $this->ItemList('MedioPago',
+                        $this->detalleCompra['medioPago'])
+                    ?>
+                </span>
+            </li>
+            <li class="listInnerME all">
+                <span class="spanInnerMEL left">Comprobante:</span> 
+                <span class="spanInnerMER left"><?= ucfirst($this->detalleCompra['comprobante']) ?></span>
+            </li>                          	
+        </ul>
+    </div>
+    <h6 class="titleDetEPNB">Publicación</h6>
+    <div class="blockEPNB rel r5">
+        <? if (isset($this->detalleCompra['anuncioFechaVencimiento'])): ?>
+            <?
+            $diaVencimiento
+                = new Zend_Date();
+            ?>
+            <?
+            $diaHoy
+                = new Zend_Date();
+            ?>
+            <?
+            $diaVencimiento->setDate($this->detalleCompra['anuncioFechaVencimiento'],
+                'yyyy/MM/dd')
+            ?>
+            <span class="estadoTit"><?=
+                $diaVencimiento->compare($diaHoy) == 1 ? '(VIGENTE)' : '(CADUCADO)'
+                ?></span>
+        <? endif; ?>
+        <ul class="listInnerME all">
+            <li class="liInnerME all">
+                <span class="spanInnerMEL left">En Web:</span> 
+                <span class="spanInnerMER left"><?= $this->FriendlyDate($this->detalleCompra['fechaPago']) ?></span>
+            </li>
+            <?php if ($this->detalleCompra['tipoAnuncio'] != Application_Model_Compra::TIPO_DESTACADO) { ?>
+            <li class="listInnerME all">
+                <span class="spanInnerMEL left">En Impreso:</span> 
+                <? if (isset($this->detalleCompra['medioPublicacion'])): ?>
+                    <span class="spanInnerMER left"><?=
+                        $this->ItemList('MedioPublicacion',
+                            $this->detalleCompra['medioPublicacion'])
+                        ?></span>
+                <? endif; ?>
+            </li>
+            <?php } ?>
+            <li class="listInnerME all">
+                <span class="spanInnerMEL left">&nbsp;</span> 
+                <span class="spanInnerMER left"><?= $this->FriendlyDate($this->detalleCompra['fechaPublicConfirmada']) ?></span>
+            </li>                          	
+        </ul>
+    </div>
+    <h6 class="titleDetEPNB">Otras caracteristicas</h6>
+    <div class="blockEPNB r5">
+        <div class="all <?php
+        echo $this->detalleCompra['anuncioClase'] != Application_Model_AnuncioWeb::TIPO_PREFERENCIAL
+                ? 'lineCentME' : ''
+        ?>">
+            <div class="blockExtraL left"> 
+                <h6 class="titleExtraEM">Beneficios</h6> 
+                <ul class="listExtraME all">
+                    <?
+                    if (count($this->detalleCompra['beneficios']) > 0):
+                        ?>
+                        <?
+                        foreach ($this->detalleCompra['beneficios'] as $key =>
+                                $value):
+                            ?>
+                            <li class="liExtraME"><?= $value['valor'] . " " . $value['descripcion'] . " " . $value['precio'] ?></li>
+                        <? endforeach; ?>
+                    <? endif; ?>
+                </ul>
+            </div>
+            <?php
+            if ($this->detalleCompra['anuncioClase'] != Application_Model_AnuncioWeb::TIPO_PREFERENCIAL) {
+                ?>
+                <div class="blockExtraR left">
+                    <h6 class="titleExtraEM">Extracargos</h6> 
+                    <ul class="listExtraME all">
+                        <?
+                        if (count($this->detalleCompra['extracargos']) > 0):
+                            ?>
+                            <?
+                            foreach ($this->detalleCompra['extracargos'] as $key =>
+                                    $value):
+                                ?>
+                                <?
+                                $precio
+                                    = ($value['precio']) != '' ? $this->moneda . $value['precio'] . ')'
+                                        : ''
+                                ?>
+                                <li class="liExtraME"><?= $value['valor'] . " " . $value['descripcion'] . " " . $precio ?></li>
+                            <? endforeach; ?>
+                        <? endif; ?>
+                    </ul>
+                </div>
+            <?php } ?>
+        </div>			                      	 
+    </div>     
+</div>

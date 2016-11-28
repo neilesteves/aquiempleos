@@ -1,0 +1,249 @@
+<?php $this->formAvisoPref ?>
+
+<form id="formTipoAviso" action="" method="POST">
+	 <div id="infoSelectD" class="blockPY1 heightPYL r5 hide">
+		  <span class="textPCAP">Ha seleccionado:</span>
+		  <span id="typePCAP"></span>
+		  <span id="planPCAP"></span>
+		  <span class="planPCAP"> (<?php echo $this->moneda?> <span id="pricePCAP"></span>) </span>
+		  <a href="#ejmAvisoPA1" class="winModal noScrollTop" id="viewPCAP">Ver mi Aviso</a>
+	 </div>
+
+	 <div id="tablaP1CAP">
+
+		  <div id="tablePriceAPA">
+				<div class="all heightHead hide">
+					 <div class="tdAvisoP1 left avisoWrao">&nbsp;</div>
+					 <div class="tdAvisoP2 left">
+						  <div><input name="inputTAP" id="radioTipoAP1" class="noBdr hide" type="radio" /></div>
+						  <label id="tipo1AP" for="radioTipoAP1">&nbsp;</label>
+						  <div class="imgTopM"><label for="radioTipoAP1"><div id="imgAPD1" class="imgHeightAPM"></div></label></div>
+						  <div class="medidaTAP"><span id="medidaTAP1">&nbsp;</span></div>
+					 </div>
+					 <div class="tdAvisoP3 left">
+						  <div><input name="inputTAP" id="radioTipoAP2" class="noBdr hide" type="radio" /></div>
+						  <label id="tipo2AP" for="radioTipoAP2">&nbsp;</label>
+						  <div class="imgTopM"><label for="radioTipoAP2"><div id="imgAPD2" class="imgHeightAPM"></div></label></div>
+						  <div class="medidaTAP"><span id="medidaTAP2">&nbsp;</span></div>
+					 </div>
+					 <div class="tdAvisoP4 left">
+						  <div><input name="inputTAP" id="radioTipoAP3" class="noBdr hide" type="radio" /></div>
+						  <label id="tipo3AP" for="radioTipoAP3">&nbsp;</label>
+						  <div class="imgTopM"><label for="radioTipoAP3"><div id="imgAPD3" class="imgHeightAPM"></div></label></div>
+						  <div class="medidaTAP"><span id="medidaTAP3">&nbsp;</span></div>
+					 </div>
+					 <div class="tdAvisoP5 left">
+						  <div><input name="inputTAP" id="radioTipoAP4" class="noBdr hide" type="radio" /></div>
+						  <label id="tipo4AP" for="radioTipoAP4">&nbsp;</label>
+						  <div class="imgTopM"><label for="radioTipoAP4"><div id="imgAPD4" class="imgHeightAPM"></div></label></div>
+						  <div class="medidaTAP"><span id="medidaTAP4">&nbsp;</span></div>
+					 </div>
+				</div>
+				<div class="all heightBody bgHBody1 r5">
+					 <div class="tdAvisoP1 left avisoWrao">
+						  <div class="divText1 bold"><input class="noBdr hide" type="radio" id="inputRadio1AP" name="labelTAP" />Web + AquiEmpleos impreso</div>
+						  <div class="divText2">AquiEmpleos, suplemento de empleos de La Prensa</div>
+						  <div class="asideDate2">Fecha de publicación de aviso: <span class="textDateAvs" id="datePubAvs1"><?= ucfirst($this->fchPubsImp['EMPLEOBUSCO']->get("EEEE d 'de' ")) . ucfirst($this->fchPubsImp['EMPLEOBUSCO']->get("MMMM")) ?></span>.</div>
+						  <div class="asideDate2 asideNoLine">Cierre de publicación y pago hasta: <span class="textDateAvs" id="dateCloseAP1"><?= ucfirst($this->fchCierreImp['EMPLEOBUSCO']->get("EEEE d 'de' ")) . ucfirst($this->fchCierreImp['EMPLEOBUSCO']->get("MMMM 'de' YYYY 'a' 'las' h:m a")); ?></span></div>
+					 </div>
+					 <div class="tdAvisoP2 left priceTrTd"><div class="priceImp" id="priceA1"></div>
+						  <div class="blockTd cntIptRadio"><input name="radioAvsPref" type="radio" class="radioAvs noBdr" /></div>
+						  <div class="blockTd">
+								<div class="left infoAvsL">
+									 <span id="imgAvsA1"></span>
+								</div>
+								<div class="right infoAvsR">
+									 <div class="infoRB1"><span id="planAvsA1" class="sizeAvs"></span> (<span id="puestoNumA1">2 puestos</span>)</div>
+									 <div class="infoRB2"><span id="sizeAvsA1"></span> cm</div>
+									 <div class="infoRB3"><a class="winModal noScrollTop" id="hrefAvsA1" href="#ejmAvisoPA1">Ver ejemplo</a></div>
+								</div>
+						  </div>
+					 </div>
+					 <div class="tdAvisoP3 left r2 priceTrTd">
+						  <div class="priceImp" id="priceA2"></div>
+						  <div class="blockTd cntIptRadio"><input name="radioAvsPref" type="radio" class="radioAvs noBdr" /></div>
+						  <div class="blockTd">
+								<div class="left infoAvsL">
+									 <span id="imgAvsA2"></span>
+								</div>
+								<div class="right infoAvsR">
+									 <div class="infoRB1"><span id="planAvsA2" class="sizeAvs"></span> (<span id="puestoNumA2">2 puestos</span>)</div>
+									 <div class="infoRB2"><span id="sizeAvsA2"></span> cm</div>
+									 <div class="infoRB3"><a class="winModal noScrollTop" id="hrefAvsA2" href="#ejmAvisoPA1">Ver ejemplo</a></div>
+								</div>
+						  </div>
+					 </div>
+					 <div class="tdAvisoP4 left r2 priceTrTd">
+						  <div class="priceImp" id="priceA3"></div>
+						  <div class="blockTd cntIptRadio"><input name="radioAvsPref" type="radio" class="radioAvs noBdr"/></div>
+						  <div class="blockTd">
+								<div class="left infoAvsL">
+									 <span id="imgAvsA3"></span>
+								</div>
+								<div class="right infoAvsR">
+									 <div class="infoRB1"><span id="planAvsA3" class="sizeAvs"></span> (<span id="puestoNumA3">2 puestos</span>)</div>
+									 <div class="infoRB2"><span id="sizeAvsA3"></span> cm</div>
+									 <div class="infoRB3"><a class="winModal noScrollTop" id="hrefAvsA3" href="#ejmAvisoPA1">Ver ejemplo</a></div>
+								</div>
+						  </div>
+					 </div>
+					 <div class="tdAvisoP5 left r2 priceTrTd tdHidden">
+						  <div class="priceImp" id="priceA4"></div>
+						  <div class="blockTd cntIptRadio"><input name="radioAvsPref" type="radio" class="radioAvs noBdr"/></div>
+						  <div class="blockTd">
+								<div class="left infoAvsL">
+									 <span id="imgAvsA4"></span>
+								</div>
+								<div class="right infoAvsR">
+									 <div class="infoRB1"><span id="planAvsA4" class="sizeAvs"></span> (<span id="puestoNumA4">2 puestos</span>)</div>
+									 <div class="infoRB2"><span id="sizeAvsA4"></span> cm</div>
+									 <div class="infoRB3"><a class="winModal noScrollTop" id="hrefAvsA4" href="#ejmAvisoPA1">Ver ejemplo</a></div>
+								</div>
+						  </div>
+					 </div>
+				</div>
+				<div class="all heightBody bgHBody2 r5">
+					 <div class="tdAvisoP1 left avisoWrao">
+						  <div class="divText1 bold"><input class="noBdr hide" type="radio" id="inputRadio2AP" name="labelTAP" />Web + El Talán impreso</div>
+						  <div class="divText2">El Talán, suplemento de empleos de El Trome</div>
+						  <div class="asideDate2">Fecha de publicación de aviso: <span class="textDateAvs" id="datePubAvs2"><?= ucfirst($this->fchPubsImp['talan']->get("EEEE d 'de' ")) . ucfirst($this->fchPubsImp['talan']->get("MMMM")) ?></span>.</div>
+						  <div class="asideDate2 asideNoLine">Cierre de publicación y pago hasta: <span class="textDateAvs" id="dateCloseAP2"><?= ucfirst($this->fchCierreImp['talan']->get("EEEE d 'de' ")) . ucfirst($this->fchCierreImp['talan']->get("MMMM 'de' YYYY 'a' 'las' h:m a")); ?></span></div>
+					 </div>
+					 <div class="tdAvisoP2 left r2 priceTrTd">
+						  <div class="priceImp" id="priceB1"></div>
+						  <div class="blockTd cntIptRadio"><input name="radioAvsPref" type="radio" class="radioAvs noBdr" /></div>
+						  <div class="blockTd">
+								<div class="left infoAvsL">
+									 <span id="imgAvsB1"></span>
+								</div>
+								<div class="right infoAvsR">
+									 <div class="infoRB1"><span id="planAvsB1" class="sizeAvs"></span> (<span id="puestoNumB1">2 puestos</span>)</div>
+									 <div class="infoRB2"><span id="sizeAvsB1"></span> cm</div>
+									 <div class="infoRB3"><a class="winModal noScrollTop" id="hrefAvsB1" href="#ejmAvisoPA1">Ver ejemplo</a></div>
+								</div>
+						  </div>
+					 </div>
+					 <div class="tdAvisoP3 left r2 priceTrTd">
+						  <div class="priceImp" id="priceB2"></div>
+						  <div class="blockTd cntIptRadio"><input name="radioAvsPref" type="radio" class="radioAvs noBdr" /></div>
+						  <div class="blockTd">
+								<div class="left infoAvsL">
+									 <span id="imgAvsB2"></span>
+								</div>
+								<div class="right infoAvsR">
+									 <div class="infoRB1"><span id="planAvsB2" class="sizeAvs"></span> (<span id="puestoNumB2">2 puestos</span>)</div>
+									 <div class="infoRB2"><span id="sizeAvsB2"></span> cm</div>
+									 <div class="infoRB3"><a class="winModal noScrollTop" id="hrefAvsB2" href="#ejmAvisoPA1">Ver ejemplo</a></div>
+								</div>
+						  </div>
+					 </div>
+					 <div class="tdAvisoP4 left r2 priceTrTd">
+						  <div class="priceImp" id="priceB3"></div>
+						  <div class="blockTd cntIptRadio"><input name="radioAvsPref" type="radio" class="radioAvs noBdr" /></div>
+						  <div class="blockTd">
+								<div class="left infoAvsL">
+									 <span id="imgAvsB3"></span>
+								</div>
+								<div class="right infoAvsR">
+									 <div class="infoRB1"><span id="planAvsB3" class="sizeAvs"></span> (<span id="puestoNumB3">2 puestos</span>)</div>
+									 <div class="infoRB2"><span id="sizeAvsB3"></span> cm</div>
+									 <div class="infoRB3"><a class="winModal noScrollTop" id="hrefAvsB3" href="#ejmAvisoPA1">Ver ejemplo</a></div>
+								</div>
+						  </div>
+					 </div>
+					 <div class="tdAvisoP5 left r2 priceTrTd tdHidden">
+						  <div class="priceImp" id="priceB4"></div>
+						  <div class="blockTd cntIptRadio"><input name="radioAvsPref" type="radio" class="radioAvs noBdr" /></div>
+						  <div class="blockTd">
+								<div class="left infoAvsL">
+									 <span id="imgAvsB4"></span>
+								</div>
+								<div class="right infoAvsR">
+									 <div class="infoRB1"><span id="planAvsB4" class="sizeAvs"></span> (<span id="puestoNumB4">2 puestos</span>)</div>
+									 <div class="infoRB2"><span id="sizeAvsB4"></span> cm</div>
+									 <div class="infoRB3"><a class="winModal noScrollTop" id="hrefAvsB4" href="#ejmAvisoPA1">Ver ejemplo</a></div>
+								</div>
+						  </div>
+					 </div>
+				</div>
+				<div class="all heightBody bgHBody3 lastHBody">
+					 <div class="tdAvisoP1 left avisoWrao">
+						  <div class="divText1 bold"><input class="noBdr hide" type="radio" id="inputRadio3AP" name="labelTAP" />Web + AquiEmpleos + El Talán impresos</div>
+						  <div class="divText2">&nbsp;</div>
+						  <div class="asideDate2">Fecha de publicación de aviso: <span class="textDateAvs" id="datePubAvs3"><?= ucfirst($this->fchPubsImp['combo']->get("EEEE d 'de' ")) . ucfirst($this->fchPubsImp['combo']->get("MMMM")) ?></span>.</div>
+						  <div class="asideDate2 asideNoLine">Cierre de publicación y pago hasta: <span class="textDateAvs" id="dateCloseAP2"><?= ucfirst($this->fchCierreImp['combo']->get("EEEE d 'de' ")) . ucfirst($this->fchCierreImp['combo']->get("MMMM 'de' YYYY 'a' 'las' h:m a")); ?></span></div>
+					 </div>
+					 <div class="tdAvisoP2 left r2 priceTrTd">
+						  <div class="priceImp" id="priceC1"></div>
+						  <div class="blockTd cntIptRadio"><input name="radioAvsPref" type="radio" class="radioAvs noBdr" /></div>
+						  <div class="blockTd">
+								<div class="left infoAvsL">
+									 <span id="imgAvsC1"></span>
+								</div>
+								<div class="right infoAvsR">
+									 <div class="infoRB1"><span id="planAvsC1" class="sizeAvs"></span> (<span id="puestoNumC1">2 puestos</span>)</div>
+									 <div class="infoRB2"><span id="sizeAvsC1"></span> cm</div>
+									 <div class="infoRB3"><a class="winModal noScrollTop" id="hrefAvsC1" href="#ejmAvisoPA1">Ver ejemplo</a></div>
+								</div>
+						  </div>
+					 </div>
+					 <div class="tdAvisoP3 left r2 priceTrTd">
+						  <div class="priceImp" id="priceC2"></div>
+						  <div class="blockTd cntIptRadio"><input name="radioAvsPref" type="radio" class="radioAvs noBdr" /></div>
+						  <div class="blockTd">
+								<div class="left infoAvsL">
+									 <span id="imgAvsC2"></span>
+								</div>
+								<div class="right infoAvsR">
+									 <div class="infoRB1"><span id="planAvsC2" class="sizeAvs"></span> (<span id="puestoNumC2">2 puestos</span>)</div>
+									 <div class="infoRB2"><span id="sizeAvsC2"></span> cm</div>
+									 <div class="infoRB3"><a class="winModal noScrollTop" id="hrefAvsC2" href="#ejmAvisoPA1">Ver ejemplo</a></div>
+								</div>
+						  </div>
+					 </div>
+					 <div class="tdAvisoP4 left r2 priceTrTd">
+						  <div class="priceImp" id="priceC3"></div>
+						  <div class="blockTd cntIptRadio"><input name="radioAvsPref" type="radio" class="radioAvs noBdr" /></div>
+						  <div class="blockTd">
+								<div class="left infoAvsL">
+									 <span id="imgAvsC3"></span>
+								</div>
+								<div class="right infoAvsR">
+									 <div class="infoRB1"><span id="planAvsC3" class="sizeAvs"></span> (<span id="puestoNumC3">2 puestos</span>)</div>
+									 <div class="infoRB2"><span id="sizeAvsC3"></span> cm</div>
+									 <div class="infoRB3"><a class="winModal noScrollTop" id="hrefAvsC3" href="#ejmAvisoPA1">Ver ejemplo</a></div>
+								</div>
+						  </div>
+					 </div>
+					 <div class="tdAvisoP5 left r2 priceTrTd tdHidden">
+						  <div class="priceImp" id="priceC4"></div>
+						  <div class="blockTd cntIptRadio"><input name="radioAvsPref" type="radio" class="radioAvs noBdr" /></div>
+						  <div class="blockTd">
+								<div class="left infoAvsL">
+									 <span id="imgAvsC4"></span>
+								</div>
+								<div class="right infoAvsR">
+									 <div class="infoRB1"><span id="planAvsC4" class="sizeAvs"></span> (<span id="puestoNumC4">2 puestos</span>)</div>
+									 <div class="infoRB2"><span id="sizeAvsC4"></span> cm</div>
+									 <div class="infoRB3"><a class="winModal noScrollTop" id="hrefAvsC4" href="#ejmAvisoPA1">Ver ejemplo</a></div>
+								</div>
+						  </div>
+					 </div>
+				</div>
+		  </div>
+
+		  <input type="hidden" id="tipoRadioCheck" />
+		  <input type="hidden" id="planRadioCheck" />
+		  <input type="hidden" id="tarifaId" />
+
+	 </div>
+	 <div id="footEmpP1" class="wrap-btn right">
+		  <div id="msgErrorEmpP1" class="msgErrorDef left error"></div>
+		  <a href="#" id="backEmpP2AP" class="btn btn-default btnSptEmp">Regresar</a>
+		  <?php if ($this->layout()->auth != null && array_key_exists('empresa', $this->layout()->auth)): ?>
+				<a data-href="#" onclick="ga('send', 'event', 'P1.2_Preferencial_', '<?php echo $this->empresaId?>' , 'CodCombo');" href="#" id="nextEmpP1AP" class="btn btn-primary logoutEmp input-small">Continuar ></a>
+		  <?php else: ?>
+				<div data-href="#" onclick="ga('send', 'event', 'P1.2_Preferencial_', '<?php echo $this->empresaId?>' , 'CodCombo');" href="#loginP" id="nextEmpP1AP" class="btn btn-primary login_modal input-small" title="">Continuar ></div>
+		  <?php endif; ?>
+	 </div>
+</form>

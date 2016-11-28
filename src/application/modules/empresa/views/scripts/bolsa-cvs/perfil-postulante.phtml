@@ -1,0 +1,137 @@
+<div id="perfilEmpPA" class="iAccount">
+        <?php if((int)$this->btnBloqueado>0){?>
+            <div class="msgYellow mB10 r5 msgPerfilEPL">
+                    <div class="msgInPerfilEPL">
+                            <span class="dateDMAPEeMp">El postulante 
+                                <?php 
+                                    echo $this->postulante['postulante']['nombres'].' '.$this->postulante['postulante']['apellidos'];
+                                ?>
+                                 se encuentra bloqueado.
+                            </span>
+                    </div>
+            </div>
+        <?php }?>
+	<h2 class="titleModSP bold titlePEL">Cuenta de empresa: <span class="txtEmpresaEPL"><?php echo $this->auth['empresa']['nombre_comercial']; ?></span></h2>		
+	<div id="linkHeadMFC" class="all">
+		<div class="cntTitlePEL left">
+			<h2 class="titleModSP titlePEL">Grupo: <span class="txtPuestoEPL"><?= $this->escape($this->nombreGrupo) ?></span> </h2>
+		</div>
+		<div id="linkRMFC" class="right">
+			<a href="#" class="f14" id="backToProcess" >&laquo; Volver</a>
+		</div>
+    </div>
+    <div id="mensajesVerProceso" class="hide r5 dvMensajesBolsaCVs">MENSAJES</div>
+	<div id="allBtnsCR" class="divListHeadE all">
+		<div class="all">
+            <h6 class="titleNameEPC ancho380 left">Perfil de <span class="spanNameEPC" id="spanPostulante" rel="<?=$this->postulante['postulante']['slug']?>"><?= $this->postulante['postulante']['nombres'].' '.$this->postulante['postulante']['apellidos']?> </span></h6>
+
+            <div class="right" id="divShareCP">
+                <div id="iDivShareCP">
+                    <a class="left winModal icoShareCP icoComp icoSpt" href="#shareMail">Enviar por E-mail</a>
+                    <div class="lineSepCP right">
+                        <a class="expPdfCP icoSpt right" target="_blank" href="<?=$this->url(array('module'=>'postulante','controller'=>'mi-cuenta','action'=>'exporta-pdf','slug'=>$this->postulante['postulante']['slug']),"default",true)?>">Exporta a PDF</a>
+                    </div>
+                </div>
+            </div>
+            
+            <ul class="ulListHeadE mR10 right">
+                <!-- class que separa botones con margin : liSeparMR -->
+                <?php if((int)$this->btnBloqueado==0){?>
+                    <li class="liListHeadE left"><a class="aListHeadE winModal noScrollTop winInvitarProceso left" rel="<?=$this->postulante['postulante']['idpostulante']?>" href="#winInvitarProceso">Invitar</a></li>
+                <?php }?>
+                <li class="liListHeadE left"><a class="aListHeadE left movPostulante" id="lnkPMovPostulante" name="lnkPMovPostulante" rel="<?=$this->postulante['postulante']['idpostulante']?>" href="">Mover</a></li>
+                <li class="liListHeadE left"><a class="aListHeadE left copPostulante" id="lnkPCopPostulante" name="lnkPCopPostulante" rel="<?=$this->postulante['postulante']['idpostulante']?>" href="">Copiar</a></li>
+                <li class="liListHeadE left"><a class="aListHeadE left winModal kickPostulante" rel="<?=$this->postulante['postulante']['idpostulante']?>" href="#winQuitarPostulante">Quitar</a></li>
+            </ul>
+
+            
+    
+        </div>
+    </div>
+	
+	<div class="all" id="innerMainEPL">
+		<div class="left" id="contentEPL">
+		<?= $this->partial('mi-cuenta/_perfil-publico.phtml','postulante',$this->postulante) ?>
+        
+		</div>
+		
+		<div class="right noteBagCVS" id="sidebarEPL">
+            <h3 class="titleAsideEPL">Notas</h3>
+                <div id="cntHistoryE">
+                    <div id="cntAddBtnsE">
+                        <a href="#" class="left btnAddNoteE" rel="<?=$this->postulante['postulante']['idpostulante']?>" id="btnAddNoteEPL">Añadir Nota</a>
+                    </div>                        
+                        
+                    <div id="addNoteMsjTop">                        
+                        <!--Valores Vacio para llamar a la nota-->
+                        
+                        <div class="cntFormNotaF">
+                            <div class="loading hide showLoadF">&nbsp;</div>
+                            <form class="formFields" action="#">
+                                <div class="hide" id="creatorNote">
+
+                                    <div class="msgYellow msgDataCurr r5 hide"></div>	
+                                    <blockquote class="blockInH ">
+                                        <div class="blockInnerH">
+
+                                            <div class="dataAdjunto hide"></div>
+
+                                            <div class="dataHideFlagE">
+
+
+                                                <div class="textbIn"></div>
+                                                <div class="textbInAll breakWord hide"></div>
+
+                                            </div>
+                                            <div class="hide">
+                                                <input type="hidden" name="id_nota" value="" id="id_nota">        		</div>
+                                            <div class="hide">
+                                                <input type="hidden" name="iP" id="iP" value="<?=$this->postulante['postulante']['idpostulante']?>">
+                                            </div>
+
+                                            <div class="editFormEP   all">
+
+                                                <textarea name="text" id="text" class="dataTextEP" cols="25" rows="3"></textarea>        		<fieldset class="blockFltEP all">
+                                                    <!--
+                                                    <input class="dataBtnEP sptEmp right btnSptEmp" type="submit" value="" rel="1" />
+                                                    -->
+                                                    <!--
+                                                    <a href="#" class="dataBtnEP sptEmp right btnSptEmp" rel="1" ><span class="hide">Guardar</span></a>
+                                                    -->
+                                                    <a type="button" class="dataBtnEPBolsa sptEmp right btnSptEmp" id="btnGuardarNotaBolsa" rel="<?=$this->postulante['postulante']['idpostulante']?>" ></a>
+
+                                                    <div class="msgErrorEPA error left"></div>
+                                                </fieldset>
+                                            </div>
+
+
+                                            <!-- / -->
+
+                                        </div>	
+                                    </blockquote>	
+                                </div>
+                            </form>                            
+                        </div>                        
+                        
+                        
+                    </div>
+
+                    <div id="cntLineHEPL" class="all">
+                        <div id="contentNotaEPL" class="fltNota">
+                            <?php foreach($this->formNota as $indExp => $formNota) : ?>
+                                <?= $this->partial('_partials/_nota_bolsa.phtml', 'empresa',
+                                    array(
+                                        'form' => $formNota,
+                                        'nota' => $this->notas[$indExp]
+                                    )
+                                );?>
+                            <?php endforeach; ?>
+                            <div id="agregadorNote"></div>
+                        </div>
+                    </div>
+                        
+            </div>
+		</div>
+	</div>
+</div>
+

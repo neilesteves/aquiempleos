@@ -1,0 +1,18 @@
+<form id="alertasACP" method="post" action="#">
+    <div class="blockField r2">
+        <fieldset class="alertsCP">
+            <input type="hidden" name="csrfhash" id="ocultohash" value="<?= CSRF_HASH ?>" />
+            <label class="labelFS" for="fPrivac0-0">
+
+                <? $hasError
+                    = $this->formPrivacidad->fPrivacCP->hasErrors(); ?>
+<?= $this->formPrivacidad->fPrivacCP->setAttribs(array(
+    'id' => 'fPrivac0', 'class' => 'checkN noBdr ' . ($hasError ? '' : ' ready')))->renderViewHelper(); ?>
+                <span class="bold" >Privado:</span> Tu perfil no será considerado en resultados de Búsqueda en AquiEmpleos.
+            </label>
+        </fieldset>
+    </div>
+    <fieldset class="wrap-btn right">
+        <input type="submit" id="btnSaveChCP" class="btn btn-primary" value="Guardar cambios">
+    </fieldset>
+</form>

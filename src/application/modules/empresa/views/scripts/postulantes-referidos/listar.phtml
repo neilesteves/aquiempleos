@@ -1,0 +1,141 @@
+<div id="innerProcEmp">
+    <div id="paginEPM" class="pagination bBGray all">
+        <p class="pagLegend grid5 mB0 theta alingL left">Mostrando <?= $this->totalRefereridosPagina?> de <?= $this->totalReferidos?> (todos)</p>
+        <?= $this->paginationControl($this->postulantesReferidos, 'Sliding','paginador.phtml') ?>
+    </div>
+    <table page="<?= $this->pagina ?>" idanuncio="<?php echo $this->anuncioId ?>" class="dataGrid dataGridEnviarBolsa tlbfix" id="dataReferidos" summary="Listado de referidos">
+        <thead>
+            <tr>
+                <th class="data1 titleGrid linkTitleG">
+                    <a href="javascript:;" class="rel relArrow fix">
+                        <?php /*<span class="arrowDG <?= $this->orden['path_foto']?>">&nbsp;</span>*/ ?> Match</a>
+                </th>
+                <th class="data2 titleGrid linkTitleG">
+                    <a href="javascript:;" class="rel relArrow">
+                         <?php /*<span class="arrowDG <?= $this->orden['nombres']?>">&nbsp;</span>*/ ?> Foto</a>
+                </th>
+                <th class="data3 titleGrid linkTitleG">
+                    <a href="javascript:;" class="rel relArrow">
+                         <?php /*<span class="arrowDG <?= $this->orden['sexo']?>">&nbsp;</span>*/ ?> Nombres</a>
+                </th>
+                <th class="data4 titleGrid linkTitleG">
+                    <a href="javascript:;" class="rel relArrow">
+                         <?php /*<span class="arrowDG <?= $this->orden['edad']?>">&nbsp;</span>*/ ?> Edad</a>
+                </th>
+                <th class="data5 titleGrid linkTitleG">
+                    <a href="javascript:;" class="rel relArrow">
+                         <?php /*<span class="arrowDG <?= $this->orden['nivel_nombre']?>">&nbsp;</span>*/ ?> Nivel estudio</a>
+                </th>
+                <th class="data6 titleGrid linkTitleG">
+                    <a href="javascript:;" class="rel relArrow">
+                         <?php /*<span class="arrowDG <?= $this->orden['otro_carrera']?>">&nbsp;</span>*/ ?> Carrera</a>
+                </th>
+                <th class="data6 titleGrid linkTitleG">
+                    <a href="javascript:;" class="rel relArrow">
+                         <?php /*<span class="arrowDG <?= $this->orden['fecha_bloqueo']?>">&nbsp;</span>*/ ?>Estado</a>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($this->postulantesReferidos as $postulante): ?>
+
+                <tr>
+                    <td class="data1">
+                        <span class="icfix">
+                            <img src="<?php echo $this->S('/images/empresa/referidos.png'); ?>" alt="Referido" title="Referido" />
+                        </span>
+                        <?= $postulante['match'] ?> %
+                    </td>
+                    <td class="data2">
+                        <span class="dateData cntImgFix">
+                            <?php /* <!--<a class="verPerfilFilPerfP_Imagen" href="#">--> */?>
+                                <? if(empty($postulante['path_foto'])) : ?>
+                                    <img height="60" src="<?php echo $this->S('/images/photoDefault.jpg'); ?>">
+                                <? else:?>
+                                    <img height="60" src="<?php echo ELEMENTS_URL_IMG . $postulante['path_foto']; ?>">
+                                <? endif?>
+                            <?php /* <!--</a>--> */?>
+                        </span>
+                    </td>
+                    <td class="data8">
+                        <div class="bold nameFilPerfP">
+                            <?php if (isset($postulante['id_postulante']) && !empty($postulante['id_postulante'])): ?>
+                            <a  href="<?php echo $this->url(array('slug' => $postulante['slug']), 'perfil_publico', true);  ?>" target="_blank">
+                                <?php endif; ?>
+                                <?= $postulante['nombre'] ?> <?= $postulante['apellidos'] ?>
+                                <?php if (isset($postulante['id_postulante'])): ?>
+                                </a>
+                            <?php endif; ?>
+                        </div>
+                        <div title="Telefono" class="tlfFilPerfP sptIcoEmp fix">
+                            &nbsp;
+                                <? if(empty($postulante['celular'])): ?> 
+                                    <?= $postulante['telefono'] ?>
+                                <? else: ?>
+                                    <?= $postulante['celular'] ?>
+                                <? endif; ?>
+                        </div>
+                        <?php /*<div class="all">
+                            <!--<a title="Ver perfil" rel="592143" href="#" class="verPerfilFilPerfP sptIcoEmp left"></a>-->
+                        </div> */?>
+                        <?php if ($postulante["sexo"] == 'M'): ?>                        
+                            <span title="Hombre" class="sptIcoEmp imgHombre fix">M</span>
+                        <?php else: ?>
+                            <span title="Mujer" class="sptIcoEmp imgMujer fix">F</span>
+                        <?php endif; ?>                         
+                    </td>
+                    <td class="data4">
+                        <?php if (!empty($postulante["edad"])): ?>                        
+                            <?= $postulante['edad'] ?> años
+                        <?php endif; ?>    
+                    </td>
+                    <td class="data5">
+                        <span class="dateData">
+                                <?php 
+                                    if (empty($postulante['nivel_nombre'])):
+                                        echo "Ninguno";
+                                    else:
+                                        echo $postulante['nivel_nombre'];
+                                    endif;
+                                ?>
+                        </span>
+                    </td>
+                    <td class="data6">                        
+                            <span class="dateData">
+                                <?php 
+                                    if (empty($postulante['carrera_nombre'])):
+                                        echo "Ninguno";
+                                    else:
+                                        echo $postulante['carrera_nombre'];
+                                    endif;
+                                ?>
+                            </span>                                                        
+                    </td>
+					<td class="data6">                        
+                        <span class="dateData">
+                            <?php
+                            if ($postulante['tipo'] == Application_Model_Referenciado::TIPO_REFERENCIADO):
+                                echo "Registrado<br/>";
+                            else:
+                                echo "No registrado<br/>";
+                            endif;
+                            
+                            if ($postulante['estado'] == Application_Model_Referenciado::ESTADO_POSTULO):
+                                echo "Si postuló";
+                            else:
+                                echo "No postuló";
+                            endif;
+                            ?>
+                        </span>                                                        
+                    </td>      
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+    <div class="pagination all">
+        <?= $this->paginationControl(
+                $this->postulantesReferidos, 
+                'Sliding',
+                'paginador.phtml') ?>
+    </div>
+</div>

@@ -1,0 +1,159 @@
+<nav class="cont-menu row">
+    <br>
+</nav>
+<div id="wrapper" class="row">
+    <div class="head-title row">
+        <ul class="steps">
+            <li>Escoge<br> el Aviso<span></span></li>
+            <li class="act">Datos<br> del Aviso<span></span></li>
+            <li>Aviso<br> Impreso<span></span></li>
+            <li>Verifica<br> tus datos<span></span></li>
+        </ul>
+        <div class="legend">
+            <a href="<?php
+            echo $this->url(array(
+                'module' => 'empresa', 'controller' => 'mi-cuenta', 'action' => 'index'),
+                false, true)
+            ?>">Inicio</a> » <span class="noLink">Paso 2 - Ingrese el aviso web</span>
+        </div>
+    </div>
+
+    <h1>Ingrese el aviso web</h1>
+    <?=
+    $this->partial('_partials/_messages.phtml',
+        array("flashMessages" => $this->flashMessages))
+    ?>
+
+    <?php if ($this->dataPosicion['data'] != null) :
+        ?>
+        <div class="box-message"><span class="mR10">Su aviso se guardó correctamente, 
+            <? if (($this->maximoAnuncios - $this->dataPosicion['totalReady']) > 0) : ?> 
+                tiene opción de registrar <b><?=($this->maximoAnuncios - $this->dataPosicion['totalReady'])?></b> avisos más de lo contrario 
+                <? endif; ?>seleccione </span><a id="anclaNextP3" onclick="ga('send', 'event', 'P2_<?php echo str_replace(' ', '_', $this->producto['desc'])?>', '<?php echo $this->empresaId?>' , '<?php echo $this->producto['medio_publicacion']?>');" title="Siguiente Paso" class="tooltipApt btn btn-primary" href="<?=$this->url(array(
+                'module' => 'empresa', 'controller' => 'publica-aviso-preferencial',
+                'action' => 'paso3',
+                'impreso' => $this->dataPosicion['anuncioImpreso']),
+                false, true)?>">Grabar y Continuar ></a>
+        </div>
+    <?php endif; ?>
+    <div class="row">
+        <p class="right bold">Los campos con <span class="req">*</span> son necesarios</p>
+        <h2 class="title-big">Datos del aviso web</h2>
+    </div>
+
+    <div class="cntPagerAP">
+        <b>Puestos</b>
+        <p>(Para ingresar un nuevo puesto debe haber completado los anteriores)</p>
+        <div class="row">
+            <div class="grids-6">
+                <?=
+                $this->ListaPreferencial('listPagerAP1', $this->maximoAnuncios,
+                    $this->dataPosicion)
+                ?>
+            </div>
+            <div class="grids-230 flt_right txt_right">
+                <?php if (isset($this->avisoWebId)) : ?>
+                    <?php
+                    if ($this->dataPosicion['totalReady'] < $this->maximoAnuncios) :
+                        ?>
+                        <a id="btnClone" class="btn btn-primary" href="<?=
+                        $this->url(array(
+                            'module' => 'empresa', 'controller' => 'publica-aviso-preferencial',
+                            'action' => 'duplicar-aviso', 'aviso' => $this->avisoWebId),
+                            false, true)
+                        ?>">Duplicar puesto</a>
+                    <?php endif; ?>
+                    <a id="btnDelete" class="btn btn-default" href="<?=
+                    $this->url(array(
+                        'module' => 'empresa', 'controller' => 'publica-aviso-preferencial',
+                        'action' => 'eliminar-aviso', 'aviso' => $this->avisoWebId),
+                        false, true)
+                    ?>">Eliminar</a>
+                <?php else: ?>
+                    <button id="btnClear" class="btn btn-default" type="button">Limpiar</button>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+
+    <form action="" id="frmPublishAd" method="post" <?= isset($this->showLogoEmpresa)?'enctype="multipart/form-data"':''?> class="frm-horizontal wrap-register noBgLineR">
+        <?php
+        echo $this->partial('_partials/_paso2_aviso.phtml', 'empresa',
+            array(
+            'form' => $this->form, 'isDato' => $this->isDato,
+            'numPalabraPuesto' => $this->numPalabraPuesto,
+            'numPalabraOtroNombre' => $this->numPalabraOtroNombre,
+            'modulo' => $this->modulo,
+            'idPost' => $this->avisoWebId,
+            'formEstudio' => $this->formEstudio, 'managerEstudio' => $this->managerEstudio,
+            'isEstudio' => $this->isEstudio, 'isEditarEstudio' => $this->isEditarEstudio,
+            'formExperiencia' => $this->formExperiencia, 'managerExperiencia' => $this->managerExperiencia,
+            'isExperiencia' => $this->isExperiencia, 'isEditarExperiencia' => $this->isEditarExperiencia,
+            'formOtroEstudio' => $this->formOtroEstudio, 'managerOtroEstudio' => $this->managerOtroEstudio,
+            'isOtroEstudio' => $this->isOtroEstudio, 'isEditarOtroEstudio' => $this->isEditarOtroEstudio,
+            'formIdioma' => $this->formIdioma, 'managerIdioma' => $this->managerIdioma,
+            'isIdioma' => $this->isIdioma,
+            'isEditarIdioma' => $this->isEditarIdioma,
+            'formPrograma' => $this->formPrograma, 'managerPrograma' => $this->managerPrograma,
+            'isPrograma' => $this->isPrograma, 'isEditarPrograma' => $this->isEditarPrograma,
+            'formPregunta' => $this->formPregunta, 'managerPregunta' => $this->managerPregunta,
+            'isPregunta' => $this->isPregunta, 'isEditarPregunta' => $this->isEditarPregunta,
+            'frmUbigeo' => $this->frmUbigeo,
+            'showLogoEmpresa' => isset($this->showLogoEmpresa)?true:false,
+            'formEmpresa' => isset($this->frmEmpresa)?$this->frmEmpresa:''
+            )
+        );
+        ?>
+
+        <!-- navegacion -->
+        <div class="cntPagerAP2">
+            <b>Puestos</b>
+            <p>(Para ingresar un nuevo puesto debe haber completado los anteriores)</p>
+            <div class="row">
+                <div class="grids-6">
+                    <?=
+                    $this->ListaPreferencial('listPagerAP2', $this->maximoAnuncios,
+                        $this->dataPosicion)
+                    ?>
+                </div>
+                <div class="grids-230 flt_right txt_right">
+                    <input id="btnSave" type="submit" value="Guardar Puesto" class="savePAPV btnSptEmp btn btn-default"/>
+                </div>
+            </div>
+        </div>
+        <!-- /navegacion -->
+        <input type="hidden" name="contpaso3" value="0" id="contpaso3" />
+        <div class="txt_right">
+            <a href="#escapeFormAP" id="backEmpP1" class="btn btn-default winModal">Regresar</a>
+            <?
+            if ($this->dataPosicion['data'] != null) :
+                ?>
+                <a href="<?=
+                $this->url(array('module' => 'empresa',
+                    'controller' => 'publica-aviso-preferencial',
+                    'action' => 'paso3',
+                    'impreso' => $this->dataPosicion['anuncioImpreso']),
+                    false, true)
+                ?>" onclick="ga('send', 'event', 'P2_<?php echo $this->producto['desc']?>', '<?php echo $this->empresaId?>' , '<?php echo $this->producto['medio_publicacion']?>');" id="aSetep2" class="tooltipApt btn btn-primary" title="Siguiente Paso">Guardar y Continuar ></a>
+               <? endif; ?>
+            <span id="msgErrorStep2" class="error"></span>
+        </div>
+
+
+        
+        <input type="hidden" name="redirctGua" value="" id="redirctGua" />
+    </form>
+    <?php
+    echo $this->partial('_partials/_paso2_aviso_blank.phtml', 'empresa',
+        array(
+        'managerEstudio' => $this->managerEstudio,
+        'managerOtroEstudio' => $this->managerOtroEstudio,
+        'managerExperiencia' => $this->managerExperiencia,
+        'managerIdioma' => $this->managerIdioma,
+        'managerPrograma' => $this->managerPrograma,
+        'managerPregunta' => $this->managerPregunta,
+        )
+    );
+    ?>
+    <a id="linkBtnFPaso" href="#escapeFormPaso" class="winModal"></a>
+</div>

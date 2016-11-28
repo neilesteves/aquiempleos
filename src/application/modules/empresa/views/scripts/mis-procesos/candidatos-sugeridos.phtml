@@ -1,0 +1,242 @@
+<?=
+$this->partial('_partials/_navigation.phtml',
+	 array('menu_sel' => $this->menu_sel, 'isAuth' => $this->isAuth))
+?>
+<?=
+$this->partial('mi-cuenta/_sec-menu.phtml',
+	 array('menu_post_sel' => $this->menu_post_sel, "tieneBuscador" => $this->tieneBuscador))
+?>
+<div id="wrapper" class="row">
+	 <?=
+	 $this->partial('_partials/_messages.phtml',
+		  array("flashMessages" => $this->flashMessages))
+	 ?>
+	 <?=
+	 $this->partial('mis-procesos/_sidebar-menu.phtml',
+		  array('menu_sel_side' => $this->menu_sel_side,
+		  'verSugerenciaCandidatos' => $this->verSugerenciaCandidatos))
+	 ?>
+	 <div id="gridTableR" class="blockAR alpha right">
+		  <div class="iBlockAR">
+				<h2>Candidatos Sugeridos</h2>
+				<h5 class="titlePosSug">Puestos con candidatos sugeridos por AquiEmpleos</h5>
+				<div id="mensajesBuscador" class="dvMensajesBolsaCVs dvMensajeAccion hide r5 mB10" style="display: none"></div>
+				<a name="anclaPag"></a>
+				<div id="contenido_ajax">
+					 <div class="overflowX">
+						  <!--  Aqui va la grilla Ajax -->
+						  <div class="overflowX">
+								<!--  Aqui va la grilla Ajax -->
+								<div id="paginEPM" class="pagination bBGray all">
+									 <p class="pagLegend grid5 mB0 theta alingL left"><?= $this->mostrando ?></p>
+									 <?=
+									 $this->paginationControl($this->arrayBusqueda,
+										  'Sliding', 'mis-procesos/_pag.phtml')
+									 ?>
+								</div>
+						  </div>
+					 </div>
+
+					 <table cadenabusqueda="niveldeestudios/7" ord="" col="" page="1" class="dataGrid dataGridEnviarBolsa" id="dataProcesoBusqueda" summary="Candidatos Sugeridos">
+						  <thead>
+								<?php
+								$base
+									 = $this->empresaAdminUrl
+								?>
+								<tr>
+									 <th width="20%" class="titleGrid linkTitleG">
+										  <?
+										  $col
+												= 'puesto'
+										  ?>
+										  <?
+										  $ord
+												= $this->col == $col && $this->ord == 'ASC' ? 'DESC'
+													 : 'ASC'
+										  ?>
+										  <?
+										  $base['col'] = $col;
+										  $base['ord'] = $ord;
+										  $url = $this->url($base, 'default', true)
+										  ?>
+										  <a href="<?= $url ?>" class="rel relArrow">Puesto<span class="arrowDG <?= strtolower($ord) ?>">&nbsp;</span></a>
+									 </th>
+									 <th width="14%" class="titleGrid linkTitleG">
+										  <?
+										  $col
+												= 'fh_creacion'
+										  ?>
+										  <?
+										  $ord
+												= $this->col == $col && $this->ord == 'ASC' ? 'DESC'
+													 : 'ASC'
+										  ?>
+										  <?
+										  $base['col'] = $col;
+										  $base['ord'] = $ord;
+										  $url = $this->url($base, 'default', true)
+										  ?>
+										  <a href="<?= $url ?>" class="rel relArrow">Inicio de<br/>procesos<span class="arrowDG <?= strtolower($ord) ?>">&nbsp;</span></a>
+									 </th>
+									 <th width="13%" class="titleGrid linkTitleG">
+										  <?
+										  $col
+												= 'fh_vencimiento'
+										  ?>
+										  <?
+										  $ord
+												= $this->col == $col && $this->ord == 'ASC' ? 'DESC'
+													 : 'ASC'
+										  ?>
+										  <?
+										  $base['col'] = $col;
+										  $base['ord'] = $ord;
+										  $url = $this->url($base, 'default', true)
+										  ?>
+										  <a href="<?= $url ?>" class="rel relArrow">Fin de<br/>Publicaci&oacute;n<span class="arrowDG <?= strtolower($ord) ?>">&nbsp;</span></a>
+									 </th>
+									 <th width="13%" class="titleGrid linkTitleG">
+										  <?
+										  $col
+												= 'fh_vencimiento_proceso'
+										  ?>
+										  <?
+										  $ord
+												= $this->col == $col && $this->ord == 'ASC' ? 'DESC'
+													 : 'ASC'
+										  ?>
+										  <?
+										  $base['col'] = $col;
+										  $base['ord'] = $ord;
+										  $url = $this->url($base, 'default', true)
+										  ?>
+										  <a href="<?= $url ?>" class="rel relArrow">Fin de<br/>Proceso<span class="arrowDG <?= strtolower($ord) ?>">&nbsp;</span></a>
+									 </th>
+									 <th width="13%" class="titleGrid linkTitleG">
+										  <?
+										  $col
+												= 'postulantes'
+										  ?>
+										  <?
+										  $ord
+												= $this->col == $col && $this->ord == 'ASC' ? 'DESC'
+													 : 'ASC'
+										  ?>
+										  <?
+										  $base['col'] = $col;
+										  $base['ord'] = $ord;
+										  $url = $this->url($base, 'default', true)
+										  ?>
+										  <a href="<?= $url ?>" class="rel relArrow">Candidatos<br/>Sugeridos<span class="arrowDG <?= strtolower($ord) ?>">&nbsp;</span></a>
+									 </th>
+									 <th width="13%" class="titleGrid linkTitleG">
+										  <?
+										  $col
+												= 'nombreLocacion'
+										  ?>
+										  <?
+										  $ord
+												= $this->col == $col && $this->ord == 'ASC' ? 'DESC'
+													 : 'ASC'
+										  ?>
+										  <?
+										  $base['col'] = $col;
+										  $base['ord'] = $ord;
+										  $url = $this->url($base, 'default', true)
+										  ?>
+										  <a href="<?= $url ?>" class="rel relArrow">Locación <br/>del Puesto<span class="arrowDG <?= strtolower($ord) ?>">&nbsp;</span></a>
+									 </th>
+									 <th width="14%" class="titleGrid">Acciones</th>
+								</tr>
+						  </thead>
+						  <tbody>
+								<?php
+								foreach ($this->arrayBusqueda as $item) {
+									 $finPub = $this->DiasRestantes($item["fh_vencimiento"]);
+									 $finProc = $this->DiasRestantes($item["fh_vencimiento_proceso"]);
+									 ?>
+									 <tr>
+										  <td width="20%">
+												<div class="impData"><?= $item['puesto_Aviso'] ?></div>
+												<!-- div>
+														  <a rel="/empresa/mi-cuenta/ver-aviso/vart5/rwerwe" class="winModal" href="#winVerProceso">Ver</a> <span class="cLink">&raquo;</span>
+												</div -->
+												<div>
+													 <? /* php
+														if ($item['tipo_Aviso'] == 'preferencial') :
+														$url = $this->url(array('module' => 'empresa', 'controller' => 'mi-cuenta', 'action' => 'ver-aviso-preferencial', 'preferencial' => $item['id_anuncio_impreso_Aviso']), 'default', true);
+														else :
+														$url = $this->url(array('slug' => $item['slug_Aviso'], 'url_id' => $item['url_id_Aviso']), 'avisoEmpresa', true);
+														endif;
+													  */ ?>
+													 <!-- >a rel="<? //=$url            ?>" class="winModal" href="#winVerProceso">Ver</a> &nbsp;-->
+													 <a rel="<?=
+													 $this->url(array(
+														  'slug' => $item['slug_Aviso'],
+														  'url_id' => $item['url_id_Aviso'],
+														  'id' => $item['id_anuncio_web']),
+														  'avisoEmpresa', true)
+													 ?>" class="winModal" href="#winVerProceso">Ver</a> &nbsp;
+												</div>
+										  </td>
+										  <td width="14%">
+												<span class="dateData"><?php
+													 $date = strtotime($item['fh_creacion']);
+													 echo date("d", $date) . '/' . date("m",
+														  $date) . '/' . date("Y", $date);
+													 ?></span>
+										  </td>
+										  <td width="13%">
+												<span class="dateData"><?= $finPub; ?></span>
+										  </td>
+										  <td width="13%">
+												<span class="dateData"><?= $finProc; ?></span>
+										  </td>
+										  <td width="13%">
+												<span class="dateData"><?= $item['postulantes'] ?></span>
+										  </td>
+										  <td width="13%">
+												<span class="dateData"><?= $item['nombreLocacion'] ?></span>
+										  </td>
+										  <td width="14%">
+												<a href="<?=
+												$this->url(array(
+													 'module' => 'empresa',
+													 'controller' => 'mis-procesos',
+													 'action' => 'detalle-candidatos',
+													 'id' => $item['id_anuncio_web'],
+													 'puesto_Aviso' => $item['puesto_Aviso']),
+													 'default', true);
+												?>">Ver sugeridos</a>
+										  </td>
+									 </tr>
+								<?php } ?>
+						  </tbody>
+					 </table>
+					 <?php
+					 if (count($this->arrayBusqueda) != 0) {
+						  ?>
+						  <div class="pagination all">
+								<?=
+								$this->paginationControl($this->arrayBusqueda,
+									 'Sliding', 'mis-procesos/_pag.phtml')
+								?>
+						  </div>
+					 <?php } else { ?>
+						  <div class="pagination all">
+								<div class='pagUl theta alignL'> - No hay Resultados que se adecuen a tu Búsqueda </div>
+						  </div>
+					 <?php } ?>
+					 <!-- div class="paginador all">
+							<ul class="pagUl all theta alignR right">
+								 <li class="itemPag"><a class="linkPag active">Página</a></li>
+								 <li class="itemPag"><a class="linkPag active">1 </a></li>
+							</ul>
+					 </div -->
+					 <!-- /Contenido Ajax -->
+
+				</div>
+		  </div>
+	 </div>
+	 <div id="ajax-loading" class="loading" style="width: 100%;" ></div>
+</div>

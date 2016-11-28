@@ -1,0 +1,15 @@
+<?=
+$this->partial('_partials/_navigation.phtml',
+    array('menu_sel' => $this->menu_sel, 'isAuth' => $this->isAuth))
+?>
+<?=
+$this->partial('mi-cuenta/_sec-menu.phtml',
+    array('menu_post_sel' => $this->menu_post_sel))
+?>
+<div id="wrapper" class="row">
+    <?=$this->partial('_partials/_messages.phtml',array("flashMessages"=>$this->flashMessages))?>
+    <?=
+    $this->partial('_partials/_pagar_aviso.phtml',
+        array('codBarras' => $this->codigoBarras))
+    ?>
+</div>

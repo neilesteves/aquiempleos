@@ -1,0 +1,78 @@
+<?=
+$this->partial('_partials/_navigation.phtml',
+    array('menu_sel' => $this->menu_sel, 'isAuth' => $this->isAuth))
+?>
+<?=
+$this->partial('mi-cuenta/_sec-menu.phtml',
+    array('menu_post_sel' => $this->menu_post_sel, "tieneBuscador" => $this->tieneBuscador))
+?>
+<div id="wrapper" class="row">
+    <?=
+    $this->partial('_partials/_messages.phtml',
+        array("flashMessages" => $this->flashMessages))
+    ?>
+    <?=
+    $this->partial('mis-procesos/_sidebar-menu.phtml',
+        array('menu_sel_side' => $this->menu_sel_side,
+        'verSugerenciaCandidatos' => $this->verSugerenciaCandidatos))
+    ?>
+    <div id="gridTableR" class="blockAR alpha right">
+        <div class="iBlockAR">
+            <h2>Candidatos Sugeridos</h2>
+            <div class="alignR all"><span class="cLink f14">&laquo; </span><a href="javascript:this.history.back()" class="f14">Volver</a></div>
+            <h5 class="titlePosSug">Puesto <span>
+                    <a rel="<?=
+                    $this->url(array(
+                        'slug' => $this->anuncio['slug'], 'url_id' => $this->anuncio['url_id'],
+                        'id' => $this->anuncio['id']), 'avisoEmpresa', true)
+                    ?>" class="winModal" href="#winVerProceso">
+                        <?= $this->puesto_Aviso; ?></a>
+                </span></h5>
+
+            <div class="blockPosSug">
+                <div id="leftBtnsCR" class="divListHeadE left">
+                    <ul class="ulListHeadE all"><li>
+                            <?php
+                            if ($this->tieneBolsaCVs != false) {
+                                ?>
+                            <li id="cntSendBB" class="liListHeadE liSeparMR left">
+                                <a id="btnEnviarBolsa" name="btnEnviarBolsaBusqueda" class="aListHeadE right noScrollTop enviarABolsa liWidthB1" rel="" href="">Enviar a Carpeta de CVs</a>
+                            </li>
+                        <?php } ?>
+                        <li id="bntRegRBusca" class="liListHeadE left">
+                            <a id="invitarBusqueda" class="aListHeadE left" href="#winRegistrarInvitacionBuscador">Invitar</a>
+                        </li>
+                        <li class="liListHeadE left">
+                            <a id="quitarPostulanteSugerido" rel="" class="aListHeadE winModal descartarButtonVerProceso left" href="#winAlert" >Eliminar</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="right" id="rightBtnsCR">
+                    <ul class="ulListOptE all">
+                        <li rel="-1" class="liListOptE"><a style="font-weight:bold; text-decoration: none;">Todos</a></li>
+                        <li rel="0" class="liListOptE"><a href="#">Leídos</a></li>
+                        <li rel="1" class="liListOptE"><a href="#">No leídos</a></li>
+                    </ul>
+                </div>
+
+            </div>                                    
+            <a name="anclaPag"></a>
+            <div class="hide r5 dvMensajesCAndidatosSugeridos msgRed" style="display: none;">Debe seleccionar al menos un postulante.</div>
+            <div id="contenido_ajax" style="">
+                <?=
+                $this->partial('mis-procesos/_maincandidatosSugeridos.phtml',
+                    array('ord' => $this->ord, 'col' => $this->col,
+                    "proceso" => $this->arrayBusqueda,
+                    "pagina" => $this->pagina, "mostrando" => $this->mostrando,
+                    "anuncioId" => $this->anuncioId,
+                    'photoD' => $this->photoD, 'photoDN' => $this->photoDN
+                    )
+                )
+                ?>
+            </div>
+
+        </div>                                    
+    </div>
+    <div id="ajax-loading" class="loading" style="width: 100%;" ></div>
+</div>

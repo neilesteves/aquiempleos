@@ -1,0 +1,52 @@
+<? if(!empty($this->listAreasAvisos)): ?>
+    <section class="postular">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div class="a-destacados-titular">
+                        <p class="azul">Elige el área que deseas postular</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="cinco-columnas">
+        <div class="container">
+            <div class="row text-center">
+                <ul class="area-postular">
+                <? $cont = 0; ?>
+                    <?php foreach ($this->listAreasAvisos as $key => $value) { ?>
+                        <li class="img-zoom-in <?=$cont>=10?'areaOculta hidden':'' ?>">
+                                <a href="#" class="buscar-area"  data-src="/buscar/areas/<?=$value['slug']?>" >
+                                    <img id="<?=$value['slug']?>" class="img-responsive" src="<?= $this->S('/eb/svg/icons-areas/' . $value['slug'] . '.svg'); ?>" >
+                                    <p><?=$value['label']?></p>
+                                </a>
+                        </li>
+                        <? $cont++; ?>
+                    <?php } ?>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="separador">
+        <div class="container">
+            <div class="row btn-top">
+                <div class="col-md-12">
+                    <div class="text-center ">
+                        <button type="button" class="ver-mas" id="id_ver_mas">Ver más</button>
+                        <button type="button" class="ver-mas hide" id="id_ver_menos">Ver menos</button>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="text-center">
+                        <hr class="linea">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<? endif; ?>

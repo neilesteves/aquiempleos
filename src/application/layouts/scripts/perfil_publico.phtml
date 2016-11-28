@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>
+<html lang="es" xmlns:fb="http://ogp.me/ns/fb#" class="lt-ie6"></html><![endif]--><!--[if IE 7]>
+<html lang="es" xmlns:fb="http://ogp.me/ns/fb#" class="lt-ie7"></html><![endif]--><!--[if IE 8]>
+<html lang="es" xmlns:fb="http://ogp.me/ns/fb#" class="lt-ie8"></html><![endif]--><!--[if IE 9]>
+<html lang="es" xmlns:fb="http://ogp.me/ns/fb#" class="lt-ie9"></html><![endif]-->
+<!-- [if (gt IE 9)|!(IE)] <!-->
+<html lang="es" xmlns:fb="http://ogp.me/ns/fb#">
+  <!-- <![endif]-->
+	<head>
+		<meta charset="UTF-8">
+		<?= $this->headMeta() ?>
+		<?= $this->headTitle() ?>
+		<!--[if lte IE 9]> 
+		<script type="text/javascript" src="<?=$this->S('/js/libs/html5shiv.js')?>"></script>
+		<![endif]-->
+		<?= $this->headLink() ?>
+		<?= $this->headScript() ?>
+                  <?php  if(preg_match('/(?i)msie 8/',$_SERVER['HTTP_USER_AGENT'])) {  ?>
+                  <!--[if lte IE 9]>
+                <link href="<?=$this->E()->getLastCommitE8('/static/main/css/modules/ie.css')?>" media="all" rel="stylesheet" type="text/css">
+                <![endif]-->
+                <?php  }else{ ?>
+                      <!--[if lte IE 9]>
+                <link href="<?=MEDIA_URL?>/main/css/modules/ie.css<?=$this->E()->getLastCommit();?>" media="all" rel="stylesheet" type="text/css">
+                <![endif]-->
+                <?php  }  ?>
+                
+	</head>
+	<body<?= $this->attribs($this->layout()->bodyAttr) ?> >
+		    <?php echo $this->DaxTag($this->layout()->params, $this->layout());?>
+		<section class="profile_wrapper">
+		  <div class="center_box">
+				<?= $this->layout()->content ?>
+		  </div>
+		</section>
+		<?php /*
+		<script type="text/javascript" src="<?php echo $this->S('/js/src/libs/utils/utils.js'); ?>"></script>
+        <script type="text/javascript" src="<?php echo $this->S('/js/src/libs/yoson.js'); ?>"></script>
+        <script type="text/javascript" src="<?php echo $this->S('/js/src/libs/yoson/schemas/modules.js'); ?>"></script>
+        <script type="text/javascript" src="<?php echo $this->S('/js/src/libs/yoson/template/template.js'); ?>"></script>
+
+        <script type="text/javascript" src="<?php echo $this->S('/js/src/modules/all.js'); ?>"></script>
+        <?php if (MODULE == 'empresa'){ ?>
+        <script type="text/javascript" src="<?php echo $this->S('/js/src/modules/'.MODULE.'.js'); ?>"></script>
+        <?php } ?>
+        <script type="text/javascript" src="<?php echo $this->S('/js/src/modules/postulante.js'); ?>"></script>
+        <script type="text/javascript" src="<?php echo $this->S('/js/src/libs/yoson/appLoad.js'); ?>"></script>
+		<!-- cXense script begin -->
+		*/
+		?>
+		<div id="cX-root" style="display:none"></div>
+	
+		<!-- cXense script end -->
+	</body>
+</html>

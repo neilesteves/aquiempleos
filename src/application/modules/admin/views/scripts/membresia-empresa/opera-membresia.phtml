@@ -1,0 +1,28 @@
+<div class="modal_company_membership">
+    <h3>Membresía</h3>
+    <form name="frmMembresiaE" id="frmMembresiaE" action="" method="post" class="frm-horizontal" data-parsley-validate>
+        <input type="hidden" name="idMem" id="idMem" value="<?php echo $this->idM; ?>" />
+        <input type="hidden" name="opera" id="opera" value="<?php echo $this->opera; ?>" />
+        <input type="hidden" name="idEmp" id="idEmp" value="<?php echo $this->idE; ?>" />
+        <div class="row">
+            <div class="flt_left parsley_message_bottom" style="width: 403px;" >
+                <?= $this->partial('membresia-empresa/_membresia.phtml', array('frmMembresia'=>$this->frmMembresia,'moneda'=>$this->moneda)); ?>
+            </div>
+            <div class="flt_right wrap_info_membership">
+                <?php if(!empty($this->beneficios)){ ?>
+                <div class="mB10"><b>Beneficios</b></div>
+                <ul>
+                <?php foreach ($this->beneficios as $key => $value) { ?>
+                    <li><i class="icon icon_check"></i><span><?php echo $value['med_nombre']; ?></span></li>
+                <?php } ?>
+                </ul>
+                <?php } ?>
+            </div>
+        </div>
+        <div class="txt_center"> 
+            <button id="btnAgree" class="btn btn-primary" type="submit">Aceptar</button>
+            <button id="btnCancel" class="btn btn-default" type="button">Cancelar</button>
+        </div>
+    </form>
+    <input type="hidden" name="process" id="process" value="<?php echo $this->proceso; ?>"/>
+</div>

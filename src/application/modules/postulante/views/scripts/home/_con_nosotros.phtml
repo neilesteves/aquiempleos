@@ -1,0 +1,22 @@
+<h4 class="EMPLEOBUSCO-title big mT20"><i class="icon icon_person"></i>BOLSAS DE TRABAJO</h4>
+<?php if (count($this->tcn) > 0) { ?>
+<div class="companies_list tiny">
+    <ul class="row">
+        <?php foreach ($this->tcn as $value) { ?>
+        <li>
+            <a class="company_box center-img"  href="<?=$value['url']?>" target="_blank" title="<?=$value['rs'] ?>">
+            <img src="<?=ELEMENTS_URL_LOGOS.$value['logo'].
+                $this->E()->getLastCommit()?>" alt="" width="90" height="90"/></a>
+            <p class="txt_center">
+                <a href="<?=$value['url']?>" target="_blank" title="<?=$value['rs'] ?>">
+                    <?=$value['rs'] ?>
+                </a>
+            </p>
+        </li>
+        <?php } ?>
+    </ul>
+    <div class="txt_center mT20">
+        <a href="<?=SITE_URL.'/bolsas-de-trabajo'?>"  class="btn btn-primary btn-big">Ver más bolsas de trabajo</a>
+    </div>
+</div>
+<?php } ?>

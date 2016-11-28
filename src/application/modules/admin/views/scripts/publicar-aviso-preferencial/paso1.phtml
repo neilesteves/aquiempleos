@@ -1,0 +1,44 @@
+<div class="bgAll gridS20">
+	<div class="gridForm">
+		<div class="legend">
+			<a href="<?= $this->url(array('module' => 'admin', 'controller' => 'gestion', 'action' => 'index'), false, true) ?>">Inicio</a> »
+			<span class="noLink">Paso 1 - Elige tu aviso</span>
+		</div>
+		<h1 class="titleOrig">Elija su aviso</h1>
+		<blockquote id="modStepsForm"><img src="<?=$this->S('/images/empresa/avisoPaso1.jpg');?>" alt="Paso 1"/></blockquote>
+		<div class="gridIStepEmp" class="all">
+			<h6 id="countWordEM" class="titleGrayEM"></h6>                        
+			<div id="sectionsEM" class="sectionEM sectionAP openSection<?=$this->slide?>" style="height:600px">
+                <div id="innerSectionEmp" class="sectionEM" style="height:600px">                
+                    <div id="section2AP" class="sectionEM">
+                        <?php echo $this->partial(
+                                'publicar-aviso-preferencial/_paso1b_ap.phtml', 
+                                'admin',
+                            array(
+                                'arrayPreferencial'=>$this->arrayPreferencial,'moneda'=>$this->moneda
+                            )
+                        ); ?>
+                    </div>
+                    <div id="section3AP" class="sectionEM">
+                        <?php echo $this->partial(
+                                'publicar-aviso-preferencial/_paso1c_ap.phtml', 
+                                'admin',
+                            array(
+                                'formAvisoPref' => $this->formAvisoPref,
+                                'arrayArmado' => $this->arrayArmado,
+                                'fchCierreImp' => $this->fchCierreImp,
+                                'fchPubsImp' => $this->fchPubsImp,
+                                'moneda'=>$this->moneda
+                            )
+                        ); ?>
+                    </div>
+                </div>
+			</div>
+			<div class="asideFootAX">
+				<a href="<?= $this->url(array('module' => 'admin', 'controller' => 'publicar-aviso','action' => 'index'), null, true); ?>" id="backEmpXF" class="btnPink right btnSptEmp">
+				Regresar
+				</a>		
+			</div> 				
+		</div>
+	</div>
+</div>

@@ -1,0 +1,25 @@
+<div class="configuration_wrapper">
+    <?=$this->partial('_partials/_new_messages.phtml',array("flashMessages"=>$this->flashMessages))?>    
+      <div class="center_box">
+          
+        <?= $this->partial('mi-cuenta/_sidebar-menu_mi_cuenta_datos.phtml', array('menu_sel_side' => $this->menu_sel_side)) ?>
+          
+        <div class="content_wrapper">            
+            <span class="title_content">Redes sociales <i class="icon icon_star"></i></span>
+            <?=
+            $this->partial('_partials/_redes_sociales.phtml', 'postulante',
+                array('isFacebook' => $this->isFacebook,
+                'urlFacebook' => $this->urlFacebook,
+                'facebookAppId' => $this->facebookAppId,
+                'isGoogle' => $this->isGoogle,
+                'openUrl' => $this->openUrl,
+                'redes' => $this->redes
+                )
+            );
+            ?>
+            
+        </div>
+    </div>
+</div>
+
+

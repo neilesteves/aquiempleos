@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg  PUBLIC '-//W3C//DTD SVG 1.1//EN'  'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd' [
+	<!ENTITY ns_extend "http://ns.adobe.com/Extensibility/1.0/">
+	<!ENTITY ns_ai "http://ns.adobe.com/AdobeIllustrator/10.0/">
+	<!ENTITY ns_graphs "http://ns.adobe.com/Graphs/1.0/">
+	<!ENTITY ns_vars "http://ns.adobe.com/Variables/1.0/">
+	<!ENTITY ns_imrep "http://ns.adobe.com/ImageReplacement/1.0/">
+	<!ENTITY ns_sfw "http://ns.adobe.com/SaveForWeb/1.0/">
+	<!ENTITY ns_custom "http://ns.adobe.com/GenericCustomNamespace/1.0/">
+	<!ENTITY ns_adobe_xpath "http://ns.adobe.com/XPath/1.0/">
+]>
+<svg id="Capa_1" style="enable-background:new 0 0 57.8 36.1" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 57.8 36.1" version="1.1" y="0px" x="0px" xmlns:xlink="http://www.w3.org/1999/xlink">
+<style type="text/css">
+	.st0{clip-path:url(#XMLID_2_);}
+	.st1{fill:#004CA5;}
+	.st2{fill:#FFFFFF;}
+	.st3{fill:#CE0A26;}
+</style>
+<switch>
+	<foreignObject y="0" x="0" height="1" width="1" requiredExtensions="http://ns.adobe.com/AdobeIllustrator/10.0/">
+	</foreignObject>
+	<g>
+		<g id="XMLID_253_">
+			<defs>
+				<rect id="XMLID_254_" y="0" x="0" height="36.1" width="57.8"/>
+			</defs>
+			<clipPath id="XMLID_2_">
+				<use xlink:href="#XMLID_254_"/>
+			</clipPath>
+			<g id="XMLID_255_" class="st0">
+				<rect id="XMLID_258_" class="st1" height="36.1" width="60.2" y="0" x="-1.6"/>
+				<rect id="XMLID_257_" class="st2" height="23.8" width="60.2" y="6.5" x="-1.6"/>
+				<rect id="XMLID_256_" class="st3" height="11.8" width="76.7" y="12.5" x="-9.5"/>
+			</g>
+		</g>
+	</g>
+</switch>
+</svg>

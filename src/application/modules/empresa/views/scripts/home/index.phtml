@@ -1,0 +1,190 @@
+<!-- home -->
+<section id="main-slider" class="carusell">
+    <div class="carousel slide">
+        <ol class="carousel-indicators">
+            <li data-target="#main-slider" data-slide-to="0" class="active"></li>
+            <li data-target="#main-slider" data-slide-to="1"></li>
+            <li data-target="#main-slider" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="item active img-responsive" style="background-image: url(<?= $this->S('/eb/img/empresas/slider/sp-2.jpg'); ?>)">
+                <div class="container min-h">
+                    <div class="row">
+                        <div class="col-sm-3"></div>
+                        <div class="col-sm-6 spb">
+                            <div class="caro centrado text-center">
+                                <h3>En aquiempleos.com encontrarás a los mejores profesionales.</h3>
+                                <?php
+                                $fancybox = 'data-toggle="modal"';
+                                $url      = '#modalLoginUser';
+                                if ($this->isAuth) {
+                                    $url      = '/empresa/publica-aviso/index/tarifa/1';
+                                    $fancybox = '';
+                                }
+                                if (isset($this->auth['postulante'])) {
+                                    $fancybox = 'data-toggle="modal"';
+                                    $url      = '#modalMsg';
+                                }
+                                ?>
+                                <a class="boton" <?= $fancybox ?> href="<?= $url ?>" role="button">Publicar Aviso</a>
+                            </div>
+                        </div>
+                        <div class="col-sm-3"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="item img-responsive" style="background-image: url(<?= $this->S('/eb/img/empresas/slider/sp-1.jpg'); ?>)">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-3"></div>
+                        <div class="col-xs-12 col-sm-6">
+                            <div class="caro centered text-center">
+                                <h3>Gestiona tu Proceso de Selección</h3>
+                                <a class="boton" <?= $fancybox ?> href="<?= $url ?>" role="button">Publicar Aviso</a>
+                            </div>
+                        </div>
+                        <div class="col-sm-3"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="item img-responsive" style="background-image: url(<?= $this->S('/eb/img/empresas/slider/bg1.jpg'); ?>)">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-3"></div>
+                        <div class="col-sm-6">
+                            <div class="caro centered text-center">
+                                <h3>Encuentra al postulante idónea para tu empresa</h3>
+                                <a class="boton" <?= $fancybox ?> href="<?= $url ?>" role="button">Publicar Aviso</a>
+                            </div>
+                        </div>
+                        <div class="col-sm-3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--CAROUSEL FLECHAS-->
+    <a class="prev hidden-xs" href="#main-slider" data-slide="prev"><i class="icon-angle-left"></i></a>
+    <a class="next hidden-xs" href="#main-slider" data-slide="next"><i class="icon-angle-right"></i></a>
+</section>
+<section class="points">
+    <div class="container">
+        <div class="row text-center">
+            <div class="points-text">
+                <div class="col-xs-12 col-sm-12 col-md-4">
+                    <img class="" src="<?= $this->S('/eb/img/empresas/a.png'); ?>" alt="">
+                    <p class="azul pd-rl-30">Más de <?= number_format($this->totalPostulantes); ?> <br>postulantes</p>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-4">
+                    <img class="responsive-img" src="<?= $this->S('/eb/img/empresas/b.png'); ?>" alt="">
+                    <p class="azul pd-rl-30">Más de <?= number_format($this->postmensuales); ?> CVs <br>mensuales</p>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-4">
+                    <img class="responsive-img" src="<?= $this->S('/eb/img/empresas/c.png'); ?>" alt="">
+                    <p class="azul pd-rl-30">Más de <?= number_format($this->visitas); ?> visitas <br>mensuales</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="conoce">
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                <h1 class="azul">Conoce nuestros productos y elige el mejor</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6">
+                <div class="box-two pd-10 mg-b-40">
+                    <p class="title">
+                        Aviso Web
+                    </p>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <img class="img-responsive img-r-position" src="<?= $this->S('/eb/img/empresas/a-web.png'); ?>" alt="">
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <p class="conoce-parrafo pd-20">Su aviso estará visible en AquiEmpleos durante 180 días. Para mejorar sus posibilidades de contacto le ofrecemos los paquetes de destaque Oro y Plata, con los que tendrá mejores resultados en menor tiempo.</p>
+                            <a <?= $fancybox ?> href="<?= $url ?>"> <button class="buttom-blue mrg-top" >Publicar</button> </a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6">
+                <div class="box-two pd-10">
+                    <p class="title">
+                        Aviso Web
+                    </p>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <img class="img-responsive img-r-position" src="<?= $this->S('/eb/img/empresas/a-web-impreso.png'); ?>" alt="">
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <p class="conoce-parrafo pd-20">Su aviso estará visible en AquiEmpleos durante 180 días. Para mejorar sus posibilidades de contacto le ofrecemos los paquetes de destaque Oro y Plata, con los que tendrá mejores resultados en menor tiempo.</p>
+                            <a <?= $fancybox ?> href="<?= $url ?>"> <button class="buttom-blue" >Publicar</button> </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="clientes">
+    <div class="container text-center">
+        <?php if (count($this->logos) > 0): ?>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12">
+                    <h1 class="clientes-titulo blanco">Conoce a nuestros Clientes</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="responsive slider">
+                    <div>
+                        <img src="<?= $this->S('/images/elements/company_1.jpg'); ?>">
+                    </div>
+                    <div>
+                      <img src="<?= $this->S('/images/elements/company_3.jpg'); ?>">
+                    </div>
+                    <div>
+                      <img src="<?= $this->S('/images/elements/company_5.jpg'); ?>">
+                    </div>
+                    <div>
+                      <img src="<?= $this->S('/images/elements/company_4.jpg'); ?>">
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <picture>
+                    <source
+                        media="(min-width: 650px)"
+                        class="diagrama img-responsive"
+                        srcset="<?= $this->S('/eb/img/empresas/diagrama-de-flujo.png'); ?>">
+                    <source
+                        media="(min-width: 465px)"
+                        class="diagrama img-responsive"
+                        srcset="<?= $this->S('/eb/img/empresas/diagrama-de-flujo2.png'); ?>">
+                    <img
+                        class="diagrama img-responsive"
+                        src="<?= $this->S('/eb/img/empresas/diagrama-de-flujo2.png'); ?>"
+                        alt="Nuestros Servicios">
+                </picture>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="publica">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-6">
+                <h2 class="publica-text azul">No pierdas la oportunidad de<br> Publicar un Aviso</h2>
+            </div>
+            <div class="col-md-6 pd-tp-10">
+                <a <?= $fancybox ?> href="<?= $url ?>"><button class="button-accion">Publicar Aviso</button></a>
+            </div>
+        </div>
+    </div>
+</section>

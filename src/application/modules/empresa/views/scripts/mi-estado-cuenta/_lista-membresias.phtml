@@ -1,0 +1,31 @@
+<div class="iBlockAR">
+    <table summary="Pagados" id="dataAdvPagados" class="dataGrid">
+        <thead>
+            <tr>
+                <!--<th class="data1 titleGrid linkTitleG"><a class="rel relArrow" href="">fecha creacion<span class="arrowDG asc"></span></a></th>-->
+                <th class="titleGrid">Nombre</th>
+                <th class="titleGrid">Fecha Inicio</th>
+                <th class="titleGrid">Fecha Fin</th>
+                <th class="titleGrid">Monto (<?php echo $this->moneda?>)</th>
+                <th class="titleGrid">Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <? foreach ($this->membresias as $membresia): ?>
+                <tr>
+                    <td class="" style="text-align: center"><?= $membresia['m_tipo']=='bonificado'? 
+				    'Bonificado '.$this->escape($membresia['m_nombre']):
+				    'Membresía '.$this->escape($membresia['m_nombre']) ?>
+                    </td>
+                    <td class="" style="text-align: center"><?= date('d/m/Y', strtotime($membresia['em_fh_inicio_membresia'])) ?></td>
+                    <td class="" style="text-align: center"><?= date('d/m/Y', strtotime($membresia['em_fh_fin_membresia'])) ?></td>
+                    <td class="" style="text-align: center"><?= number_format($membresia['em_monto'], 2) ?></td>
+                    <!-- td class="" style="text-align: right"><?//= number_format(($membresia['em_monto'] - $membresia['c_total']), 2) ?></td-->
+                    <td class="" style="text-align: center"><? //= ucfirst($membresia['em_estado'])
+                        if($membresia['em_estado'] == 'vigente'){ echo 'Activo'; } else { echo 'Inactivo'; }
+                    ?></td>
+                </tr>
+            <? endforeach;?>
+        </tbody>
+    </table>										
+</div>

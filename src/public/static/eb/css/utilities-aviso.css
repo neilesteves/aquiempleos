@@ -1,0 +1,363 @@
+*{
+  font-family: breeSerif;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+button{
+  border:none;
+  padding:10px 25px;
+}
+
+
+ul {
+  margin: 0px;
+  padding: 0px;
+}
+
+
+/*paleta de colores*/
+
+/*texto*/
+.azul{
+	color:#2A5E9B;
+}
+
+.amarillo{
+	color:#FFA200;
+}
+
+.blanco{
+	color:white;
+}
+
+.celeste{
+  color:#4badf8;
+}
+
+.gris{
+  color:#cfd3d4;
+}
+
+.size{
+	font-size:14px;
+}
+
+/*bg-color*/
+
+.bg-verde{
+  background-color: #005780;
+}
+
+.bg-azul{
+	background-color:#2A5E9B;
+}
+
+.bg-amarillo{
+	background-color:#FFA200;
+}
+
+
+/*utilities*/
+
+.pw{
+  width: 18%;
+}
+
+.pd-0{
+  padding: 0px !important;
+}
+
+.mg-b-0{
+  margin-bottom: 0px;
+}
+
+.mg-tp-20{
+  margin-top: 20px;
+}
+
+.mg-bt-10{
+  margin-bottom: 10px;
+}
+
+
+.mg-tb-30{
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.mg-tp-50{
+  margin-top: 50px;
+}
+
+.pd-10{
+	padding:10px;
+}
+
+.pd-tp-8{
+  padding-top: 8px;
+}
+
+.pd-tp-10{
+  padding-top: 10px;
+}
+
+.pd-tp-15{
+  padding-top: 15px;
+}
+
+.pd-tp-20{
+  padding-top: 20px;
+}
+
+
+.pd-tp-25{
+  padding-top: 25px;
+}
+
+
+.pd-tp-50{
+  padding-top: 50px;
+}
+
+.pd-tp-80{
+  padding-top: 80px;
+}
+
+.pd-tp-500{
+  padding-top: 500px;
+}
+
+.pd-r-15{
+  padding-right: 15px;
+}
+
+.pd-l-170{
+  padding-left: 75%;
+}
+
+.pd-rl-30{
+  padding-right: 30px;
+  padding-left: 30px;
+}
+
+.pd-rl-100{
+  padding-right: 100px;
+  padding-left: 100px;
+}
+
+.pd-20{
+	padding:20px;
+}
+
+.pd-30{
+  padding:30px;
+}
+
+.mg-b-40{
+  margin-bottom: 40px;
+}
+
+/*BOTONES ICONS E INPUTS*/
+
+.buttom-blue{
+  background: #2A5E9B;
+  color:white;
+  padding: 5px 20px 5px 20px;
+}
+
+.buttom-blue:hover{
+  background-color: white;
+  color: #2A5E9B;
+  transition: 500ms;
+}
+
+.buttom-blue:focus{
+   background-color: #585858;
+   color: white;
+   outline:0px !important;
+}
+
+
+.buttom-blue-w{
+  background: #2A5E9B;
+  color:white;
+  padding: 5px 20px 5px 20px;
+}
+
+.buttom-blue-w:hover{
+  background-color: #FFA200;
+  color: white;
+  transition: 500ms;
+  text-decoration: none;
+}
+
+.buttom-blue-w:focus{
+   background-color: #585858;
+   color: white;
+   outline:0px !important;
+   text-decoration: none;
+}
+
+.buttom-gray-w{
+  background-color:#ffa200;
+  color:white;
+  padding: 5px 20px 5px 20px;
+}
+
+.buttom-gray-w:hover{
+  background-color: #FFA200;
+  color: white;
+  transition: 500ms;
+  text-decoration: none;
+}
+
+.buttom-gray-w:focus{
+  background-color: #FFA200;
+  color: white;
+  transition: 500ms;
+  text-decoration: none;
+}
+
+
+
+.buttom-blue-n{
+  background: #2A5E9B;
+  color:white;
+  padding: 5px 20px 5px 20px;
+}
+
+.buttom-blue-n:hover{
+  background-color: #585858;
+  color: white;
+  transition: 500ms;
+  text-decoration: none;
+}
+
+.buttom-blue-n:focus{
+   background-color: #585858;
+   color: white;
+   outline:0px !important;
+   text-decoration: none;
+}
+
+
+
+.buttom-yellow-n{
+  background:#FFA200;
+  color:white;
+  padding: 5px 20px 5px 20px;
+}
+
+.buttom-yellow-n:hover{
+  background-color:#585858;
+  color: white;
+  transition: 500ms;
+  text-decoration: none;
+}
+
+.buttom-yellow-n:focus{
+   background-color: #585858;
+   color: white;
+   outline:0px !important;
+   text-decoration: none;
+}
+
+
+
+
+.buttom-blue-slider{
+  color:white;
+  padding: 5px 20px 5px 20px;
+  text-decoration: none;
+}
+
+.buttom-blue-slider:hover{
+  color: #2A5E9B;
+  text-decoration: none;
+  transition: 500ms;
+}
+
+.buttom-blue-slider:focus{
+  color: white;
+  text-decoration: none;
+}
+
+.buttom-white-slider{
+  color:#B3B3B3;
+  padding: 5px 20px 5px 20px;
+  text-decoration: none;
+}
+
+.buttom-white-slider:hover{
+  color: #FFA200;
+  text-decoration: none;
+  transition: 500ms;
+}
+
+.buttom-white-slider:focus{
+  color: #2A5E9B;
+  text-decoration: none;
+}
+
+
+/*fuentes*/
+@font-face {
+    font-family: breeSerif;
+    src: url(../text/BreeSerif-Regular.woff);
+}
+
+@font-face {
+    font-family: breeSerif-light;
+    src: url(../text/BreeSerif-Light.woff);
+}
+
+@font-face {
+    font-family: calibriBold;
+    src: url(../text/Calibri-Bold.woff);
+}
+
+@font-face {
+    font-family: dockChamp;
+    src: url(../text/dokchamp.woff);
+}
+
+@font-face {
+    font-family: miriam;
+    src: url(../text/Miriam.woff);
+}
+
+@font-face {
+    font-family: sylfaen;
+    src: url(../text/sylfaen.woff);
+}
+
+@font-face {
+    font-family: myriadProReg;
+    src: url(../text/MyriadPro-Regular.woff);
+}
+
+
+@font-face {
+    font-family: scfly;
+    src: url(../text/scfly.woff);
+}
+
+
+.flash-message-ya-postulaste {
+    color: white;
+    text-align: center;
+    background: #0cb570;
+    padding: 0.5em;
+    border: 1px solid #00834d;
+    margin-bottom: 1em;
+}
+.flash-message-ya-postulaste i {
+    display: inline-block;
+    margin-right: 0.5em;
+    vertical-align: middle;
+}
+.flash-message-ya-postulaste span {
+    display: inline-block;
+    vertical-align: middle;
+}

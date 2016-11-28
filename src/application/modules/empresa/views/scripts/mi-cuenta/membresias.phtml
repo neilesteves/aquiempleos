@@ -1,0 +1,29 @@
+<?=
+$this->partial('_partials/_navigation.phtml',
+    array('menu_sel' => $this->menu_sel, 'isAuth' => $this->isAuth))
+?>
+<?=
+$this->partial('mi-cuenta/_sec-menu.phtml',
+    array('menu_post_sel' => $this->menu_post_sel, "tieneBuscador" => $this->tieneBuscador,
+        'tieneBolsaCVs' => $this->tieneBolsaCVs,'beneficios' => $this->beneficios,'Look_Feel'=>$this->Look_Feel))
+?>
+<div id="wrapper" class="row">
+    <?=$this->partial('_partials/_messages.phtml',array("flashMessages"=>$this->flashMessages))?>  
+    <?=
+    $this->partial('mi-cuenta/_sidebar-menu.phtml',
+        array('menu_sel_side' => $this->menu_sel_side))
+    ?>
+    <div id="gridTableR" class="blockAR alpha right">
+        <?php
+        echo $this->partial('mi-cuenta/_membresias.phtml', 'empresa',
+            array(
+                'membresias' => $this->membresias,
+                'col' => $this->col,
+                'ord' => $this->ord,
+                'moneda' => $this->moneda
+                
+            )
+        );
+        ?>
+    </div>
+</div>

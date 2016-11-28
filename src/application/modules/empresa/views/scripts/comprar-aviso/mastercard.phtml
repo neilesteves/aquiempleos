@@ -1,0 +1,17 @@
+<div id="main" class="all">
+    <div class="innerAll">
+        <div class="bgAll gridS20">
+            <?= $this->partial('_partials/_navigation.phtml', array('menu_sel' => $this->menu_sel, 'isAuth' => $this->isAuth, "flashMessages"=>$this->flashMessages)) ?>
+            <div class="gridTab">
+                <div class="gridIT">
+                    <?= $this->partial('mi-cuenta/_sec-menu.phtml', array('menu_post_sel' => $this->menu_post_sel)) ?>
+                    <div class="iAccount" id="innerMain">
+                        <div class="centerMC">
+                           <?= $this->partial('_partials/_pago_satisfactorio.phtml', array('aw'=>$this->anuncioWeb->toArray())) ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

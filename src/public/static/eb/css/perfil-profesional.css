@@ -1,0 +1,216 @@
+.pdb{
+    padding-bottom: 0;
+}
+.container-perfil{
+	padding-top: 4.5em !important;
+	padding-bottom: 0;
+}
+/*.formulario-empleoBusco{
+    padding-top: 1em;
+}*/
+
+.form-group{
+    margin-bottom: 0;
+}
+
+.text-error{
+    font-size: 13px !important;
+}
+.help-block, .help-block label{
+    font-size: 12px !important;
+    color:#b94a48;
+}
+.sub-text{
+    font-size: 18px !important;
+}
+.container-perfil form span{
+    font-size: 0.9em;
+}
+.sub-title-form{
+    padding:0.5em 0;
+}
+.text-parrafo{
+    font-size: 14px;
+}
+.box-perfil-profesional, .sub-title-form{
+    position: relative;
+}
+.line-botton{
+    position:absolute;
+    background: #527494;
+    height: 0.05em;
+    width: 100%;
+    bottom: 5px;
+    z-index: -1;
+}
+.title-dato{
+    font-size: 22px;
+}
+
+.title-dato, .sub-text{
+    color: #366599;
+    background: white;
+    padding-right: 0.5em;
+}
+.icon-inline{
+    vertical-align: middle !important;
+    font-size: 0.1em;
+}
+.text-label{
+    font-weight: normal;
+    padding-right: 1em;
+}
+.label-display{
+    display: initial;
+}
+.form-control{
+    border-radius: 0;	
+}
+
+.form-control{
+    color: #adadad;
+}
+.input-width{
+    width: 49.65%;
+    display: inline-block;
+}
+.pdR{
+    padding-right: 1em;
+}
+.pdL{
+    padding-left: 1em;
+}
+textarea{
+    resize: none;
+    height: 8em !important;
+}
+.box-btn{
+    text-align: right;
+    margin-top:2em;
+}
+.btn-form-agregar{
+    background: #366599;
+}
+.btn-form-agregar:hover{
+    background: #125aab;
+}
+.btn-form-guardar{
+    background: #FFA300;
+}
+.btn-form-guardar:hover{
+    background: #a07221;
+}
+.btn-form-agregar, .btn-form-guardar{
+    border: none;
+    cursor: pointer;
+    color: white;
+    width: 231px;
+    margin-left: 1em;
+}
+
+/*SECCION CAMBIO DE CLAVE*/
+.contenedor-nivelSeguridad div{
+    font-size: 0.9em;
+}
+.cl-bluelight{
+    color: #366599;
+}
+.cuadro_nivel_seguridad{
+    display: inline-block;
+    height: 0.8em;
+    width: 1.8em;
+    border: 1px solid #b7b6b6;
+    margin-top: 0.5em;
+    transition: all ease 0.3s;
+}
+
+/*SECCION DE PERFIL EXPORTABLE*/
+
+.contenedor-mi-perfilCV{
+    padding-top: 7em;
+    color: #555;
+}
+.foto-CV{
+    width: 160px;
+    height: 180px;
+    border:1px solid black;
+}
+.dato-CV{
+    display: block;
+}
+.name{
+    font-weight: bold;
+    font-size: 20px;
+    color: black;
+}
+.mail{
+    color: #2A5E9A;
+}
+.font-black{
+    color: black;
+    font-size: 18px;
+}
+.font-yellow{
+    color:#e4a300;
+
+}
+.box-title-datoCV{
+    background: #2A5E9A;
+    color: white;
+    width: 100%;
+    padding: 0.5em 1em;
+}
+.box-title-datoCV span{
+    font-size: 18px;
+}
+.box-pd{
+    padding: 0.5em 1em;
+}
+.contenedor_avisos_eliminados{
+    background: #DADADA;
+    margin:0.5em 0 1em 0;
+}
+.logo-empresa-eliminado{
+    display: table-cell;
+    text-align: center;
+    padding: 0 0.5em 0 2em;
+}
+.contenedor_avisos_eliminados .center_image{
+    padding: 0.5em 1em;
+    background: #C8C8C8;
+    display: table-cell;
+    width: 22%;
+    height: 120px;
+}
+.contenedor_avisos_eliminados h3{
+    color: #4D4D4D;
+    font-family: breeSerif;
+}
+.contenedor_avisos_eliminados .name-empresa{
+    color: #014E70;
+}
+.contenedor_avisos_eliminados .search_address{
+    color: #949292;
+}
+.btn-ver-aviso, .btn-añadir-favorito{
+    border: none;
+    cursor: pointer;
+    color: white;
+    margin-left: 1em;
+    background: #366599;
+    padding: 0.25em 1em;
+}
+
+
+
+/*RESPONSIVE*/
+
+@media screen and (max-width: 573px) {
+    .foto-CV{
+        width: 129px;
+        height: 140px;
+    }
+    .name{
+        font-size: 19px;
+    }
+}

@@ -1,0 +1,65 @@
+<?=
+$this->partial('_partials/_navigation.phtml',
+    array('menu_sel' => $this->menu_sel, 'isAuth' => $this->isAuth))
+?>
+<?=
+$this->partial('mi-cuenta/_sec-menu.phtml',
+    array('menu_post_sel' => $this->menu_post_sel, "tieneBuscador" => $this->tieneBuscador,
+        'tieneBolsaCVs' => $this->tieneBolsaCVs,'Look_Feel'=>$this->Look_Feel))
+?>
+<div id="wrapper" class="row">
+    <?=
+    $this->partial('_partials/_messages.phtml',
+        array("flashMessages" => $this->flashMessages))
+    ?>  
+    <?=
+    $this->partial('mi-cuenta/_sidebar-menu.phtml',
+        array('menu_sel_side' => $this->menu_sel_side))
+    ?>
+    <div id="gridTableR" class="blockAR theta right">
+        <div class="iBlockAR">
+            <div id="titleyBtn">
+                <h2>Mis Alertas</h2>
+            </div>
+
+            <form action="" method="post" id="alertasACP">
+                <div class="blockField r2">
+                    <fieldset class="alertsCP">
+                        <input type="hidden" name="csrfhash" id="ocultohash" value="<?= CSRF_HASH ?>" />
+                        <div class="all alertLI">
+                            <?
+                            $hasError
+                                = $this->formAlertas->prefs_emailing_avisos->hasErrors();
+                            ?>
+                            <?=
+                            $this->formAlertas->prefs_emailing_avisos->setAttribs(array(
+                                'id' => 'optCheckP2', 'class' => 'checkNI noBdr ' . ($hasError
+                                        ? '' : ' ready')))->renderViewHelper();
+                            ?>
+                            <label class="labelOpt block" id="lblP2" for="optCheckP2">
+                                Deseo recibir periódicamente perfiles de candidatos que se ajusten a mis avisos de empleo.
+                            </label>
+                        </div>
+                        <div class="all alertLI">
+                            <?
+                            $hasError
+                                = $this->formAlertas->prefs_emailing_info->hasErrors();
+                            ?>
+                            <?=
+                            $this->formAlertas->prefs_emailing_info->setAttribs(array(
+                                'id' => 'optCheckP3', 'class' => 'checkNI noBdr ' . ($hasError
+                                        ? '' : ' ready')))->renderViewHelper();
+                            ?>
+                            <label class="labelOpt block" id="lblP3" for="optCheckP3">
+                                Deseo recibir periódicamente información y publicidad útil que me permita mantenerme actualizado en el mercado laboral.
+                            </label>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="wrap-btn right">
+                    <input type="submit" id="btnSaveChCP" class="btn btn-primary" value="Guardar cambios">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

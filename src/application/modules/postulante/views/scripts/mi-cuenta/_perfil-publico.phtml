@@ -1,0 +1,383 @@
+<?php
+$imagenPostulante = !empty($this->postulante["postulante"]['fotovariable'])
+		  ? ELEMENTS_URL_IMG.$this->postulante["postulante"]['fotovariable'] :
+		  $this->S('/images/profile-default.jpg');?>
+<form id="frmRegisterComplete" autocomplete="off" class="type1 form_registration">
+		  <div class="actions_cv_wrapper">
+			 <div class="actions_cv_wrapper_buttons">
+				<a class="btn btn_cuaternary" href="<?=$this->url(array(
+				  'module' => 'postulante', 'controller' => 'mi-cuenta',
+				  'action' => 'pdf',
+				  'slug' => $this->slug,
+				  'download' => 1), "default", true)?>">Descargar CV</a>
+
+			 <a class="btn btn_print" target="_blank" href="<?=$this->url(array(
+						'module' => 'postulante', 'controller' => 'mi-cuenta',
+						'action' => 'pdf',
+						'slug' => $this->slug), "default", true)?>">
+						<i class="icon icon_print"></i></a>
+			 </div>
+			 <div class="form_box center_image"></div>
+				<?php if( ! $this->postulante['postulante']['esConfidencial'] ): ?>
+				<p class="perfil_public">Perfil Público: <a href="<?=SITE_URL.'/perfil/'.$this->postulante["postulante"]['slug']?>" target="_blank"><?=SITE_URL.'/perfil/'.$this->postulante["postulante"]['slug']?> </a></p>
+				<?php endif; ?>
+				  <div class="content_accordion">
+				  <div class="form_row accordion">
+					 <div class="form_col12">
+						<h2>Datos Personales</h2>
+						<span class="right blue">aquiempleos.com</span>
+					 </div>
+				  </div>
+				  <div class="form_row">
+					 <div class="form_col3">
+						<div class="profile_image">
+						  <div class="center_image">
+							 <?php /* ?>
+							 <div class="crop_icon_cont">
+								<div id="file_browse_wrapper">
+								  <input id="file_browse" type="file">
+								</div>
+							 </div>
+							  <?php */ ?>
+								<div class="crop_image_cont">
+									 <img alt="" src="<?=$imagenPostulante?>">
+								</div>
+						  </div>
+						</div>
+					 </div>
+					 <div class="form_col9 personal_data">
+						<div class="form_col12">
+						  <h4><?=$this->escape($this->postulante["postulante"]['nombres'])?> <?=$this->escape($this->postulante["postulante"]['apellidos'])?> </h4>
+
+						<?php  if (count($this->postulante['experiencias']) > 0) : ?>
+						<?php     $puesto = (!isset($this->postulante['experiencias'][0]['puesto']))?$this->postulante['experiencias'][0]['puesto']:isset($this->postulante['experiencias'][0]['nombre_puesto'])?$this->postulante['experiencias'][0]['nombre_puesto']:''; ?>
+						  <p><?=(count($this->postulante['experiencias'])>0)?'('.$puesto.' en '.$this->postulante['experiencias'][0]['empresa'].')':''; ?></p>
+						  <?php endif; ?>
+						 <p><?= $this->Edad($this->postulante["postulante"]['fecha_nac']) ?>  años <br><?=Application_Model_Postulante::$estadoCivil[$this->postulante["postulante"]['estado_civil']]?> <br>
+								<?=$this->escape(isset($this->postulante["postulante"]['num_doc'])?'CI : '.$this->postulante["postulante"]['num_doc']:'')?>  <br>
+								<?=$this->escape(($this->postulante["postulante"]['fijo']!='')?'F. '.$this->postulante["postulante"]['fijo']:'')?>
+								<?=$this->escape(($this->postulante["postulante"]['celular']!='')?'C. '.$this->postulante["postulante"]['celular']:'')?> <br>
+								<span class="blue"><?=$this->escape($this->postulante["postulante"]['email'])?></span></p>
+						</div>
+					 </div>
+				  </div>
+				</div>
+			  <?php if (isset($this->postulante["postulante"]['paisres'])) {?>
+				<div class="content_accordion">
+				  <div class="form_row accordion">
+					 <div class="form_col12">
+						<h2>Ubicación</h2>
+					 </div>
+				  </div>
+				  <div class="form_row">
+					 <div class="form_col12">
+						<p><?=$this->escape($this->postulante["postulante"]['paisres'])?></p>
+						<?php if($this->postulante["postulante"]['idpaisres'] == Application_Model_Ubigeo::PERU_UBIGEO_ID) : ?>
+						  <p><?=$this->escape($this->postulante["postulante"]['ubicacion'])?></p>
+						<?php endif; ?>
+						<?php if($this->postulante["postulante"]['extranjero']) { ?>
+						  <p>Tengo disponibilidad para trabajar en provincia/extranjero</p>
+						<?php } ?>
+					 </div>
+				  </div>
+				</div>
+			  <?php } ?>
+
+				<?php if ($this->postulante["postulante"]['presentacion']!='' ||
+				!empty($this->postulante["postulante"]['twitter']) ||
+				!empty($this->postulante["postulante"]['facebook'] )) {?>
+				<div class="content_accordion">
+				  <div class="form_row accordion">
+					 <div class="form_col12">
+						<h2>Acerca de ti</h2>
+					 </div>
+				  </div>
+				  <div class="form_row">
+					 <div class="form_col12">
+						 <?php if(CONTROLLER =='mi-cuenta' && ACTION=='mi-perfil' && MODULE=='postulante'){?>
+						<p><?=$this->postulante["postulante"]['presentacion']?></p>
+						  <?php
+						$twitter = isset($this->postulante["postulante"]['twitter']) ? $this->postulante["postulante"]['twitter'] : '';
+						$facebook = isset($this->postulante["postulante"]['facebook']) ? $this->postulante["postulante"]['facebook'] : '';
+						if (!empty($twitter) || !empty($facebook)) { ?>
+						<div class="social_content">
+								<?php if (!empty($twitter)) { ?>
+								<p><a href="http://twitter.com/<?=str_replace('@', '', $twitter)?>">
+									 <i class="icon icon_twitter"> </i>
+									 <span><?=$twitter?></span>
+								</a>
+								<?php } ?>
+								<?php if (!empty($facebook) && $facebook != 'http://') { ?>
+								<a href="<?=$facebook?>">
+									 <i class="icon icon_fb"> </i>
+									 <span><?=$facebook?></span>
+								</a></p>
+								<?php } ?>
+						</div>
+						<?php  } ?>
+					 <?php } ?>
+					 </div>
+				  </div>
+				</div>
+			  <?php } ?>
+				<?php if(CONTROLLER !='mi-cuenta' && ACTION!='mi-perfil' && MODULE!='postulante'){?>
+				<?php if($this->postulante["postulante"]['presentacion'] != '') { ?>
+				  <div class="content_accordion">
+					 <div class="form_row accordion">
+						<div class="form_col12">
+						  <h2>Acerca de ti</h2>
+						</div>
+					 </div>
+					 <div class="form_row">
+						<div class="form_col12">
+						  <p><?=$this->postulante["postulante"]['presentacion']?></p>
+						</div>
+						<?php
+						$twitter = isset($this->postulante["postulante"]['twitter']) ? $this->postulante["postulante"]['twitter'] : '';
+						$facebook = isset($this->postulante["postulante"]['facebook']) ? $this->postulante["postulante"]['facebook'] : '';
+						if (!empty($twitter) || !empty($facebook)) { ?>
+						  <div class="social_content">
+								<?php if (!empty($twitter)) { ?>
+								<div class="form_col12">
+								<p><a href="http://twitter.com/<?=str_replace('@', '', $twitter)?>">
+									 <i class="icon icon_twitter"> </i>
+									 <span><?=$twitter?></span>
+								</a>
+								<?php } ?>
+								<?php if (!empty($facebook) && $facebook != 'http://') { ?>
+								<a href="<?=$facebook?>">
+									 <i class="icon icon_fb"> </i>
+									 <span><?=$facebook?></span>
+								</a></p>
+								</div>
+								<?php } ?>
+						  </div>
+						<?php  } ?>
+					 </div>
+				  </div>
+				  <?php } ?>
+				<?php } ?>
+			  <?php if (count($this->postulante['experiencias'])>0) {?>
+				<div class="content_accordion">
+				  <div class="form_row accordion">
+					 <div class="form_col12">
+						<h2>Experiencia</h2>
+					 </div>
+				  </div>
+					 <div class="form_row">
+					 <?php foreach ($this->postulante['experiencias'] as $campo => $item) {?>
+					 <div class="form_col12">
+						<div class="title_content_edit">
+						  <div class="title_skills">
+							 <div class="block_text">
+								<h3><?= $this->escape($item['empresa'])?></h3>
+								<h2><?=($item['id_puesto']==Application_Form_MisExperiencia::OTRO_PUESTO)?strtoupper($item['puesto']):$item['nombre_puesto']?></h2>
+								<p> <i href="#" class="icon icon_calendar"></i><?=$this->ItemList('Mes', $item['inicio_mes'])?>  <?=$this->escape($item['inicio_ano'])?>   <?=  !empty($item['actualmente'])?'Actualidad':' Inicio';?>
+								<?php if (empty($item['actualmente'])){?>
+							  - <?=$this->ItemList('Mes', $item['fin_mes'])?>  <?=$this->escape($item['fin_ano'])?> <?=  !empty($item['actualmente'])?'':' Fin';?>
+								<?php   }?>
+							  </p>
+							 </div>
+						  </div>
+						</div>
+					 <?php if(isset($item['comentarios']) && !empty($item['comentarios'])) { ?>
+						<div class="body_content_edit">
+						  <div class="header_content_title">
+							 <h2><?= $this->escape($item['rubro'])?></h2>
+							 <p>Descripción laboral</p>
+						  </div>
+						  <div class="section_content"><i class="icon icon_scuare_only"></i>
+							 <div class="section_content_into">
+							  <?=$this->escape($item['comentarios'])?>
+							 </div>
+						  </div>
+						</div>
+					 <?php } ?>
+					 </div>
+					 <?php } ?>
+				  </div>
+				</div>
+				<?php } ?>
+				<?php if (count($this->postulante['estudios'])>0) {?>
+				<div class="content_accordion">
+				  <div class="form_row accordion">
+					 <div class="form_col12">
+						<h2>Estudios</h2>
+					 </div>
+				  </div>
+				  <div class="form_row">
+					 <?php foreach ($this->postulante['estudios'] as $campo => $item) {?>
+						<div class="form_col12">
+						  <div class="title_content_edit">
+							 <div class="title_skills">
+								<div class="block_text">
+								  <h3><?= $this->escape($item['institucion'])?></h3>
+								  <h2><?= $this->escape($item['titulo'])?> <i>(<?= $this->escape($item['nivel_nombre'])?> <?= $this->escape($item['nivel_tipo_nombre'])?>)</i></h2>
+								<p> <i href="#" class="icon icon_calendar"></i><?=$this->ItemList('Mes', $item['inicio_mes'])?>  <?=$this->escape($item['inicio_ano'])?>   <?=  !empty($item['actualmente'])?'Actualidad':' Inicio';?>
+								<?php if (empty($item['actualmente'])){?>
+							  - <?=$this->ItemList('Mes', $item['fin_mes'])?>  <?=$this->escape($item['fin_ano'])?> <?=  !empty($item['actualmente'])?'':' Fin';?>
+								<?php   }?>
+							  </p>
+								</div>
+							 </div>
+						  </div>
+						</div>
+					 <?php } ?>
+				  </div>
+				</div>
+			  <?php } ?>
+				  <?php if (count($this->postulante['otrosEstudios'])>0) {?>
+				<div class="content_accordion">
+				  <div class="form_row accordion">
+					 <div class="form_col12">
+						<h2>Otros Estudios</h2>
+					 </div>
+				  </div>
+					 <div class="form_row">
+					 <?php foreach ($this->postulante['otrosEstudios'] as $campo => $item) {?>
+						<div class="form_col12">
+						  <div class="title_content_edit">
+							 <div class="title_skills">
+								<div class="block_text">
+								  <h3><?= $this->escape($item['titulo'])?></h3>
+								  <h2><?= $this->escape($item['institucion'])?>
+										<?php if (isset($item['nivel_nombre']) && isset($item['nivel_tipo_nombre'])) : ?>
+										<i>(<?= isset($item['nivel_nombre']) ? $this->escape($item['nivel_nombre']) : '';?> <?= $this->escape($item['nivel_tipo_nombre'])?>)</i>
+										<?php endif; ?>
+								  </h2>
+								<p> <i href="#" class="icon icon_calendar"></i><?=$this->ItemList('Mes', $item['inicio_mes'])?>  <?=$this->escape($item['inicio_ano'])?>   <?=  !empty($item['actualmente'])?'Actualidad':' Inicio';?>
+								<?php if (empty($item['actualmente'])){?>
+							  - <?=$this->ItemList('Mes', $item['fin_mes'])?>  <?=$this->escape($item['fin_ano'])?> <?=  !empty($item['actualmente'])?'':' Fin';?>
+								<?php   }?>
+							  </p>
+								</div>
+							 </div>
+						  </div>
+						</div>
+					 <?php } ?>
+				  </div>
+				</div>
+			  <?php } ?>
+			  <?php if (count($this->postulante['idiomas'])>0) {?>
+				<div class="content_accordion">
+				  <div class="form_row accordion">
+					 <div class="form_col12">
+						<h2>Idiomas</h2>
+					 </div>
+				  </div>
+				  <div class="form_row">
+					 <?php foreach ($this->postulante['idiomas'] as $campo => $item) {?>
+						<div class="form_col12">
+						  <div class="form_col6">
+							 <h3><?= $this->escape($item['nombreIdioma'])?></h3>
+							 <p>Escrito <i>(<?= $this->escape($item['selLevelWritten'])?>)</i></p>
+							 <p>Oral <i>(<?= $this->escape($item['selLevelOral'])?>)</i></p>
+						  </div>
+						</div>
+					 <?php } ?>
+				  </div>
+				</div>
+				 <?php } ?>
+				 <?php if (count($this->postulante['programas'])>0) {?>
+				<div class="content_accordion">
+				  <div class="form_row accordion">
+					 <div class="form_col12">
+						<h2>Informática</h2>
+					 </div>
+				  </div>
+				  <div class="form_row">
+				  <?php foreach ($this->postulante['programas'] as $campo => $item) {?>
+					 <div class="form_col12">
+						<div class="block_skill_content">
+						  <?php /*   <h3>Lenguaje de programación</h3>*/  ?>
+						  <p><?= $this->escape($item['programa'])?> <i>(<?= $this->escape($item['nivel'])?> )</i></p>
+						</div>
+					 </div>
+					<?php } ?>
+				  </div>
+				</div>
+				<?php } ?>
+			  <?php if (count($this->postulante['referencias'])>0) {?>
+				<div class="content_accordion">
+				  <div class="form_row accordion">
+					 <div class="form_col12">
+						<h2>Referencias</h2>
+					 </div>
+				  </div>
+				  <div class="form_row">
+				  <?php foreach ($this->postulante['referencias'] as $campo => $item) {?>
+					 <div class="form_col12">
+						<div class="form_col6">
+						  <p>Puesto que desempeñabas: </p>
+						  <p>Referencia:</p>
+						</div>
+						<div class="form_col6">
+						  <p> <b><?= $this->escape($item['puesto'])?></b>- <?= $this->escape($item['empresa'])?></p>
+						  <p> <b><?= $this->escape($item['nombre'])?></b> <br><?= $this->escape($item['cargo'])?> <br>C. <?= $this->escape($item['telefono'])?> <br><span class="blue"><?= $this->escape($item['email'])?></span></p>
+						</div>
+					 </div>
+				  <?php } ?>
+				  </div>
+				</div>
+			  <?php } ?>
+			  <?php if (count($this->postulante['logros'])>0) {?>
+				<div class="content_accordion">
+				  <div class="form_row accordion">
+					 <div class="form_col12">
+						<h2>Logros</h2>
+					 </div>
+				  </div>
+				  <div class="form_row">
+					 <?php foreach ($this->postulante['logros'] as $campo => $item) {?>
+					 <div class="form_col12">
+						<h3><?=$item['logro']?> - <?=$item['ano']?></h3>
+						<h5>Otorgado por: <?=$item['institucion']?></h5>
+						<p><?=$item['descripcion']?></p>
+					 </div>
+				  <?php } ?>
+				  </div>
+				</div>
+			  <?php } ?>
+
+			  <?php if (count($this->postulante['aptitudes'])>0) {?>
+				<div class="content_accordion">
+				  <div class="form_row accordion">
+					 <div class="form_col12">
+						<h2>Aptitudes</h2>
+					 </div>
+				  </div>
+				  <div class="form_row">
+						<div class="form_col12">
+							 <span class="skills_ability">
+						<?php  foreach ($this->postulante['aptitudes'] as $campo => $item) {  ?>
+								<span class="skills_ability_item"><?=$this->escape($item["mostrar"]);?></span>
+						 <?php } ?>
+								</span>
+					 </div>
+				</div>
+					 </div>
+				<?php } ?>
+				<?php if (!empty($this->postulante["postulante"]['discapacidad'])) {?>
+				<div class="content_accordion content_accordion_final">
+				  <div class="form_row accordion">
+						<div class="form_col12">
+							 <h2>Discapacidad</h2>
+						</div>
+				  </div>
+				  <div class="form_row">
+						<div class="form_col12">
+							 <p class="skill_ability_description_discapacity">Descripción de la discapacidad</p>
+							 <div class="skill_ability_container_disablity">
+										  <i class="icon icon_disability active_tooltip" data-flag="disability"></i>
+										  <div class="skill_ability_tooltip disability">El postulante es una persona con discapacidad</div>
+									<?php if (!empty($this->postulante["postulante"]['conadis'])) {  ?>
+										  <span class="skill_ability_conadis active_tooltip" data-flag="conadis"></span>
+										  <div class="skill_ability_tooltip conadis">El postulante es una persona con discapacidad registrada en el Consejo Nacional para la Integración de la Persona con Discapacidad (CONADIS)</div>
+									 <?php } ?>
+							 </div>
+						</div>
+				  </div>
+				</div>
+				<?php } ?>
+			 </div>
+		</form>

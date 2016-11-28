@@ -1,0 +1,25 @@
+<? $active2 = "active"; ?>
+
+<div class="blockAL grid4 omega left">
+    <h5 class="tituloPC r5T">Perfil Profesional</h5>
+    <ul class="thirdMenu bLBlue bgLBlue r5B mB20">
+        <li class="liThird <?=$this->menu_sel_side==App_Controller_Action_Admin::MENU_POST_SIDE_EXPERIENCIA?$active2:''?>"><a class="aThird" href="<?=$this->url(array('controller'=>'mi-cuenta','module'=>'admin','action'=>'mis-experiencias','rel'=>$this->rel),"default",true)?>"><span class="sThird">Experiencia</span></a></li>
+        <li class="liThird <?=$this->menu_sel_side==App_Controller_Action_Admin::MENU_POST_SIDE_ESTUDIOS?$active2:''?>"><a class="aThird" href="<?=$this->url(array('controller'=>'mi-cuenta','module'=>'admin','action'=>'mis-estudios','rel'=>$this->rel),false,true)?>"><span class="sThird">Estudios</span></a></li>
+        <li class="liThird <?=$this->menu_sel_side==App_Controller_Action_Admin::MENU_POST_SIDE_OTROSESTUDIOS?$active2:''?>"><a class="aThird" href="<?=$this->url(array('controller'=>'mi-cuenta','module'=>'admin','action'=>'mis-otros-estudios','rel'=>$this->rel),false,true)?>"><span class="sThird">Otros Estudios</span></a></li>
+        <li class="liThird <?=$this->menu_sel_side==App_Controller_Action_Admin::MENU_POST_SIDE_IDIOMAS?$active2:''?>"><a class="aThird" href="<?=$this->url(array('controller'=>'mi-cuenta','module'=>'admin','action'=>'mis-idiomas','rel'=>$this->rel),false,true)?>"><span class="sThird">Idiomas</span></a></li>
+        <li class="liThird <?=$this->menu_sel_side==App_Controller_Action_Admin::MENU_POST_SIDE_PROGRAMAS?$active2:''?>"><a class="aThird" href="<?=$this->url(array('controller'=>'mi-cuenta','module'=>'admin','action'=>'mis-programas','rel'=>$this->rel),false,true)?>"><span class="sThird">Programas</span></a></li>
+        <li class="liThird <?=$this->menu_sel_side==App_Controller_Action_Admin::MENU_POST_SIDE_REFERENCIAS?$active2:''?>"><a class="aThird" href="<?=$this->url(array('controller'=>'mi-cuenta','module'=>'admin','action'=>'mis-referencias','rel'=>$this->rel),false,true)?>"><span class="sThird">Referencias</span></a></li>
+        <? $urlPP = $this->url(array('slug' => $this->slug), 'perfil_publico', true); ?>
+        <li class="liThird liLast <?=$this->menu_sel_side==App_Controller_Action_Admin::MENU_POST_SIDE_PERFILPUBLICO?$active2:''?>"><a target="_blank" class="aThird" href="<?= $urlPP ?>"><span class="sThird">Ver perfil p&uacute;blico</span></a></li>
+    </ul>
+    <h5 class="tituloPC r5T">Datos</h5>
+    <ul class="thirdMenu bLBlue bgLBlue r5B mB20">
+        <li class="liThird <?=$this->menu_sel_side==App_Controller_Action_Admin::MENU_POST_SIDE_DATOSPERSONALES?$active2:''?>"><a class="aThird" href="<?=$this->url(array('controller'=>'mi-cuenta','module'=>'admin','action'=>'mis-datos-personales','rel'=>$this->rel),false,true)?>"><span class="sThird">Datos personales</span></a></li>
+        <li class="liThird <?=$this->menu_sel_side==App_Controller_Action_Admin::MENU_POST_SIDE_PERFILDESTACADO?$active2:''?>"><a class="aThird" href="<?=$this->url(array('controller'=>'mi-cuenta','module'=>'admin','action'=>'perfil-destacado','rel'=>$this->rel),false,true)?>"><span class="sThird">Mi Perfil Destacado</span></a></li>
+        <li class="liThird <?=$this->menu_sel_side==App_Controller_Action_Admin::MENU_POST_SIDE_CAMBIOCLAVEPOSTULANTE?$active2:''?>"><a class="aThird" href="<?=$this->url(array('controller'=>'mi-cuenta','module'=>'admin','action'=>'cambio-de-clave','rel'=>$this->rel),false,true)?>"><span class="sThird">Cambio de clave</span></a></li>
+        <li class="liThird redSocialCP <?=$this->menu_sel_side==App_Controller_Action_Admin::MENU_POST_SIDE_REDES_SOCIALES?$active2:''?>"><a class="aThird" href="<?=$this->url(array('controller'=>'mi-cuenta','module'=>'admin','action'=>'redes-sociales','rel'=>$this->rel),false,true)?>"><span class="sThird">Redes sociales</span></a></li>
+        <li class="liThird <?=$this->menu_sel_side==App_Controller_Action_Admin::MENU_POST_SIDE_PRIVACIDAD?$active2:''?>"><a class="aThird" href="<?=$this->url(array('controller'=>'mi-cuenta','module'=>'admin','action'=>'privacidad','rel'=>$this->rel),false,true)?>"><span class="sThird">Mi Privacidad</span></a></li>
+        <li class="liThird liLast <?=$this->menu_sel_side==App_Controller_Action_Admin::MENU_POST_SIDE_ALERTAS?$active2:''?>"><a class="aThird" href="<?=$this->url(array('controller'=>'mi-cuenta','module'=>'admin','action'=>'mis-alertas','rel'=>$this->rel),false,true)?>"><span class="sThird">Mis Alertas</span></a></li>
+    </ul>                
+</div>
+

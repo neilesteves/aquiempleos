@@ -1,0 +1,45 @@
+<div class="bgAll gridS20">
+  <div class="gridForm">
+    <div class="legend history">
+    <a href="/admin/gestion/callcenter/" class="f14 right" id="backToProcess">« Volver</a>
+    </div>
+    <div class="gridIFormEmp">
+      <div id="innerMain">
+        <div id="content" class="formRegister">
+
+            <div class="row">
+                <p class="right bold">Los campos con <span class="req">*</span> son necesarios</p>
+                <h2 class="title-big">Datos de la empresa</h2>
+            </div>
+
+            <form action="" method="post" id="frmCompanyRegistration" enctype="multipart/form-data" class="frm-horizontal large">
+                <div class="wrap-controls">
+                    <?= $this->partial('registro-empresa/_usuario_paso1.phtml','empresa',array('formUsuario'=>$this->frmUsuario,'emailMicuenta'=>$this->emailMicuenta,'controlador'=>$this->controlador,'modulo'=>$this->modulo,'controlador'=>$this->controlador)); ?>
+
+                    <?= $this->partial('registro-empresa/_empresa_paso1.phtml','empresa',array('formEmpresa'=>$this->frmEmpresa,'imgPhoto' =>$this->imgPhoto,'idEmpresa'=>$this->idEmpresa, 'numPalabraRazonComercial' => $this->numPalabraRazonComercial, 'numPalabraRazonSocial' => $this->numPalabraRazonSocial, 'config' => $this->config)); ?>
+            		</div>
+
+            		<h2>Ubicación</h2>
+            		<div class="wrap-controls">
+            			<?= $this->partial('registro-empresa/_ubigeoEmpresa_paso1.phtml','empresa',array('formEmpresa'=>$this->frmEmpresa)); ?>
+            		</div>
+
+            		<h2>Administrador</h2>
+            		<div class="wrap-controls">
+                	<?= $this->partial('registro-empresa/_administrador_paso1.phtml','empresa',array('formAdministrador'=>$this->frmAdministrador,'idEmpresa'=>$this->idEmpresa)); ?>
+            		</div>
+
+                <div class="row">
+                    <div class="grids-7 parsley_message_bottom">
+                        <label class="ioption m0"><input id="chkPolitics" type="checkbox" value="politics" name="politics" checked="checked" required>Entiendo y Acepto las <a target="_blank" href="http://centraldeayuda.EMPLEOBUSCO.com/entries/20930706-Pol%C3%ADtica-de-Privacidad">Políticas de Privacidad de EMPLEOBUSCO.pe</a></label>
+                    </div>
+                    <div class="grids-2 txt_right">
+                        <button type="submit" id="btnCompanyRegister" class="btn btn-primary input-xsmall">Grabar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

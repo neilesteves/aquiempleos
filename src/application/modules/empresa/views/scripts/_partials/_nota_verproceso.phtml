@@ -1,0 +1,45 @@
+<div class="contenNotaEPA all">
+    <h3 class="titleAPLR">Proceso: <span class="titleWorkEPA"><?= $this->nombreAnuncio ?></span></h3>
+    <div class="iContenNotaEPA">
+        <div id="cargando" class="hide"></div>
+        <form target="frmdescargax" method="post" enctype="multipart/form-data" name="frmRegistrarNota" id="frmRegistrarNota" class="formDataNotaEPA">
+            <input type="hidden" name="id" value="<?= $this->id ?>" />
+            <input type="hidden" name="idanuncio" value="<?= $this->idAnuncio ?>" />
+            <div class="all cntNotaDataEPA" >
+                <div class="left textAdjNotaEPA">Postulante: <span class="bold"><?= $this->nombrePostulante ?></span></div>
+                <div class="right cntActionsELP">
+                    <div id="adjAttachE" class="actionsELP">
+                        <label id="adjuntarnota" for="txtUploadFile" class="linkApt active attachEPL sptIcoEmp right">Adjuntar</label>
+                        <?= $this->form->path->setAttribs(array('id' => 'txtUploadFile', 'class' => 'iptAttachEPL opacity'))->renderFile() ?>					
+                    </div>	 				
+                </div>
+            </div>
+            <div class="msgYellow r5 mB10 rel hide">
+                <div id="nombreUploadFile" class="msgInAdjEPL">
+                    <span></span>
+                    <a id="removeFileUpload" class="icoCloseMsjAdj sptIcoEmp" href="#">
+                        <span class="hide">Cerrar</span>
+                    </a> 
+                </div>
+            </div>
+            <table class="dataGrid tableDataNotaEPA">
+                <tr>
+                    <th class="data1 titleGrid"><div class="escWord">Fecha</div></th>
+                <th class="data2 titleGrid"><div class="escWord">Nota</div></th>
+                </tr>
+                <tr>
+                    <td class="data1"><div class="escWord c3"><?= $this->fecha ?></div></td>
+                    <td class="data2"><div class="escWord">
+                            <?= $this->form->text->setAttribs(array('class' => 'areaNotaEPA'))->renderViewHelper(); ?>
+                        </div></td>
+                </tr> 			
+            </table>
+            <div id="msgErrorNotas" class="error hide">*Debes Seleccionar un Archivo adjunto o Escribir una Nota.</div>
+            <br>
+            <div class="wrap-btn center">
+                <a id="cerrarAgregarNotas" class="btn btn-default cancelHEPA" href="#">Cancelar</a>
+                <input id="btnGrabarNota" class="btn btn-primary submitHEPA" href="#" value="Agregar nota" type="button"/>
+            </div>
+        </form>
+    </div>	
+</div>

@@ -1,0 +1,201 @@
+
+<?=$this->partial('_partials/_navigation.phtml', array('menu_sel' => $this->menu_sel, 'isAuth' => $this->isAuth))?>
+<?=$this->partial('mi-cuenta/_sec-menu.phtml',array('menu_post_sel' => $this->menu_post_sel, "tieneBuscador" => $this->tieneBuscador,'tieneBolsaCVs' => $this->tieneBolsaCVs,'Look_Feel' => $this->Look_Feel))?>
+<div class="center_box"><?=$this->partial('_partials/_messages.phtml',array("flashMessages"=>$this->flashMessages))?></div>
+<div id="boxCropper" class="hide boxMainCropper">
+  <div class="menu">
+    <h3>Recortar la imagen</h3>
+    <p>Localice el cuadro en la sección de la imagen que desee mostrar en el aviso web.</p>
+    <div class="image_cropper_wrapper"><img src="#" alt="image cropper" class="image_cropper"/></div>
+    <button type="button" class="btn btn_type_icon apply_crop"><span class="btn_label"><i class="icon icon_pencil"></i><span>Recortar</span></span><span class="btn_spinner"></span></button>
+  </div>
+</div>
+<form id="frmLookAndfeel" method="POST" enctype="multipart/form-data" class="type1">
+  <div class="bg_title">
+    <div class="center_box">
+      <h2>Apariencia de Anuncio</h2>
+    </div>
+  </div>
+  <div class="look_and_feel_area">
+    <div class="center_box">
+      <div class="preview_notice">
+        <div class="preview_header">
+          <div class="preview_bar"></div>
+          <div class="preview_image main_image">
+            <div class="not_supported_lte_ie9">La vista previa esta deshabilitada para Internet Explorer</div><img src="<?=$this->img_banner;?>" alt=" " data-width="398" data-height="72.2" data-flag="main" class="preview_main_image preview_images"/>
+          </div>
+          <div class="preview_header_box">
+            <div class="preview_logo"></div>
+            <div class="preview_slogan"></div>
+          </div>
+          <div style="background-color:<?=$this->form->txtPrimaryColor->getValue()?>" class="preview_header_bar primary_color"></div>
+        </div>
+        <div class="preview_body row">
+          <div class="preview_left_panel">
+            <div class="preview_title">
+              <div style="background-color:<?=$this->form->txtPrimaryColor->getValue()?>" class="preview_bar primary_color"></div>
+              <div style="background-color:<?=$this->form->txtPrimaryColor->getValue()?>" class="preview_bar primary_color"></div>
+              <div style="background-color:<?=$this->form->txtPrimaryColor->getValue()?>" class="preview_bar primary_color"></div>
+              <div style="background-color:<?=$this->form->txtPrimaryColor->getValue()?>" class="preview_star primary_color"></div>
+            </div>
+            <div class="preview_bar title"></div>
+            <div class="preview_bar"></div>
+            <div class="preview_bar"></div>
+            <div class="preview_bar"></div>
+            <div class="preview_bar"></div>
+            <div class="preview_bar title"></div>
+            <div class="preview_bar"></div>
+            <div class="preview_bar"></div>
+            <div class="preview_bar"></div>
+            <div class="preview_bar"></div>
+            <div class="preview_bar button">
+              <div style="background-color:<?=$this->form->txtSecondaryColor->getValue()?>" class="preview_button secondary_color"></div>
+            </div>
+            <div class="preview_bar inline"></div>
+            <div style="background-color:<?=$this->form->txtPrimaryColor->getValue()?>" class="preview_box primary_color"></div>
+            <div style="background-color:<?=$this->form->txtPrimaryColor->getValue()?>" class="preview_box primary_color"></div>
+            <div style="background-color:<?=$this->form->txtPrimaryColor->getValue()?>" class="preview_box primary_color"></div>
+            <div style="background-color:<?=$this->form->txtPrimaryColor->getValue()?>" class="preview_box primary_color"></div>
+            <div style="background-color:<?=$this->form->txtPrimaryColor->getValue()?>" class="preview_box primary_color"></div>
+            <div class="preview_map"></div>
+          </div>
+          <div class="preview_right_panel">
+            <div class="preview_bar title"></div>
+            <div class="preview_video"><img src="<?=$this->S('/main/img/look_and_feel/preview_video.jpg');?>" alt="preview video"/></div>
+            <div class="preview_bar white"></div>
+            <div class="preview_bar white"></div>
+            <div class="preview_bar white"></div>
+            <div class="preview_bar white"></div>
+            <div class="preview_image optional_image">
+              <div class="not_supported_lte_ie9">La vista previa esta deshabilitada para Internet Explorer</div><img src="<?=$this->img_optional;?>" alt=" " data-width="84" data-height="55" data-flag="optional" class="preview_optional_image preview_images"/>
+            </div>
+            <div class="preview_item">
+              <div class="preview_box"></div>
+              <div class="preview_bar">
+                <div class="preview_bar"></div>
+                <div class="preview_bar"></div>
+                <div class="preview_bar"></div>
+              </div>
+            </div>
+            <div class="preview_item">
+              <div class="preview_box"></div>
+              <div class="preview_bar">
+                <div class="preview_bar"></div>
+                <div class="preview_bar"></div>
+                <div class="preview_bar"></div>
+              </div>
+            </div>
+            <div class="preview_bar button">
+              <div style="background-color:<?=$this->form->txtPrimaryColor->getValue()?>" class="preview_button primary_color"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="item_box_group">
+        <fieldset>
+          <label for="txtPrimaryColor">Color Principal:</label><?=$this->form->txtPrimaryColor->renderViewHelper(); ?>
+        </fieldset>
+        <fieldset>
+          <label for="txtSecondaryColor">Color Secundario:</label><?=$this->form->txtSecondaryColor->renderViewHelper(); ?>
+        </fieldset>
+      </div>
+      <div class="item_box_group last">
+        <fieldset>
+          <label>Imagen principal*:</label>
+          <div id="btnChangeMainImage" type="button" class="btn btn_type_icon custom_input_file"><?=$this->Util()->LimpiarEtiquetas($this->form->main_banner->render()) ?><span class="btn_label"><i class="icon icon_pencil"></i><span>Cambiar</span></span></div>
+          <button type="button" data-key="main" data-image-src="<?=$this->img_banner;?>" class="btn btn_type_icon delete_image"><span class="btn_label"><i class="icon icon_cross"></i><span>Eliminar</span></span></button>
+        </fieldset>
+        <fieldset>
+          <div class="image_preview main_image">
+            <div class="not_supported_lte_ie9">La vista previa esta deshabilitada para Internet Explorer</div><img src="<?=$this->img_banner;?>" data-image-original="<?=$this->img_banner_original;?>" alt="Cargue una imagen que desee para la parte superior de sus avisos webs." data-width="436" data-height="79.1001" data-flag="main" data-default="<?=$this->S('/main/img/look_and_feel/principal_banner.png');?>" class="preview_main_image preview_images"/>
+            <input type="hidden" name="main_image_coords" data-flag="main" class="input_coords"/>
+          </div>
+          <div data-flag="main" class="error_file">
+            <p>Recuerde que, </p>
+            <ul>
+              <li class="error_width">Puede subir una imagen <b>ancho</b> entre 1378px y 1500px.</li>
+              <li class="error_height">Puede subir una imagen <b>alto</b> entre 250px y 350px.</li>
+              <li class="error_weight">
+                 
+                La imagen debe tener un <b>peso </b>menor a 700kb
+              </li>
+            </ul>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+    <div class="bg_title">
+      <div class="center_box">
+        <h2>Institucional</h2>
+      </div>
+    </div>
+    <div class="center_box">
+      <div id="slogan" class="item_box_group">
+        <fieldset>
+          <label for="txtSlogan">Eslogan de marca:</label><?=$this->form->txtSlogan->renderViewHelper(); ?>
+          <p class="max_nummber text_information txt_right">24 caracteres</p>
+        </fieldset>
+      </div>
+      <div class="item_box_group">
+        <fieldset>
+          <label for="txtTitleColumn">Título de la columna:</label><?=$this->form->txtTitleColumn->renderViewHelper(); ?>
+        </fieldset>
+        <fieldset>
+          <label for="txtVideo">Video institucional:</label><?=$this->form->txtVideo->renderViewHelper(); ?>
+        </fieldset>
+      </div>
+      <div id="shortParagraph" class="item_box_group">
+        <fieldset>
+          <p>Escribe un texto corto sobre tu empresa para que los candidatos te conozcan mejor, puedes crear párrafos y usar una imagen en formato jpg o png:</p><?=$this->form->txaDescription->renderViewHelper(); ?>
+          <p class="max_nummber text_information txt_right">1400 caracteres</p>
+        </fieldset>
+        <fieldset>
+          <div class="image_institutional_box row">
+            <h4>Imagen opcional **</h4>
+            <div>
+              <div class="image_preview optional_image">
+                <div class="not_supported_lte_ie9">La vista previa esta deshabilitada para Internet Explorer</div><img src="<?=$this->img_optional;?>" data-image-original="<?=$this->img_optional_original;?>" alt="Cargue una imagen que desee para la columna de información extra de sus avisos webs." data-width="236" data-height="157.33" data-flag="optional" data-default="<?=$this->S('/main/img/look_and_feel/optional_banner.png');?>" class="preview_optional_image preview_images"/>
+                <input type="hidden" name="optional_image_coords" data-flag="optional" class="input_coords"/>
+              </div>
+            </div>
+            <div class="buttons_box">
+              <div id="btnChangeOptionalImage" type="button" class="btn btn_type_icon custom_input_file"><?=$this->form->img_cover->removeDecorator('Label')->render()?><span class="btn_label"><i class="icon icon_pencil"></i><span>Cambiar</span></span></div><br/>
+              <button type="button" data-key="optional" data-image-src="<?=$this->img_optional;?>" class="btn btn_type_icon delete_image"><span class="btn_label"><i class="icon icon_cross"></i><span>Eliminar</span></span></button>
+            </div>
+          </div>
+          <div data-flag="optional" class="error_file">
+            <p>Recuerde que, </p>
+            <ul>
+              <li class="error_width">Puede subir una imagen <b>ancho</b> entre 300px y 800px.</li>
+              <li class="error_height">Puede subir una imagen <b>alto</b> entre 200px y 350px.</li>
+              <li class="error_weight">La imagen debe tener un <b>peso </b>menor a 250kb</li>
+            </ul>
+          </div>
+        </fieldset>
+      </div>
+      <div class="item_box_group">
+        <fieldset>
+          <label>Mostrar mapa</label>
+          <div class="onoffswitch"><?=$this->form->chkShowMap->renderViewHelper(); ?>
+            <label for="chkShowMapSwitch" class="onoffswitch_label"><span class="onoffswitch_inner"></span><span class="onoffswitch_switch"></span></label>
+          </div>
+        </fieldset>
+        <fieldset><?=str_replace('for="chkAddress-1"', 'class="check_box"',str_replace('for="chkAddress-2"', 'class="check_box"',$this->form->chkAddressOption->renderViewHelper())) ?></fieldset>
+        <fieldset class="map_fieldset"><?=$this->form->txtAddress->renderViewHelper(); ?><br/><br/>
+          <div id="map" data-lat="<?=$this->latitud?>" data-lng="<?=$this->longitud?>" class="map_box"></div>
+          <input type="hidden" id="hiddenPickLat" name="hiddenPickLat" value="<?=$this->latitud?>"/>
+          <input type="hidden" id="hiddenPickLng" name="hiddenPickLng" value="<?=$this->longitud?>"/>
+          <input type="hidden" id="hiddenAddress" name="hiddenAddress" value="<?=$this->ubicacion?>"/>
+          <div>
+            <input type="text" id="searchBox" style="display: none" class="search_box"/>
+          </div><?=$this->form->txtID->renderViewHelper(); ?>
+        </fieldset>
+        <fieldset><?php if($this->config): ?>
+          <button id="btnSaveDraft" type="submit" name="btnSubmit" value="borrador" class="btn btn_type_icon">            <span class="btn_label"><i class="icon icon_document"></i><span>Guardar borrador</span></span><span class="btn_spinner"></span></button><?php endif;?>
+          <button id="btnSave" type="submit" name="btnSubmit" value="publicar" class="btn btn_type_icon"><span class="btn_label"><i class="icon icon_folder"></i><span>Publicar</span></span><span class="btn_spinner"></span></button>
+          <button id="btnCancel" type="button" class="btn btn_type_icon"><span class="btn_label"><i class="icon icon_cross"></i><span>Cancelar</span></span><span class="btn_spinner"></span></button>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+</form>

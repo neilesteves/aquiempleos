@@ -1,0 +1,16 @@
+<?php //= $this->doctype()   ?>
+<!DOCTYPE html>
+<head>
+    <?= $this->headMeta() ?>
+    <?= $this->headTitle() ?>
+    <?= $this->headLink() ?>
+    <?= $this->headScript() ?>
+</head>
+<body<?= $this->attribs($this->layout()->bodyAttr) ?> >
+    <div id="wrap"> 
+        <div id="mainProfile" class="grid18 all">
+            <?= $this->layout()->content ?>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,107 @@
+/* 
+layout pag. informativas 
+*/
+#introduccion { width:524px }
+#tipodeaptitus {
+	background-image:url(../images/fonfo-tipo-aptitus.png);
+	margin-top:20px;
+	margin-bottom:20px;
+	width:330px;
+	height:395px
+}
+#a-screen-pro {
+	background-image:url(../images/screen-eco-products.png);
+	height:304px;
+}
+#a-tres-pro {
+	margin:5px 0 0px 0;
+	width:243px;
+	position:absolute;
+	top:20px;
+	left:20px;
+	z-index:2
+}
+#a-se-parte { 
+	background: url(../images/top-box-aptitus.png) left top no-repeat; 
+	padding:20px 0 0; 
+	width:590px 
+}
+#a-parte-de { background: url(../images/top-box-aptituselastic.png) left bottom no-repeat }
+#a_cont_nuevo {
+	background-image:url(../images/bgFPostNR.jpg);
+	background-repeat:no-repeat;
+	width:980px;
+	overflow: hidden
+}
+#a-parte-emp {
+	background-image: url(../images/4pasos.png);
+	background-repeat:no-repeat;
+	height:95px;
+	margin-top:15px;
+}
+#a-se-parte_empr{
+	background: url(../images/top-box-empresa.png) left top no-repeat;
+	padding:20px 0 0;
+	margin: 20px auto;
+	width:930px;
+	overflow: hidden
+}
+#a-parte-elas-em { background: url(../images/top-box-empresalastic.png) left bottom no-repeat }
+#a_cont_nuevo #productosApt{
+	width:920px;
+	margin:0 auto;
+	position:static;
+	left:auto;
+	top:auto;
+}
+#a-benefi-empresa{ background: url(../images/top-box-aptituselastic.png) left bottom no-repeat }
+#a-registrate_emp {
+	background-image:url(../images/a-buton-registrate.png);
+	background-repeat:no-repeat;
+	margin:10px 0 0 20px;
+	height: 60px
+}
+#a-sumilla-registrate { margin:0 0 30px; height: 60px }
+#a-par-ingresaaviso{
+	background: url(../images/top-box-aptituselastic.png) left bottom no-repeat;
+	background-repeat:no-repeat;
+	height: 200px;
+}
+#a-screen-pro2 {
+	background-image:url(../images/screen-eco-products2.jpg);
+	height:304px;
+	position:relative
+}
+#a-registrate, #aRegistrateBtn {
+	background-position:0 -491px;
+	margin:50px 0 20px 20px;
+	margin:0 0 20px 20px;
+	width:98px
+}
+#a-registrate { background-position:0 -491px }
+#aRegistrateBtn { background-position:-262px -491px } 
+#titleInfAv{ padding:10px 0 0 }
+#titleInfAvP{ padding:25px 0 0 }
+#aCntSumilla{ margin-top:5px; overflow: hidden }
+#whatUseApt #a-se-parte{ background-image:url(../images/top-box-aptitus3.png) }
+#whatUseApt #a-parte-de{ background-image:url(../images/top-box-aptituselastic3.png) }
+#whatUseApt .a-screen-cuenta{ background-image:url(../images/screen-micuenta-ap2.png) }
+#empWhatApt1 #a-screen-pro2{ background-image: url(../images/screen-eco-products.png) }
+/* captcha */
+#challenge-element{ float: left; width:325px; overflow: hidden }
+#recaptcha_logo, #recaptcha_tagline{ display:none }
+#recaptcha_response_field{ 
+    border:1px solid #CFCFD0 !important; 
+    padding: 6px 5px; 
+    width:270px !important;
+    font-size:12px !important
+}
+#recaptcha_table { border:0 none !important }
+.recaptchatable, #recaptcha_area tr, 
+#recaptcha_area td, #recaptcha_area th{ padding:0 !important }
+#recaptcha_table .recaptcha_image_cell{ padding-right: 10px !important }
+.recaptchatable #recaptcha_image{ border:1px solid #3C3C3C !important }
+#recaptcha_table .recaptcha_image_cell{ width:280px !important }
+#recaptcha_table #recaptcha_image,
+#recaptcha_image img{ width:280px!important }
+#recaptcha_table .response{ margin-top:5px; color:#c33 }

@@ -1,0 +1,21 @@
+<form id="frmPostulantRegistration" method="post" action="" enctype="multipart/form-data" class="frm-horizontal medium">
+    <div class="wrap-controls">
+        <?=
+        $this->partial('registro/_usuario_paso1.phtml', 'postulante', array('emailMicuenta' => $this->emailMicuenta, 'modulo' => $this->modulo,
+            'controlador' => $this->controlador, 'rol' => $this->rol, 'formUsuario' => $this->formUsuario,
+            'idPostulante' => $this->idPostulante));
+        ?>
+    </div>
+    <?=
+    $this->partial('registro/_postulante_paso1.phtml', 'postulante', array('formPostulante' => $this->formPostulante,
+        'mes' => $this->mes,
+        'imgPhoto' => $this->imgPhoto,
+        'config' => $this->config,
+        'idPostulante' => $this->idPostulante,'sexo'=>$this->sexo,
+        'modulo' => $this->modulo)
+    );
+    ?>
+    <div class="txt_right">
+        <button type="submit" class="btn btn-primary" id="fSubmit">Guardar Cambios</button>
+    </div>
+</form>

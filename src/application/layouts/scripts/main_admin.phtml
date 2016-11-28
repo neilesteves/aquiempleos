@@ -1,0 +1,59 @@
+<?= $this->doctype() ?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <?= $this->headMeta() ?>
+        <?= $this->headTitle() ?>
+        <?= $this->headLink() ?>
+        <script type="text/javascript" src="<?php echo $this->S('/js/jquery.js'); ?>"></script>
+        <script type="text/javascript" src="<?php echo $this->S('/js/main.js'); ?>"></script>
+        <?= $this->headScript() ?>
+        <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+        <?= $this->GoogleAnalytics(); ?>
+        <link href="<?= $this->S('/css/administrador/jquery.jscrollpane.css'); ?>" media="all" rel="stylesheet" type="text/css">
+
+    </head>
+    <body<?php echo  $this->attribs($this->layout()->bodyAttr) ?>>
+        <?php // $this->DaxTag(MODULE,CONTROLLER, ACTION, $this->layout()->params);        ?>
+            <?php //= $this->render('_band-top.phtml') ?>
+        <div id="wrap">
+            <?php echo 
+            $this->partial('_header_admin.phtml',
+                array('auth' => $this->layout()->auth,
+                'modulo' => $this->layout()->modulo))
+            ?>
+            <div id="main" class="all">
+                <div class="innerAll">
+            <?php echo $this->layout()->content ?>
+
+                </div>
+            </div>
+        <?php //=$this->render('_footer.phtml') ?>
+        </div>
+<?php echo  $this->partial('_boxes_admin.phtml',
+    array('recuperarClaveForm' => $this->layout()->recuperarClaveForm));
+?>
+        <script type="text/javascript" src="<?php echo $this->S('/js/src/libs/utils/utils.js'); ?>"></script>
+        <script type="text/javascript" src="<?php echo $this->S('/js/src/libs/yoson.js'); ?>"></script>
+        <script type="text/javascript" src="<?php echo $this->S('/js/src/libs/yoson/schemas/modules.js'); ?>"></script>
+        <script type="text/javascript" src="<?php echo $this->S('/js/src/libs/yoson/template/template.js'); ?>"></script>
+        <script type="text/javascript" src="<?php echo $this->S('/js/src/modules/all.js'); ?>"></script>
+        <script type="text/javascript" src="<?php echo $this->S('/js/src/modules/postulante.js'); ?>"></script>
+        <script type="text/javascript" src="<?php echo $this->S('/js/src/modules/'.MODULE.'.js'); ?>"></script>
+        <script type="text/javascript" src="<?php echo $this->S('/js/src/modules/empresa.js'); ?>"></script>
+        <script type="text/javascript" src="<?php echo $this->S('/js/src/libs/yoson/appLoad.js'); ?>"></script>
+
+
+        <script src="<?= $this->S('/js/src/libs/jquery/jqFancybox.js'); ?>"></script>
+        <script src="<?= $this->S('/js/datepicker/ui/ui.core.js'); ?>"></script>
+        <script src="<?= $this->S('/js/datepicker/ui/ui.datepicker.js'); ?>"></script>
+        <script src="<?= $this->S('/js/datepicker/ui/i18n/ui.datepicker-es.js'); ?>"></script>
+        <script type="text/javascript" src="<?= $this->S('/eb/js/bootstrap.min.js'); ?>"></script>
+        <script type="text/javascript" src="<?= $this->S('/js/administrador/jquery.jscrollpane.min.js'); ?>"></script>        
+        <script type="text/javascript">
+            $('.datepicker').datepicker({
+         format: 'mm-dd-yyyy',
+             startDate: '-3d'
+         });
+        </script>
+    </body>
+</html>

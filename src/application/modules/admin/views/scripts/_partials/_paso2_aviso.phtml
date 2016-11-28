@@ -1,0 +1,291 @@
+<div class="skill-content">
+<h2 class="blue-title"><span class="icon-tiny white down"></span>Datos del puesto</h2>
+<div class="frm-horizontal wrap-controls open">
+	<?php echo $this->partial(
+        'publica-aviso/_datos_paso2.phtml', 
+        'empresa',
+        array('form' => $this->form,
+            'isDato' => $this->isDato,
+            'modulo' => $this->modulo,
+            'numPalabraPuesto' => $this->numPalabraPuesto,
+            'numPalabraOtroNombre' =>$this->numPalabraOtroNombre,
+            'modulo' =>$this->modulo,
+            'nombreComercial' => $this->nombreComercial
+        )
+    ); ?>
+	<h2 class="text-mediumx">Ubicación del Puesto</h2>
+	<!--fieldset class="blockField r2"-->
+	<?= $this->partial('registro-empresa/_ubigeoEmpresa_paso1.phtml','empresa',array('formEmpresa'=>$this->frmUbigeo)); ?>
+</div>
+    
+<?php $totalEstudio = count($this->formEstudio);
+$data= $this->formEstudio;//$this->managerEstudio->getCleanPost()?$this->managerEstudio->getCleanPost():array();
+foreach ($data as $d) {
+    $d = $d->getValues();
+    if ( ($d['id_nivel_estudio'] == 0 && $d['id_tipo_carrera'] == 0 && $d['id_carrera'] == 0) ||
+         ($d['id_nivel_estudio'] == null && $d['id_tipo_carrera'] == null && $d['id_carrera'] == null)
+        ) {
+        $totalEstudio--;
+    }
+}
+    $totalEstudioC = 0;
+$data= $this->formEstudio;
+foreach ($data as $d) {
+    $d = $d->getValues();
+  	    if (in_array($d['id_nivel_estudio'],array(1,2,3)))
+        {
+            $totalEstudioC++;
+        }
+    elseif ($d['id_nivel_estudio'] != 0 && $d['id_nivel_estudio_tipo'] != 0 && $d['id_tipo_carrera'] != 0 && $d['id_carrera'] != 0)
+        {
+            if($d['id_carrera']!=15||!empty($d['otra_carrera']))
+                $totalEstudioC++;
+        }
+}
+?>
+</div>
+<h2 class="blue-title">Estudios<span class="icon-tiny white down"></span>
+	<span class="number"><?=(isset($this->isEstudio)&& $totalEstudioC != '0')?'('.$totalEstudioC.')' :''?></span>
+</h2>
+<div id="studyF" class="frm-horizontal wrap-controls <?=(!isset($this->isEstudio) || $this->isEstudio === true)?'close':'open'?>" data-delete="/admin/aviso/borrar-estudio">
+	<input type="hidden" name="managerEstudio" class="delete_reference">
+	<ul class="wrap-skills">			
+		<?php $contador=0;foreach($this->formEstudio as $indEst => $formEstudio) : ?>
+		<?php echo $this->partial('publica-aviso/_estudio_paso2.phtml', 'empresa'
+		    , array('form' => $formEstudio
+		    , 'manager' => $this->managerEstudio
+		    , 'indice' => $indEst
+		    , 'index' => $contador
+		    , 'totalEstudio' => $totalEstudio
+		    , 'isEditar' => $this->isEditarEstudio
+		    , 'isEstudio' => (Count($this->formEstudio) - 1) == $contador ? false : $this->isEstudio
+                        ,'falla'=>$this->falla
+		    , 'online' => $this->online)); $contador++;?>
+		<?php endforeach; ?>		
+	</ul>
+	<?php if (!isset($this->online) || !is_null($this->managerEstudio->getErrorMessage())) : ?>
+		<div class="wrap-btn right">
+			<span class="message bad hide"><?=$this->managerEstudio->getErrorMessage()?></span>
+			<button id="btnStudy" type="button" class="btn btn-default" data-default="Añadir estudio">Añadir <?php echo (isset($more) ? $more: '');?> estudio</button>
+		</div>
+	<?php endif; ?>
+</div>
+
+
+<?php $totalExperiencia = count($this->formExperiencia);
+$data=$this->formExperiencia;//$this->managerExperiencia->getCleanPost()?$this->managerExperiencia->getCleanPost():array();
+foreach ($data as $d) {
+    $d = $d->getValues();
+    if (($d['id_nivel_puesto'] == -1 && $d['id_area'] == -1 && $d['experiencia'] == 0) ||
+        ($d['id_nivel_puesto'] == null && $d['id_area'] == null && $d['experiencia'] == null)
+        ) {
+        $totalExperiencia--;
+    }
+}
+    $totalExperienciaC = 0;
+$data=$this->formExperiencia;
+foreach ($data as $d) {
+    $d = $d->getValues();
+    if ($d['id_nivel_puesto'] != 0 && $d['id_area'] != 0 && $d['experiencia'] >= 0)
+        $totalExperienciaC++;
+    }
+?>
+<h2 class="blue-title">Experiencia<span class="icon-tiny white down"></span>
+	<span class="number"><?=(isset($this->isExperiencia)&& $totalExperienciaC != '0')?'('.$totalExperienciaC.')' :''?></span>
+</h2>
+<div id="experienceF" class="frm-horizontal wrap-controls <?=(!isset($this->isExperiencia) || $this->isExperiencia === true)?'close':'open'?>" data-delete="/admin/aviso/borrar-experiencia">
+	<input type="hidden" name="managerExperiencia" class="delete_reference">
+	<ul class="wrap-skills">
+		<?php $contador=0;foreach($this->formExperiencia as $indExp => $formExperiencia) : ?>
+		<?php echo $this->partial('publica-aviso/_experiencia_paso2.phtml', 'empresa'
+		    , array('form' => $formExperiencia
+		    , 'manager' => $this->managerExperiencia
+		    , 'indice' => $indExp
+		    , 'index' => $contador
+		    , 'totalExperiencia' => $totalExperiencia
+		    , 'isEditar' => $this->isEditarExperiencia
+		    , 'isExperiencia' => (Count($this->formExperiencia) - 1) == $contador ? false : $this->isExperiencia
+		    , 'online' => $this->online)); $contador++;?>
+		<?php endforeach; ?>
+	</ul>
+	<?php if (!isset($this->online) || !is_null($this->managerExperiencia->getErrorMessage())) : ?>
+		<div class="wrap-btn right">
+			<span class="message bad hide"><?=$this->managerExperiencia->getErrorMessage()?></span>
+			<button id="btnExperience" type="button" class="btn btn-default" data-default="Añadir experiencia">Añadir <?php echo (isset($more) ? $more: '');?> experiencia</button>
+		</div>
+	<?php endif; ?>
+</div>
+
+<?php $totalOtroEstudio = count($this->formOtroEstudio);
+$data= $this->formOtroEstudio;//$this->managerEstudio->getCleanPost()?$this->managerEstudio->getCleanPost():array();
+foreach ($data as $d) {
+    $d = $d->getValues();
+    if ( ($d['id_nivel_estudio_tipo'] == "0") ||
+         ($d['id_nivel_estudio_tipo'] == null) 
+        ) {
+        $totalOtroEstudio--;
+    }
+}
+    $totalOtroEstudioC = 0; 
+$data= $this->formOtroEstudio;
+foreach ($data as $d) {
+    $d = $d->getValues();
+    if (!empty($d['id_nivel_estudio_tipo'])&&!empty($d['otra_carrera']))
+       $totalOtroEstudioC++;
+}
+?>
+
+<h2 class="blue-title">Otros Estudios<span class="icon-tiny white down"></span>
+	<span class="number"><?=(isset($this->isOtroEstudio)&& $totalOtroEstudioC != '0')?'('.$totalOtroEstudioC.')' :''?></span>
+</h2>
+<div id="studyOtherF" class="frm-horizontal wrap-controls <?=(!isset($this->isOtroEstudio) || $this->isOtroEstudio === true)?'close':'open'?>" data-delete="/admin/aviso/borrar-estudio">
+	<input type="hidden" name="managerOtroEstudio" class="delete_reference">
+	<ul class="wrap-skills">			
+		<?php $contador=0;foreach($this->formOtroEstudio as $indOE => $formOtroEstudio) : ?>
+		<?php echo $this->partial('publica-aviso/_otro_estudio_paso2.phtml', 'empresa'
+		    , array('form' => $formOtroEstudio
+		    , 'manager' => $this->managerOtroEstudio
+		    , 'indice' => $indOE
+		    , 'index' => $contador
+		    , 'totalOtroEstudio' => $totalOtroEstudio
+		    , 'isEditar' => $this->isEditarOtroEstudio
+		    , 'isOtroEstudio' => (Count($this->formOtroEstudio) - 1) == $contador ? false : $this->isOtroEstudio
+                        ,'falla'=>$this->falla
+		    , 'online' => $this->online)); $contador++;?>
+		<?php endforeach; ?>		
+	</ul>
+	<?php if (!isset($this->online) || !is_null($this->managerEstudio->getErrorMessage())) : ?>
+		<div class="wrap-btn right">
+			<span class="message bad hide"><?=$this->managerEstudio->getErrorMessage()?></span>
+			<button id="btnStudy" type="button" class="btn btn-default" data-default="Añadir estudio">Añadir <?php echo (isset($more) ? $more: '');?> estudio</button>
+		</div>
+	<?php endif; ?>
+</div>
+
+<?php $totalIdioma = count($this->formIdioma); 
+$data= $this->formIdioma;//$this->managerIdioma->getCleanPost()?$this->managerIdioma->getCleanPost():array();
+foreach ($data as $d) {
+    $d = $d->getValues();
+    if ( ($d['id_idioma'] == "0" && $d['nivel_idioma'] == "0") ||
+         ($d['id_idioma'] == null && $d['nivel_idioma'] == null) 
+        ) {
+        $totalIdioma--;
+    }
+}
+    $totalIdiomaC = 0; 
+$data= $this->formIdioma;
+foreach ($data as $d) {
+    $d = $d->getValues();
+    if (!empty($d['id_idioma']) && !empty($d['nivel_idioma']))
+        $totalIdiomaC++;
+}
+?>
+<h2 class="blue-title">Idiomas<span class="icon-tiny white down"></span>
+	<span class="number"><?=(isset($this->isIdioma)&& $totalIdiomaC != '0')?'('.$totalIdiomaC.')' :''?></span>
+</h2>
+<div id="languagesF" class="frm-horizontal wrap-controls <?=(!isset($this->isIdioma) || $this->isIdioma ===true)?'close':'open'?>" data-delete="/admin/aviso/borrar-idioma">
+	<input type="hidden" name="managerIdioma" class="delete_reference">
+	<ul class="wrap-skills">
+		<?php $contador=0;foreach($this->formIdioma as $indIdi => $formIdioma) : ?>
+		<?php echo $this->partial('publica-aviso/_idioma_paso2.phtml', 'empresa'
+		    , array('form' => $formIdioma
+		    , 'manager' => $this->managerIdioma
+		    , 'indice' => $indIdi
+		    , 'index' => $contador
+		    , 'totalIdioma' => $totalIdioma
+		    , 'isEditar' => $this->isEditarIdioma
+		    , 'isIdioma' => (Count($this->formIdioma) - 1) == $contador ? false : $this->isIdioma
+		    , 'online' => $this->online)); $contador++;?>
+		<?php endforeach; ?>
+	</ul>
+	<?php if (!isset($this->online)) : ?>
+		<div class="wrap-btn right">
+			<span class="response bad hide"></span>
+			<button id="btnLanguage" type="button" class="btn btn-default" data-default="Añadir idioma">Añadir <?php echo (isset($more) ? $more: '');?> idioma</button>
+		</div>
+	<?php endif; ?>
+</div>
+
+
+<?php $totalPrograma = count($this->formPrograma);
+$data= $this->formPrograma;//$this->managerPrograma->getCleanPost()?$this->managerPrograma->getCleanPost():array();
+foreach ($data as $d) {
+    $d = $d->getValues();
+    if ( ($d['id_programa_computo'] == 0 && $d['nivel'] == 0) ||
+         ($d['id_programa_computo'] == null && $d['nivel'] == null)
+        ) {
+        $totalPrograma--;
+    }
+}
+    $totalProgramaC = 0;
+$data= $this->formPrograma;
+foreach ($data as $d) {
+    $d = $d->getValues();
+    if (!empty($d['id_programa_computo']) && !empty($d['nivel']))
+            $totalProgramaC++;
+}
+?>
+<h2 class="blue-title">Programas de computadora<span class="icon-tiny white down"></span>
+	<span class="number"><?=(isset($this->isPrograma)&& $totalProgramaC != '0')?'('.$totalProgramaC.')' :''?></span>
+</h2>
+<div id="programsF" class="frm-horizontal wrap-controls <?=(!isset($this->isPrograma) || $this->isPrograma)?'close':'open'?>" data-delete="/admin/aviso/borrar-programa">
+	<input type="hidden" name="managerPrograma" class="delete_reference">
+	<ul class="wrap-skills">
+		<?php $contador=0;foreach($this->formPrograma as $indProg => $formPrograma) : ?>
+		<?php echo $this->partial('publica-aviso/_programa_paso2.phtml', 'empresa'
+		    , array('form' => $formPrograma
+		    , 'manager' => $this->managerPrograma
+		    , 'indice' => $indProg
+		    , 'index' => $contador
+		    , 'totalPrograma' => $totalPrograma
+		    , 'isEditar' => $this->isEditarPrograma
+		    , 'isPrograma' => (Count($this->formPrograma) - 1) == $contador ? false : $this->isPrograma
+		    , 'online' => $this->online)); $contador++;?>
+		<?php endforeach; ?>
+	</ul>
+	<?php if (!isset($this->online)) : ?>
+		<div class="wrap-btn right">
+			<span class="response bad hide"></span>
+			<button id="btnPrograms" type="button" class="btn btn-default" data-default="Añadir programa">Añadir <?php echo (isset($more) ? $more: '');?> programa</button>
+		</div>
+	<?php endif; ?>
+</div>
+
+
+<?php $totalPregunta = count($this->formPregunta); ?>
+<?php
+$status = 'close'; 
+if (count($this->formPregunta) > 1) {
+    $status = 'open';
+} else {
+    $dataPreguntaValues = $this->formPregunta[0]->getValues();
+    if ($dataPreguntaValues['pregunta'] != null) {
+        $status = 'open';
+    }
+} ?>
+<button id="btnQuestions" class="btn btn-option btn_question<?=isset($this->isPregunta)?' hide':''?>" type="button"><span class="icon-question"></span>Enviar preguntas al candidato</button>
+<div id="questionWrap" class="<?=isset($this->isPregunta)?'':'hide'?>">							
+	<h2 class="blue-title">Enviar preguntas al candidato<span class="icon-tiny white down"></span></h2>
+	<div id="preguntasF" class="frm-horizontal wrap-controls open<?//=$status ?>" data-delete="/admin/aviso/borrar-pregunta">
+		<ul class="wrap-skills">
+			<?php $contador=0;foreach($this->formPregunta as $indPreg => $formPregunta) : ?>
+			<?php echo $this->partial('publica-aviso/_pregunta_paso2.phtml', 'empresa'
+			    , array('form' => $formPregunta
+			    , 'manager' => $this->managerPregunta
+			    , 'indice' => $indPreg
+        		    , 'index' => $contador
+			    , 'totalPregunta' => $totalPregunta
+			    , 'isEditar' => $this->isEditarPregunta
+			    , 'isPregunta' => (Count($this->formPregunta) - 1) == $contador ? false : $this->isPregunta
+			    , 'online' => $this->online)); $contador++;?>
+			<?php endforeach; ?>
+		</ul>
+		<?php if (!isset($this->online)) : ?>
+			<div class="wrap-btn right">
+				<span class="response bad hide"></span>
+				<button id="btnQuestion" type="button" class="btn btn-default" data-default="Añadir pregunta">Añadir <?=$contador?> pregunta</button>
+			</div>
+		<?php endif; ?>
+	</div>
+</div>
+

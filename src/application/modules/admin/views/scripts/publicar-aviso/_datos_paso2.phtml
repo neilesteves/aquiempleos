@@ -1,0 +1,93 @@
+	<?$isError = $this->form->isErrors(); ?>
+	<div id="f0_fDatosPuestoEM" class="fSkill" >
+		<div class="block" rel="sectionDat">
+			<label class="labelN" for="id_puesto"><span class="req"
+				title="Requerido">*</span> Tipo del puesto:</label>
+				<?$hasError = $this->form->id_puesto->hasErrors(); ?>
+				<?php if (!$hasError && $this->isExperiencia) { ?>
+				<?=$this->form->id_puesto->setAttribs(array('class'=>'fNom selectN left selectReq ready'))->renderViewHelper(); ?>
+				<?php } else { ?>
+				<?=$this->form->id_puesto->setAttribs(array('class'=>'fNom selectN left selectReq'))->renderViewHelper(); ?>
+				<?php } ?>
+				<span class="response def cGray left<?=$hasError?' bad':''?>"><?=$hasError?$this->form->id_puesto->errMsg:''?></span>
+		</div>
+		<div class="block" rel="sectionDat">
+			<label class="labelN" for="nombre_puesto"><span class="req"
+				title="Requerido">*</span> Nombre del puesto:</label>
+				<?$hasError = $this->form->nombre_puesto->hasErrors(); ?>
+				<?php if (!$hasError && $this->isExperiencia) { ?>
+				<?=$this->form->nombre_puesto->setAttribs(array('class'=>'fEmp inputN left inputReq fMinChar ready'))->renderViewHelper(); ?>
+				<?php } else { ?>
+				<?=$this->form->nombre_puesto->setAttribs(array('class'=>'fEmp inputN left fMinChar inputReq'))->renderViewHelper(); ?>
+				<?php } ?>
+				<span class="response def cGray left<?=$hasError?' bad':''?>"><?=$hasError?$this->form->nombre_puesto->errMsg:''?></span>
+		</div>
+		<div class="block" rel="sectionDat">
+			<label class="labelN" for="id_nivel_puesto"><span class="req"
+				title="Requerido">*</span> Nivel del puesto:</label>
+				<?$hasError = $this->form->id_nivel_puesto->hasErrors(); ?>
+				<?php if (!$hasError && $this->isExperiencia) { ?>
+				<?=$this->form->id_nivel_puesto->setAttribs(array('class'=>'fNom selectN left selectReq ready'))->renderViewHelper(); ?>
+				<?php } else { ?>
+				<?=$this->form->id_nivel_puesto->setAttribs(array('class'=>'fNom selectN left selectReq'))->renderViewHelper(); ?>
+				<?php } ?>
+				<span class="response def cGray left<?=$hasError?' bad':''?>"><?=$hasError?$this->form->id_nivel_puesto->errMsg:''?></span>
+		</div>
+		<div class="block" rel="sectionDat">
+			<label class="labelN" for="id_area"><span class="req"
+				title="Requerido">*</span> Area:</label>
+				<?$hasError = $this->form->id_area->hasErrors(); ?>
+				<?php if (!$hasError && $this->isExperiencia) { ?>
+				<?=$this->form->id_area->setAttribs(array('class'=>'fNom selectN left selectReq ready'))->renderViewHelper(); ?>
+				<?php } else { ?>
+				<?=$this->form->id_area->setAttribs(array('class'=>'fNom selectN left selectReq'))->renderViewHelper(); ?>
+				<?php } ?>
+				<span class="response def cGray left<?=$hasError?' bad':''?>"><?=$hasError?$this->form->id_area->errMsg:''?></span>
+		</div>
+		<div class="block" rel="sectionDat">
+			<label class="labelN" for="funciones"><span class="req"
+				title="Requerido">*</span> Funciones:</label>
+				<?$hasError = $this->form->funciones->hasErrors(); ?>
+				<?=$this->form->funciones->setAttribs(array('class'=>'msgTask inputReq areaN left','rows'=>'3','cols'=>'20'))->renderViewHelper(); ?>
+			<span class="response def cGray left<?=$hasError?' bad':''?>"><?=$hasError?$this->form->funciones->errMsg:''?></span>	
+		</div>
+		<div class="block" rel="sectionDat">
+			<label class="labelN" for="responsabilidades"><span class="req"
+				title="Requerido">*</span> Responsabilidades:</label>
+				<?$hasError = $this->form->responsabilidades->hasErrors(); ?>
+				<?=$this->form->responsabilidades->setAttribs(array('class'=>'msgTask inputReq areaN left','rows'=>'3','cols'=>'20'))->renderViewHelper(); ?>
+			<span class="response def cGray left<?=$hasError?' bad':''?>"><?=$hasError?$this->form->responsabilidades->errMsg:''?></span>	
+		</div>
+		<div class="block" rel="sectionDat">
+			<label for="salario" class="labelN noReq"><span class="req"
+				title="Requerido">&nbsp;</span> Salario:</label>
+			
+				<div class="fieldMiddleB left">			
+				<?$hasError = $this->form->salario->hasErrors(); ?>
+				<?php if (!$hasError && $this->isExperiencia) { ?>
+				<?=$this->form->salario->setAttribs(array('class'=>'fNom selectN fieldSalar left ready'))->renderViewHelper(); ?>
+				<?php } else { ?>
+				<?=$this->form->salario->setAttribs(array('class'=>'fNom selectN fieldSalar left'))->renderViewHelper(); ?>
+				<?php } ?>
+				<label for="mostrar_salario" class="labelNBM mostrarAviso left"><?=$this->form->mostrar_salario->setAttribs(array('class'=>'ckeckNMB noBdr'))->renderViewHelper(); ?> Mostrar en el aviso</label>
+				</div>
+					
+		</div>
+		<div class="block" rel="sectionDat">
+			<label for="nombre-empresa" class="labelN noReq"><span class="req"
+				title="Requerido">&nbsp;</span> Nombre de la empresa en aviso:</label>
+				<div class="fieldMiddleB left">
+					<?php if ($this->form->mostrar_empresa->getValue() === true) : ?>
+					<?=$this->form->otro_nombre_empresa->setAttribs(array('class'=>'ckeckNMB hide left'))->renderViewHelper(); ?>
+					<?php else : ?>
+					<?=$this->form->otro_nombre_empresa->setAttribs(array('class'=>'ckeckNMB left'))->renderViewHelper(); ?>
+					<?php endif; ?>
+					<label for="mostrar_empresa" id="showLabelIpt" class="labelNBM left"><?=$this->form->mostrar_empresa->setAttribs(array('class'=>'ckeckNMB noBdr'))->renderViewHelper(); ?> Mostrar nombre registrado</label>
+				</div>
+		</div>
+		<div class="hide">
+		<?=$this->form->id_aviso;?>
+		<?=$this->form->id_tarifa;?>
+		<?=$this->form->csrf_hash->renderViewHelper()?>
+		</div>
+	</div>

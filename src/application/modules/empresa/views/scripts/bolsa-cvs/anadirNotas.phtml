@@ -1,0 +1,44 @@
+<div class="contenNotaEPA all">
+    <h3 class="titleAPLR">
+        Añadir Notas a Postulante
+    </h3>
+    <div class="iContenNotaEPA">
+        <div class="all cntNotaDataEPA">
+            <div class="left textAdjNotaEPA">
+                Postulante:
+                <span id="spNotaNombrePostulante" class="bold"></span>
+            </div>
+        </div>
+        <table class="dataGrid tableDataNotaEPA">
+            <tbody>
+                <tr>
+                    <th class="data1 titleGrid">
+            <div class="escWord">Fecha</div>
+            </th>
+            <th class="data2 titleGrid">
+            <div class="escWord">Nota</div>
+            </th>
+            </tr>
+            <tr>
+                <td class="data1">
+                    <div class="escWord c3"><?= date("d/m/Y") ?></div>
+                </td>
+                <td class="data2">
+                    <div class="escWord">
+                        <?=
+                        $this->form->text->setAttribs(array(
+                            'class' => 'areaNotaEPA', 'id' => 'textNotaBolsa'))->renderViewHelper();
+                        ?>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div id="msgErrorNotas" class="error hide">*Debes Escribir una Nota.</div>
+        <br>
+        <div class="wrap-btn center">
+            <a id="btnCancelarAnadirNotasBolsa" class="btn btn-default cancelHEPA" href="#">Cancelar</a>
+            <input id="btnAceptarAnadirNotasBolsa" class="btn btn-primary aceptEBCVS" href="#" value="Aceptar" type="button"/>
+        </div>
+    </div>
+</div>

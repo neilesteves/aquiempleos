@@ -1,0 +1,1123 @@
+/*
+    Class Administrador
+*/
+.none{display:none;}
+.sptEmp { background-image: url(../../images/empresa/spt.empresa.png); background-repeat: no-repeat }
+.sptIcoEmp { background-image: url(../../images/empresa/spt.icos.empresa.png); background-repeat: no-repeat }
+.gridIFormEmp { padding: 10px }
+.imgBgEmp{ 
+	background: url(../../images/empresa/bgRegEmpTop.png) 0 0 no-repeat;
+	margin:0;
+	padding:0;
+	width:960px; 
+	height:45px; 
+	overflow:hidden 
+}
+.fieldsetE{
+	border-width:0 1px 1px;
+	border-color: #E0E0E0;
+	border-style: solid;
+	margin:0 0 20px;
+	width:958px;
+	overflow: hidden
+}
+.fieldsetE .blockField{ 
+	border-width:0 0 1px; 
+	border-style: solid; 
+	border-color:#F0F0F0;
+	padding:20px 0;
+	margin: 0 20px 
+} 
+.fieldsetE .titleMAU{ display:none }
+.blockMAdm{ width:444px; overflow: hidden }
+.inputTlfAdm{ width:225px }
+.inputAnexoAdm{ width:110px }
+.blockMAdm .labelN{ width:60px; margin:0 0 0 10px }
+.titleRelEL{ 
+	margin:15px 0; 
+	border-bottom:1px solid #E5E5E5; 
+	padding:0 0 15px; 
+	font-size:22px; 
+	color:black 
+}
+.pLoginEM{ 
+	margin:0; 
+	padding:0 0 5px; 
+	line-height:1; 
+	color:#55BBFF 
+}
+.bigFontEM{ font-size:24px }
+.midFontEM{ font-size:18px; padding:0 }
+.publishEmp{ margin:0 0 10px }
+.titleTestimEM{ 
+	margin:0 0 5px; 
+	padding:0; 
+	font-size:18px; 
+	color:black 
+}
+.ubigeoTestim { color: #58595B }
+.ubigeoTestim{ margin:0 0 5px }
+.pTxttestim{ margin:0; color:#333 }
+.lastItemArtEmp {border-bottom: 0 none }
+.modListEM{ width:290px }
+.modListBEM{ width:608px }
+.modListBEM .listCat{ height:120px }
+.lastModListEM{ margin-right:0 }
+.blockServiceEM{ height:140px }
+.btnSptEmp{ 
+	display:block;
+	margin:0;
+	padding:0;
+	border:0 none; 
+	height:45px; 
+	cursor:pointer 
+}
+.imgExtraCargos{ font-size:11px; margin:0 0 0 10px }
+.hightColEM{ height:230px; overflow: hidden }
+.iDashMCEM{ height:290px }
+.txtPubishAdv{ padding:0 10px; color:#5A5A5A; font-size:12px }
+.pTxtPubishAdv{ margin:0; line-height:1.2 }
+#dataAadvice .data1 { width: 55px }
+#dataAadvice .data2 { width: 80px }
+#dataAadvice .data3 { width: 150px }
+#dataAadvice .data4{ width:190px }
+#dataAadvice .data5, 
+#dataAadvice .data6, #dataAadvice .data7{ width:120px }
+#dataAadvice .data8{ width:90px }
+.strDateAEM{ color:#5A5A5F }
+.dataLinkAEM{ color:#007FD3 }
+.aLinkTable{	 
+	display:block;
+	background: url(../../images/empresa/bgItemAdvOff.png) 0 0 no-repeat;
+	margin:0 1px 0 0;
+	padding:5px 0 0; 
+	width:177px;
+	height:25px; 
+	text-align:center; 
+	font-size:14px;	  	 
+}
+.aLinkTable, .aLinkTable:hover{ color:black; text-decoration:none; cursor:default }
+#linksTable .aLinkOn{ 
+	background: url(../../images/empresa/bgItemAdvOn.png) 0 0 no-repeat;
+	color:#007FD3;
+	text-decoration:underline;
+	cursor:pointer  
+}
+#linksTable .aLinkOn:hover{ color:#F08 }
+#dataAdmins .data1 { width: 134px }
+#dataAdmins .data2 { width: 141px }
+#dataAdmins .data3, #dataAdmins .data4 { width: 155px }
+#dataAdmins .data5{ width:118px }
+#newAdminEM .loading{ margin:0 auto; height:200px }
+.registerVM { padding: 10px 0 10px 15px; width: 236px }
+.titRelReg{ 
+	margin: 0 0 5px;
+	padding:5px 0 0;
+	font-size: 23px;
+	color: black;
+	text-align:left 
+}
+.pRegisEM{ 
+	margin:0 0 10px; 
+	padding:0 0 5px; 
+	line-height:1;
+	font-size:14px; 
+	color:#666;
+	text-align:left 
+}
+.titleGrayEM{ padding:0 0 10px; color:black; font-size:24px }
+.titleAdvClas, .titleRAdvClas{
+	margin:0;
+	padding:12px 0 0 15px;
+	height:38px;
+	width:461px; 
+	overflow: hidden;
+	color: white;
+	font-size:18px;
+	text-transform: uppercase;
+	line-height:1;
+	font-weight:bold 
+}
+.titleAdvClas{ background: url(../../images/empresa/avisoLeftTP1.png) 0 0 no-repeat }
+.titleRAdvClas{ background: url(../../images/empresa/avisoRightTP1.png) 0 0 no-repeat }
+.cntAdvClas{
+	background: url(../../images/empresa/avisoLeftBP1.jpg) 0 bottom no-repeat; 
+	width:474px;
+	height:281px;
+	overflow: hidden
+}
+#sectionsEMP4 #inSectionP4 .cntAdvPayClas{ height:auto }
+.imgBorBott{ background: url(../../images/empresa/BorBott.jpg) 0 bottom no-repeat }
+.tAdviceP1{ margin:0; padding:0; font-size:26px; line-height:1; font-weight:bold }
+.tSloganP1{ font-size:14px; line-height:1; margin:0 0 10px }
+.myriad{ font-family:"Myriad Pro", Arial, Helvetica, Tahoma, Garuda, freesans, utkal  }
+.pAdvClas{ font-weight:bold; font-size:14px; line-height:1  }
+.txtBigP1{ font-size:18px; color:#0085CC }
+.iAdvClas{ 
+	background:url(../../images/empresa/bgImgP1.jpg) right 25px no-repeat; 
+	padding: 0 170px 0 0; 
+	margin:35px 15px 0;
+	height:175px;
+	overflow: hidden
+}
+#iSectionRight .txtBigP1{ color:#F49F02 }
+.cntAsideP1{ width:444px; overflow:hidden; margin:0 15px }
+.asideFootEM{ background:url(../../images/empresa/bgFootEM.jpg) center 0 no-repeat; margin:25px 0 0; padding:15px 0 0 }
+.sectionEM{ width:980px; overflow: hidden }
+.cntTopTitP2, .topTitP2{ width:215px; overflow: hidden }
+.cntTopTitP2{ margin:0 20px 0 0 }
+.topTitP2, .cntBodyP2{ cursor:pointer }
+.topTitP2{ background-image:url(../../images/empresa/bgP2T.jpg); background-repeat:no-repeat; height:175px }
+.topTitP2S1{ background-position:0 0 }
+.topTitP2S2{ background-position:-234px 0 }
+.topTitP2S3{ background-position:-470px 0 }
+.topTitP2S4{ background-position:-705px 0 }
+.cntLastTP2{ margin-right:0 }
+.titAdvTopP2, .titAdvMidP2{ 
+	margin:0; 
+	line-height:1;
+	text-align:center;
+	overflow: hidden
+}
+.titAdvTopP2{ 
+	padding:14px 0 0;
+	height:55px; 
+	color:white; 
+	font-size:18px; 
+}
+.titAdvMidP2{
+	margin:0 0 5px;
+	padding:0;
+	height:25px;
+	font-size:16px;
+	color:black
+}
+.priceP2{ 
+	font-size:50px; 
+	font-weight:bold; 
+	line-height:1;
+	color:white;
+	text-align:center 
+}
+.priceDef{
+	text-shadow:#000 2px 2px 2px;
+	filter: progid:DXImageTransform.Microsoft.Shadow(color='#000000', Direction=-90, Strength=0);
+}
+.topbodyP2{
+	background:#F5F2F2 url(../../images/empresa/bgBP2T.jpg) 0 bottom no-repeat;
+	width:215px;
+	height:385px;
+	overflow: hidden;
+	text-align:center 
+}
+.continP2, .continNoP2{ background-position:-361px -134px; margin:10px auto 0; width:108px }
+.cntBodyP2{ padding:20px 0 0; height:290px; overflow: hidden }
+.textEM1, .textEM2, .textEM3, .textEM4, .textEM5{ line-height:1 }
+.textEM1{ padding:0 0 0 15px; font-size:18px; text-transform:uppercase; text-align:left }
+.textEM2{ padding:0 0 0 15px; margin:0 0 15px; font-size:16px; text-align:left }
+.textEM3{ padding:0 0 0 15px; height:40px; overflow:hidden; font-size:16px; text-align:left; font-weight:bold }
+.textEM4{ font-weight:bold; font-size:23px; color:#0057D3 }
+.textEM5{ font-weight:normal; font-size:16px }
+.row2EM .textEM4{ color:#0085D3 }
+.row3EM .textEM4{ color:#F27606 }
+.row4EM .textEM4{ color:#59862B }
+.textCntE{ height:55px; overflow: hidden }
+.elecSec{
+	background-image: url(../../images/empresa/bgSMM3.jpg);
+	background-repeat: no-repeat;
+	position:relative;
+	margin:0 0 10px;
+	width:531px; 
+	height:51px; 
+	overflow: hidden 
+}
+.election1Sec{ background-position:0 0 }
+.election2Sec{ background-position:0 -65px }
+.election3Sec{ background-position:0 -131px }
+.radioEMP1, .labelEMP1, .priceEMP1{ position:absolute; z-index:2 }
+.radioEMP1{ left:15px; width:15px; top:19px }
+.labelEMP1{ left:40px; width:375px; height:auto; line-height:1; top:15px; font-size:22px; font-weight:normal }
+.priceEMP1{ right:15px; width:100px; top:15px; line-height:1; font-size:24px; font-weight:bold }
+.iSectionP3{ width:980px; overflow: hidden }
+.iSectionP3 .inSectionP3{ background: url(../../images/empresa/bgP3Emp.png) 0 0 no-repeat; width:927px; font-size:14px; text-transform:none }
+.cntAdvP3Clas { background: url(../../images/empresa/bgP3BEmp.jpg) 0 bottom no-repeat; width: 942px; overflow: hidden }
+.mB25{ margin:0 0 25px } 
+.asideP3Sec{ background: url(../../images/empresa/alert.png) 0 3px no-repeat; margin:10px 0 0; padding:0 0 0 15px }
+.cntTxtP3Emp{ padding:10px 15px 15px }
+.inCntAdvP4{ padding:15px; overflow: hidden }
+.titleBlueAdv{ background-color:#D9F1FF; padding:10px; font-size:20px; color:black }
+.ulItemsP4{ margin:0 0 5px }
+.liItemsP4{ 
+	background: url(../../images/empresa/flechaEmp.png) 4px 15px no-repeat; 
+	border-bottom:1px solid #E7F1F9;
+	padding:10px 10px 10px 15px;
+	line-height:1.2;
+	color:#333 
+}
+.priceP4{ 
+	font-size:40px; 
+	font-weight:bold; 
+	color:#0097E7;
+	line-height:1
+}
+.blockGrayP4{ background-color: #F3F3F3; padding:10px }
+#sectionsEMP4 .cntAdvClas{ min-height:150px; height:590px }
+.titBlackP4{
+	padding:5px 0 0;
+	margin:0 0 5px; 
+	font-size:20px;
+	font-weight:bold 
+}
+.titBlackP4, .textRelAsid, .titGrayTarjeta{
+	color:black;
+	line-height:1 
+}
+.textRelAsid{ padding-right:5px; font-size:32px }
+.blockPriceP4{ margin:0 0 20px; padding:0 10px 0 0 }
+.labelEmpP4{ 
+	display:block; 
+	margin:0 0 5px; 
+	font-size:14px; 
+	color:#333
+}
+.fieldsEmpP4{ width:100%; margin:15px 0 20px }
+.txtpP4{ margin:0 0 5px; color:#8C8C8C }
+.lineBlockP4{ margin:15px 0 0; padding:10px 0 0; border-top:1px solid #ccc }
+.titTopLabel{ font-size:18px; font-weight:normal; line-height:1 }
+.bLeftEmpP4{ display:block; cursor:default; width:165px }
+.bLeftREmpP4{ width:275px; overflow:hidden }
+.ibLeftEmpP4{ display:block; width:100px }
+.radioEmpP4b{ margin:0 5px 0 0 }
+.optRucFac{ margin:0 0 20px; width:100%; overflow: hidden }
+.titGrayTarjeta{ 
+	height:45px; 
+	margin:0; 
+	padding:0; 
+	font-weight:bold 
+}
+.fieldsEmpP4R{ margin:5px 0 0 }
+.cntItemsP4T, .iItemsP4T{ width:200px; overflow: hidden }
+.iItemsP4T{ margin:0 0 10px }
+.inputTarjM{ margin:0 5px 0 0 }
+.imgTarjM{ margin:0 5px 0 0; width:71px }
+.imgTarjMB{ margin:0 5px 0 0; width:49px }
+.txtTarjM{ 
+	width:100px; 
+	font-size:11px; 
+	color:#6C6C6C; 
+	line-height: 1
+}
+.pLupaEmp {
+	background: url(../../images/empresa/lupaRegP2.png) 225px 0 no-repeat;
+	width: 410px;
+	height:55px;
+	margin: 30px 0 30px;
+	padding: 10px 0 0 290px;
+	font-size:14px;
+	font-style:italic
+}
+.sectionsEMP4C{
+	padding:0 0 20px; 
+	width:100%; 
+	overflow:hidden 
+}
+.iSectionPayB{ width:476px; overflow: hidden }
+#iSectionPayA .cntAdvClas{ height:auto }
+.titlePayAdv{ 
+	background: url(../../images/empresa/tittleAptEmpPay4.png) 0 0 no-repeat; 
+	padding:0;
+	margin: 0 0 5px;
+	height:22px;
+	overflow:hidden; 
+	color:black 
+}
+.titlePayBAdv{
+	padding:0;
+	margin:0 0 20px;
+	font-size:20px;
+	color:#333;
+}
+.empMiCuenM .btnH{ background-image:none }
+.cntTitlesPay{ border-bottom:1px solid #E7F1F9; margin:0 5px 5px }
+.txtTitleFlEmp, .txtPriceFlEmp, .imgBarEmpB,
+.txtCodeFlEmp{ position:absolute; z-index:2  }
+.imgBarEmpB{ top:130px; left:34px; width:375px; height:75px; overflow: hidden }
+.txtPriceFlEmp{ right:25px; top:75px; width:240px; text-align:right }
+.txtTitleFlEmp { left:25px; top:90px; width:150px }
+.txtCodeFlEmp{ text-align:center; left:0; top:212px; width:100% }
+.txtTipoAdvEmp { margin:0 0 10px; width:430px; text-align:left }
+.blockBottomP4{ margin:5px 0 0; padding:15px 15px 0; border-top:1px solid #E7F1F9 }
+.blockPay4Foot{ margin:20px 0 0; padding:10px 0 0; height:50px }
+.ulPayLinksF{ width:200px; overflow: hidden }
+.liLinePayLF{ padding-right:10px; margin-right:10px; border-right:1px solid #ccc }
+.viewLinkEmpB, .textCntRelAsid{ display:block }
+.viewLinkEmpB{ margin:15px 0 0 }
+.textCntRelAsid{ width:300px }
+.txtEndPEBig{ font-size:38px; margin:0 0 10px }
+.txtEndPEMid{ background:url(../../images/empresa/bgPEndB.jpg) center bottom no-repeat; padding:0 0 50px; font-size:16px; }
+#gridEndPayA .titleGrid{ padding:10px }
+#gridEndPayA .data1{ width:150px }
+#gridEndPayA .data2{ width:200px }
+#gridEndPayA .data3{ width:110px }
+#gridEndPayA .data4{ width:110px }
+.dataPBig{ padding: 15px 10px }
+.ulPayLinksH{ margin:10px 0 0; width:330px; overflow: hidden }
+.liLinePayLH{ padding-right:10px; margin-right:10px }
+.liPayLinksH{ height:20px }
+#winAvisoEmpleo .modalAvisoE,
+#dataFormAddNADM .modalAvisoE{ margin-left:0; border:0 none }
+.modalAvisoE .titleAEI{ border-bottom:3px solid #EDEEF0; padding:0 0 10px } 
+#winAvisoEmpleo .grid13,
+#dataFormAddNADM .grid13{ width:518px; margin-right:0; padding-top: 0 }
+.modalAvisoE .shareTop { background-color: white; width:498px }
+.modalAvisoE .sharePosts { padding-top:0; margin-bottom:10px }
+.modalAvisoE .titPosts{ background:white url(../../images/empresa/bgTitPostsB.gif) 0 0 no-repeat }
+#dataAadmins{ width:740px; margin-bottom: 10px; }
+#dataAadmins .data1{ width:180px }
+#dataAadmins .data2{ width:150px }
+#dataAadmins .data3{ width:190px }
+#dataAadmins .data4{ width:155px }
+#dataAadmins .data5{ width:80px }
+.cntFormEMC{ padding:0 10px; width:498px; overflow: hidden }
+#dataFormAddNADM .blockField{ padding:0; border:0 none }
+#dataFormAddNADM .labelN{ width:144px }
+#dataFormAddNADM .inputN{ width:320px }
+#dataFormAddNADM .blockMAdm{ width:332px }
+#dataFormAddNADM .inputTlfAdm { width:116px }
+.inputFecha{ width: 90px }
+.clearBApi{ width: 230px }
+.labelCheckAP{ padding-left: 5px; line-height: 1 }
+#dataFormAddNADM .inputAnexoAdm { width:80px }
+#dataFormAddNADM .blockMAdm .labelN{ width:75px }
+#dataFormAddNADM .noReq{ font-weight:normal; color:#666 }
+.saveEmpPD{ background-position:-393px 0; width:74px }
+.cancelEmpPD{ background-position:-391px -318px; width:80px }
+#dataFormAddNADM .response { 
+	padding:0 0 0 15px; 
+	margin:5px 0 0 164px; 
+	width:320px; 
+	overflow: hidden 
+}
+.fieldMiddleB{ width:430px }
+.fieldSalar{ width:330px }
+.labelNBM{ display:block; margin:3px 0 0 20px; width:80px; line-height: 1 }
+.ckeckNMB{ margin:0 5px 0 0 }
+#cntBtnPreE .btnPregAMF{ background-position:-182px -379px; width:172px }
+#cntBtnPreE .active{ background-position:0 -379px }
+.triggerSdb{ 
+	display:block;
+	background-image:url(../../images/empresa/arrowSbr.png); 
+	background-repeat: no-repeat;
+	background-position:0 0;	 
+	width:22px; 
+	height:20px 
+}
+.extendido .triggerSdb{ background-position: 0 -25px }
+#cabezasidebar .triggerSdb{
+	position:absolute;
+	right:5px;
+	top:5px;
+	z-index:2 	
+}
+#cabezasidebar{ position:relative; width:160px }
+#pesatanaflotante{ 
+	background-color:#000; 
+	position:absolute; 
+	left:0; 
+	top:20px; 
+	z-index:2; 
+	width:22px; 
+	height:20px 
+}
+.extendido .titleMAU{ padding-left: 30px }
+.contraido .titleMAU{ padding-left: 0 }
+.postuIco, .msjNLIco, .nInvitIco, .msjLIco { 
+	background-image: url('../../images/empresa/sptIcoTable.gif?v=44d4cef'); 
+	background-repeat: no-repeat 
+}
+.postuIco{ background-position: 8px -76px }
+.msjNLIco{ background-position: 8px -263px }
+.nInvitIco{ background-position: 8px 10px }
+.msjLIco{ background-position: 8px -162px }
+.iIcoTh { display:block; width:30px; height:25px; overflow:hidden }
+.titleGrid { padding:10px 10px; line-height: 1 }
+.iAccount .centerMC{ padding-top:0; width:960px }
+.dateHeadAp{ margin:0 0 10px; height:20px }
+.cntFormLEMC{ padding:0 10px; width:598px; overflow:hidden }
+.variable{
+	margin:0;
+	padding:0 10px; 
+	width:370px;
+	height:80px;
+}
+.titlePEL{ line-height:1.2 }
+.aEPLLinksF{ font-size:16px }
+.linkViewEPL{ padding:0 0 0 5px }
+.cntTitlePEL{ width:850px }
+.titleAsideEPL{ 
+	background-color: #333;
+	border-radius:3px 3px 0 0;
+	border-bottom:1px solid #868686;
+	padding: 10px 0 0;
+	width:280px; 
+	height:30px; 
+	overflow: hidden;
+	font-size:18px;
+	text-align: center;
+	line-height:1;
+	color: #fff 
+}
+/* Procesos Activos */
+#dataProcesosAct .data1 {width: 180px }
+#dataProcesosAct .data2,#dataProcesosAct .data3,#dataProcesosAct .data4 { width: 115px }
+#dataProcesosAct .data5, #dataProcesosAct .data6,
+#dataProcesosAct .data7, #dataProcesosAct .data8{ width:30px }
+#dataProcesosAct .data9{ width:80px }
+/* Procesos cerrados y abiertos */
+#dataProcesosCerrados .data1 {width: 160px }
+#dataProcesosCerrados .data2,#dataProcesosAct .data3,#dataProcesosAct .data4 { width: 70px; }
+#dataProcesosCerrados .data5{ width:110px; }
+#dataProcesosCerrados .data6{ width:50px; }
+#dataProcesosCerrados .data7{ width:96px; }
+#dataProcesosCerrados .data8{ width:84px; }
+#dataProcesosCerrados .data9{ width:70px; }
+#dataProcesosAct{ width:760px }
+.extendido #dataProcesosAct{ width:960px }
+.extendido #dataProcesosAct .data1 {width: 400px }
+/* Procesos borradores */
+#dataProcesosBorradores .data1 {width: 220px }
+#dataProcesosBorradores .data2{ width: 90px }
+#dataProcesosBorradores .data3{ width: 130px }
+#dataProcesosBorradores .data4{ width: 80px }
+#dataProcesosBorradores .data5{ width:115px }
+#dataProcesosBorradores .data6{ width:80px }
+#dataProcesosBorradores{ width:760px }
+.extendido #dataProcesosBorradores{ width:960px }
+.extendido #dataProcesosBorradores .data1 {width: 400px }
+.extendido #dataProcesosBorradores .data3 {width: 220px }
+.extendido #dataProcesosBorradores .data5 {width: 140px }
+/* Procesos Historial */
+#dataProcesosHistorial{ margin:0 auto; width:581px }
+#dataProcesosHistorial .data0 {width: 40px }
+#dataProcesosHistorial .data1,
+#dataProcesosHistorial .data2 {width: 90px }
+#dataProcesosHistorial .data3{ width: 160px; }
+#dataProcesosHistorial .data4{ width: 100px; }
+#dataProcesosHistorial .data5{ width:100px; }
+#overflowProHist{ width:598px; height:305px; overflow-x: hidden }
+.overTableHS{ overflow-y: scroll }
+/* Procesos Historial */
+#dataProcesoPostulacion{ margin:0 auto; width:760px }
+#dataProcesoPostulacion .data0 { width: 30px; text-align: center; vertical-align: middle }
+#dataProcesoPostulacion .data1 { width: 80px }
+#dataProcesoPostulacion .data2 { width: 65px }
+#dataProcesoPostulacion .data3 { width: 180px }
+#dataProcesoPostulacion .data4 { width: 70px }
+#dataProcesoPostulacion .data5 { width: 70px }
+#dataProcesoPostulacion .data6 { width: 60px }
+#dataProcesoPostulacion .data7 { width: 80px }
+#dataProcesoPostulacion .data8 { width: 150px; vertical-align: top }
+#dataProcesoPostulacion .pintar{ background-color: #F0F0F0 }
+.labelEPL{ 
+	display:block; 
+	margin:0 8px 0 0; 
+	font-weight:bold; 
+	line-height: 1
+}
+.spanEPL{ padding:0; line-height: 1 }
+.blockHsty{ 
+	border-top:1px solid #ccc; 
+	padding:10px 5px; 
+	width:260px; 
+	overflow: hidden;
+	line-height:1 
+}
+.txtHsty{ padding-right:20px; color:#5A5A5F }
+.spanBlockH, .boldBlockH{ padding:0 5px 0 0 }
+.blockInH{ 
+ 	background: url(../../images/empresa/bgBlockTopE.png) 0 top no-repeat; 
+	padding:15px 0 0; 
+	margin:0 5px 10px;
+	width:260px;
+	overflow: hidden
+}
+.blockInnerH{ padding:0 15px 15px; background: url(../../images/empresa/bgBlockbottomE.png) 0 bottom no-repeat; color:#5A5A5F }
+.blockDropDown .boldBlockH, .detailInD .boldBlockH{ color:black }
+.iBlockH, .textbIn{ font-weight:normal }
+.actionsELP{ 
+	margin:0 0 10px;
+	width:230px; 
+	height:20px;
+	overflow:hidden; 
+	line-height:1 
+}
+.deleteEPL, .editEPL, .attachEPL{ 
+	display:block; 
+	padding:3px 0 3px 25px; 
+	margin-left:10px;
+	font-size:11px
+}
+.deleteEPL{ background-position: -130px -67px }
+.editEPL{ background-position: -130px -33px }
+.attachEPL{ background-position: -130px 0 }
+.blockDropDown{
+	background: url(../../images/empresa/arrowBot.gif) 250px center no-repeat; 
+	cursor: pointer; 
+	font-weight:bold 
+}
+#cntLineHEPL .flagBlockEP{ background-image: url(../../images/empresa/arrowTop.gif) }
+.blockFltEP{ margin:5px 0 0 }
+.dataTextEP{ margin:5px 0 0; width:208px; height:80px }
+.dataBtnEP{ background-position:-364px -379px; width:77px; height:33px  }
+.rightBlockBtn{ width:150px; text-align:left }
+.leftBlockBtn{ width: 300px }
+.btnCenterAllB{ margin:0 auto }
+.sepBlockBtn{ margin:0 0 20px; padding:0 10px; width:470px; overflow: hidden }
+.btnsBlockBtn{ margin:20px 0 0}
+.titleEmpH{
+	background: url(../../images/empresa/bgTitleHome.png) 0 0 no-repeat; 
+	position: relative;
+	padding: 10px 15px 0 35px;
+	height: 40px;
+	font-size: 18px;
+	line-height: 1.2em;
+	color: white
+}
+.icoAviEmp{
+	display:block; 
+	position:absolute; 
+	left:10px; 
+	top:10px; 
+	z-index:2;
+	overflow: hidden
+}
+.icoAviEco{ 
+	background-position:-2px -108px; 
+	width:12px; 
+	height:16px;
+	top:13px 
+}
+.icoAviPref{ background-position:-2px -128px; width:12px; height:16px; top:13px }
+.icoProMemb{ background-position:-2px -148px; width:22px; height:21px }
+.dlListEmp{ padding:0 10px }
+.dtListEmp{ 
+	background: url(../../images/empresa/flechaAzul.gif) 0 0 no-repeat; 
+	margin:0 0 5px;
+	padding:0 0 0 25px; 
+	font-size:15px;
+	line-height:1.2;
+	color:#333 
+}
+.dtListEmpYel{ background-image: url(../../images/empresa/flechaAmarillo.gif) }
+.ddListEmp{ padding:0 0 0 25px; font-size:13px; line-height:1.2; color:#333 }
+.pTxtAsideE{ padding:0 0 0 35px; margin:0 0 10px }
+.txtBigEmpE{ font-size:20px }
+.txtBlueEm, .txtYellowEm{ font-size:18px }
+.txtBlueEm{ color:#0097E7 }
+.txtYellowEm{ margin:30px 0 10px; color:#F49F02 }
+.heightListE{ height:430px; overflow: hidden }
+.pTxtBlackE{ font-size:15px; margin:0; color:#333  }
+.linkBigEm{ font-size:15px }
+.textBigServ{ margin:0; font-size:21px; font-weight:bold; text-align:justify; color:#333; line-height:1.2 }
+.textBigVerde{ color:#66BA34 }
+.textMedServ{ font-size:14px; font-weight:bold; color:#333;  }
+.blockServE{ background: url(../../images/empresa/bgServEmpTop.jpg) 0 top no-repeat; margin:0 0 10px; padding:10px 0 0 }
+.blockServEB{ background: url(../../images/empresa/bgServEmp.jpg) 0 bottom no-repeat; padding:0 250px 20px 35px }
+.liMedServ{ 
+	background: url(../../images/empresa/flechaGris.gif) 0 0 no-repeat; 
+	padding:0 0 10px 25px; 
+	color:#333; 
+	line-height: 1 
+}
+/* filtro procesos */
+#filterProcEmp .modResult{ width:178px } 
+#filterProcEmp .modResultA{ width:180px }
+#filterProcEmp .titleRS{ font-size:17px }
+#filterProcEmp .rSearch .titleRS{ background: url(../../images/empresa/bgTitFilter.jpg) 0 0 no-repeat }
+#filterProcEmp .iRSearch { background: url(../../images/empresa/bgBRSFilter.png) 0 bottom no-repeat }
+#filterProcEmp .iModResult { width: 160px }
+#filterProcEmp #fIRSearch { width: 160px }
+#filterProcEmp #fWordRS { width: 147px }
+#filterProcEmp .titleSA {
+	background: url(../../images/empresa/bgTitFilterB.png) 0 0 no-repeat;
+	padding: 8px 0 0 10px;
+	width: 150px
+}
+#filterProcEmp .fFilterS, #filterProcEmp .iMTFilterS { width: 140px; overflow: hidden }
+#filterProcEmp .labelFS { width: 140px }
+#filterProcEmp .iBlockRSA{ width:120px }
+.liListHeadE{ 
+	/*display:block;*/ 
+	background: url(../../images/empresa/btnGrisRL.png) left top no-repeat;
+	padding:0 0 0 10px; 
+	margin:0 5px 0 0;
+	height:28px;
+	overflow: hidden  
+}
+.aListHeadE{ 
+	display:block; 
+	background: url(../../images/empresa/btnGrisRR.png) right top no-repeat;
+	padding:7px 10px 0 0; 
+	height:21px; 
+	overflow: hidden;
+	line-height:1
+}
+.aListHeadE, .aListHeadE:hover{ color:#333; text-decoration:none }
+.lastListHeadE{ margin-right:0 }
+.ulListOptE{ padding:5px 0 0; text-align:right }
+.liListOptE{ display:inline; padding:0 0 0 10px }
+.linkBotEM{ margin:5px 0 0 }
+#paginEPM .pagLegend{ padding-left:0 }
+.liActionE{ margin:0; padding:0 }
+.aActionE{ display:block; margin:0; padding:5px }
+.aActionE:hover{ background-color:#FFF1D4 }
+.liActionM{ margin:0; padding:0 }
+.liActionM .active{ color:#666; cursor: default }
+.liActionM .active, .liActionM .active:hover{ text-decoration:none }
+.aActionM { display:block; margin:0; padding:5px }
+.aActionM:hover{ background-color:#FFF1D4 }
+.aActionMDisable { display:block; margin:0; padding:5px; text-decoration: none; color:#CCCCCC;}
+.aActionMDisable:hover{ text-decoration: none; color:#CCCCCC;  }
+.cntFGrisT{ padding-right:20px }
+.flechaGrisT{ 
+	display:block; 
+	position:absolute;
+	right:8px;
+	top:11px;
+	z-index:2;
+	width:8px;
+	height:5px;
+	overflow: hidden;
+	line-height: 1
+}
+.upFlechaEP{ 	background: url(../../images/empresa/flechaGrisAbsBajo.gif) 0 0 no-repeat }
+.downFlechaEP{ 	background: url(../../images/empresa/flechaGrisAbs.gif) 0 0 no-repeat }
+.titleDetEP, .titleDetEPNB{ font-size:18px; color:black; line-height:1 } 
+.titleDetEP{ 
+	background-color: #F4F4F4; 
+	margin:0 0 15px;
+	padding:10px 15px; 
+	font-weight:bold
+}
+.titleDetEPNB{ margin:0 0 15px; padding:0 15px }
+.listDetaME{ padding:0 15px; width:600px; overflow: hidden }
+.liDetaME, .spanDetaMEL, .spanDetaMER{ color:#333 }
+.optsDetME{ padding:0 15px 0 0; width:300px; text-align: right }
+.spanDetaMER{ padding:0 0 0 5px; font-weight:bold }
+.blockEPNB{ 
+	border:1px solid #C8C8C8; 
+	padding:20px 15px;
+	margin:0 0 20px;
+	width:928px; 
+	overflow: hidden 
+}
+.liInnerME, .spanInnerMEL, .spanInnerMER{ color:#333 }
+.spanInnerMEL{ width:130px }
+.spanInnerMER{ width:300px; font-weight:bold }
+.blockExtraL, .blockExtraR{ width:400px; overflow: hidden }
+.blockExtraR{ padding-left: 20px }
+.titleExtraEM{ 
+	padding:0 0 0 15px; 
+	margin:0 0 10px; 
+	text-decoration:underline; 
+	color:#000 
+}
+.liExtraME{ 
+	background: url(../../images/empresa/flechita.gif) left 5px no-repeat;
+	display:block;
+	padding:0 0 0 15px
+}
+.lineCentME{ background: url(../../images/empresa/lineCentME.gif) 400px 0 repeat-y }
+.estadoTit{ 
+	display:block; 
+	position:absolute; 
+	left:450px;
+	top:20px;
+	z-index:2;
+	color:#333;
+	font-weight:bold;
+	text-transform: uppercase
+}
+#dataAdvPagados .data1 { width: 130px }
+#dataAdvPagados .data2 { width: 180px }
+#dataAdvPagados .data3 { width: 180px }
+#dataAdvPagados .data4 { width: 100px }
+#dataAdvPagados .data5 { width: 100px }
+#dataAdvPagados .data6 { width: 100px }
+#dataAdvPagados .data7 { width: 90px }
+/* - */
+#dataAdvProcess .data1 { width: 120px }
+#dataAdvProcess .data2 { width: 140px }
+#dataAdvProcess .data3 { width: 80px }
+#dataAdvProcess .data4 { width: 90px }
+#dataAdvProcess .data5 { width: 150px }
+#dataAdvProcess .data6 { width: 100px }
+.cntFGrisT{ position:relative }
+#perfilEmpPA .fieldsC{  width:640px }
+.titleNameEPC{ 
+	padding:0; 
+	margin:0 10px 0 0; 
+	width:250px; 
+	color:#333; 
+	font-size:18px;  
+	line-height: 1.2 
+}
+.liSeparMR{ margin-right:20px }
+#perfilEmpPA .expPdfCP { background-position: 0 -367px; padding: 4px 0 0 27px; height: 22px }
+#perfilEmpPA .icoComp {
+	background-position: -43px -337px;
+	margin: 0;
+	padding:5px 0 0 24px;
+	width: auto;
+	height: 23px
+}
+#perfilEmpPA .icoComp,
+#perfilEmpPA .icoComp:hover{ color:#333; text-decoration:none }
+.dateDMAPEeMp{ font-weight:bold }
+.msgPerfilEPL, .adjuntoD{ position:relative; color:#333 }
+.icoCloseMsjD, .icoCloseMsjAdj{ 
+	background: url(../../images/empresa/xIco.gif) 0 0 no-repeat;
+	display:block; 
+	position:absolute; 
+	right:10px; 
+	top:10px;
+	z-index:2;
+	width:16px;
+	height:16px;
+	overflow: hidden
+}
+.adjuntoD .icoCloseMsjAdj{ top:5px; right:5px }
+.adjuntoD .msgInAdjEPL { 
+	width:202px; 
+	padding: 0 15px 0 0; 
+}
+.elipsis {
+   display:block;
+   text-overflow:ellipsis;
+   white-space:nowrap;
+   overflow:hidden;   
+}	
+.msgInPerfilEPL{ padding:0 20px 0 0 }
+#perfilEmpPA .dListR{ width:280px }
+.adjuntoD{ padding:5px }
+.dataAdjuntada{ margin:5px 0 0 }
+.dataAdjuntada .adjuntoD{ background-color:white; border-bottom:1px solid #ccc; padding:2px 5px }
+.formFields .msgDataCurr{ margin:0 5px 5px; padding:10px; width:238px; line-height:1 }
+.msgDataCurr{ color:#333; font-size:11px }
+.tlfFilPerfP{ background-position:0 -358px; margin:0 0 5px; padding:0 0 0 10px }
+.nameFilPerfP{ margin:0 0 5px }
+.verPerfilFilPerfP, .downFilPerfP, .msjFilPerfP, .pipeFilPerfP{ display:block }
+.verPerfilFilPerfP{ width:19px; height:15px; background-position:0 -220px }
+.downFilPerfP{ width:14px; height:16px; background-position:0 -255px }
+.msjFilPerfP{ padding-left:20px; height:16px; background-position:0 -390px }
+.imgHombre, .imgMujer{ padding-left:20px; height:15px }
+.imgHombre{ background-position:0 -291px }
+.imgMujer{ background-position:0 -325px }
+.pipeFilPerfP{ padding:0 5px }
+.moveFilPerfP { background-position: right center; padding:0 10px 0 0 }
+.msgErrorEPA{ padding:5px 0 0; width:125px }
+.titlePayAdvEPA{
+	padding:0;
+	margin:0 0 10px; 
+	color:black; 
+	font-weight:bold; 
+	font-size:18px; 
+	text-transform:uppercase;
+	line-height: 1 
+}
+.topRoundEPA{ 
+	background: url(../../images/empresa/bgTopRound.png) 0 0 no-repeat; 
+	width:474px; 
+	height:10px; 
+	line-height: 1; 
+	overflow: hidden 
+}
+.icoImgAptPay{
+	background: url(../../images/empresa/logoAptitusEPA.png) 0 0 no-repeat;
+	margin:10px 0 0 10px; 
+	width:161px; 
+	height:33px
+}
+.dtStepPayE, .ddStepPayE, 
+.titleTopTxtB{ display:block; padding:0 0 5px; color:#333; line-height:1.2 }
+.listStepPayE .bold{ margin:0 0 10px }
+.dtStepPayE{ margin:0 0 10px }
+.icoMsjEP, .icoMsjPrePE, .icoPostulacion, 
+.icoPreseleccionado, .icoDescartar, .icoRestituir{ 
+	background-position: left 0;
+	background-repeat: no-repeat; 
+	padding-left:20px;
+	min-height:16px 
+}
+.icoMsjEP{ background-image: url(../../images/empresa/icoMsjPE.png) }
+.icoMsjPrePE{ background-image: url(../../images/empresa/icoMsjPrePE.png) }
+.icoPostulacion{ background-image: url(../../images/empresa/icoPostulacion.png) }
+.icoPreseleccionado{ background-image: url(../../images/empresa/icoPreseleccionado.png) }
+.icoDescartar{ background-image: url(../../images/empresa/icoDescartar.png) }
+.icoRestituir{ background-image: url(../../images/empresa/icoRestituir.png) }
+.icoImgEfectivoPay{
+	background: url(../../images/empresa/logoPagoEPA.png) 0 0 no-repeat;
+	margin:5px 10px 0 0; 
+	width:111px; 
+	height:50px
+}
+.txtRefMatch{ padding:5px 10px 0 0; color:#666 }
+.titleTopTxtB{ margin:0 0 10px; padding:0; font-weight:bold; text-align:center; font-size:12px }
+.blockNoTopP4{ border:0 none; padding-top:10px }
+.iContenNotaEPA{ padding:0 10px; overflow: hidden }
+.tableDataNotaEPA{ width:100% }
+.tableDataNotaEPA .data1,
+.tableDataNotaEPA .data2{ vertical-align: top } 
+.tableDataNotaEPA .data1{ width:60px }
+.textAdjNotaEPA{ width:255px; overflow: hidden }
+.areaNotaEPA{ padding:5px; width:300px; height:130px }
+.cntNotaDataEPA{ margin:0 0 5px }
+.labelDeleteEPA{ display:block; width:45px; height:17px; overflow:hidden }
+.cntActionsELP .actionsELP{ width:175px; height:20px; overflow: hidden }
+.cancelHEPA{ background-position:-391px -318px; margin:0 10px 0 0; width:80px }
+.submitHEPA{ background-position:-393px 0; width:74px }
+.btnsHEPA{ margin:20px auto 0; padding:0 50px; width:164px; overflow: hidden }
+.areaMsjProEPA{ margin:0 0 20px; width:412px; height:120px }
+.textAsideReqR{ padding-left:5px }
+.submitSendHEPA { background-position: -426px -69px; width: 66px }
+.ulListInvA{ padding:0 10px; overflow: hidden }
+.aListInvA{ display:block; padding:5px; line-height: 1.2 }
+.aListInvA:hover { background-color: #FFF1D4 }
+.liListInvA .aListInvA{ color:#000; text-decoration:none }
+.aListInvA .spanListInvA{ color:#007FD3; text-decoration:underline }
+.aListInvA:hover .spanListInvA{ color:#ff0088 }
+.msjInvAt{ padding:25px 0 }
+.lineSepCP{ width:115px	}
+.titlePRCP { display:block; width:100%; overflow: hidden }
+.titlePRRight{ 
+	display:block;
+	padding:5px 0 0; 
+	width:130px; 
+	font-size:12px; 
+	color:#999;
+	text-align:right;
+	overflow: hidden;
+	font-weight:normal;
+	line-height:1 
+}
+.mostrarAviso{ width: 160px }
+.showLoadF{ margin:0 0 10px; width:100% }
+.titlePRLeft{ display:block; width:150px; overflow: hidden; text-align:left }
+/* Pintar filas en action ver-proceso  */
+.pintarLeidos{ background-color: #fff }
+.pintarNoLeidos{ background-color: #EBFAFC; }
+.blockInH .textbIn{ width:230px; overflow: hidden; word-wrap: break-word }
+.preguntaMsjT{ height:auto }
+/* administrador */
+.shadow {
+	-moz-box-shadow: 2px 4px 4px #e3e3e3;
+	-webkit-box-shadow: 2px 4px 4px #e3e3e3;
+	box-shadow: 2px 4px 4px #e3e3e3;
+}
+#cntLoginAdmin .labelN{ margin:5px 0 0; width:95px }
+#cntLoginAdmin .inputSm{ width:250px; margin-bottom:0 }
+.good{ background: url(../../images/check.png) 0 0 no-repeat; padding-left:15px; color:#390 }
+.bad{ background: url(../../images/icoError.png) 0 0 no-repeat; padding-left:15px; color:#C33 }
+.def{ background-image:none; padding-left:0 }
+#content-winDividirAviso{ width:100%; overflow: hidden }
+.cntImgAvisoEPA {
+	margin: 0 auto;
+	width: 433px;
+	text-align: center;
+	height: 429px;
+}
+.fieldsetAdm{ border:1px solid #DCDBDB; margin:0 0 20px; padding:20px; overflow: hidden }
+/*
+	Administrador
+*/
+/*.sptAdm { background-image: url(../../images/administrador/spt.admin.png); background-repeat: no-repeat }*/
+.gridIFormEmp { padding: 10px }
+.shadow {
+  -moz-box-shadow: 2px 4px 4px #e3e3e3;
+  -webkit-box-shadow: 2px 4px 4px #e3e3e3;
+  box-shadow: 2px 4px 4px #e3e3e3;
+}
+.btn-gestion{
+	background: #2A5E9A;
+	color: white;
+	font-family:  museoSans,Arial,sans-serif;
+	font-weight: bold;
+	font-size: 16px;
+	border-radius: 5px;
+}
+.btnSptAdm{ 
+	display:block;
+	margin:0;
+	padding:0;
+	border:0 none; 
+	height:45px; 
+	cursor:pointer 
+}
+.iBlockAR .blockBDC{ width:230px }
+.labelMoN{ width:190px }
+.inputMoN{ width:220px }
+
+.btn-exportar{
+	margin-bottom: 2em; 
+}
+.dataGrid .pad{
+	padding:0.6em 3.5em;
+}
+.dataGrid .pdg{
+	padding: 7px 8px;
+	text-align: left;
+}
+.contenedor-data td{
+	padding: 7px 0.3em;
+	text-align: center;
+}
+.pdg-box .correo{
+	padding: 0 4.4em;
+}
+.pdg-box .title-aviso{
+	padding: 0 3em;
+}
+
+/*.btn-destaque{
+	border:1px solid #b2e0f5;
+	background:#eff4fb;
+	padding: 0.4em;
+	display: block;
+}*/
+.btn-exportar a{
+	color:white;
+	background: #2a5e9b;
+	padding: 0.8em 1.5em;
+	border-radius: 8px;
+}
+
+
+
+th, td { padding: 10px 5px }
+.gridYScroll{ 
+	position:relative; 
+	width:740px; 
+	overflow-y:hidden; 
+	overflow-x: scroll; 
+}
+#freeAdv .priceP2{ 
+	padding:48px 5px 0 0; 
+	font-size:22px; 
+	line-height:1; 
+	text-align:right; 
+	word-spacing:0 
+}
+#buscarEmailCliente .response{ width:155px; border:0 none }
+.labelFixNBM{ width:200px }
+.iptDisabled{ background-color:#EBEBE4 }
+.formFieldAdm .labelN{ width:120px }
+.formFieldAdm .inputN{ width:230px }
+.divClear{ width: 240px }
+.divClearBtn{ padding-left: 140px }
+.formFieldAdm .selectN{ width:240px }
+.formFieldAdm .response{ margin-left: 10px; width:110px }
+.formFieldEmpresa .labelN{ width:80px }
+.formFieldEmpresa .inputN{ width:200px }
+.h5TitleAdm{ 
+    margin: 0 10px; 
+    padding: 0 0 5px; 
+    border-bottom: 1px solid #B3DEF4; 
+    font-size: 24px; 
+    font-weight: bold 
+}
+.blockAR .titleMAU{ margin: 0 0 15px; padding: 0 0 10px; color:#303030 }
+.noMenuAdm #main{ background: url(../../images/bgMain.png) repeat-x center 0 }
+.noMenuAdm .innerAll{ background: url(../../images/bgMainInner.png) center 35px no-repeat }
+.noMenuAdm .bgAll{ background: url(../../images/bgMainInner2.png) center 35px no-repeat }
+#EditarAviso .innerAll{ background-position: center top }
+#EditarAviso .bgAll{ background-position: center top }
+#EditarAviso #main { background-position: center -35px }
+#wrap .wlabelForm{ width: 122px }
+
+/* class 2 */
+.labelOM{ float: left; font-weight: bold; margin: 0 20px 0 0; width: 120px }
+.inputOM{ width: 140px }
+.selectOM{ width: 152px }
+.acceptBtn{ background-position: 0 -600px; width: 77px }
+.msjOM{
+    display: block;
+    background-repeat: no-repeat;
+    background-position: left 3px;
+    margin: 0 0 0 145px;
+    padding: 0;
+    width: 170px;
+    overflow: hidden;
+    line-height: 1.2;
+    text-align: left;
+}
+.ui-datepicker-calendar th{ background: none }
+
+.alignMeses #dayjFunctions{ width: 67px }
+.alignMeses #monthjFunctions { width: 86px}
+.alignMeses #yearjFunctions { width: 67px}
+.alignMeses #dayjFunctionsFin{ width: 67px }
+.alignMeses #monthjFunctionsFin { width: 86px}
+.alignMeses #yearjFunctionsFin { width: 67px}
+.block #fOrigen {width: 230px}
+.vAlignTop{ vertical-align:top }
+.cntOverflowY{ height:120px; overflow-y:auto; overflow-x:hidden }
+.spanDeatilM{ width:222px }
+.legendFloat{ margin:0 0 20px; padding:0; width:100%; overflow:hidden }
+.gridFullF{ padding:0 10px }
+.blockClearN{ width:432px }
+.selectP{ width:80px }
+/* Lsitado */
+.aPagerAP{ 
+    position:absolute;
+    left:0;
+    top:0;
+    z-index:1;
+    display: block; 
+    background-image: url(../../images/empresa/sptItemsCg.png);
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    padding:5px 0 0 15px;
+    width:26px;
+    height:23px;
+    overflow: hidden;
+    color:white;
+    text-decoration: none;
+    font-weight: bold
+}
+.aPagerAP:hover{ text-decoration: none; color: #FFCC00; }
+.currentItem{ background-position: 0 -66px; cursor:default }
+.currentItem, .currentItem:hover,
+.seudoItem, .seudoItem:hover{ color:black }
+.normalItem{ background-position: 0 -33px; cursor:default }
+.normalItem:hover{ color:white }
+.seudoItem{ background-position: 0 -132px; }
+.firstAP .aPagerAP{ background-position: 0 -99px }
+.firstAP .currentItem{ background-position: 0 -66px }
+.firstAP .seudoItem{ background-position: 0 -165px }
+.allDivAPP { height: 50px; width: 100% }
+.cntTopTitleAP, .allDivAPP { position: relative }
+.cntTopTitleAP .titleModSP{ width:850px }
+.backToAP{ position: absolute; right:10px; top:10px; z-index: 2; font-size: 14px }
+.pTextAPW{ line-height: 1; padding: 0 0 0 5px; margin: 0 0 10px }
+.cntPagerAP2 .pTextAPW{ padding-left: 10px }
+/* fix adm */
+.bgAll, .innerAll{ background-position: center top }
+.blockFix{ width:740px }
+/* / */
+.imgHeightAPM{ margin: 0 auto; width:59px; height: 61px; overflow: hidden }
+.cntPuestosW{ padding:0 0 0 5px; margin: 0 0 5px; font-size: 14px; font-weight: bold; line-height: 1 }
+.cntPagerAP, .cntPagerAP2{ margin:0 0 25px; padding: 15px 10px 0 }
+.cntPagerAP{ background: url(../../images/empresa/bgPagerAP.jpg) 0 0 no-repeat }
+.cntPagerAP2{ margin-top: 15px; position: relative; background: url(../../images/empresa/bgPagerAP2.jpg) 0 0 no-repeat; height: 130px }
+.ulListDivs{ margin:0; padding:0; width:435px }
+.ulListDivs .cntBlockIpt { 
+    padding:0; 
+    margin:0 0 10px 25px; 
+    width:410px;
+    height:25px;
+    list-style:decimal
+}
+.ulListDivs .labelMoN{ width:165px }
+.cntBlockIpt input, .cntBlockIpt label{ display:inline }
+.cntBlockIpt label{ padding-right:15px }
+

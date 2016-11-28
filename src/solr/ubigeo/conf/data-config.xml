@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dataConfig>
+   <xi:include href="./db-connection.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>     -->  
+
+    <document>
+         <entity name="ubigeo" transformer="DateFormatTransformer" 
+           query="SELECT
+ `pais`.`id`     AS `pais_id`,
+ `pais`.`nombre` AS `pais_nombre`,
+ `dpto`.`id`     AS `dpto_id`,
+ `dpto`.`nombre` AS `dpto_nombre`,
+ `prov`.`id`     AS `prov_id`,
+ `prov`.`nombre` AS `prov_nombre`,
+ `dist`.`id`     AS `dist_id`,
+ `dist`.`nombre` AS `dist_nombre`,
+ REPLACE(LCASE(`dist`.`nombre`),' ','-') AS `dist_nombre_slug`,
+ CONCAT_WS(' ',LCASE(`dist`.`nombre`),LCASE(`prov`.`nombre`),LCASE(`dpto`.`nombre`),LCASE(`pais`.`nombre`)) AS `ubicacion`,
+ CONCAT_WS(', ',LCASE(`dist`.`nombre`),LCASE(`prov`.`nombre`),LCASE(`dpto`.`nombre`),LCASE(`pais`.`nombre`)) AS `mostrar`
+FROM (((`ubigeo` `pais`
+    LEFT JOIN `ubigeo` `dpto`
+      ON ((`dpto`.`padre` = `pais`.`id`)))
+   LEFT JOIN `ubigeo` `prov`
+     ON ((`prov`.`padre` = `dpto`.`id`)))
+  LEFT JOIN `ubigeo` `dist`
+    ON ((`dist`.`padre` = `prov`.`id`)))
+WHERE ((`pais`.`level` = 0)
+      AND (`dpto`.`level` = 1)
+      AND (`prov`.`level` = 2)
+      AND (`dist`.`level` = 3))">
+             <field name="pais_id" column="pais_id"/>
+             <field name="pais_nombre" column="pais_nombre"/>
+            <!-- =========================================== Departamento ============================================== -->
+            <field name="dpto_id" column="dpto_id"/>
+            <field name="dpto_nombre" column="dpto_nombre"/>
+            <!-- =========================================== Provincia ============================================== -->
+            <field name="prov_id" column="prov_id"/>
+            <field name="prov_nombre" column="prov_nombre"/>
+            <!-- =========================================== Distrito ============================================== -->
+            <field name="dist_id" column="dist_id"/>
+            <field name="dist_nombre" column="dist_nombre"/>
+            <!--autocomplete-->
+            <field name="ubicacion" column="ubicacion"/>
+            <field name="mostrar" column="mostrar"/>
+            <!--autocomplete-->
+        </entity>
+    </document>
+</dataConfig>

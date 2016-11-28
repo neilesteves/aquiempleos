@@ -1,0 +1,30 @@
+<div class="block">
+    <h3 class="titleAPLR">Datos de Conexión </h3>
+    <table class="r5 dataGrid tableLGB">
+    <tr>
+        <td class="dataH1">Usuario:</td>
+        <td class="dataH2"><?=$this->dataApi['username']; ?></td>
+    </tr>
+    <tr>
+        <td class="dataH1">Password:</td>
+        <td class="dataH2"><?=$this->dataApi['password']; ?></td>
+    </tr>    
+    <tr>
+        <td class="dataH1 vAlignTop">Direcciones IP:</td>
+        <td class="dataH2">
+	        <?php 
+                    $ips = explode("|", $this->dataApi['ip']);
+                    if(!empty($ips) && !empty($ips[0])){
+                ?>
+	        <div class="cntOverflowY"><ol class="olListIp">
+	        <?php foreach ($ips as $ip) : ?>
+	        	<li class="liListIp"><?=$ip ?></li>
+	        <?php endforeach; ?>
+	        </ol></div>
+                <?php 
+                    }
+                ?>
+        </td>
+    </tr>
+	</table>
+</div>

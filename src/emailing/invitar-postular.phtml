@@ -1,0 +1,68 @@
+<table cellspacing="0" border="0" cellpadding="0" width="750">
+<tr><td>&nbsp;</td></tr>
+<tr>
+    <td valign="top" align="center" colspan="2" style="text-align: center">
+        <table width="100%" style="margin:0" align="center" border="0">
+            <tr>
+            	<td align="center" style="color:#000000; padding:0 30px; font-family:Arial, Helvetica, sans-serif; font-size:18px; line-height:1">
+                	<?= $this->nombre ?> has sido invitado por la empresa   
+                    <? if($this->mostrarEmpresa == 1):?>
+                        <strong>"<span><?= $this->empresa ?></span>"</strong> para ser parte de su proceso de selecci&oacute;n para el puesto de
+                    <? else: ?>
+                        con alias <strong>"<span><?= $this->empresa ?></span>"</strong> para ser parte de su proceso de selecci&oacute;n para el puesto de
+                    <? endif; ?>
+				</td>
+            </tr>
+            <tr>
+                <td align="center" style="color:#5a5658; padding:0 30px; font-family:Arial, Helvetica, sans-serif; font-weight:bold;font-size:32px; line-height:1">
+                    <span style="color:#000000;font-size:36px; line-height:1"><?= $this->puesto ?></span>
+                </td>
+            </tr>
+            <tr>
+            	<td>&nbsp;</td>
+            </tr>
+            <tr>    
+                <td align="center" width="100%" style="font-size:24px; padding:10px 30px; text-align:center">
+                    <span style="font-size:16px; font-weight:bold">Usuario : <span style="text-decoration:none; color:#007FD2"><?= $this->email ?></span></span>
+                </td>
+            </tr>
+            <tr>
+            	<td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td align="center" style="padding-left:20px;">
+                    <table width="92%" cellspacing="5" border="0" cellpadding="2" style="font-size:14px;">
+                        <tr>
+                            <td valign="top" width="2%" style="color:#000000; font-family:Arial, Helvetica, sans-serif">&raquo;</td>
+                            <td valign="top" width="45%" style="color:#000000; font-family:Arial, Helvetica, sans-serif">
+								<span><?= $this->empresa ?></span> ha iniciado el proceso de Selecci&oacute;n para el puesto 
+                                de <span>"<?= $this->puesto ?>"</span> , la empresa vio tu perfil en la base de datos de EMPLEOBUSCO.com 
+                                y quiere invitarte a que seas parte de este proceso.<br /><span><a href="<?=SITE_URL?><?= $this->url(array('module' => 'postulante', 'controller' => 'aviso', 'action' => 'ver', 'url_id' => $this->url_id, 'slug'=> $this->slug), 'aviso', true) ?>" style="text-decoration:underline; color:#007FD2; font-size:15px">Ver el aviso y postular</a></span>                       
+                             </td>
+                            <td valign="top" width="2%" style="color:#000000; font-family:Arial, Helvetica, sans-serif">&raquo;</td>
+                            <td valign="top" width="45%" style="color:#000000; font-family:Arial, Helvetica, sans-serif">
+                            	Si quieres postular a m&aacute;s avisos que se ajusten a tu perfil ingresa a:
+                                <br/><span><a href="<?=SITE_URL?><?= $this->url(array('controller' => 'buscar', 'action' => 'index'), 'default', true) ?>" style="text-decoration:underline; color:#007FD2; font-size:15px">Ver avisos</a></span>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+	 		</tr>
+            <tr><td>&nbsp;</td></tr>
+			<tr>
+                <td>
+                    <table cellspacing="0" cellpadding="0" border="0">
+                        <tr>
+                            <td align="left" width="750" style="padding-left:30px;padding-bottom:10px;"><h1 style="padding-right: 0px; padding-left: 20px; font-family:'Arial, Helvetica, sans-serif';font-weight: bold; font-size: 20px; margin: 0px; color: #222222; padding-top: 10px; padding-bottom: 10px;">
+                                <span style="color:#232222; font-weight:normal; font-size:24px; font-family: Arial, Helvetica, sans-serif">&iexcl;&Eacute;xitos! </span>
+                                <span style="color:#000000; font-family: Arial, Helvetica, sans-serif"> El equipo EMPLEOBUSCO</span> </h1>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr><td>&nbsp;</td></tr>
+            </table>
+        </td>
+    </tr>
+</table>

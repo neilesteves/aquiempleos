@@ -1,0 +1,60 @@
+<div class="page_modal pay_type_modal hide" id="pagoEfectivoModal">
+    <h2 class="align_center title"><span>¿Qué es PagoEfectivo?</span><i class="icon icon_cross"></i></h2>
+    <div class="body_modal_mobile">
+      <p><strong>PagoEfectivo</strong>
+        es una forma fácil  y segura de comprar a través de Internet. Es cómodo
+        y efectivo pues no necesita tarjeta de crédito.</p>
+      <div class="player_video align_center">
+          <video controls="controls" poster="<?php echo $this->S('/video/2.jpg'); ?>" width="100%">
+              <source src="<?php echo $this->S('/video/2.mp4'); ?>" type="video/mp4; codecs=&quot;avc1.42E01E, mp4a.40.2&quot;"/>
+              <source src="<?php echo $this->S('/video/2.webm'); ?>"  type="video/webm; codecs=&quot;vp8, vorbis&quot;" />
+              <source src="<?php echo $this->S('/video/2.ogv'); ?>"  type="video/ogg; codecs=&quot;theora, vorbis&quot;" />
+              <object type="application/x-shockwave-flash" data="http://releases.flowplayer.org/swf/flowplayer-3.2.1.swf" width="100%">
+                  <param name="movie" value="http://releases.flowplayer.org/swf/flowplayer-3.2.1.swf" />
+                  <param name="allowFullScreen" value="true" />
+                  <param name="wmode" value="transparent" />
+                  <param name="flashVars" value="config={'clip':'<?php echo $this->S('/video/2.jpg'); ?>','url':'<?php echo $this->S('/video/2.mp4'); ?>','autoPlay':false}" />
+                  <img alt="Pago Efectivo" src="<?php echo $this->S('/video/2.jpg'); ?>" width="100%" title="No video playback capabilities, please download the video below" />
+              </object>
+          </video>
+      </div><br>
+      <p>Hacerlo es absolutamente gratis, seguro y no incluye gastos adicionales.
+          Puedes hacer efectivo tu pago en las agencias autorizadas de:</p>
+      <ul class="agencies row">
+          <li>
+              <div class="logo_payment"><img src="/static/main/img/oficinas/bcp.png"></div>
+              <p class="only">Agencias del BCP, Agentes BCP o por banca por internet BCP.</p>
+          </li>
+          <li>
+              <div class="logo_payment"><img src="/static/main/img/oficinas/continental.png"></div>
+              <p>Agencias del BBVA, Agentes Express, Kasnet o por banca por internet del BBVA.</p>
+          </li>
+          <li>
+              <div class="logo_payment"><img src="/static/main/img/oficinas/interbank.png"></div>
+              <p>
+                  Cualquier Agente Interbank, en Tiendas y Money Market de Interbank,
+                  Cajeros Global Net y Banca por internet Interbank.
+              </p>
+          </li>
+          <li>
+              <div class="logo_payment"><img src="/static/main/img/oficinas/scotiabank.png"></div>
+              <p class="only">
+                  Agencias de Scotiabank, Cajeros Express o por Vía Scotia en línea.
+              </p>
+          </li>
+          <li>
+              <div class="logo_payment"><img src="/static/main/img/oficinas/western_union.png"></div>
+              <p class="only">
+                  Cualquier agencia de Pago de Servicio de Western Union a nivel nacional.
+              </p>
+          </li>
+          <li>
+              <div class="logo_payment"><img src="/static/main/img/oficinas/full_carga.png"></div>
+              <p>
+                  Cualquier establecimiento autorizado (Bodegas, Farmacias, Cabinas,
+                  Locutorios, etc.) con el logo de PagoEfectivo y/o Fullcarga.
+              </p>
+          </li>
+      </ul>
+    </div>
+</div>

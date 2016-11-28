@@ -1,0 +1,135 @@
+<div id="managerEdit">
+    <div id="loadingAdmin" class="none">
+        <div class="loading"></div>
+    </div>
+</div>
+<div id="adminListTable" class="iBlockAR">
+    <div id="titleyBtn">
+        <h2>Administradores</h2>
+    </div>
+    <table summary="Administradores" id="dataAadmins" class="dataGrid">
+        <thead>
+            <tr>
+                <th class="data1 titleGrid">Nombre y Apellido</th>
+                <th class="data2 titleGrid">Tipo Usuario</th>
+                <th class="data3 titleGrid">Email</th>
+                <th class="data4 titleGrid">Teléf.fijo/celular</th>
+                <th class="data5 titleGrid">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($this->arrayAdm as $item) { ?>
+            <?php $token = crypt($item['id'], '$2a$07$'.md5(uniqid(rand(), true)).'$');?>
+                <tr>
+                    <td class="data1"> <?= $this->escape($item['nombres'] . ' ' . $item['apellidos']) ?></td>
+                    <td class="data2"><?=
+                        $item['rol'] == Application_Form_Login::ROL_EMPRESA_ADMIN
+                                ? 'Administrador Principal' : 'Administrador Secundario'
+                        ?></td>
+                    <td class="data3"><?= $this->escape($item['email']) ?></td>
+                    <td class="data4">
+                        <div class="tlfEMG1">
+                            <?php
+                            if ($item['telefono'] != '') {
+                                if ($item['anexo'] != '') {
+                                    echo $item['telefono'] . ' anexo ' . $item['anexo'];
+                                } else {
+                                    echo $this->escape($item['telefono']);
+                                }
+                            } else {
+                                '';
+                            }
+                            ?>
+                        </div>
+                        <div class="tlfEMG1">
+                            <?php
+                            if ($item['telefono2'] != '') {
+                                if ($item['anexo2'] != '') {
+                                    echo $this->escape($item['telefono2']) . ' anexo ' . $this->escape($item['anexo2']);
+                                } else {
+                                    echo $this->escape($item['telefono2']);
+                                }
+                            } else {
+                                '';
+                            }
+                            ?></div>
+                    </td>
+
+                    <td class="data5">
+                        <?php
+                        if ($item['rol'] == Application_Form_Login::ROL_EMPRESA_USUARIO
+                            && $this->rol == Application_Form_Login::ROL_EMPRESA_ADMIN) :
+                            ?>
+                            <div class="deleteAdmEPI"><a class="winModal" href="#winAlertEliminarAdm" rel="<?=
+                                $this->url(array(
+                                    'module' => 'empresa', 'controller' => 'administrador',
+                                    'action' => 'borrar-administradores', 'id' => $item['id']),
+                                    'default', true);
+                                ?>">Eliminar</a></div>
+                            <?php endif; ?>
+                        <?php
+                        if ($this->rol == Application_Form_Login::ROL_ADMIN_MASTER
+                            || $this->rol == Application_Form_Login::ROL_ADMIN_SOPORTE
+                            || $this->rol == Application_Form_Login::ROL_ADMIN_MODERADOR) :
+                            ?>
+                            <div class="deleteAdmEPI"><a class="winModal" href="#winAlertEliminarAdm" rel="<?=
+                                $this->url(array(
+                                        'module' => 'admin', 'controller' => 'administrador-empresa',
+                                        'action' => 'borrar-administradores',
+                                        'id' => $item['id'], 
+                                        'idEm' => $this->idEmpresa,
+                                        'tok' => urlencode($token)
+                                    ),
+                                    'default', true);
+                                ?>">Eliminar</a></div>
+                        <?php endif; ?>
+                        <?php
+                        if ($this->rol == Application_Form_Login::ROL_EMPRESA_ADMIN
+                            && $this->asignarProcesos && $item['rol'] == Application_Form_Login::ROL_EMPRESA_USUARIO) :
+                            ?>
+                            <div class=""><a class="manageProcess" href="<?=
+                                $this->url(array(
+                                    'module' => 'empresa', 'controller' => 'administrador-procesos',
+                                    'action' => 'asignados', 'administrador_id' => $item['id']),
+                                    'default', false);
+                                ?>">Gestionar Procesos</a></div>
+                            <?php endif; ?>
+                            <?php
+                            if ($item['rol'] == Application_Form_Login::ROL_EMPRESA_USUARIO
+                                && $this->rol == Application_Form_Login::ROL_EMPRESA_ADMIN) :
+                                ?>
+                            <div class="deleteAdmEPI"><a class="winModal" href="#winAlertPrivilegioAdm" rel="<?=
+                                $this->url(array(
+                                    'module' => 'empresa', 'controller' => 'administrador',
+                                    'action' => 'dar-privilegio-administrador',
+                                    'id' => $item['id']), 'default', true);
+                                ?>">Dar privilegios admin principal</a></div>
+                            <?php endif; ?>
+                        <?php
+                            if ($this->rol == Application_Form_Login::ROL_EMPRESA_ADMIN
+                                || $item['id'] == $this->idUsuLog || $this->rol == Application_Form_Login::ROL_ADMIN_MASTER
+                                || $this->rol == Application_Form_Login::ROL_ADMIN_SOPORTE
+                                || $this->rol == Application_Form_Login::ROL_ADMIN_MODERADOR) :
+                            ?>
+                            <div class="editAdmEPI"><a href="#" rol="<?= $item['id'] ?>" data-token="<?=urlencode($token);?>" class="editAdmEMP winModalData" rel="#cntNewAdminEM" >Editar</a></div>
+                        <?php endif; ?>
+                    </td>
+                </tr>
+            <?php } ?>
+        </tbody>
+    </table>
+    <div class="pagination all">
+    <?=
+    $this->paginationControl($this->arrayAdm, 'Sliding',
+        'mi-cuenta/_pag.phtml')
+    ?>
+    </div>
+    <?php
+    if ($this->rol == Application_Form_Login::ROL_EMPRESA_ADMIN) :
+        ?>
+        <div class="wrap-btn right" class="all">
+            <a id="addNewAdminEM" rol="-1" idEm="<?= $this->idEmpresa ?>" rel="#cntNewAdminEM" href="#cntNewAdminEM" class="btn btn-primary addAdmEMP winModalData">Añadir nuevo administrador</a>
+            <span id="msgErrorDef" class="right error"></span>
+        </div>
+    <?php endif; ?>
+</div>

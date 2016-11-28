@@ -1,0 +1,139 @@
+<?php if (count($this->expandible ? $this->data['visible'] : $this->data)): ?>
+	 <div class="option-list">
+		  <h5 class="EMPLEOBUSCO-title small">
+				<i class="icon <?php echo $this->icon?>"></i>
+				<?= $this->titulo ?>
+				<span class="icon-tiny down"></span>
+		  </h5>
+
+		  <form id="fFilterE1" action="#" class="form-search open" data-type="<?php echo  ($this->param); ?>">
+				<div class="flow-list">
+					 <?php
+					 $i = 0;
+					 foreach ($this->expandible ? $this->data['visible'] : $this->data as $item):
+						  $i++;
+						  $conf_programas = '';
+						  $conf_idiomas = '';
+						  if($this->constantes != null){
+							  $conf_programas = $this->constantes->programas;
+							  $conf_idiomas = $this->constantes->idiomas;
+						  }
+					  //  $idSubnivel='ok';
+						  $nombre = $item["nombre"];
+						  $otrosestudios='';
+						  $id= $item['id'];
+						  $idnethijo='';
+//                    if ($this->param == $conf_programas)
+//                            $nombre = $this->enumeraciones->programas_computo->$nombre;
+						  if ($this->param == $conf_idiomas)
+									 $nombre = $this->enumeraciones->lenguajes->$nombre;
+						  if ($nombre != null && $nombre != "") :
+
+						  $idSubnivel='';
+						  $idotrosestudios='';
+									 if(  $this->titulo=='NIVEL DE ESTUDIOS' && ($item['id']== 1 || $item['id']== 2 || $item['id']== 3)  ){
+										 $idSubnivel=',0';
+									 }else{
+									 if($this->param =='niveldeOtrosestudios' && ($item['id']== 24 || $item['id']== 23 || $item['id']== 25 || $item['id']== 28 || $item['id']== 27 || $item['id']== 26) && $this->titulo=='OTRO ESTUDIOS' ){
+										 $idSubnivel=  $item['id'];
+										 $item['id']='9,';
+										 $idotrosestudios='otros';
+										 }
+									 }
+									 if($this->param=='niveldeestudios' &&  in_array($item['id'],array(4,8,10,13) ) && $this->titulo=='NIVEL DE ESTUDIOS'){
+										  $buscador='';
+										  $idSubnivel=',0';
+										  $idnethijo=$item["id"].$idSubnivel;
+										  $label="<div class='ioption accord' >";
+										  $label2=" </div>";
+										  $labelhijo='<label class="ioption">';
+										  $labelhijo2='</label>';
+										  $subnivel=' <div class="more_options mL20 hide close" rel="'.$item["id"].'">';
+										  $subnivel2='</div>';
+										  $flecha='<span class="icon-tiny up" style="right: 0;"></span>';
+									 }else{
+										  $idnethijo=$item["id"].$idSubnivel;
+										  $buscador='';
+										  $label="<label class='ioption' >";
+										  $label2=" </label>";
+										  $subnivel='';
+										  $subnivel2='';
+										  $flecha='';
+									 }?>
+										<?=$label?>
+										<?=$flecha?>
+									 <?php if($nombre == 'Api') { ?>
+												<span class="aFilterB linkApt">Trabaje con Nosotros</span>
+									 <?php } else { ?>
+												<span class="aFilterB linkApt"><?= $nombre   ?>  </span>
+									 <?php } ?>
+									 <?php $idni=($this->titulo=='NIVEL DE ESTUDIOS'&&$idnethijo=='')?$idnethijo:$item["id"].$idSubnivel;?>
+									 <input value="<?= $idni ?>"  name="filtroE1<?=$idotrosestudios;?>" type="checkbox" class="checkN <?=$buscador?>">
+									 <?=$label2?>
+									 <?=$subnivel?>
+									<?=   $this->Listarsubnivel($item["id"], $this->titulo)?>
+								 <?=$subnivel2?>
+						  <?php endif; ?>
+					 <?php endforeach; ?>
+					 <?php
+					 if ($this->expandible > 0):
+						  ?>
+						  <?php
+						  if (isset($this->data['ocultos']) && count($this->data['ocultos']) > 0):
+								?>
+								<div class="more_options hide">
+									 <?php
+									 foreach ($this->data['ocultos'] as $ite):
+										  foreach ($ite as $item):
+												$i++; ?>
+												<label for="filtro<?= $this->param . $i ?>" class="ioption">
+													 <span class="aFilterB linkApt">
+													 <?php if(  $this->titulo=='NIVEL DE ESTUDIOS' && ($item['id']== 1 || $item['id']== 2 || $item['id']== 3)  ){
+																	$idSubnivel=',0';
+															}else{
+																if($this->param =='niveldeOtrosestudios'  && $item['id']== 24 || $item['id']== 23 || $item['id']== 25 || $item['id']== 28 || $item['id']== 27 || $item['id']== 26 && $this->titulo=='OTRO ESTUDIOS' ){
+																	$idSubnivel=  $item['id'];
+																	$item['id']='9,';
+																	$idotrosestudios='otros';
+																}
+															}?>
+													 <?php if($this->param=='niveldeestudios' &&  in_array($item['id'],array(4,8,10,13) ) && $this->titulo=='NIVEL DE ESTUDIOS'){
+																	 $buscador='';
+																	 $idnethijo=$item["id"].$idSubnivel;
+																	 $label="<div class='ioption accord' >";
+																	 $label2=" </div>";
+																	 $labelhijo='<label class="ioption">';
+																	 $labelhijo2='</label>';
+																	 $subnivel=' <div class="more_options mL20 hide close" rel="'.$item["id"].'">';
+																	 $subnivel2='</div>';
+																	 $flecha='<span class="icon-tiny up" style="right: 0;"></span>';
+																}else{
+																	 $idnethijo=$item["id"].$idSubnivel;
+																	 $buscador='';
+																	 $label="<label class='ioption' >";
+																	 $label2=" </label>";
+																	 $subnivel='';
+																	 $subnivel2='';
+																	 $flecha='';
+																}?>
+														  <?php $idni=($this->titulo=='NIVEL DE ESTUDIOS'&&$idnethijo=='')?$idnethijo:$item["id"].$idSubnivel;?>
+														  <input value="<?= $idni ?>" name="filtroE56" type="checkbox" class="checkN noBdr <?=$buscador?>">
+													 </span>
+													 <span class="aFilterB linkApt">
+														  <span class="aFilterB linkApt" href="#"><?= $item["nombre"] ?> </span>
+													 </span>
+												</label>
+										  <?php endforeach; ?>
+									 <?php endforeach; ?>
+								</div>
+						  <?php endif; ?>
+					 <?php endif; ?>
+				</div>
+				<?php if (isset($this->data['ocultos']) && count($this->data['ocultos']) > 0): ?>
+					 <div class="wrap-btn right">
+						  <a href="javascript:;" class="view-more">Ver todos</a>
+					 </div>
+				<?php endif; ?>
+		  </form>
+	 </div>
+<?php endif; ?>

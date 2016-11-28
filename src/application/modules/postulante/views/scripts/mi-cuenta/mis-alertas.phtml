@@ -1,0 +1,51 @@
+<div class="configuration_wrapper">
+    <?=$this->partial('_partials/_new_messages.phtml',array("flashMessages"=>$this->flashMessages))?>    
+    <div class="center_box">    
+    <?= $this->partial('mi-cuenta/_sidebar-menu_mi_cuenta_datos.phtml', array('menu_sel_side' => $this->menu_sel_side)) ?>
+      
+    <div class="content_wrapper">
+        <span class="title_content">
+            Mis Alertas</i>
+        </span>
+      <div class="information">
+        <p class="information_text">	Deseo suscribirme a los siguientes envíos.</p>
+        
+        <form id="frmOptions" method="post" action="" class="frm_options">
+            <input type="hidden" name="csrfhash" id="ocultohash" value="<?= CSRF_HASH ?>" />
+            <?= $this->partial('registro/_alertas_paso2_mi_cuenta.phtml', array('formAlertas' => $this->formAlertas)); ?>
+            <button type="submit" class="btn btn_save">Guardar</button>
+        </form>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<?php /* ?>
+
+<div id="wrapper" class="row">
+    <?=$this->partial('_partials/_messages.phtml',array("flashMessages"=>$this->flashMessages))?>
+    <?= $this->partial('mi-cuenta/_sidebar-menu.phtml', array('menu_sel_side' => $this->menu_sel_side)) ?>
+    <div class="blockAR grid15 alpha right">
+        <div class="iBlockAR cntAlertCP">	
+            <h2>Mis Alertas</h2>
+            <form id="alertasACP" method="post" action="">
+                <div class="blockField r2">
+                    <fieldset class="alertsCP">
+                        <input type="hidden" name="csrfhash" id="ocultohash" value="<?= CSRF_HASH ?>" />
+                        <?= $this->partial('registro/_alertas_paso2.phtml', array('formAlertas' => $this->formAlertas)); ?>
+                    </fieldset>
+                </div>
+                <fieldset class="wrap-btn right">
+                    <input type="submit" id="btnSaveChCP" class="btn btn-primary" value="Guardar cambios">
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+
+<?php */ ?>

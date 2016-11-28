@@ -1,0 +1,62 @@
+<table cellspacing="0" border="0" cellpadding="0" width="750">
+	 <tr><td>&nbsp;</td></tr>
+	 <tr>
+		  <td valign="top" align="center" colspan="2" style="text-align: center">
+				<table width="100%" style="margin:0" align="center" border="0">
+
+					 <tr>
+						  <td align="left" style="color:#030303; padding:0 30px; font-family:Arial, Helvetica, sans-serif; font-size:18px; line-height:1">
+								<span>Hola <?= $this->nombre ?><br><br></span>
+						  </td>
+					 </tr>
+					 <tr>
+						  <td align="left" style="color:#030303; padding:0 30px; font-family:Arial, Helvetica, sans-serif; font-size:18px; line-height:1">
+								<? if ($this->mostrarEmpresa == 1): ?>
+									 <span><strong><?= $this->empresa ?></span></strong> te ha escrito el siguiente mensaje:<br>                      <? else: ?>
+									 <span>La empresa con alias <strong><span><?= $this->empresa ?></span></strong> te ha escrito el siguiente mensaje:<br>
+							  <? endif; ?>
+						  </td>
+					 </tr>
+
+					 <tr>
+						  <td align="left" style="color:#030303; padding:0 30px; font-family:Arial, Helvetica, sans-serif; font-size:18px; line-height:1">
+								<span><br>Estimado <?= $this->nombre ?>:<br><br>
+								<?=$this->mensaje?><br><br>
+								</span>
+
+						  </td>
+					 </tr>
+
+					 <tr>
+						  <td align="left" style="color:#030303; padding:0 30px; font-family:Arial, Helvetica, sans-serif; font-size:18px; line-height:1">
+								<span>Puedes ingresar a tu cuenta en <a href="<?= SITE_URL?>" style="color: #007FD2;">aquiempleos.com</a>
+								para contestar y revisar todos tus mensajes en el siguiente enlace: <a href="<?= SITE_URL.'/postulaciones'?>" style="color: #007FD2;">Mi Cuenta AquiEmpleos</a>.</span>
+						  </td>
+					 </tr>
+
+
+<!--                <tr>
+						  <td align="left" style="color:#5a5658; padding:0 30px; font-family:Arial, Helvetica, sans-serif; font-weight:bold;font-size:32px; line-height:1">
+								<span style="color:#000000;font-size:32px; line-height:1">AQUI CV DESTACADO CUANDO SE IMPLEMENTE.</span>
+						  </td>
+					 </tr>-->
+
+					 <tr>
+						  <td>&nbsp;</td>
+					 </tr>
+					 <tr>
+						  <td>
+								<table style="border-left-color: #fff; border-top-color: #fff; border-bottom: #fff 1px solid; border-right-color: #fff" cellspacing="0" cellpadding="0" border="0">
+									 <tr>
+										  <td align="left" width="750" style="padding-left:30px;padding-bottom:10px;"><h1 style="padding-right: 0px; padding-left: 20px; font-family:'Arial, Helvetica, sans-serif';font-weight: bold; font-size: 20px; margin: 0px; color: #222222; padding-top: 10px; padding-bottom: 10px;">
+													 <span style="color:#000000; font-family: Arial, Helvetica, sans-serif">&iexcl;&Eacute;xitos! <br></span>
+													 <span style="color:#000000; font-family: Arial, Helvetica, sans-serif"> El equipo AquiEmpleos</span> </h1>
+										  </td>
+									 </tr>
+								</table>
+						  </td>
+					 </tr>
+				</table>
+		  </td>
+	 </tr>
+</table>

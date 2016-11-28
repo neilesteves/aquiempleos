@@ -1,0 +1,98 @@
+<div class="iBlockAR">
+    <div id="titleyBtn">
+        <h2>Mis Membresías</h2>
+    </div>
+    <p class="add_cv"><a title="Adquirir mi membresía" href="/empresa/home/membresia-anual">+</a></p>
+    <table summary="Administradores" id="dataAadmins" class="tbl-admin">
+        <thead>
+            <tr>
+                <th class="data1">
+                    
+                        Nombre Membresía
+                    
+                </th>
+                <th class="data2">
+                    
+                        Tipo
+                    
+                </th>
+                <th class="data2">
+                    
+                        Fecha Inicio
+                    
+                </th>
+                <th class="data2">
+                    
+                        Fecha Fin
+                    
+                </th>
+                <th class="data2">Monto (<?php echo $this->moneda?>)</th>
+                <th class="data1">Medio de Pago</th>
+                <th class="data2">
+                    
+                        Estado
+                    
+                </th>                
+                <th class="data2">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php //$estado = array(0 => 'No Vigente', 1 => 'Vigente') ?>
+            <?php foreach ($this->membresias as $membresia): ?>
+            <?php
+                $cip = ' - ';
+
+                //Siempre y cuando el cip esté activo por pagarse
+                if (!is_null($membresia['cip'])) {
+                    if ($membresia['diasPE'] > 0 || $membresia['em_estado'] == 'vigente') {
+                        $cip = '<br>CIP <br> <font size=1>'. $membresia['cip']."</font>";
+                        if ($membresia['diasPE'] > 0 && $membresia['c_estado'] != Application_Model_Compra::ESTADO_PAGADO) {                         
+                            $cip .= "<br/>(Expirado)";
+                        }
+                        
+                    } else {
+                        $cip = '<br>(CIP) <br>' . "<a href='/empresa/comprar-membresia-anual/pago-efectivo/id/" . $membresia['compraId'] . "' target='_blank'><font size=1>" . $membresia['cip'] . "</font></a>";
+                    }
+
+                } else {
+                            $cip  = '';
+                }
+                
+                
+            ?>
+            <tr>
+                <td class="data1"><?= $membresia['m_tipo']=='bonificado'? 
+				    'Bonificado '.$this->escape($membresia['m_nombre']):
+				    'Membresía '.$this->escape($membresia['m_nombre']) ?>
+                </td>
+                <td class="data2"><?php echo ucfirst($this->escape($membresia['m_tipo']));?></td>
+                <td class=""><?= date('d/m/Y', strtotime($membresia['em_fh_inicio_membresia'])) ?></td>
+                <td class=""><?= date('d/m/Y', strtotime($membresia['em_fh_fin_membresia'])) ?></td>
+                <td class=""><span class="right"><?= number_format($membresia['em_monto'], 2, '.', ','); ?></span></td>
+                
+                <td class="">                    
+                    <?= ucfirst($membresia['tipoDoc']) . "<br>" . $membresia['medio'] . $cip ?>
+                </td>
+                
+                <td class=""><?php //= $membresia['em_estado']
+                 // 'vigente','no vigente','pagado','por pagar')
+                    if($membresia['em_estado'] == 'no vigente') {  
+                        echo 'Inactivo';                        
+                    } else { 
+                        echo ucwords($membresia['em_estado']);                        
+                    }                                        
+                ?></td>
+                <td class="">
+                    <div class="deleteAdmEPI"><a class="view_membership_details" href="javascript:;" data-rel="<?= $membresia['em_id'] ?>">Ver Beneficios</a></div>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+    
+    <div class="pagination all">
+        <?=
+        $this->paginationControl($this->membresias, 'Sliding', '_partials/_pag.phtml')
+        ?>
+    </div>	
+</div>

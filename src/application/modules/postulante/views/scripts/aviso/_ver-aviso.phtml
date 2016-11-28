@@ -1,0 +1,56 @@
+<?= $this->partial('aviso/_ubicacion-aviso.phtml', array("aviso" => $this->aviso)); ?>
+
+<script type="text/javascript">
+        var url = window.location.href;
+        console.log(url);
+</script>
+
+
+<div class="contenedor-redes-sociales row smb">
+    <div class="col-xs-12 col-sm-4 col-md-5 redes-sociales-ficha  spb">
+        <!-- <a href="https://www.linkedin.com/company/aquiempleos" target="_black"><span class="fa fa-linkedin rsocial" aria-hidden="true"></span></a>
+        <a href="https://twitter.com/aquiempleos" target="_blank"><span class="fa fa-twitter rsocial" aria-hidden="true"></span></a>
+        <a href="https://www.facebook.com/aquiempleos" target="_blank"><span class="fa fa-facebook rsocial" aria-hidden="true"></span></a> -->
+
+        <a href="javascript:void(0);" onclick="window.open(&quot;http://www.linkedin.com/shareArticle?url=<?=SITE_URL.$this->url ?>/&quot;,&quot;gplusshare&quot;,&quot;toolbar=0,status=0,width=548,height=325&quot;);" rel="nofollow" title="Compartir en Linkendi">
+            <span class="fa fa-linkedin rsocial" aria-hidden="true"></span>
+        </a>
+
+        <a href="javascript:void(0);" onclick="window.open(&quot;http://twitter.com/intent/tweet?url=<?=SITE_URL.$this->url ?>/&quot;,&quot;gplusshare&quot;,&quot;toolbar=0,status=0,width=548,height=325&quot;);" rel="nofollow" title="Compartir en twitter">
+            <span class="fa fa-twitter rsocial" aria-hidden="true"></span>
+        </a>
+        <a id="facebook" href="javascript:void(0);" onclick="window.open(&quot;http://www.facebook.com/sharer.php?u=<?=SITE_URL.$this->url ?>/&quot;,&quot;gplusshare&quot;,&quot;toolbar=0,status=0,width=548,height=325&quot;);" rel="nofollow" title="Compartir en twitter">
+            <span class="fa fa-facebook rsocial" aria-hidden="true"></span>
+        </a>
+    </div>
+    <div class="col-xs-12 col-sm-8 col-md-7 botones-postula-ficha col-md-6 spb">
+        <?php if($this->aviso["mostrar_empresa"] == '1') : ?>
+                <a  class="inline-link  btn-aviso" href="<?=
+                $this->url(array(
+                    'pais' => $this->aviso["slug_pais"], 'empresa' => $this->aviso["empresaslug"]), 'buscar', true)
+                ?>"><span class="">Avisos de la empresa</span></a>
+               <?php endif; ?>
+               <?php if(!$this->hasPostulado && $this->ispostulante) { ?>
+                <a  class="inline-link btn-postula" href="<?= $this->verAviso($this->aviso)->modal($this->auth, $this->hasPostulado, $this->cuestionario) ?>" data-toggle="modal" ><span class="">Postular</span></a>
+            <?php } ?>
+    </div>
+
+</div>
+
+
+<?= $this->partial('aviso/_detalle-aviso.phtml', array("aviso" => $this->aviso, "moneda" => $this->moneda)); ?>
+<div class="text-center">
+    <div class="boton-postular">
+        <?php if(!$this->hasPostulado && $this->ispostulante) { ?>
+            <a href="<?= $this->verAviso($this->aviso)->modal($this->auth, $this->hasPostulado, $this->cuestionario) ?>" class="buttom-blue-w change" data-toggle="modal">Postular</a>
+        <?php } ?>
+    </div>
+    <div class="rs">
+        <a href="https://www.linkedin.com/company/aquiempleos" target="_black">
+        <span class="fa fa-linkedin rsocial move" aria-hidden="true"></span></a>
+        <a href="https://twitter.com/aquiempleos" target="_blank"><span class="fa fa-twitter rsocial move" aria-hidden="true"></span></a>
+        <a href="https://www.facebook.com/aquiempleos" target="_blank">
+            <span class="fa fa-facebook rsocial move" aria-hidden="true"></span>
+        </a>
+    </div>
+</div>

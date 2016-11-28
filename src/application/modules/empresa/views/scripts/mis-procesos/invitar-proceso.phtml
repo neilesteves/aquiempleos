@@ -1,0 +1,25 @@
+
+<?php if((int)$this->btnBloqueado==3){ ?>
+        <?php echo $this->btnBloqueado; ?>
+<?php }else{?>
+        <div class="all">
+        <?php if (count($this->procesos)!= 0 ) {?>   
+            <h3 class="titleAPLR">Invitar</h3>
+            <?php $count = 1; ?>
+                        <div id="dataCntInvA">
+                                <ul class="ulListInvA">
+                    <?php foreach ($this->procesos as $data) :?>
+                        <li class="liListInvA">
+                                <a href="#" class="aListInvA linkInviteP" idpostulacion="<?=$this->idPostulacion?>" rel="<?= $data['id']?>" rol="<?= $this->idPostulante?>" data-tok ='<?php echo $this->token ?>' >
+                                Proceso <?= $count++.': '?> 
+                                <span class="spanListInvA"><?=$data['puesto'] ?></span>
+                                </a> 
+                        </li>    
+                    <?php endforeach; ?>
+                                </ul>			
+                        </div>
+        <?php } else {?>
+                <h3 class="titleAPLR">No se encuentra Proceso Activo</h3>
+        <?php }?>
+        </div>
+<?php }?>

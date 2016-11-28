@@ -1,0 +1,36 @@
+<?php if($this->dataperfil['total_completado']==100)
+          $msge = 'tu perfil se encuentra al 100%. Puedes visualizar las sugerencias que encontramos para ti.';
+      else
+          $msge = 'aún te falta completar estos temas de tu perfil para hacer más precisas las sugerencias.';
+?>
+<div class="welcome_detail">
+      <p class="review_short"><span>Bienvenido(a) <strong class="name_profile"><?=$this->dataperfil['postulante']['nombres']?>,</strong></span><span class="hide_desktop">Tu perfil está al</span><span class="show_desktop"> <?=$msge?> </span>
+        <a href="<?=$this->url(array('module'=>'postulante','controller'=>'avisos-sugeridos','action'=>'index'))?>" class="btn btn_suggest"><i class="icon icon_reload"></i><span><?= $this->dataperfil['sugerencias']['total']?> sugerencias</span></a>
+        </p>
+      <div class="circle_progress">
+        <div id="progressProfile" class="progress_profile" data-percent="<?= $this->dataperfil['total_completado']?>"></div>
+      </div>
+      <a href="#" class="right"><i class="icon icon_help"></i></a>
+</div>   
+<div id="sliderProfile" class="profile_data_box">
+  <div class="slider_wrapper">
+    <ul class="row">
+      <?php foreach ($this->dataperfil['porcentaje'] as $key => $item) :?>          
+      <li class="icon_profile <?=(ACTION === $this->dataperfil['porcentaje'][$key]['action']) ? 'is_active' : ''?> <?=($this->dataperfil['porcentaje'][$key]['completed'] == true) ? 'is_passed' : ''?>" data-rel="<?=$this->dataperfil['porcentaje'][$key]['title']?>">
+          <a href="<?=$this->dataperfil['porcentaje'][$key]['url']?>" title='<?=$this->dataperfil['porcentaje'][$key]['title']?>'> 
+          <i class="icon <?=$this->dataperfil['porcentaje'][$key]['icon']?>"></i>
+          <span class="percentage">
+              <?php if ($key!='Referencias') {?>
+              <span class="text_number"><?=$this->dataperfil['porcentaje'][$key]['total']?>%+</span>
+              <span class="icon icon_check"></span>
+              <?php } ?>
+          </span>
+          <div class="selection_title">
+            <p><?=$this->dataperfil['porcentaje'][$key]['title']?></p>
+          </div></a>
+      </li>
+      <?php endforeach; ?>
+          
+    </ul>
+  </div>
+</div>

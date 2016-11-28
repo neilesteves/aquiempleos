@@ -1,0 +1,200 @@
+<?php 
+//if ($this->auth) { 
+    echo Application_Model_Partials::getMenuPostulante();
+//} 
+?>
+<?=$this->partial('_partials/_new_messages.phtml',array("flashMessages"=>$this->flashMessages));?>
+
+<?php if (isset($this->auth['usuario']->rol) && $this->auth['usuario']->rol != 'postulante' && $this->module == 'postulante') : ?>    
+    <section class="message_box error">
+        <div class="center_box">
+          <div class="message">
+              <i class="icon icon_check"></i>
+              <span>Para postular al aviso debe estar logueado como postulante.</span></div>
+          <i class="icon icon_cross"></i>
+        </div>
+    </section>
+<?php endif; ?>
+                
+<section class="aviso">
+  <div class="center_box">
+    <div class="row">
+        <?=$this->partial('_partials/_messages.phtml',array("flashMessages"=>$this->flashMessages))?>
+        <div class="breadcrumb">
+            <div itemtype="http://data-vocabulary.org/Breadcrumb" itemscope>
+                <a href="<?= SITE_URL ?>/buscar" itemprop="url" title="Inicio">
+                    <span itemprop="title">Inicio</span>
+                </a>
+            </div><span>/</span>            
+            <div itemtype="http://data-vocabulary.org/Breadcrumb" itemscope>
+                <a href="<?= SITE_URL ?>/buscar/areas/<?= $this->aviso['area_puesto_slug'] ?>" itemprop="url" title="<?= $this->aviso['area_puesto'] ?>">
+                    <span itemprop="title"><?= $this->aviso['area_puesto'] ?></span>
+                </a>
+            </div><span>/</span>
+            <div itemtype="http://data-vocabulary.org/Breadcrumb" itemscope>
+                <a href="<?= SITE_URL ?>/buscar/nivel/<?= $this->aviso['nivel_puesto_slug'] ?>" itemprop="url" title="<?=ucwords(str_replace('-', ' ', $this->aviso['nivel_puesto_slug']))?>">
+                    <span itemprop="title"><?=ucwords(str_replace('-', ' ', $this->aviso['nivel_puesto_slug']))?></span>
+                </a>
+            </div><span>/</span>
+            <div>
+                <a href="javascript:;" title="<?= $this->aviso['puesto'] ?>">
+                    <span><?= $this->aviso['puesto'] ?></span>
+                </a>
+            </div>
+        </div>
+        
+        
+        <div class="job_description_wrapper">
+            <?php echo $this->AnuncioHelper($this->aviso)->divCintilloNew($this->S('/main/img/job_finished.png')); ?>                        
+                    
+            <?php if ($this->hasPostulado != false) : ?>
+                <div class="job_box_already_have_applied">
+                    <?php
+                    $nomEmpresa = ($this->aviso['mostrar_empresa'] != 0) ? 
+                                $this->aviso['nombre_empresa'] : $this->aviso['nombre_comercial'];
+                    ?>  
+                    
+                    <?php if(empty($this->destacado)) : ?>
+                    <div class="info_cv">
+                        <h4 class="title_cv m0">¡Felicitaciones!</h4>
+                        <p><?= strtotime(date('Y-m-d H:i:s')) < (strtotime($this->hasPostulado) + 12) ? 'Acabas de postular' : 'Ya postulaste'; ?> al puesto de <?= $this->aviso['puesto'] ?> en <?=$nomEmpresa?></p>
+                    </div><?php /*   <div class="blue_band register">
+                        <p>Obtén el trabajo que buscas en el menor tiempo.<br> Destácate y mantente informado de tus procesos de selección</p>
+                        <p><a href="<?=SITE_URL.'/perfil-destacado'?>" class="btn btn_primary">¡Adquiere tu Perfil Destacado!</a></p>
+                    </div>*/ ?>
+                    <div class="image_cv"></div>
+                    <?php else : ?>
+                        <h4 class="title_cv m0">¡Felicitaciones!</h4>
+                        <p><?=strtotime(date('Y-m-d H:i:s')) < (strtotime($this->hasPostulado) + 12) ? 'Acabas de postular' : 'Ya postulaste'; ?> al puesto de <?= $this->aviso['puesto'] ?> en <?=$nomEmpresa?></p>
+                    <?php endif; ?>
+                </div>
+            <?php endif; ?>
+                <div class="job_description row <?php echo ($this->hasPostulado) ? 'job_box_finished': '';?>">
+                <h1 class="job_description_title">
+                  <label itemprop="title"><?= $this->aviso['puesto']; ?></label>
+                </h1> 
+          <?php if ($this->module == 'postulante') : ?>               
+            <div class="job_description_options">
+                   <?php if ($this->AnuncioHelper($this->aviso)->showBtnPostular()) : ?>
+                       <?php if ($this->isAuth === false || $this->auth['usuario']->rol === 'postulante') : ?>                       
+                           <?php if ($this->hasPostulado === false && ($this->hasDesPostulado === false)) : ?>        
+                                   <?php if ($this->cuestionario === true) :
+                                       $urlPostula = 'javascript:;';
+                                       $winModal = 'show_questions';
+                                       if ($this->updateCV) :
+                                           $urlPostula = '#winUpdateCV';
+                                           $winModal = 'trigger_modal_not_enough_information';
+                                       endif;
+                                       if ($this->auth == null) :
+                                           $winModal = 'login_init';
+                                       endif;                                       
+                                       ?>
+                                       <a class="btn btn_apply_job <?=$winModal?>" 
+                                          onClick="ga('send', 'event', 'postulacion','oferta_trabajo','<?= $this->aviso['area_puesto'] ?>_<?= $this->aviso['nivel_puesto_nombre'] ?>_<?= $this->aviso['url_id'] ?>_<?=$this->postulante?>');"
+                                          href="<?= (empty($winModal)) ? $this->urlAviso. '/postular' : $urlPostula; ?>" 
+                                          data-href="<?= ($this->auth == null) ? $this->urlAviso .$urlPostula : $this->urlAviso ?>"
+                                          data-trigger-modal="<?=$urlPostula?>" 
+                                          title="Postula"><span>Postular</span></a>
+                                      <?php else : ?>
+                                          <?php
+                                          $resParams
+                                              = $this->searchResultsUrl == '' ? '' : '/es-resultado/true';
+                                           $urlPostula = 'javascript:;';
+                                           $winModal = '';
+                                          if ($this->auth == null) :
+                                              $urlPostula = 'javascript:;';
+                                              $winModal = 'login_init';
+                                          else : //update CV
+                                              if ($this->updateCV) :                                               
+                                                $urlPostula = '#winUpdateCV';
+                                                $winModal = 'trigger_modal_not_enough_information'; 
+                                              else :
+                                                 $urlPostula =  $this->urlAviso. '/postular' . $resParams;  
+                                                                                                 
+                                              endif;
+                                          endif;      
+                                          ?>
+                                       <a class="btn btn_apply_job <?=$winModal?>" 
+                                          onClick="ga('send', 'event', 'postulacion','oferta_trabajo','<?= $this->aviso['area_puesto'] ?>_<?= $this->aviso['nivel_puesto_nombre'] ?>_<?= $this->aviso['url_id'] ?>_<?=$this->postulante?>');"
+                                          href="<?= (empty($winModal)) ? $this->urlAviso. '/postular' : $urlPostula; ?>" 
+                                          data-href="<?= ($this->auth == null) ? $this->urlAviso . '/postular' . $resParams : $this->urlAviso ?>" 
+                                          data-trigger-modal="<?=$urlPostula?>" 
+                                          title="Postula"><span>Postular</span></a>
+                                      <?php endif; ?>
+                                      <?php
+                                        $class_fav = ($this->esFav) ? ' selected' : '';
+                                        $indexado  = (int)$this->aviso['buscamas'] == 1;
+                                         ?>
+
+                                     <?php if($this->auth != null && $indexado) :?>
+                                      <button href="javascript:;"
+                                              class="btn btn_hightlight"
+                                              data-page="1"
+                                              data-id="<?=$this->aviso['id']?>"
+                                              data-highlight="/avisos-sugeridos/agregar-favoritos-ajax"
+                                              data-urlaviso="<?=$this->urlAviso?>" title="Agregar a favoritos">
+                                        <span class="btn_label"><i class="icon icon_star_hover animated paintStarAnimation<?=$class_fav?>"></i></span>
+                                        <span class="btn_spinner tiny"></span></button>
+                                     <?php endif; ?>
+                           <?php endif; 
+                        endif; 
+                    endif; ?>
+                </div>
+            <?php endif;  ?>                
+                </div>          
+       <?=$this->partial('aviso/_new_ver_aviso.phtml',
+                array('aviso' => $this->aviso,
+                'online' => $this->online,
+                'hasPostulado' => $this->hasPostulado,
+                'hasDesPostulado' => $this->hasDesPostulado,
+                'cuestionario' => $this->cuestionario,
+                'searchResultsUrl' => $this->searchResultsUrl,
+                'auth' => $this->auth,
+                'urlAviso' => $this->urlAviso,
+                'module' => $this->module,
+                'isAuth' => $this->isAuth,
+                'acceso' => $this->acceso,
+                'micuentaUrl' => $this->micuentaUrl,
+                'seo' => $this->seo,
+                'updateCV' => $this->updateCV,
+                'LogoDefecto' =>$this->LogoDefecto,
+                'moneda' => $this->moneda,
+                'postulante' => $this->postulante  
+                    ))       ?>            
+      </div>
+      <aside>
+<!--        <div class="advertisement">
+          <script type="text/javascript">
+            if(typeof(eplAD4M) != "undefined"){
+              eplAD4M("Right1");
+            }
+          </script>               
+        </div>-->
+        <?php
+            if (count($this->anunciosRelacionados) > 0) {
+                echo $this->partial('_partials/_avisos_relacionados.phtml',array(
+                    'anunciosRelacionados' => $this->anunciosRelacionados,
+                    'verLogoDefecto' => $this->verLogoDefecto,
+                    'slugArea' => $this->slugArea,
+                    'slugNivel' => $this->slugNivel,
+                    'LogoDefecto' =>$this->LogoDefecto,
+                ));
+            }
+            if (count($this->anunciosSugeridos) > 0) {
+                echo $this->partial('_partials/_avisos_sugeridos.phtml',array(
+                    'avisosSugerencias' => $this->anunciosSugeridos,
+                    'verLogoDefecto' => $this->verLogoDefecto,
+                    'slugArea' => $this->slugArea,
+                    'slugNivel' => $this->slugNivel,
+                    'LogoDefecto' =>$this->LogoDefecto,
+                    'paginaActual'=>1
+                    
+                    
+                ));
+            }
+        ?>
+
+      </aside>
+    </div>
+  </div>
+</section>

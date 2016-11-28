@@ -1,0 +1,145 @@
+/* 
+Estilos para IE6, IE7, IE8 
+*/
+input[type=checkbox]{ border:none } 
+* html .modFooter{ height: 130px /* for min-height */}
+* html .window{ 
+ 		position: absolute;
+ 		margin-top: expression(0 - parseInt(this.offsetHeight / 2) + (TBWindowMargin = document.documentElement && document.documentElement.scrollTop || document.body.scrollTop) + 'px') !important;
+}
+/* Redondeo Menu main */
+#jobPost .first, #myAccount .first, #searchPag .first,
+#whatisApt .first, .menuRoundL .first{ background: 0 none } 
+/*  bordes redondeados */
+.itemActive{        
+    color:#007FD3; background: transparent url(../images/menuHoIE.png) 0 0 no-repeat;
+}
+.itemActive .linkNav { border: 0 none; padding: 10px 32px 2px }
+.itemActive .btnH { background: transparent url(../images/menuHoIE.png) 0 0 no-repeat }
+.itemActive .btnJ{ background: transparent url(../images/menuAEIE.png) 0 0 no-repeat }
+.itemActive .btnA{ background: transparent url(../images/menuMCIE.png) 0 0 no-repeat }
+.itemActive .btnW{ background: transparent url(../images/menuWTA.png) 0 0 no-repeat }
+.itemActive .btnQEAPT{ background: transparent url(../images/bgMenuQEAPT.png) 0 0 no-repeat }
+.itemActive .btnQEAPTUEMP{ background: transparent url(../images/btnQEAPTUEMP.png) 0 0 no-repeat }
+.itemActive .btnQPRODU{ background: transparent url(../images/btnQPRODU.png) 0 0 no-repeat }
+
+/* Redondeo Mod Busqueda */
+.bgImageF{ background: transparent none; padding: 5px 15px 15px; zoom: 1 }
+.bgMDTIE{ background: url(../images/bgMFTIE.png) no-repeat 0 0; padding-top:10px }
+.bgMDTIE .bLBlue, .bgASTIE .bGray, .bgSITIE .bLBlue, .iAsideRS .bLBlue{ border:0 none }
+.modFind{	background: url(../images/bgMFBIE.png) no-repeat 0 bottom; zoom: 1 }
+.modFind .changeLCA{ top:15px }
+.modFind .advanced{ bottom:15px }
+
+/* Redondeo Mod Area Seccion */
+.bgASTIE{ background: url(../images/bgASTIE.png) no-repeat 0 0; padding-top:10px }
+.bgASTIE .modList{ background: url(../images/bgASBIE.png) no-repeat 0 bottom; padding: 0 10px 10px; width:186px }
+* html .bgASTIE .modList{ margin: 0 3px 10px 0;}
+* html .bgWM1{ background: url(../images/bgHNWMIE.gif) left center no-repeat }
+* html .bgWM2 { background: url(../images/bgHNWM2IE.gif) left center no-repeat }
+* html .bgWM3 { background: url(../images/bgHNWM3IE.gif) left center no-repeat }
+* html .closeH0WM{ right:-10px }
+/* Redondeo sidebar */
+.bgSITIE{ background: url(../images/bgSITIE.png) no-repeat 0 0; padding-top:10px }
+.bgSITIE .innerAside{ background: url(../images/bgSIMIE.png) repeat-y 0 0; padding: 5px 15px }
+.bgSIBIE, .bgBLBIE, .bgRSBSIE, .bgIRSBSE { display:block; height:10px; overflow: hidden }
+.bgSIBIE { background: url(../images/bgSIBIE.png) no-repeat 0 0; width:330px }
+
+.bgBLTIE{ background: white url(../images/bgBLTIE.png) no-repeat 0 0; padding-bottom:0 }
+.bgBLBIE{ background: url(../images/bgBLBIE.png) no-repeat 0 0; margin:0 -10px; width:300px }
+
+* html #myAccount #fieldCV{ padding-top:0 }
+*:first-child+html #myAccount #fieldCV{ padding-top:0 }
+/* redondeo result busqueda */
+.bgRSTSIE{ background: url(../images/bgRSTS.png) no-repeat 0 0; padding-top:10px }
+.modResult{ width: 230px }
+.iModResultA{ background: url(../images/bgRSMS.png) repeat-y 0 0; padding:10px 10px 0 }
+* html .iModResultA{ width:228px }
+.bgRSBSIE{ background: url(../images/bgRSBSIE.png) repeat-y 0 0 }
+.fFilterS { padding-bottom:0 }
+.bgIRSBSE{ background: url(../images/bgIRSBSE.png) no-repeat 0 0  }
+.liWords, .liIWords{ height:42px }
+.liWords{ background: url(../images/bgLiLWords.png) no-repeat left 0; border:0 none; padding: 0 0 0 10px }
+.liIWords{ display:block; background: url(../images/bgLiRWords.png) no-repeat right 0; padding:0 10px 0 0 }
+
+/* Cuenta Bordes Redondeados */
+/* dashboard */
+.titleDashMC{ background: black url(../images/bgDTopMC.png) no-repeat top left }
+.iDashMC { background: black url(../images/bgDMiddleMC.jpg) no-repeat bottom left; border:0 none; width:245px }
+.tituloPC{ background: black url(../images/bgMCSTT.png) no-repeat left top; border:0 none; padding: 5px 10px 0; width:160px }
+.thirdMenu{ background: #EFF4FB url(../images/bgMCSTB.jpg) no-repeat left bottom; border:0 none }
+.aThird { margin:0 1px }
+.active.liLast .aThird{ background: #EFF4FB url(../images/bgMCSULTB.jpg) no-repeat left bottom }
+* html .liLast .aThird{ background: transparent none }
+* html .active .ie6Last{ background: #EFF4FB url(../images/bgMCSULTB.jpg) no-repeat left bottom }
+
+* html .toolInfo { margin-left: 15px }
+* html .titleBgFCP{ width:670px }
+
+/* ventana vermas */
+*:first-child+html .bgWM3{ left:100px }
+* html .bgWM3{ left:100px }
+/* grid flecha */
+* html .itemEmpTN { margin-right: 3px }
+/* iconos */
+* html .icoAreas, * html .icoNivel, * html .icoUbigeo, * html .currentTime,
+* html .icoCompany, * html .icoAdvice, * html .icoArticle, * html .editB,
+* html .deleteB, * html .icoCWM, * html .icoArtRel, * html .twitterI, 
+* html .facebookI, * html .icoTi, * html .aWords, * html .eNumQ,
+* html .closeMTWM, * html .arrowDG, * html .bFacebook,
+* html .bGoogle, * html .faceAdd, * html .googAdd, * html .icoSpt{ background-image: url(../images/sptIcos.gif); background-repeat: no-repeat }
+*:first-child+html #txtP3 { background-position: center 140px }
+* html #txtP3 { background-position: center 140px }
+/* empresa */
+.bgASTIEEM{ background: url(../images/empresa/bgASTIEEM.png) no-repeat 0 0; padding-top:10px }
+.bgASTIEEM .modList{ background: url(../images/empresa/bgASBIEEM.png) no-repeat 0 bottom; padding: 0 10px 10px; width:292px }
+.bgASTBIEEM{ background: url(../images/empresa/bgASTIEBEM.png) no-repeat 0 0; padding-top:10px }
+.bgASTBIEEM .modList{ background: url(../images/empresa/bgASBIEBEM.png) no-repeat 0 bottom; padding: 0 10px 10px; width:610px }
+/* empresa aviso */
+* html #content-winVerProceso{ height:160px }
+* html #winVerProceso{ margin-top:-250px }
+/* filtro empresa */
+#filterProcEmp{ overflow:hidden }
+.gridTab #filterProcEmp .modResult{ background: url(../images/empresa/bgIEProEmpT.jpg) no-repeat 0 top; border: 0 none; width:180px }
+#filterProcEmp .iModResultA { background:url(../images/bgSearchAptM.png) repeat-y 0 0; border:0 none!important }
+#filterProcEmp .bgRSBSIE{ background: url(../images/empresa/bgIEProEmpB.jpg) no-repeat 0 0 }
+* html .blockAL{ display:block; position:relative }
+* html .blockAR{ display:block; position:relative }
+#admLeftNM{ margin-left:2px }
+#filterProcEmp .bgIRSBSE{ background: url(../images/empresa/bgIEFilterCel.png) no-repeat 0 0; width:160px!important }
+* html .contenImg{ height: 50px }
+*:first-child+html .divAtachOpt{ position:static!important }
+* html .divAtachOpt{ position:static!important }
+*:first-child+html #cntFieldCV{ position:static!important }
+* html .inputAnexoAdm{ width:100px!important }
+*:first-child+html .modalAvisoE{ position:static!important }
+*:first-child+html .modalAvisoE .txtPosts{ position:static!important }
+* html .modalAvisoE{ position:static!important }
+* html .modalAvisoE .txtPosts{ position:static!important }
+*:first-child+html .titleRow{ width:100% }
+* html .liWM .itemMWM{ height: 20px }
+* html .aPagerAP{ background-image: url(../../images/empresa/sptItemsCg.gif) }
+* html .tooltipCnt{ background-image: url(../images/cachitoTooltip.gif) }
+* html #ejmAvisoPA1{ margin-top: -250px }
+/* relative table */
+*:first-child+html .overflowX{ position:relative; zoom:1 }
+* html .overflowX{ position:relative; zoom:1 }
+/* admin */
+* html .mrIE{ margin-right:2px!important }
+* html .activeTd { background-image: url(../../images/empresa/bgTdTr.gif) }
+*:first-child+html .priceImp{ margin-top:38px }
+*:first-child+html .alertLI{ margin-bottom:10px }
+* html .alertLI{ margin-bottom:10px }
+* html .priceImp{ margin-top:40px }
+* html .aSubThird{ height:18px }
+* html #cntSendBB{ width:95px }
+*:first-child+html #cntSendBB{ width:95px }
+* html .ads320x47{ position:relative; zoom:1 }
+* html #anclaNextP3{ display:inline; zoom: 1 }
+*:first-child+html #anclaNextP3{ display:inline; zoom: 1 }
+
+#cntAdvPe .modListBEP{
+	width: 611px;
+    height: 428px;
+    background: url('../images/print-edition.jpg?v=4as50') 0px 0px no-repeat;
+}

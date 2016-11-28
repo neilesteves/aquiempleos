@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg  PUBLIC '-//W3C//DTD SVG 1.1//EN'  'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd' [
+	<!ENTITY ns_extend "http://ns.adobe.com/Extensibility/1.0/">
+	<!ENTITY ns_ai "http://ns.adobe.com/AdobeIllustrator/10.0/">
+	<!ENTITY ns_graphs "http://ns.adobe.com/Graphs/1.0/">
+	<!ENTITY ns_vars "http://ns.adobe.com/Variables/1.0/">
+	<!ENTITY ns_imrep "http://ns.adobe.com/ImageReplacement/1.0/">
+	<!ENTITY ns_sfw "http://ns.adobe.com/SaveForWeb/1.0/">
+	<!ENTITY ns_custom "http://ns.adobe.com/GenericCustomNamespace/1.0/">
+	<!ENTITY ns_adobe_xpath "http://ns.adobe.com/XPath/1.0/">
+]>
+<svg id="Capa_1" style="enable-background:new 0 0 57.8 36.1" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 57.8 36.1" version="1.1" y="0px" x="0px" xmlns:xlink="http://www.w3.org/1999/xlink">
+<style type="text/css">
+	.st0{clip-path:url(#XMLID_2_);}
+	.st1{fill:#FFFFFF;}
+	.st2{fill:#004CA5;}
+	.st3{fill:#EC1C24;}
+</style>
+<switch>
+	<foreignObject y="0" x="0" height="1" width="1" requiredExtensions="http://ns.adobe.com/AdobeIllustrator/10.0/">
+	</foreignObject>
+	<g>
+		<g id="XMLID_231_">
+			<defs>
+				<rect id="XMLID_232_" y="-.1" x="-.1" height="36.2" width="58"/>
+			</defs>
+			<clipPath id="XMLID_2_">
+				<use xlink:href="#XMLID_232_"/>
+			</clipPath>
+			<g id="XMLID_233_" class="st0">
+				<rect id="XMLID_252_" class="st1" height="19.5" width="30.3" y="-1.5" x="-2.3"/>
+				<rect id="XMLID_238_" class="st2" height="19.6" width="30.3" y="18" x="-2.3"/>
+				<rect id="XMLID_237_" class="st3" height="19.5" width="32.2" y="-1.5" x="27.9"/>
+				<rect id="XMLID_236_" class="st1" height="19.6" width="32.2" y="18" x="27.9"/>
+				<polygon id="XMLID_235_" points="13.3 2.6 14.4 6.5 18.7 6.5 15.2 9.1 16.6 12.8 13.3 10.3 10 12.8 11.2 8.6 7.9 6.5 12.2 6.5" class="st2"/>
+				<polygon id="XMLID_234_" points="42.9 22.1 44.1 26 48.3 26 44.9 28.7 46.3 32.4 42.9 29.8 39.6 32.4 40.8 28.1 37.6 26 41.8 26" class="st3"/>
+			</g>
+		</g>
+	</g>
+</switch>
+</svg>

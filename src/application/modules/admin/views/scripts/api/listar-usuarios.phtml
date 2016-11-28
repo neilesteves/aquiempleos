@@ -1,0 +1,121 @@
+<div id="main" class="all">
+    <div class="innerAll">
+        <div class="bgAll gridS20">
+            <?= $this->partial('_partials/_navigation.phtml', 'admin', array('isAuth' => $this->isAuth, "flashMessages" => $this->flashMessages)) ?>
+            <div class="gridTab">
+                <div class="gridIT">
+                    <h5 class="h5TitleAdm">Módulo de Administración</h5>
+                    
+                    <?php if (isset($this->idEmpresa)) {?>
+                    <?=$this->partial('_partials/_accion-adminEmpresa.phtml',array('razonsocial'=>$this->razonsocial,'empresaAdminUrl'=>$this->empresaAdminUrl,'activo'=>$this->activo,'idEmpresa'=>$this->idEmpresa))?>
+                    <div class="iAccount" id="innerMain">
+                        <?= $this->partial('mi-cuenta-empresa/_sidebar-menu.phtml', array('menu_sel_side' => $this->menu_sel_side, 'rol' => $this->rol,'rel' => $this->idEmpresa,'membresiaTipo' => $this->membresiaTipo)) ?>
+                        <div class="blockAR grid15 alpha right">
+                            <div class="iBlockAR block rel">
+                                <h2 class="titleMAU">Trabaja con Nosotros</h2>
+                            </div>
+                    <?php } else {?>
+                    <div class="iAccount" id="innerMain">
+                        <div class="blockAL grid4 omega left">
+                            <?= $this->partial('gestion/_sidebar-menu.phtml', array('menu_sel_side' => $this->menu_sel_side, 'rol' => $this->rol)) ?>
+                        </div>
+
+                        <div class="blockAR grid15 alpha right mrIE">
+                            <div class="iBlockAR block rel">
+                                <h2 class="titleMAU">Trabaja con Nosotros - Lista de Empresas</h2>
+<!--                                <a href="/admin/api/agregar-usuario" class="right sptAdm" id="addNewUserNE"><span class="hide">Nuevo usuario</span></a>-->
+                            </div>
+                    <?php } ?>
+                    <?php /*php if ( $this->flag == 0 || 
+                            ((isset($this->membresiaTipo)) && 
+                            ($this->idTipoMembresia == 3 || $this->idTipoMembresia == 6 || $this->idTipoMembresia == 2 || $this->idTipoMembresia == 5) && 
+                            isset($this->idEmpresa) && $this->flag == 1 ) ) {*/?>
+                            <div class="pagination all">
+                                <?= $this->paginationControl($this->paginador, 'Sliding', '_partials/_pag.phtml') ?>
+                            </div>
+                    <?php //php } ?>
+                            <div class="gridYScroll">
+                                <table class="dataGrid" id="dataAadmins" summary="Administradores">
+                                    <thead>
+                                        <tr>
+                                            <? $base = array('module' => 'admin', 'controller' => 'api', 'action' => 'listar-usuarios'); ?>
+                                            <th class="data2 titleGrid linkTitleG">
+                                                <? $col = 'nombre_empresa' ?>
+                                                <? $ord = $this->col == $col && $this->ord == 'ASC' ? 'DESC' : 'ASC' ?>
+                                                <? $url = $this->url(array_merge($base, array('col' => $col, 'ord' => $ord)), 'default', false) ?>
+                                                <a href="<?= $url ?>" class="rel relArrow">Empresa <span class="arrowDG <?= strtolower($ord) ?>">&nbsp;</span></a>
+                                            </th>
+                                            <th class="data1 titleGrid linkTitleG">
+                                                <? $col = 'domain' ?>
+                                                <? $ord = $this->col == $col && $this->ord == 'ASC' ? 'DESC' : 'ASC' ?>
+                                                <? $url = $this->url(array_merge($base, array('col' => $col, 'ord' => $ord)), 'default', false) ?>
+                                                <a href="<?= $url ?>" class="rel relArrow">Dominio <span class="arrowDG <?= strtolower($ord) ?>">&nbsp;</span></a>
+                                            </th>
+                                            <!--th class="data3 titleGrid linkTitleG">
+                                                <?// $col = 'apikey' ?>
+                                                <?// $ord = $this->col == $col && $this->ord == 'ASC' ? 'DESC' : 'ASC' ?>
+                                                <?// $url = $this->url(array_merge($base, array('col' => $col, 'ord' => $ord)), 'default', false) ?>
+                                                <a href="<?//= $url ?>" class="rel relArrow">Api Key <span class="arrowDG <?//= strtolower($ord) ?>">&nbsp;</span></a>
+                                            </th-->
+                                            <th class="data3 titleGrid linkTitleG">
+                                                <? $col = 'fecha_ini' ?>
+                                                <? $ord = $this->col == $col && $this->ord == 'ASC' ? 'DESC' : 'ASC' ?>
+                                                <? $url = $this->url(array_merge($base, array('col' => $col, 'ord' => $ord)), 'default', false) ?>
+                                                <a href="<?= $url ?>" class="rel relArrow">Fecha Inicio <span class="arrowDG <?= strtolower($ord) ?>">&nbsp;</span></a>
+                                            </th>
+                                            <th class="data4 titleGrid linkTitleG">
+                                                <? $col = 'fecha_fin' ?>
+                                                <? $ord = $this->col == $col && $this->ord == 'ASC' ? 'DESC' : 'ASC' ?>
+                                                <? $url = $this->url(array_merge($base, array('col' => $col, 'ord' => $ord)), 'default', false) ?>
+                                                <a href="<?= $url ?>" class="rel relArrow">Fecha Fin <span class="arrowDG <?= strtolower($ord) ?>">&nbsp;</span></a>
+                                            </th>
+                                            <th class="data6 titleGrid linkTitleG">
+                                                <? $col = 'estado' ?>
+                                                <? $ord = $this->col == $col && $this->ord == 'ASC' ? 'DESC' : 'ASC' ?>
+                                                <? $url = $this->url(array_merge($base, array('col' => $col, 'ord' => $ord)), 'default', false) ?>
+                                                <a href="<?= $url ?>" class="rel relArrow">Estado <span class="arrowDG <?= strtolower($ord) ?>">&nbsp;</span></a>
+                                            </th>
+                                            <th class="data6 titleGrid">Acciones</th>
+                                        </tr>
+                                    </thead>
+                    <?php //php if ( $this->flag == 0 || ((isset($this->membresiaTipo)) && ($this->idTipoMembresia == 3 || $this->idTipoMembresia == 6 || $this->idTipoMembresia == 2 || $this->idTipoMembresia == 5) && isset($this->idEmpresa) && $this->flag == 1 ) ) {?>
+                                    <tbody>
+                                        <?php foreach($this->paginador as $item): ?>
+                                        <?php 
+                                            $token = crypt($item['id'], '$2a$07$'.md5(uniqid(rand(), true)).'$');                                                         
+                                        ?>
+                                        <tr>
+                                            <td class="data2"><?=$item["nombre_empresa"]?></td>
+                                            <td class="data1"><?=$item["domain"]?></td>
+<!--                                            <td class="data3 alignC"><a rol="<?//=$item["id"]?>" class="winModal" href="#verApi">Ver</a></td>-->
+                                            <td class="data3"><?=$item["fechaini"]?></td>
+                                            <td class="data4"><?=$item["fechafin"]?></td>
+                                            <td class="data6"><?=(strtolower($item["estado"]) == 'dadobaja')? 'Inactivo':'Activo'?></td>
+                                            <td class="data6">
+                                                <ul>
+                                                    <li><a href="#editAdmL" rol="<?=$item['id'] ?>" class="winModal editaUserAdd">Editar</a></li>
+                                                <?php if ($item['estado'] == 'VIGENTE') :?>
+                                                    <li><a href="#winAlertBloquearUsuApi" rol="<?=$item['id'] ?>" class="winModal BlockUsuApi blockApi" data-token="<?=$token;?>">Desactivar</a></li>
+                                                <?php else : ?>
+                                                    <li><a href="#winAlertBloquearUsuApi" rol="<?=$item['id'] ?>" class="winModal BlockUsuApi" data-token="<?=$token;?>">Activar</a></li>
+                                                <?php endif; ?>
+                                                    <li><a href="#verApi" rol="<?=$item['id'] ?>">Ver Conexión</a></li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                    <?php //php }?>  
+                                </table>
+                            </div>
+                            <div class="pagination all">
+                                <?= $this->paginationControl($this->paginador, 'Sliding', '_partials/_pag.phtml') ?>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,123 @@
+<div id="main" class="all">
+    <div class="innerAll">
+        <div class="bgAll gridS20">
+            <?= $this->partial('_partials/_navigation.phtml', 'admin', array('isAuth' => $this->isAuth, "flashMessages" => $this->flashMessages)) ?>
+            <div class="gridTab">
+                <div class="gridIT">
+                    <h5 class="h5TitleAdm">Módulo de Administración</h5>
+                    <div class="iAccount" id="innerMain">
+                        <div class="blockAL grid4 omega left">
+                            <?= $this->partial('gestion/_sidebar-menu.phtml', array('menu_sel_side' => $this->menu_sel_side, 'rol' => $this->rol)) ?>
+                        </div>
+
+                        <div class="blockAR alpha right blockFix">
+                            <div class="iBlockAR">
+                                <div id="cntAddNewT" class="iBlockAR block rel">
+                                    <h2 class="titleMAU">Empresas en Portada</h2>                            
+                                </div>
+                                <form action="" method="post" id="frmBuscar_empresas" class="r2 fieldsetAdm">
+                                    <div class="block">
+                                        <label for="fRazonSocial" class="labelN"> Razón Social:</label>
+                                        <? $hasError = $this->formAdmin->razonsocial->hasErrors(); ?>
+                                        <?= $this->formAdmin->razonsocial->setAttribs(array('id' => 'fRazonSocial', 'class' => 'fields inputN left replaceNbsp', 'tabindex' => '6'))->renderViewHelper(); ?>
+                                        <span class="response cGray left<?= $hasError ? ' bad' : '' ?>"><?= $hasError ? $this->formAdmin->razonsocial->errMsg : '' ?></span>
+                                    </div>
+                                    <div class="block">
+                                        <label for="fRuc" class="labelN"> Ruc:</label>
+                                        <? $hasError = $this->formAdmin->num_ruc->hasErrors(); ?>
+                                        <?= $this->formAdmin->num_ruc->setAttribs(array('id' => 'fRuc', 'class' => 'fields inputN left replaceNbsp', 'tabindex' => '7'))->renderViewHelper(); ?>
+                                        <span class="response cGray left<?= $hasError ? ' bad' : '' ?>"><?= $hasError ? $this->formAdmin->num_ruc->errMsg : "" ?> </span>
+                                    </div>
+                                    <div class="all">
+                                        <input type="hidden" id="opcAction" name="opcAction" value="1" />
+                                        <button id="fSendRS" name="btnEPortada"  type="submit" class="active btnSptAdm sptAdm right btn-gestion" tabindex="6" value="">Buscar</button>
+                                        <button id="fResetRS"  type="reset" class="active btnSptAdm sptAdm right btn-gestion" value="">Limpiar</button>
+                                    </div>
+                                </form>
+                            </div>                			
+
+                            <?php if (isset($this->empresaAdminUrl)) { ?>
+                                <div class="gridYScroll">
+                                    <table summary="Administradores" id="dataAadmins" class="dataGrid">
+                                        <thead>
+                                            <?php $base = $this->empresaAdminUrl ?>
+                                            <tr>
+                                                <th class="data2 titleGrid">Logo</th>
+                                                <th class="data3 titleGrid">Razón Social</th>
+                                                <th class="data4 titleGrid">RUT</th>
+                                                <th class="data4 titleGrid">Orden</th>
+                                                <th class="data6 titleGrid" >Acción</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            if (count($this->arrayBusqueda) > 0) {
+                                                $cantidad = $this->arrayBusqueda->getCurrentItemCount();
+                                                $count = ($this->pagina - 1) * $cantidad + 1;
+                                            }
+                                            ?>
+                                            <?php foreach ($this->arrayBusqueda as $item) { ?>
+                                                <?php
+                                                $token = crypt($item['id'], '$2a$07$' . md5(uniqid(rand(), true)) . '$');
+                                                ?>
+                                                <tr>
+                                                    <td class="data2" style="text-align: center"><?php if (strlen($item['logo']) != 0) { ?>
+                                                            <img src="<?= ELEMENTS_URL_LOGOS . $item['logo'] ?>" width="60" />
+                                                        <?php } ?>
+                                                    </td>
+                                                    <?php //Url tcn agrega LINK
+                                                    $urlTCN = '';
+                                                    if (!empty($item['url'])) {
+                                                        $urlTCN = '<br><a href=>'.$item['url'];
+                                                    }
+                                                    ?>
+                                                    <td class="data3"><?= $item['rs'] . $urlTCN  ?></td>
+                                                    <td class="data4"><?= $item['ruc'] ?></td>
+                                                    <?php //En portada tcn agrega LINK
+                                                    $enPortada = 'En portada: No';
+                                                    if (!empty($item['orden']) && !empty($item['url']) && $item['portada'] == 1) {
+                                                        $enPortada = "Orden prioridad: (".$item['orden'].")<br> ". "En portada: Sí";
+                                                    }
+                                                    ?>
+                                                    <td class="data5"><?= $enPortada?>
+                                                    </td>
+                                                    <td class="data6">
+                                                        <?php if ($enPortada == "En portada: No") { ?>
+                                                            <div class="blockAdmEPI"><a href="#winAlertBloquearEportada" class="ponerEPor ePor winModal" action="1" 
+                                                                                        logo="<?php if (strlen($item['logo']) != 0) {
+                                                                echo 'on';
+                                                            } else {
+                                                                echo 'off';
+                                                            } ?>" rel="<?= $item['id'] ?>" data-token="<?= $token; ?>">Actualizar</a></div>
+                                                            <?php } else { ?>
+                                                            <div class="blockAdmEPI"><a href="#winAlertBloquearEportada" class="quitarEPor ePor winModal" action="0"
+                                                                                        logo="<?php if (strlen($item['logo']) != 0) {
+                                                        echo 'on';
+                                                    } else {
+                                                        echo 'off';
+                                                    } ?>" rel="<?= $item['id'] ?>" data-token="<?= $token; ?>">Actualizar</a></div>
+                                    <?php } ?>
+                                                    </td>
+                                                </tr>
+                                <?php } ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <?php if (count($this->arrayBusqueda) != 0) { ?>
+                                    <div class="pagination all">
+                                    <?= $this->paginationControl($this->arrayBusqueda, 'Sliding', 'gestion/_pag.phtml') ?>
+                                    </div>
+    <?php } else { ?>
+                                    <div class="pagination all">
+                                        <div class='pagUl theta alignL'> - No hay Empresa que se adecuen a Búsqueda </div>
+                                    </div>
+    <?php } ?>
+<?php } ?>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

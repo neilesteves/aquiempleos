@@ -1,0 +1,74 @@
+<footer>
+    <div class="container-fluid">
+        <div class="footer">
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row width">
+            <div class="col-xs-6 col-sm-6 col-md-3">
+                <div class="logo-footer">
+                    <a href="<?= $this->layout()->aquiempleos ?>">
+                        <img src="<?= $this->S('/img/logo_empleobusco-footer.png'); ?>" alt="AquiEmpleos" >
+                    </a>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-3 mg-responsive">
+                <div class="text-center">
+                    <div class="box-footer-a">
+                        <h3>¿Qué es AquiEmpleos?</h3>
+                        <p>AquiEmpleos es el portal que te ofrece los avisos más destacados de empleos</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-6 col-sm-6 col-md-2">
+                <div class="text-center">
+                  <br>
+                            <h3>Síguenos</h3>
+                            <div class="social-media-footer">
+                                <span class="box-face">
+                                    <a href="https://www.facebook.com/aquiempleos" target="_black"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                </span>
+                                <span class="box-twitter">
+                                    <a href="https://twitter.com/aquiempleos" target="_black"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                                </span>
+                            </div>
+                </div>
+            </div>
+
+            <div class="col-xs-6 col-sm-6 col-md-4 mg-responsive">
+                <div class="box-footer-b">
+                    <div class="enlaces">
+                        <!--<a href="#">Suscribete</a>-->
+                        <?
+                        if (MODULE == App_Controller_Action::USUARIO_POSTULANTE) {
+                            $fancy = 'data-toggle="modal"';
+                            $url   = '#modalRegisterUser';
+                            ?>
+                            <a href="<?= $this->Menus()->footerEncontraEmpleo() ?>" data-toggle="modal">Buscar Empleo</a>
+
+                        <?
+                        } else {
+                            $fancy = '';
+                            $url   = '/empresa/registro-empresa';
+                            ?>
+                            <a href="<?= $this->Menus()->footerPublicarAviso() ?>" data-toggle="modal">Publica tu aviso</a>
+                        <? }
+                        if (!isset($this->layout()->auth)):
+                            ?>
+                            <a href="<?= $url ?>" <?= $fancy ?> >Regístrate</a>
+
+                            <input href="#modalLoginUser" data-toggle="modal" type="button" value="Ingresa" class="button-ingresa">
+<? endif; ?>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="row width">
+            <div class="text-center copyright">
+                <p>&copy; Copyright 2016 - Todos los derechos reservados</p>
+            </div>
+        </div>
+    </div>
+</footer>

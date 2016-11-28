@@ -1,0 +1,10 @@
+{
+    "require": {
+        "solarium/solarium": "3.*",
+        "aws/aws-sdk-php": "2.7.*",
+        "predis/predis": "^1.0",
+        "firebase/php-jwt": "*",
+        "facebook/php-sdk-v4": "~5.0",
+        "league/oauth2-facebook": "~1.0"
+    }
+}

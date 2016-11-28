@@ -1,0 +1,54 @@
+<?php 
+$ind = (isset($this->indice)) ? $this->indice : 'blank';
+$index = $this->index;
+$dataInd = 'data-index="' . $ind . '"';
+
+if($this->form->id_estudio != null){
+    if($this->form->id_estudio->getValue() != ''){
+        $dataRol = 'data-rol="'.$this->form->id_estudio->getValue().'"';
+    }
+}
+$dataRel = 'data-rel="' . $this->idPost . '"';
+$validacionHide = ($this->form->id_nivel_estudio_tipo->getValue()!= "0" && $this->form->id_nivel_estudio_tipo->getValue()!= null && $this->form->otra_carrera->getValue()!= "0" && $this->form->otra_carrera->getValue()!= null)?>
+
+<li <?= isset($dataRol) ? $dataRol : '' ?> <?= $dataRel ?> <?= $dataInd ?>>
+        <?php $isError = $this->form->isErrors(); ?>
+	<?php if ( ($this->isOtroEstudio || isset($this->isEditar)) && (!$isError) ) : ?>
+		<ul class="skill-title row">
+            <li><?php echo $index + 1; ?>. </li>
+            <li><b><?=$this->escape($this->form->id_nivel_estudio_tipo->getMultiOption($this->form->id_nivel_estudio_tipo->getValue())); ?></b> en <b><?=$this->escape($this->form->otra_carrera->getValue()); ?></b>
+            </li>
+            <li class="last">
+            	<?php if (!isset($this->online)) : ?>
+            		<a href="#Editar" class="action-icons edit" title="Editar"></a>
+					<?php if (isset($this->form->id_nivel_estudio_tipo)) : ?>
+						<?php $value = $this->form->id_nivel_estudio_tipo->getValue(); ?>
+					<?php endif; ?>
+					<a href="javascript:;" class="action-icons delete<?= isset($value) ? ' eliminarItemEmp' : '' ?>" title="Eliminar"></a>
+				<?php endif; ?>
+            </li>
+        </ul>
+	<?php endif; ?>
+	<?$isError = $this->form->isErrors();?>
+	<div class="skill-content<?=(!$isError && ($this->isOtroEstudio || isset($this->isEditar)) )?' hide':''?>">
+		<div class="control-group">
+			<label for="" class="control-label no-req"><em>&nbsp;</em> Tipo de Estudio:</label>
+			<div class="controls">
+				<? $hasError = $this->form->id_nivel_estudio_tipo->hasErrors(); ?>
+				<?= $this->form->id_nivel_estudio_tipo->setAttribs(array('class' => 'sel-medium first_title require'))->renderViewHelper(); ?>
+				<span class="response<?= $hasError ? ' bad' : '' ?>"><?= $hasError ? $this->form->id_nivel_estudio_tipo->errMsg : '' ?></span>
+			</div>
+		</div>
+		<div class="control-group<?=($this->form->id_nivel_estudio_tipo->getValue() == 28) ? '' : ' '; ?>">
+			<label for="" class="control-label no-req"><em>&nbsp;</em>Estudio:</label>
+			<div class="controls">
+				<? $hasError = $this->form->otra_carrera->hasErrors(); ?>
+				<?= $this->form->otra_carrera->setAttribs(array('class' => 'input-xmedium second_title require'))->renderViewHelper(); ?>
+				<span class="response<?= $hasError ? ' bad' : '' ?>"><?= $hasError ? $this->form->otra_carrera->errMsg : '' ?></span>
+			</div>
+		</div>
+		<div class="block">
+			<?=$this->form->id_estudio;?>
+		</div>
+	</div>
+</li>

@@ -1,0 +1,46 @@
+<div id="dataResutlAdmin">
+    <div id="formAdminContent">
+        <div id="gridTableR" class="blockAR theta right">
+            <div class="iBlockAR">
+                <div id="titleyBtn">
+                    <h2 class="titleMAU">Gestionar Administrador Asignado</h2>
+                </div>
+                <!--<div id="linksTable" class="all">-->
+            </div>
+            <h3><?=$this->anuncio->puesto?></h3>
+            <? if (!is_null($this->administradorAsignado)) :?>
+                <p>
+                    <strong>Administrador Actual:</strong>
+                    <?=$this->administradorAsignado['nombres']?> <?=$this->administradorAsignado['apellidos']?>
+                    <a class="abtnDelete" href="<?= $this->url(array('action' => 'quitar', 'administrador_id' => $this->administradorAsignado['usuario_empresa_id']))?>">Eliminar</a>
+                    <span id="loading-delete" class="min-loading none"></span>
+                </p>
+            <? else : ?>
+                <p>No hay un administrador asignado</p>
+            <? endif?>                          
+            <form id="formAdmin" method="post" action="<?= $this->url(array('action' => 'asignar'))?>" admin-id="<?=$this->usuarioEmpresa['id']?>">
+                <table>
+                    <tr>
+                        <td>Cambiar por:</td>
+                        <td>
+                            <select id="administradorId" name="administrador_id">
+                                <option value="">Debe seleccionar un administrador</option>
+                                <?foreach ($this->administradores as $administrador) :?>                                    
+                                    <option value="<?=$administrador['id']?>"><?=$administrador['nombres'] . ' ' . $administrador['apellidos'] ?></option>
+                                <?endforeach;?>
+                            </select>
+                            <span><?=$this->mensaje?></span>
+                        </td>
+                        <td>
+                            <input id="btnFormAdmin" type='submit' value="Asignar administrador" class="btn btn-primary"/>
+                            <span id="loading-assigProcess" class="min-loading none"></span>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <div class="closeAdminBlock">
+            <a id="closeAdmin" href="#">Cerrar</a>
+        </div>
+    </div>
+</div> 

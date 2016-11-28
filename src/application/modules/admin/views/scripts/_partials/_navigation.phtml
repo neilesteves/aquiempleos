@@ -1,0 +1,8 @@
+<?
+$active = " itemActive";
+$this->isAuth = Zend_Auth::getInstance()->hasIdentity();
+$this->auth = Zend_Auth::getInstance()->getStorage()->read();
+?>
+<ul id="navigation" class="gridS20">
+</ul>
+<?=$this->partial('_partials/_messages.phtml',array("flashMessages"=>$this->flashMessages))?>

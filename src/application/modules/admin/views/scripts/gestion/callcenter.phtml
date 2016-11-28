@@ -1,0 +1,121 @@
+<div id="main" class="all">
+    <div class="innerAll">
+        <div class="bgAll gridS20">
+            <?=
+            $this->partial('_partials/_navigation.phtml', 'admin',
+                array('isAuth' => $this->isAuth, "flashMessages" => $this->flashMessages))
+            ?>
+            <div class="gridTab">
+                <div class="gridIT">
+                    <h5 class="h5TitleAdm">Módulo de Administración</h5>
+                    <div class="iAccount" id="innerMain">
+                        <div id="admLeftNM" class="blockAL grid4 omega left">
+                            <?=
+                            $this->partial('gestion/_sidebar-menu.phtml',
+                                array('menu_sel_side' => $this->menu_sel_side, 'rol' => $this->rol))
+                            ?>
+                        </div>
+                        <div class="blockAR grid15 alpha right">
+                            <div class="iBlockAR">
+                                <div class="row">
+                                    <a href="<?=
+                                    $this->url(array(
+                                        'module' => 'admin',
+                                        'controller' => 'registro-empresa',
+                                        'action' => 'index'), "default", true);
+                                    ?>" class="flt_right btn btn-primary" id="newEmpNE">Registrar empresa</a>
+                                    <h2>Call Center</h2>
+                                </div>
+                            </div>
+                            <div class="wrap-controls" id="buscarEmailCliente">
+                                <form id="frmInfoCallCenter" class="frm-horizontal medium">
+                                    <div class="control-group">
+                                        <label for="txtEmailCliente" class="control-label">Email del cliente: </label>
+                                        <div class="controls">
+                                            <?=
+                                            $this->formCallCenter->txtEmailCliente->setAttribs(array(
+                                                'id' => 'txtEmailCliente',
+                                                'class' => 'replaceNbsp input-xmiddle',
+                                                'data-parsley-group' => 'block1',
+                                                'data-parsley-trigger' => 'change',
+                                                'data-parsley-type' => 'email'
+                                            ))->renderViewHelper();
+                                            ?>
+                                            <? $hasError = $this->formCallCenter->txtEmailCliente->hasErrors(); ?>
+                                            <span><?= $hasError ? $this->formCallCenter->txtEmailCliente->errMsg
+                                                    : '' ?></span>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label" for="fSelDoc">Tipo de documento:</label>
+                                        <div class="cgroup-inline">
+                                            <div class="control-group parsley_message_bottom">
+                                                <?=
+                                                $this->formCallCenter->tipo_doc->setAttribs(
+                                                    array(
+                                                        'id' => 'fSelDoc',
+                                                        'class' => 'maxLenghtN'
+                                                ))->renderViewHelper();
+                                                ?>
+                                                <? $hasError
+                                                    = $this->formCallCenter->num_doc->hasErrors(); ?>
+                                                <?
+                                                if ($hasError != 0) {
+                                                    $Error  = $this->formCallCenter->num_doc->getErrors();
+                                                    $errMsg = Application_Form_Paso1Postulante::$errors[$Error[0]];
+                                                } else {
+                                                    $errMsg = '';
+                                                }
+                                                ?>
+                                            </div>
+                                            <div class="control-group last">
+                                                <?=
+                                                $this->formCallCenter->num_doc->setAttribs(
+                                                    array(
+                                                        'id' => 'txtDocumentRuc',
+                                                        'class' => '',
+//                                                        'data-parsley-group' => 'block2',
+//                                                        'data-parsley-type' => 'number',
+//                                                        'data-parsley-trigger' => 'change',
+//                                                        'data-parsley-validruc' => '',
+                                                        'maxlength' => 11,
+                                                        'data-parsley-minlength' => 11,
+//                                                        'data-parsley-minlength-message' => 'El RUT debe ser de 11 dígitos',
+//                                                        'data-parsley-type-message' => 'Ingrese un RUT válido',
+//                                                        'data-parsley-errors-container' => '#responseRuc',
+                                                        'rel' => $this->idPostulante
+                                                ))->renderViewHelper();
+                                                ?>
+                                                <div id="responseRuc" class="parsley_info"></div>
+                                                <span><?= $errMsg ?></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="invalid-form-error-message"></div>
+                                    <div class="txt_right">
+                                        <input id="fResetRS" type="reset" class="btn btn-default" value="Limpiar"/>
+                                        <button id="btnBuscarPostulanteCallCenter" class="btn btn-primary validate">Buscar</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div id="resultadoBusqueda" class="hide">
+                                <!-- resultado Ajax -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+

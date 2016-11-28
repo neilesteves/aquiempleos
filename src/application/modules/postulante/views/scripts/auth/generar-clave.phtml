@@ -1,0 +1,34 @@
+<div class="bgAll gridS20">
+	<div class="gridForm">
+
+		<div id="contentRetM">    
+		    <h6 class="titleRetM">Recuperar mi contraseña</h6>
+		    <p class="bold f14">Ingrese su nueva contraseña</p>
+		    <form action="" method="post" id="claveRetM">
+		        <fieldset class="blockField r5">
+		        <div class="all">
+		        <div class="block">
+              <label for="fClave" class="labelN"><span class="req" title="Requerido">*</span> Nueva contraseña:</label>
+              <div class="iBlockM left">
+                  <?=$this->form->password->setAttribs(array('id' => 'fClave', 'maxlength'=>32, 'class' => 'inputN', 'tabindex' => 2))->renderViewHelper(); ?>
+              </div>
+              <? $hasError = $this->form->password->hasErrors(); ?>
+              <div class="error <?=$hasError?' ':'hide'?> msgRetM"><?=$hasError?$this->form->password->errMsg:''?></div>
+		        </div>
+		        <div class="block mB0">
+		            <label for="fRClave" class="labelN"><span class="req" title="Requerido">*</span> Confirmar contraseña:</label>
+		            <?= $this->form->password2->setAttribs(array('id' => 'fRClave', 'maxlength'=>32, 'class' => 'inputN left', 'tabindex' => 3))->renderViewHelper(); ?>
+		            <? $hasError = $this->form->password2->hasErrors(); ?>
+		            <div class="error <?=$hasError?' ':'hide'?> msgRetM"><?=$hasError?$this->form->password2->errMsg:''?></div>
+		        </div>
+		            <?=$this->form->token->renderViewHelper(); ?>
+		        </div>
+		        <div class="wrap-btn center">
+		            <input type="submit" class="right btn btn-primary" value="Aceptar" id="btnAcepRetM">
+		        </div>
+		        </fieldset>
+		    </form>
+		</div>
+
+	</div>
+</div>

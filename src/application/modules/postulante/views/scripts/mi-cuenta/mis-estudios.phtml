@@ -1,0 +1,94 @@
+<?=Application_Model_Partials::getMenuPostulante(); ?>
+<section class="profile_wrapper">
+  <div class="center_box">
+	 <div class="content_body profile_detail_wrapper">
+		<?=Application_Model_Partials::getPerfilPorcentaje(); ?>
+		<?=$this->formEstudiosPostulante->hidToken->setAttribs(array('id'=>'hidToken'))->renderViewHelper();?>
+		<div class="skill_body">
+		  <div class="skill_buttons row">
+			 <?php /* <button class="btn btn_cuaternary">Importar CV</button> */ ?>
+			 <h2 class="skill_category"><i class="icon icon_education"></i>Estudios</h2>
+			 <button class="btn btn_white flt_right" id="btnAddSkill" <?=(count($this->lisEstudios)>0) ? '':'disabled="disabled"'?>>Agregar Otro</button>
+
+			 <?php /*if ($this->showImport) : ?>
+			 <a href='/mi-cuenta/importar-datos/param1/mis-estudios' class="btn btn_import_linkedin flt_right" title="Importar datos desde LinkedIn"> <i class="icon icon_linkedin"> </i><span>Importar</span></a>
+			 <?php endif;*/ ?>
+
+			 <a class="btn btn_print flt_right" target="_blank" title="Imprimir" href="<?=$this->url(array(
+				  'module' => 'postulante', 'controller' => 'mi-cuenta',
+				  'action' => 'pdf',
+				  'slug' => $this->slug), "default", true)?>">
+				  <i class="icon icon_print"></i></a>
+		  </div>
+		  <?php if (count($this->lisEstudios)>0) : ?>
+			 <ul class="title_content_edit">
+				<?php foreach ($this->lisEstudios as $value ) : ?>
+				<li>
+				  <div class="title_skills row">
+					 <div class="block_text">
+						<h2><?=$value['nombre']?></h2>
+						<h3 class="item1"><?=!empty($value['otro_carrera'])?$value['otro_carrera']:$value['carrera']?>&nbsp;<i><?=isset($value['estado']) ? '('.$value['estado'].')' : ''?></i></h3>
+						<p class="item2">
+						  <i class="icon icon_calendar"></i><?=App_Util::setMonth($value['inicio_mes'])?> <?=$value['inicio_ano']?></i> -
+						<?php
+						$fechaFinEstudio = 'Actualidad';
+						if (!empty($value['fin_mes']) && !empty($value['fin_ano'])) {
+							 $fechaFinEstudio = App_Util::setMonth($value['fin_mes']) . ' ' . $value['fin_ano'];
+						}
+
+						echo $fechaFinEstudio;
+						?></i>
+						</p>
+					 </div>
+					 <div class="block_buttons">
+						<button class="btn btn_delete" data-id="<?=$value['id_estudio']?>">
+						  <span class="btn_label"><i class="icon icon_delete2"></i></span>
+						  <span class="btn_spinner"></span>
+						</button>
+						  <?php if ($value['is_disabled'] == 0) : ?>
+						<button class="btn btn_edit" data-id="<?=$value['id_estudio']?>">
+						  <span class="btn_label"><i class="icon icon_pencil"></i></span>
+						  <span class="btn_spinner"></span>
+						</button>
+						  <?php endif; ?>
+					 </div>
+				  </div>
+				</li>
+				<?php  endforeach; ?>
+			 </ul>
+		  <?php else: ?>
+			 <?=$this->partial('mi-cuenta/_estudios.phtml', array('formEstudiosPostulante' => $this->formEstudiosPostulante, 'maxYear' => $this->maxYear, 'minYear' => $this->minYear, 'noneSkill' => true));?>
+			 <ul class="title_content_edit hide"></ul>
+		  <?php endif; ?>
+		</div>
+	 </div>
+	 <aside><?php echo Application_Model_Partials::getAvisosSugeridos(); ?></aside>
+  </div>
+</section>
+<script id="tplUserEducation" type="text/template">
+  <?=$this->partial('mi-cuenta/_estudios.phtml', array('formEstudiosPostulante' => $this->formEstudiosPostulante, 'maxYear' => $this->maxYear, 'minYear' => $this->minYear, 'noneSkill' => true));?>
+</script>
+<script id="tplSkillTitle" type="text/template">
+  <div class="block_text">
+	 <h2><%=txtInstitution%></h2>
+	 <h3><%=txtCareer%> <i><%=selStateStudy%></i></h3>
+	 <p> <i class="icon icon_calendar"></i><%=selMonthBegin%> <%=txtYearBegin%> - <%if(actualStudent == 1 ){%>Actualidad<%}else{%><%=selMonthEnd%> <%=txtYearEnd%><%}%></p>
+  </div>
+  <div class="block_buttons">
+	 <button class="btn btn_delete" data-id="<%=hidStudy%>">
+		<span class="btn_label"><i class="icon icon_delete2"></i></span>
+		<span class="btn_spinner"></span>
+	 </button>
+	 <button class="btn btn_edit" data-id="<%=hidStudy%>">
+		<span class="btn_label"><i class="icon icon_pencil"></i></span>
+		<span class="btn_spinner"></span>
+	 </button>
+  </div>
+</script>
+<script id="tplSkillBox" type="text/template">
+  <li>
+	 <div class="title_skills row">
+		<% include tplSkillTitle %>
+	 </div>
+  </li>
+</script>

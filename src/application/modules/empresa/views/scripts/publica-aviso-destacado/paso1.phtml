@@ -1,0 +1,78 @@
+<nav class="cont-menu row">
+    <br>
+</nav>
+<div id="wrapper" class="row">
+    <div class="head-title row">
+        <ul class="steps">
+            <li class="act">Escoge<br> el Aviso<span></span></li>
+            <li>Datos<br> del Aviso<span></span></li>
+            <li>Aviso<br> Impreso<span></span></li>
+            <li>Verifica<br> tus datos<span></span></li>
+        </ul>
+        <div class="title-step">
+            <div class="legend">
+                <?php
+                if ($this->auth != null) {
+                    ?>
+                    <a href="<?php
+                    echo $this->url(array('module' => 'empresa',
+                        'controller' => 'mi-cuenta', 'action' => 'index'),
+                        false, true)
+                    ?>">Inicio</a> »
+                   <?php } else { ?>
+                    <a href="<?php
+                    echo $this->url(array(
+                        'module' => 'empresa', 'controller' => 'home', 'action' => 'index'),
+                        false, true)
+                    ?>">Inicio</a> »
+                   <?php } ?>
+                <span class="noLink">Paso 1 - Elija su aviso</span>
+            </div>
+            <h1>Elija su tipo de Aviso Económico</h1>
+        </div>
+    </div>
+
+
+    <div class="gridIStepEmp" class="all">
+        <h6 id="countWordEM" class="titleGrayEM"></h6>
+
+        <div id="sectionsEM" class="sectionEM openSection<?= $this->slide ?>">
+            <div id="innerSectionEmp" class="sectionEM">
+                <div id="section2EM" class="sectionEM">
+                    <?php
+                    echo $this->partial('publica-aviso/_paso1b.phtml',
+                        'empresa',
+                        array('arrayClasificado' => $this->arrayClasificado,'moneda'=>$this->moneda));
+                    ?>
+                </div>
+
+                <div id="section3EM" class="sectionEM">
+                    <?php
+                    echo $this->partial('publica-aviso/_paso1c.phtml',
+                        'empresa',
+                        array('fchPubsImp' => $this->fchPubsImp, 'fchCierreImp' => $this->fchCierreImp,'moneda'=>$this->moneda));
+                    ?>
+                </div>                                  
+            </div>				
+        </div>
+        <div class="asideFootAX">
+            <?php
+            if (isset($this->extiende)) {
+                $url = $this->url(array('module' => 'empresa', 'controller' => 'publica-aviso',
+                    'action' => 'index', 'extiende' => $this->extiende), null,
+                    true);
+            } elseif (isset($this->republica)) {
+                $url = $this->url(array('module' => 'empresa', 'controller' => 'publica-aviso',
+                    'action' => 'index', 'republica' => $this->republica), null,
+                    true);
+            } else {
+                $url = $this->url(array('module' => 'empresa', 'controller' => 'publica-aviso',
+                    'action' => 'index'), null, true);
+            }
+            ?>
+            <a href="<?= $url ?>" id="backEmpXF" class="btn btn-default right btnSptEmp">
+                Regresar
+            </a>
+        </div>  			
+    </div>
+</div>

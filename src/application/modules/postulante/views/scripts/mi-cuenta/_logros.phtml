@@ -1,0 +1,51 @@
+<form id="frmUserAchievements" autocomplete="off" class="type1 mt20"  <?=($this->noneSkill)? "":'style="display: none;"'?> method="post" action="/mi-cuenta/mis-logros-ajax">
+    <div class="form_box border_grey">
+        <div class="form_row">
+        <div class="form_col12">
+          <fieldset>
+            <label>Título</label>
+            <?=$this->form->txtPrize->setAttribs(array( 'id' => 'txtPrize','placeholder'=>'Ingrese el nombre del premio o logro que recibiste' , 'required'=>'', 'tabindex'=>'1'))->renderViewHelper();?>
+          </fieldset>
+        </div>
+        </div>
+    <div class="form_row">
+        <div class="form_col12">
+          <fieldset>
+            <label>Emisor</label>
+            <?=$this->form->txtInstitution->setAttribs(array( 'id' => 'txtInstitution','placeholder'=>'Ingrese el nombre de institución que te otorgó el premio o logro' , 'required'=>'', 'tabindex'=>'2'))->renderViewHelper();?>
+          </fieldset>
+        </div>
+    </div>
+    <div class="form_row">
+        <div class="form_col6">
+          <fieldset>
+            <label>Mes</label>
+            <?=$this->form->selDate->setAttribs(array( 'id' => 'selDate','class'=>'pretty_select_2' , 'required'=>'', 'tabindex'=>'3'))->renderViewHelper();?>
+          </fieldset>
+        </div>
+    <div class="form_col6">
+      <fieldset>
+        <label>Fecha</label>
+        <?=$this->form->txtDateAchievement->setAttribs(array( 'id' => 'txtDateAchievement','placeholder'=>'Año' , 'required'=>'', 'tabindex'=>'4',  'data-currentmonth'=>(int)date('m'), 'data-current-year'=>(int)date('Y')))->renderViewHelper();?>
+      </fieldset>
+    </div>
+    </div>
+   <div class="form_row">
+    <div class="form_col12">
+      <fieldset>
+        <label>Descripción</label>
+        <?=$this->form->txtDescription->setAttribs(array( 'id' => 'txtDescription' , 'required'=>'', 'tabindex'=>'5'))->renderViewHelper();?>
+      </fieldset>
+    </div>
+    </div>
+    <div class="form_row buttons_row">
+        <button class="btn btn_save" disabled>
+          <span class="btn_label">Guardar</span>
+          <span class="btn_spinner"></span>
+        </button>
+        <button class="btn btn_cancel type_basic" type="button">Cancelar</button>
+      </div>
+    </div>
+    <?=$this->form->hidAchievements->setAttribs(array( 'id' => 'hidAchievements'))->renderViewHelper();?>
+    
+</form>

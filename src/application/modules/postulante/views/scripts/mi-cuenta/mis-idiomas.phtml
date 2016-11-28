@@ -1,0 +1,85 @@
+<?=Application_Model_Partials::getMenuPostulante(); ?>
+<section class="profile_wrapper">
+  <div class="center_box">
+	 <div class="content_body profile_detail_wrapper">
+		<?=Application_Model_Partials::getPerfilPorcentaje(); ?>
+		<div class="skill_body">
+		  <?=$this->formIdioma->hidToken->setAttribs(array( 'id' => 'hidToken'))->renderViewHelper();?>
+		  <div class="skill_buttons row">
+			 <?php /* <button class="btn btn_cuaternary">Importar CV</button> */ ?>
+			 <h2 class="skill_category"><i class="icon icon_speak"></i>Idiomas</h2>
+
+			 <button class="btn btn_white flt_right" id="btnAddSkill" <?=(count($this->lisIdioma)>0) ? '':'disabled="disabled"'?> >Agregar Otro</button>
+
+			 <?php /*if ($this->showImport) : ?>
+			 <a href='/mi-cuenta/importar-datos/param1/mis-idiomas' class="btn btn_import_linkedin flt_right" title="Importar datos desde LinkedIn"> <i class="icon icon_linkedin"> </i><span>Importar</span></a>
+			 <?php endif;*/?>
+
+			 <a class="btn btn_print flt_right" target="_blank" title="Imprimir" href="<?=$this->url(array(
+				  'module' => 'postulante',
+				  'controller' => 'mi-cuenta',
+				  'action' => 'pdf',
+				  'slug' => $this->slug), "default", true)?>">
+				  <i class="icon icon_print"></i></a>
+		  </div>
+		  <?php if (count($this->lisIdioma)>0) : ?>
+		  <ul class="title_content_edit">
+			 <?php foreach ($this->lisIdioma as $value ) {  ?>
+			 <li>
+				<div class="title_skills row">
+				  <div class="block_text">
+					 <h2><?=$value['nombreIdioma']?></h3>
+					 <h3 class="item1">Nivel Escrito <i>(<?=$value['selLevelWritten']?>)</i></h2>
+					 <h3 class="item2">Nivel Oral <i>(<?=$value['selLevelOral']?>)</i></h2>
+				  </div>
+				  <div class="block_buttons">
+					 <button class="btn btn_delete" data-id="<?=$value['id_dominioIdioma']?>">
+						<span class="btn_label"><i class="icon icon_delete2"></i></span>
+						<span class="btn_spinner"></span>
+					 </button>
+					 <button class="btn btn_edit" data-id="<?=$value['id_dominioIdioma']?>">
+						<span class="btn_label"><i class="icon icon_pencil"></i></span>
+						<span class="btn_spinner"></span>
+					 </button>
+				  </div>
+				</div>
+			 </li>
+			 <?php  } ?>
+		  </ul>
+		  <?php else :  ?>
+			 <?=$this->partial('mi-cuenta/_idiomas.phtml', array('formIdioma' => $this->formIdioma, 'noneSkill' => true));?>
+				<ul class="title_content_edit hide"></ul>
+		  <?php endif; ?>
+		</div>
+	 </div>
+	 <aside><?php Application_Model_Partials::getAvisosSugeridos(); ?></aside>
+  </div>
+</section>
+
+<script id="tplLanguages" type="text/template">
+	 <?=$this->partial('mi-cuenta/_idiomas.phtml', array('formIdioma' => $this->formIdioma, 'noneSkill' => true));?>  
+</script>
+<script id="tplSkillTitle" type="text/template">
+	 <div class="block_text">
+		<h2><%=selLanguage%></h2>
+		<h3 class="item1">Nivel Escrito <i>(<%=selLevelWritten%>)</i></h3>
+		<h3 class="item2">Nivel Oral <i>(<%=selLevelOral%>)</i></h3>
+	 </div>
+	 <div class="block_buttons">
+		<button class="btn btn_delete" data-id="<%=hidLanguage%>">
+		  <span class="btn_label"><i class="icon icon_delete2"></i></span>
+		  <span class="btn_spinner"></span>
+		</button>
+		<button class="btn btn_edit" data-id="<%=hidLanguage%>">
+		  <span class="btn_label"><i class="icon icon_pencil"></i></span>
+		  <span class="btn_spinner"></span>
+		</button>
+	 </div>
+</script>
+<script id="tplSkillBox" type="text/template">
+  <li>
+	 <div class="title_skills row">
+		<% include tplSkillTitle %>
+	 </div>
+  </li>
+</script>

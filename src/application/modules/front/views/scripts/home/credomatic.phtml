@@ -1,0 +1,40 @@
+<?php
+date_default_timezone_set('GMT');
+date_default_timezone_set('America/Managua');
+
+$key_id = '56745202';
+$key = 'cfBL75O4Pv4Y5euKRnmlAFOJM8PzgtEk';
+
+$username = 'mmezaa207';
+$orderid = '1';
+$amount = '1.00';
+$time = time();
+
+$hash = MD5($orderid . "|" . $amount . "|" . $time . "|" . $key);
+
+$_redirect = "http://aquiempleos.local/front/home/credomatic/";
+
+if($_GET){
+	echo "<pre>";
+	print_r($_GET);
+}
+?>
+
+fecha: <?php echo date('Y-m-d H:i:s'); ?> <br>
+<form name="CredomaticPost" method="post"
+action="https://paycom.credomatic.com/PayComBackEndWeb/common/requestPaycomService.go" />
+username: <input type="text" name="username" value="<?php echo $username; ?>"/> <br>
+type: <input type="text" name="type" value="auth"/> <br>
+key_id: <input type="text" name="key_id" value="<?php echo $key_id; ?>"/> <br>
+hash: <input type="text" name="hash" value="<?php echo $hash; ?>" /> <br>
+time: <input type="text" name="time" value="<?php echo $time; ?>"/> <br>
+amount: <input type="text" name="amount" value="<?php echo $amount; ?>"/> <br>
+orderid: <input type="text" name="orderid" value="<?php echo $orderid; ?>"/> <br>
+processor_id: <input type="text" name="processor_id" value=""/> <br>
+ccnumber: <input type="text" name="ccnumber" value="5402917515592648"/> <br>
+ccexp: <input type="text" name="ccexp" value="0916"/> <br>
+cvv: <input type="text" name="cvv" value="076"/> <br>
+
+redirect: <input type="text" name="redirect" value="<?php echo $_redirect; ?>"/> <br>
+<input type="submit" value="Enviar Transacción"/> <br>
+</form>

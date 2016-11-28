@@ -1,0 +1,71 @@
+<div id="main" class="all">
+    <div class="innerAll">
+        <div class="bgAll gridS20">
+            <?=$this->partial('_partials/_navigation.phtml','admin',array('isAuth'=>$this->isAuth, "flashMessages"=>$this->flashMessages))?>
+            <div class="gridTab">
+                <div class="gridIT">
+                    <h5 class="h5TitleAdm">Módulo de Administración</h5>
+                    <div class="iAccount" id="innerMain">
+                            <div id="admLeftNM" class="blockAL grid4 omega left">
+                                <?=$this->partial('gestion/_sidebar-menu.phtml',array('menu_sel_side' => $this->menu_sel_side,'rol' => $this->rol))?>
+                            </div>
+                        
+                            <div class="blockAR grid15 alpha right">
+                                <div class="iBlockAR">
+                                    <h2 class="titleMAU">Api :: Agregar Usuario</h2>
+                                    <form action="" method="post" id="frmBuscar_empresas" class="r2 fieldsetAdm">
+                                        <div class="block">
+                                            <label for="fDomain" class="labelN"> Dominio a utlizar el API: </label>
+                                            <?=$this->formAgregarUsuario->domain->setAttribs(array('id'=>'fDomain','class'=>'inputN left', 'maxlength' => '75'))->renderViewHelper(); ?>
+                                            <?$hasError = $this->formAgregarUsuario->domain->hasErrors(); ?>
+                                            <span class="response cGray left<?= $hasError?' bad':''?>"><?= $hasError? $this->formAgregarUsuario->domain->errMsg:''?></span>
+                                        </div>
+                                        <div class="block">
+                                            <label for="fCheckDomainApi" class="labelN">&nbsp;</label>
+                                            <div class="left clearBApi">
+                                                <?=$this->formAgregarUsuario->force_domain->setAttribs(array('id'=>'fCheckDomainApi','class'=>'left'))->renderViewHelper(); ?>
+                                                <label for="fCheckDomainApi" class="left labelCheckAP">Forzar comprobación</label>
+                                            </div>
+                                            <span class="response cGray left"></span>
+                                        </div>
+                                        <div class="block">
+                                            <label for="fUserApi" class="labelN"> Usuario:<br/><span class="nBold f11">(Email)</span></label>
+                                            <?=$this->formAgregarUsuario->usuario->setAttribs(array('id'=>'fUserApi','class'=>'inputN left', 'maxlength' => '75'))->renderViewHelper(); ?>
+                                            <?$hasError = $this->formAgregarUsuario->usuario->hasErrors(); ?>
+                                            <span class="response cGray left<?= $hasError?' bad':''?>"><?= $hasError? $this->formAgregarUsuario->usuario->errMsg:''?></span> 
+                                        </div>
+                                        <div class="block">
+                                            <label for="fCheckIvgAPi" class="labelN">Fecha de Vigencia del API:</label>
+                                            <?=$this->formAgregarUsuario->vigencia->setAttribs(array('id'=>'fCheckIvgAPi','class'=>'left'))->renderViewHelper(); ?>
+                                        </div>
+                                        <div class="cntCheksDate r2 fieldsetAdm">
+                                            <div class="block">
+                                                <label for="fInicioApi" class="labelN"> Fecha de Inicio: </label>
+                                                <div class="left clearBApi">
+                                                <?=$this->formAgregarUsuario->fecha_ini->setAttribs(array('id'=>'fInicioApi','class'=>'inputFecha left'))->renderViewHelper(); ?>
+                                                </div>
+                                                <?$hasError = $this->formAgregarUsuario->fecha_ini->hasErrors(); ?>
+                                                <span class="response cGray left<?= $hasError?' bad':''?>"><?= $hasError? $this->formAgregarUsuario->fecha_ini->errMsg:''?></span>
+                                            </div>
+                                            <div class="block">
+                                                <label for="fFinApi" class="labelN"> Fecha de Fin: </label>
+                                                <div class="left clearBApi">
+                                                <?=$this->formAgregarUsuario->fecha_fin->setAttribs(array('id'=>'fFinApi','class'=>'inputFecha left'))->renderViewHelper(); ?>
+                                                </div>
+                                                <?$hasError = $this->formAgregarUsuario->fecha_fin->hasErrors(); ?>
+                                                <span class="response cGray left<?= $hasError?' bad':''?>"><?= $hasError? $this->formAgregarUsuario->fecha_fin->errMsg:''?></span>
+                                            </div>
+                                        </div>
+                                         <div class="all">
+                                            <input id="saveUserAPI"  type="submit" class="active btnSptAdm sptAdm right" value="">
+                                            <input id="fResetRS"  type="reset" class="active btnSptAdm sptAdm right" value="">
+                                         </div>
+                                    </form>
+                                </div>
+                            </div>
+                       </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

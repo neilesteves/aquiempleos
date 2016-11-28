@@ -1,0 +1,66 @@
+<form id="datoBasicoF" method="post" action="" enctype="multipart/form-data">
+	<h3 class="titleAPLR"><?=$this->anuncio["puesto"]?></h3>
+  <div class="cntFormLEMC"> 
+  <div class="dateHeadAp all">
+  	<div class="left">
+  		<span class="fechaIMPA">Fecha Inicio:</span>  <span class="fechaEMPA bold"><?=$this->anuncio["fcreacion"]?></span>
+  	</div>   
+  	<div class="right">
+  		<span class="fechaIMPA">Fecha Fin:</span> <span class="fechaEMPA bold"><?=$this->anuncio["fpublicacion"]?></span>
+  	</div>
+  </div>
+  	<div id="overflowProHist">
+		  <table class="dataGrid" id="dataProcesosHistorial" summary="Procesos Activos">
+		    <thead>
+		      <tr>
+		          <? $base = array('module' => 'empresa', 'controller' => 'mis-procesos', 'action' => 'procesos-cerrados'); ?>
+		          <th class="data0 titleGrid linkTitleG">
+		              <a href="#" class="rel relArrow">#</a>
+		          </th>
+		          <th class="data1 titleGrid linkTitleG">
+		              <a href="#" class="rel relArrow">Fecha Publicación</a>
+		          </th>
+		          <th class="data2 titleGrid linkTitleG">
+		              <a href="#" class="rel relArrow">Fecha Fin</a>
+		          </th>
+		          <th class="data3 titleGrid linkTitleG">
+		              <a href="#" class="rel relArrow">Aviso</a>
+		          </th>
+		          <th class="data4 titleGrid linkTitleG">
+		              <a href="#" class="rel relArrow">Tipo</a>
+		          </th>
+		          <th class="data5 titleGrid linkTitleG">
+		              <a href="#" class="rel relArrow">Estado </a>
+		          </th>
+		      </tr>
+		    </thead>
+		    <tbody>
+		        <? $i=0; foreach ($this->historial as $item): ?>
+		        <? $i++; ?>
+		        <tr>
+		          <td class="data0">
+		              <?=$i?>
+		          </td>
+		          <td class="data1">
+		              <?= $item["fcreacion"] ?>
+		          </td>
+		          <td class="data2">
+		              <?= $item["ffin"] ?>
+		          </td>
+		          <td class="data3">
+		              <?= $item["puesto"] ?>
+		          </td>
+		          <td class="data4">
+		              <?= $item["tipo"] ?>
+		          </td>
+                          <td class="data5">
+		              <?= strtoupper(substr($item["estado"], 0,1)).substr($item["estado"], 1) ?>
+		          </td>
+		      </tr>
+		      <? endforeach; ?>
+		      		      
+		   </tbody>
+		  </table>
+  	</div>
+  </div>
+</form>

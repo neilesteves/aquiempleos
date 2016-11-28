@@ -1,0 +1,231 @@
+
+<nav class="cont-menu row">
+    <br>
+</nav>
+<div id="wrapper" class="row">
+    <div class="head-title row">
+        <ul class="steps">
+            <li>Escoge<br> el Aviso<span></span></li>
+            <li>Datos<br> del Aviso<span></span></li>
+            <li class="act">Aviso<br> Impreso<span></span></li>
+            <li>Verifica<br> tus datos<span></span></li>
+        </ul>
+        <div class="legend">
+            <a href="<?php
+            echo $this->url(array(
+                'module' => 'empresa', 'controller' => 'mi-cuenta', 'action' => 'index'),
+                false, true)
+            ?>">Inicio</a> »
+            <span class="noLink">Paso 3 - Ingrese el aviso Impreso</span>
+        </div>
+    </div>
+
+    <?=
+    $this->partial('_partials/_messages.phtml',
+        array("flashMessages" => $this->flashMessages))
+    ?>
+    <h1>Ingrese el aviso impreso</h1>
+    <div class="gridIStepEmp" class="all">
+        <h2 id="titleRelF" class="titleInDB bold mB0">Selección del diseño gráfico:</h2>
+        <h2 id="countWordEM" class="titleGrayEM paddingTitle">
+            <span>Aviso preferencial:</span>  <span class="c3"><span><?= $this->PuestoTitulo['nombre'] ?></span>, <span><?= $this->PuestoTitulo['descripcion'] ?></span> en <span><?=
+                    Application_Model_Tarifa::MEDIOPUB_EMPLEOBUSCO_TALAN == $this->PuestoTitulo['medio_pub']
+                            ? 'EMPLEOBUSCO y El Talán' : (Application_Model_Tarifa::MEDIOPUB_TALAN
+                        == $this->PuestoTitulo['medio_pub'] ? 'El Talán' : str_replace('EMPLEOBUSCO',
+                                'EMPLEOBUSCO', $this->PuestoTitulo['medio_pub']) )
+                    ?></span></span>  
+        </h2>
+        <div id="sectionsP3EM">
+            <h5 class="titleAvsP3">Seleccione la opción para el diseño de su aviso impreso</h5>
+            <form id="formP3APimg" action="" method="POST">
+                <fieldset class="block">
+                    <div class="block">
+                        <label for="radioP3ADM" id="dLabelAvs1" class="labelAvsP3 r2">
+                            <input id="radioP3ADM" class="noBdr" type="radio" name="tipo_diseno" value="propio"
+                            <?php
+                            if ($this->dataTipoDiseno == 'propio') {
+                                ?> checked="checked" <?php } ?>/>
+                            <span class="spanAvsP3">Quiero enviar un diseño que ya tengo listo</span>
+                        </label>
+                        <div id="labelAvs1" class="divAvsP3 hide">
+                            <div class="padding2P3">
+                                <h5 class="titleAvs2P3">Consideraciones técnicas para el envío correcto de su aviso</h5>
+                                <dl class="block">
+                                    <dt>Las imágenes que desea adjuntar deben tener las siguientes extensiones:  </dt>
+                                    <dd>PSD, PDF, TIF, PSD, AI, PNG Y JPG</dd>
+                                </dl>
+                                <div class="cntEditorS">
+                                    <iframe id="editorScot1" src="<?= $this->scotPlantilla ?>?IdAvisoImp=<?= $this->idImpreso ?>&CodSede=982924&NroDocCliente=<?= $this->dataRuc; ?>&CantAvisos=<?= $this->cantAviso ?>" noresize scrolling="no" frameborder="0"></iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="block">
+                        <label for="radioP3ADM2" id="dLabelAvs2" class="labelAvsP3 r2">
+                            <input id="radioP3ADM2" type="radio" class="noBdr" name="tipo_diseno" value="pre_diseniado"
+                            <?php
+                            if ($this->dataTipoDiseno == 'pre_diseniado') {
+                                ?> checked="checked" <?php } ?> />
+                            <span class="spanAvsP3">Quiero usar sólo una plantilla predefinida</span>
+                        </label>
+                        <div id="labelAvs2" class="divAvsP3 loading hide">
+                            <div class="all" id="flagLoadEdit" style="visibility:hidden">
+                                <div class="left" id="divLeftAP3">
+                                    <h5 class="titleAvs2P3">Plantillas de texto</h5>
+
+                                    <fieldset class="all listImgAdvAP1">
+                                        <label for="iptImgAdvAP1" class="itemImgAdvAP templateText left <?php
+                                        if ($this->idPlantilla == 1) {
+                                            ?> itemActiveAP <?php } ?>">
+                                            <span>
+
+                                                <input name="inputImgAdv" id="empleos_01" type="radio" value="1" data-limit="<?= $this->maxCaracteresText; ?>"
+                                                <?php
+                                                if ($this->idPlantilla == 1) {
+                                                    ?> class="itemActiveAP" checked="checked" <?php } ?>>
+
+                                            </span>
+                                            <span><img width="92" height="77" src="<?php echo $this->S('/images/empresa/disenios/empleos_01.jpg'); ?>" alt="EMPLEOBUSCO 01"></span>
+                                            <span class="titleAdvAPW">Empleos 01</span>
+                                        </label>
+                                        <label for="iptImgAdvAP2" class="itemImgAdvAP templateText left <?php
+                                        if ($this->idPlantilla == 2) {
+                                            ?> itemActiveAP <?php } ?>">
+                                            <span>
+
+                                                <input name="inputImgAdv" id="empleos_02" type="radio" value="2" data-limit="<?= $this->maxCaracteresText; ?>"
+                                                <?php
+                                                if ($this->idPlantilla == 2) {
+                                                    ?> class="itemActiveAP" checked="checked" <?php } ?>>
+
+                                            </span>
+                                            <span><img width="92" height="77" src="<?php echo $this->S('/images/empresa/disenios/empleos_02.jpg'); ?>" alt="EMPLEOBUSCO 02"></span>
+                                            <span class="titleAdvAPW">Empleos 02</span>        
+                                        </label>
+                                        <label for="iptImgAdvAP3" class="itemImgAdvAP templateText left <?php
+                                        if ($this->idPlantilla == 3) {
+                                            ?> itemActiveAP <?php } ?>">
+                                            <span>
+
+                                                <input name="inputImgAdv" id="empleos_03" type="radio" value="3" data-limit="<?= $this->maxCaracteresText; ?>"
+                                                <?php
+                                                if ($this->idPlantilla == 3) {
+                                                    ?> class="itemActiveAP" checked="checked" <?php } ?>>
+
+                                            </span>
+                                            <span><img width="92" height="77" src="<?php echo $this->S('/images/empresa/disenios/empleos_03.jpg'); ?>" alt="EMPLEOBUSCO 03"></span>
+                                            <span class="titleAdvAPW">Empleos 03</span>
+                                        </label>
+                                        <label for="iptImgAdvAP4" class="itemImgAdvAP templateText left <?php
+                                        if ($this->idPlantilla == 4) {
+                                            ?> itemActiveAP <?php } ?>">
+                                            <span>
+
+                                                <input name="inputImgAdv" id="empleos_04" type="radio" value="4" data-limit="<?= $this->maxCaracteresText; ?>"
+                                                <?php
+                                                if ($this->idPlantilla == 4) {
+                                                    ?> class="itemActiveAP" checked="checked" <?php } ?>>
+
+                                            </span>
+                                            <span><img width="92" height="77" src="<?php echo $this->S('/images/empresa/disenios/empleos_04.jpg'); ?>" alt="EMPLEOBUSCO 04"></span>
+                                            <span class="titleAdvAPW">Empleos 04</span>
+                                        </label>
+                                    </fieldset>
+                                    <h5 class="titleAvs2P3">Plantillas de texto + Logo</h5>
+                                    <fieldset class="all listImgAdvAP1">
+                                        <label for="iptImgAdvAP5" class="itemImgAdvAP templateTextLogo left <?php
+                                        if ($this->idPlantilla == 5) {
+                                            ?> itemActiveAP <?php } ?>c">
+                                            <span>
+
+                                                <input name="inputImgAdv" id="empleos_05" type="radio" value="5" data-limit="<?= $this->maxCaracteresLeft; ?>"
+                                                <?php
+                                                if ($this->idPlantilla == 5) {
+                                                    ?> class="itemActiveAP" checked="checked" <?php } ?>>
+
+                                            </span>
+                                            <span><img width="92" height="77" src="<?php echo $this->S('/images/empresa/disenios/empleos_05.jpg'); ?>" alt="EMPLEOBUSCO 05"></span>
+                                            <span class="titleAdvAPW">Empleos 05</span>
+                                        </label>
+                                        <label for="iptImgAdvAP6" class="itemImgAdvAP templateTextLogo left <?php
+                                        if ($this->idPlantilla == 6) {
+                                            ?> itemActiveAP <?php } ?>">
+                                            <span>
+
+                                                <input name="inputImgAdv" id="empleos_06" type="radio" value="6" data-limit="<?= $this->maxCaracteresLeft; ?>"
+                                                <?php
+                                                if ($this->idPlantilla == 6) {
+                                                    ?> class="itemActiveAP" checked="checked" <?php } ?>>
+
+                                            </span>
+                                            <span><img width="92" height="77" src="<?php echo $this->S('/images/empresa/disenios/empleos_06.jpg'); ?>" alt="EMPLEOBUSCO 06"></span>
+                                            <span class="titleAdvAPW">Empleos 06</span>
+                                        </label>
+                                        <label for="iptImgAdvAP7" class="itemImgAdvAP templateTextLogo left <?php
+                                        if ($this->idPlantilla == 7) {
+                                            ?> itemActiveAP <?php } ?>">
+                                            <span>
+                                                <input name="inputImgAdv" id="empleos_07" type="radio" value="7" data-limit="<?= $this->maxCaracteresRight; ?>"
+                                                <?php
+                                                if ($this->idPlantilla == 7) {
+                                                    ?> class="itemActiveAP" checked="checked" <?php } ?>>
+                                            </span>
+                                            <span><img width="92" height="77" src="<?php echo $this->S('/images/empresa/disenios/empleos_07.jpg'); ?>" alt="EMPLEOBUSCO 07"></span>
+                                            <span class="titleAdvAPW">Empleos 07</span>
+                                        </label>
+                                    </fieldset>
+
+                                </div>
+                                <div class="right" id="divRightAP3">
+                                    <h5 class="titleAvs2P3">Ingrese datos del aviso impreso</h5>
+                                    <fieldset class="all">
+
+                                        <div class="block">
+                                            <label class="left label2P3">Contenido</label>
+                                            <div class="left clearBP3">
+                                                <div class="msgYellow r5" id="msgRelTmp">Debe seleccionar una plantilla para habilitar el editor y la cantidad de caracteres disponibles.</div>
+                                                <div class="block">
+                                                    <textarea id="areaEditorP3" name="contenido_aviso" data-limit="<?= $this->maxCaracteres; ?>" class="tinymce"><?= $this->escape($this->dataContenido); ?></textarea>
+                                                    <div class="txtAreaAsd">El equipo de diseño ajustará el texto de acuerdo al tamaño del aviso.</div>
+                                                </div>
+                                                <div class="textInfo2P3">Le queda <span id="count2P3" class="bold"></span>&nbsp;caracteres para el contenido del aviso</div>
+                                            </div>
+                                        </div> 
+                                        <div id="divLogoAP3" class="block" style="display:none">
+                                            <label class="left label2P3">Logo</label>
+                                            <div class="left clearBP3">
+                                                <ul>
+                                                    <li>Las imágenes que desea adjuntar deben tener las siguientes extensiones:</li>
+                                                    <li>PSD, PDF, TIF, PSD, AI, PNG Y JPG</li>
+                                                </ul>
+                                                <div id="cntEditorS2" class="cntEditorS2">
+                                                    <iframe id="editorScot2" src="<?= $this->scotPlantilla ?>?IdAvisoImp=<?= $this->idImpreso ?>&CodSede=982924&NroDocCliente=<?= $this->dataRuc; ?>&CantAvisos=<?= $this->cantAviso ?>" noresize scrolling="no" frameborder="0"></iframe>
+                                                </div>
+                                            </div>
+                                        </div> 
+                                        <div class="all">
+                                            <label class="left label2P3">Nota al diseñador</label>
+                                            <textarea class="left textarea2P3" name="nota_diseno" id="noteAreaP3"><?= $this->escape($this->dataDisenador); ?></textarea>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <div id="footEmpP3" class="wrap-btn right">
+                    <a href="<?=
+                    $this->url(array(
+                        'module' => 'empresa', 'controller' => 'publica-aviso-preferencial',
+                        'action' => 'paso2',
+                        'preferencial' => $this->idImpreso), false, true)
+                    ?>" id="backEmpP1" class="btnSptEmp btn btn-default">Regresar</a>
+                    <input type="submit" onclick="ga('send', 'event', 'P3_<?php echo str_replace(' ', '_', $this->producto['desc'])?>', '<?php echo $this->empresaId?>' , '<?php echo $this->producto['medio_publicacion']?>');" disabled="disabled" id="nextEmpP3" value="Siguiente >" class="loginEmp btnSptEmp btn btn-primary"/>
+
+                    <div id="msgErrorEmpP3" class="msgErrorDef right error"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,112 @@
+<form id="frmUserRegistration" autocomplete="off" class="type1 form_registration mt20" enctype="multipart/form-data" method="post" action="/mi-cuenta/mis-datos-personales-ajax">
+    <div class="form_box center_image border_grey">
+      <div class="form_row">
+        <div class="form_col8 right">
+          <fieldset>
+            <label>Nombres</label>
+            <?=$this->formPostulante->nombres->setAttribs(array(
+            'id' => 'fNames', 'tabindex' => '1', 'minlenght'=>"1", 'required'=>''))->renderViewHelper();?>
+          </fieldset>
+          <fieldset>
+            <label>Apellido Paterno</label>
+            <?=$this->formPostulante->txtFirstLastName->setAttribs(array(
+            'id' => 'txtLastnameP', 'tabindex' => '2', 'minlenght'=>"2", 'required'=>''))->renderViewHelper();?>
+          </fieldset>
+          <fieldset>
+            <label>Apellido Materno</label>
+            <?=$this->formPostulante->txtSecondLastName->setAttribs(array(
+            'id' => 'fLastnameM', 'tabindex' => '3', 'minlenght'=>"2", 'required'=>''))->renderViewHelper();?>
+          </fieldset>
+        </div>
+
+        <div class="form_col4">
+          <div class="image_profile_wrapper">
+            <input type="hidden" name="filesize" value="4194304" id="MAX_FILE_SIZE" />
+            <input type="hidden" name="tipo" value="pos">
+            <input name="path_foto" id="fileBrowse" class="file_browse" type="file" tabindex="4" />
+            <div class="image_profile_cont">
+                <img class="image_profile" src="<?=($this->imgPhoto == '' || empty($this->imgPhoto)) ? $this->S('/images/profile-default.jpg')  : ELEMENTS_URL_IMG . $this->imgPhoto; ?>" alt="Foto de Perfil"/>
+            </div>
+            <button type="button" class='btn btn_delete_photo'><i class="icon icon_delete2"></i></button>
+          </div>
+        </div>
+
+           </div>
+      <div class="form_row">
+        <div class="form_col4">
+          <fieldset>
+            <label>Fecha de Nacimiento</label>
+            <?=$this->formPostulante->txtBirthDay->setAttribs(array(
+                'id' => 'fBirthDate', 'tabindex' => '5', 'maxlength'=>38, 'minyear'=>1900, 'maxyear=>2099', 'placeholder'=>"dd/mm/yyyy", 'required'=>''))->renderViewHelper();?>
+          </fieldset>
+        </div>
+        <div class="form_col4">
+          <fieldset>
+            <label>Documento de Identidad</label>
+            <?= $this->formPostulante->selDocument->setAttribs(array('id' => 'fTipoDoc', 'tabindex' => '6', 'class'=>'pretty_select_2'))->renderViewHelper();?>  
+          </fieldset>
+        </div>
+        <div class="form_col4">
+          <fieldset>
+            <label>Número</label>
+            <?=$this->formPostulante->txtDocument->setAttribs(array('id' => 'fNumDoc', 'tabindex' => '8', 'maxlength'=>'', 'minlength'=>'14', 'required' => ''))->renderViewHelper();?>
+          </fieldset>
+        </div>
+      </div>
+      <div class="form_row">
+        <div class="form_col4">
+          <fieldset>
+            <label>Genero</label>
+            <?= $this->formPostulante->selSex->setAttribs(array('id' => 'fSexo', 'tabindex' => '8', 'class'=>'pretty_select_2'))->renderViewHelper();?>
+          </fieldset>
+        </div>
+        <div class="form_col4">
+          <fieldset>
+            <label>Teléfono Fijo</label>
+            <?=$this->formPostulante->txtTelephone->setAttribs(array('id' => 'txtTelephone', 'tabindex' => '9',  'minlength' => '7', 'maxlength' => '14'))->renderViewHelper();?>
+          </fieldset>
+        </div>
+        <div class="form_col4">
+          <fieldset>
+            <label>Celular</label>
+            <?=$this->formPostulante->txtCellphone->setAttribs(array('id' => 'txtCellphone', 'tabindex' => '10', 'minlength' => '7', 'maxlength' => '14'))->renderViewHelper();?>
+          </fieldset>
+        </div>
+      </div>
+      <div class="form_row">
+        <div class="form_col12">
+          <fieldset>
+            <label>Estado Civil</label>
+            <?= $this->formPostulante->selMAritalStatus->setAttribs(array('id' => 'fEstCvil', 'tabindex' => '11', 'class'=>'pretty_select_2'))->renderViewHelper();?>
+          </fieldset>
+        </div>
+      </div>
+      <div class="form_row">
+        <div class="form_col6">
+          <fieldset>
+            <label class="lbl_control"> Tengo una discapacidad
+                <?= $this->formPostulante->chkIncapacity->renderViewHelper(); ?>
+            </label>
+          </fieldset>
+        </div>
+        <div class="form_col6">
+            <fieldset  <?=($this->formPostulante->chkIncapacity->getValue())?'':'disabled="disabled"';?>>
+            <label> Tipo de Discapacidad</label>
+              <?= $this->formPostulante->selDisability->setAttribs(array('id' => 'selDisability', 'class' => 'pretty_select_2','required'=>'required'))->renderViewHelper();?>
+             </fieldset>
+        </div>
+      </div>
+      
+      <div class="form_row align_right"> 
+        <div class="form_col12">
+          <button class="btn btn_save mt20 mb20 pad20l" disabled>
+          <span class="btn_label">Guardar</span>
+          <span class="btn_spinner"></span>
+          </button>
+        </div>
+      </div>  
+      <input type="hidden" id="corrupted" name="corrupted" value="null">
+      <input type="hidden" name="flagDelete" value="null" id="flagDelete">        
+      <?=$this->formPostulante->hidToken->setAttribs(array('id'=>'hidToken'))->renderViewHelper();?> 
+    </div>
+</form>

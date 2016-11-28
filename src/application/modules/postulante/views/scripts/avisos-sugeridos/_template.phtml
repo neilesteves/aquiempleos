@@ -1,0 +1,35 @@
+<script id="tplJobAds" type="text/template">
+  <li>
+  <a class="jobs_ads<%=(ishighlight == 1) ? ' jobs_ads_highlight_job':'' %>" href="<%=url%>" title="Ver aviso">
+    <span class="top_job_offer"><i class="icon icon_snood"></i><span>DESTACADO</span></span>
+    <div class="row">
+      <div class="jobs_ads_image_container">
+        <div class="center_image"><img src="<%=image%>" alt="<%=company%>"></div>
+      </div>
+      <div class="jobs_ads_description">
+        <h3><%=title%></h3>
+        <span title="<%=company%>"><%=company%></span>
+        <p><%=content%></p>
+        <p class="search_address"><i class="icon icon_location"></i><%=ubigeo%></p>
+      </div>
+      <div class="jobs_ads_options_wrapper">
+        <div class="jobs_ads_options">
+          <span><%=date%></span>
+          <% if(action != "favoritos"){ %>
+          <button class="btn btn_hightlight" data-urlaviso="<%=urlAviso%>" data-page="<%=page%>" data-id="<%=id%>" data-highlight="<%=urlHighlight%>" title="Agregar a favoritos">
+            <span class="btn_label"><i class="icon icon_star_hover animated paintStarAnimation"></i></span>
+            <span class="btn_spinner tiny"></span>
+          </button>
+          <% } %>
+          <% if(action != "eliminados"){ %>
+          <button class="btn btn_delete_ads" data-page="<%=page%>" data-id="<%=id%>" data-del="<%=urlDelete%>" title="Eliminar">
+            <span class="btn_label"><i class="icon icon_delete2"></i></span>
+            <span class="btn_spinner tiny"></span>
+          </button>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </a>
+  </li>
+</script>

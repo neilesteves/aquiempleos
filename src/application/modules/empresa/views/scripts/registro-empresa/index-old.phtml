@@ -1,0 +1,60 @@
+<nav class="cont-menu row"><br></nav>
+<div id="wrapper">
+	 <div class="legend"><a href="/empresa/">Inicio</a> » <span class="noLink">Registro de Empresa</span></div>
+
+	 <div class="row">
+		  <p class="right bold">Los campos con <span class="req">*</span> son necesarios</p>
+		  <h2 class="title-big">Datos de la empresa</h2>
+	 </div>
+	 <form action="" method="post" id="frmCompanyRegistration" enctype="multipart/form-data" class="frm-horizontal large">
+		  <div class="wrap-controls">
+				<?=
+				$this->partial('registro-empresa/_usuario_paso1.phtml',
+					 array(
+					 'formUsuario' => $this->frmUsuario,
+					 'emailMicuenta' => $this->emailMicuenta,
+					 'controlador' => $this->controlador,
+					 'modulo' => $this->modulo,
+					 'controlador' => $this->controlador
+					 )
+				);
+				?>
+				<?=
+				$this->partial('registro-empresa/_empresa_paso1.phtml',
+					 array(
+					 'formEmpresa' => $this->frmEmpresa,
+					 'imgPhoto' => $this->imgPhoto,
+					 'config' => $this->config,
+					 'idEmpresa' => $this->idEmpresa,
+					 'numPalabraRazonComercial' => $this->numPalabraRazonComercial,
+					 'numPalabraRazonSocial' => $this->numPalabraRazonSocial
+					 )
+				);
+				?>
+		  </div>
+		  <h2>Ubicación</h2>
+		  <div class="wrap-controls">
+				<?=
+				$this->partial('registro-empresa/_ubigeoEmpresa_paso1.phtml',
+					 array('formEmpresa' => $this->frmEmpresa));
+				?>
+		  </div>
+		  <h2>Administrador</h2>
+		  <div class="wrap-controls">
+				<?=
+				$this->partial('registro-empresa/_administrador_paso1.phtml',
+					 array('formAdministrador' => $this->frmAdministrador,
+					 'idEmpresa' => $this->idEmpresa));
+				?>
+		  </div>
+		  <div class="row">
+				<div class="grids-7 parsley_message_bottom">
+					 <label class="ioption m0"><input id="chkPolitics" type="checkbox" value="politics" name="politics" checked="checked" required>Entiendo y Acepto las <a target="" href="#">Políticas de Privacidad de aquiempleos.com</a></label>
+				</div>
+				<div class="grids-2 txt_right">
+					 <a href="#escapeForm" class="btn btn-default winModal">Salir</a>
+					 <button type="submit" id="btnCompanyRegister" class="btn btn-primary input-xsmall">Continuar &gt;</button>
+				</div>
+		  </div>
+	 </form>
+</div>

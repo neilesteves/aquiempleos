@@ -1,0 +1,29 @@
+<form id="frmUserPrograms" autocomplete="off" class="type1 mt20<?=($this->noneSkill)? "":" hide"?>" action="<?=$this->url(array('module'=>'postulante','controller'=>'mi-cuenta','action'=>'update-programas-ajax'))?>">
+    <div class="form_box border_grey">
+      <div class="form_row">
+        <div class="form_col6">
+          <fieldset>
+            <label>nombre del programa</label>
+            <?php /**/ ?>
+            <?=$this->formPrograma->selProgram->setAttribs(array('id' => 'selProgram', 'class' => 'pretty_select_2x' ,'required'=>''))->renderViewHelper();?>
+            <!--<input type="text" id="txtProgram" required="true" maxlength="30" name="txtProgram"/>-->
+            <!--<input type="hidden" id="selProgram" name="selProgram" maxlength="30" >-->
+          </fieldset>
+        </div>
+        <div class="form_col6">
+          <fieldset>
+            <label>Nivel</label>
+            <?=$this->formPrograma->selLevel->setAttribs(array( 'id' => 'selLevel', 'class' => 'pretty_select_2x','required'=>''))->renderViewHelper();?>
+          </fieldset>
+        </div>
+      </div>
+      <div class="form_row buttons_row">
+        <button class="btn btn_save" disabled>
+          <span class="btn_label">Guardar</span>
+          <span class="btn_spinner"></span>
+        </button>
+        <button class="btn btn_cancel type_basic" type="button">Cancelar</button>
+      </div>
+      <input id="hidPrograms" name="hidPrograms" type="hidden" value="0">
+    </div>
+</form>

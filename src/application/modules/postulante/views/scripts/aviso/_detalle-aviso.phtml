@@ -1,0 +1,92 @@
+<div class="sobre-aviso">
+
+    <div class="title-detalle-aviso">Detalles del empleo</div>
+
+      
+            <div class="col-md-4 spb text-light">Área de puesto:</div>
+            <div class="col-md-8 spb text-light">
+                <div class="text-light">
+                    <?= $this->aviso['area_puesto'] ?>
+                </div>
+            </div>
+            <? if($this->aviso['mostrar_salario'] == '1'): ?>
+            <div class="col-md-4 spb text-light">
+                Remuneración
+            </div>
+            <div class="col-md-8 spb text-light">
+                <div class="text-light">
+                    <?=$this->verAviso()->remuneracion($this->aviso['salario_min'],$this->aviso['salario_max'],$this->moneda)?> 
+                </div>
+            </div>
+            <? endif; ?> 
+<!--        <tr>
+            <td>Disponibilidad:</td>
+            <td class="td-class-sa"><?//= $this->aviso['salario_min'] ?></td>
+        </tr>-->
+        <div class="col-md-4 spb text-light">Tipo de puesto:</div>
+            <div class="col-md-8 spb text-light">
+                <div class="text-light"><?= $this->aviso['nivel_puesto_nombre'] ?></div>
+            </div>
+<!--        <tr>
+            <td>Nivel de puesto:</td>
+            <td class="td-class-sa">xxxxxx</td>
+        </tr>-->
+        <div class="col-md-4 spb text-light">Ubicación del puesto:</div>
+            <div class="col-md-8 spb text-light">
+                <div class="text-light"><?= $this->aviso['ciudad'] ?></div>
+            </div>
+
+    <? if( !empty($this->aviso['estudios']) || !empty($this->aviso['experiencias']) || !empty($this->aviso['programas']) || !empty($this->aviso['idiomas']) ): ?>
+    <div class="title-detalle-aviso">Requisitos</div>
+     <div class="row smb">
+     <? if(!empty($this->aviso['estudios'])): ?>
+         <div class="col-md-4 spb text-light">
+                Estudios
+         </div>
+         <div class="col-md-8 spb text-light">
+                 <?php foreach ($this->aviso['estudios'] as $key => $value) { ?>
+                        <div class="text-light"><?= $this->verAviso()->requisitos($value, 'estudios') ?></div>
+                 <?php } ?>
+         </div>
+         <? endif; ?>
+
+         <? if(!empty($this->aviso['experiencias'])): ?>
+         <div class="col-md-4 spb text-light">
+                Experiencias
+         </div>
+         <div class="col-md-8 spb text-light">
+                <?php foreach ($this->aviso['experiencias'] as $key => $value) { ?>
+                    <div class="text-light"><?= $this->verAviso()->requisitos($value, 'experiencias') ?></div>
+                <?php } ?>
+         </div>
+         <? endif; ?>
+
+        <? if(!empty($this->aviso['programas'])): ?>
+        <div class="col-md-4 spb text-light">
+                Programas
+        </div>
+        <div class="col-md-8 spb">
+            <?php foreach ($this->aviso['programas'] as $key => $value) { ?>
+                <div class="text-light"><?= $this->verAviso()->requisitos($value, 'programas') ?></div>
+            <?php } ?>
+        </div>
+        <? endif; ?>
+        <? if(!empty($this->aviso['idiomas'])): ?>
+        <div class="col-md-4 spb text-light">
+                Idiomas
+        </div>
+        <div class="col-md-8 spb text-light" >
+                 <?php foreach ($this->aviso['idiomas'] as $key => $value) { ?>
+                        <div class="text-light"><?= $this->verAviso()->requisitos($value, 'idiomas') ?></div>
+                    <?php } ?>
+      
+        </div>
+        <? endif; ?>
+     </div>
+    <? endif; ?>
+
+    <div class="title-detalle-aviso">Funciones</div>
+    <div class="text-light"><?php echo nl2br($this->aviso['funciones']).'</br> '. nl2br($this->aviso['responsabilidades']) ?></div>
+ 
+
+</div>

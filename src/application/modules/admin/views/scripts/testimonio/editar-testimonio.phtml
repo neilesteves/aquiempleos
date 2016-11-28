@@ -1,0 +1,56 @@
+<div class="bgAll gridS20">
+  <div class="gridForm">
+    <div class="legend history legendFloat">    	
+    	<h2 id="titleRelF" class="titleInDB left mB0">Editar Testimonio</h2>
+    	<a href="/admin/gestion/testimonios/" class="f14 right" id="backToProcess">« Volver</a>
+    </div>  
+      
+      
+    <?php foreach ($this->flashMessages as $msg) : ?>
+        <div class="hide flash-message <?=$msg->level ?>">
+            <div class="msgsTime msgYTIE">
+               <div class="contenidoFlashMessage <?=($msg->level=="success"?"msgYellow":(
+                               $msg->level=="info"?"msgBlue":(
+                               $msg->level=="error"?"msgRed":"")))?> mB10 r5">
+                <?=$this->escape($msg->message) ?>
+               </div>
+            </div>
+        </div>
+    <?php endforeach; ?>
+    
+    
+    <div class="gridIFormEmp gridFullF">
+      <div id="innerMain" class="center">
+        <div id="content" class="formRegister">
+          <div id="formReg">
+            <form action="/admin/testimonio/editar-testimonio" method="post" id="datoBasicoF" enctype="multipart/form-data">                                
+                <div class="all">
+                <input type="hidden" value="<?=$this->testimonioId?>" name="testimonioId" id="testimonioId"/>
+                <fieldset class="blockField r2">                    
+                    <?= $this->partial(
+                        'testimonio/_form.phtml',
+                        'admin',
+                        array(
+                            'formRegistroTestimonio' => $this->formRegistroTestimonio,
+                            'numtestimonio' => $this->numtestimonio,
+                            'maxcaracteres' => $this->maxcaracteres,
+                            'razonsocial' => $this->razonsocial,
+                            'action' => 'update',
+                            'estado' => $this->estado
+                        )
+                    ); ?>
+                </fieldset>
+                    </div>
+                <div id="fieldsFootReg" class="all">               
+                 <fieldset id="submOptAdm" class="asideAds btnSubmitAdm right send6 btnImg">
+                    <input type="submit" class="right active sptAdm" value="" id="fSubmit"/>
+                    <div id="errorMsgRE" class="right error msgErrorDef"></div>
+                 </fieldset>
+             </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

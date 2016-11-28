@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dataConfig>
+   <xi:include href="./db-connection.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>     -->  
+
+  <document> 
+        <entity name="puesto" transformer="DateFormatTransformer" 
+                query="SELECT `p`.`id`, CONCAT(UCASE(LEFT(p.nombre,1)),LCASE(SUBSTRING(p.nombre,2))) AS `nombre` 
+FROM `puesto` AS `p` INNER JOIN `empresa_puesto` AS `ep` ON p.id = ep.id_puesto 
+WHERE (ep.id_empresa = 1) GROUP BY `p`.`id` ORDER BY `p`.`nombre` ASC" >
+           <field name="id" column="id"/>
+            <!-- =========================================== nombre ============================================== -->
+            <field name="nombre" column="nombre"/>
+        </entity>
+    </document>
+</dataConfig>

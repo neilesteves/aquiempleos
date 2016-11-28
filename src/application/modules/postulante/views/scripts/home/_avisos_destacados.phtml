@@ -1,0 +1,57 @@
+<? if(!empty($this->listAvisosDestacados)): ?>
+    <section class="a-destacados">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div class="a-destacados-titular">
+                        <p class="azul">Avisos Destacados</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <?php foreach ($this->listAvisosDestacados as $key => $item) { 
+                    $eliminar = array("!", "·", "$", "%", "&", "/", "(", ")", "=", "?", "¿", "¡");
+                    $item['empresaslug'] = str_replace($eliminar, "", $item['empresaslug']);
+                    ?>                    
+                    <div class="col-md-4 col-sm-4 mg-tp-20">
+                        <div class="box-destacados">
+                            <?php if ($item['prioridad']<4) { ?>
+                                <div class="bandera_box">
+                                    <img src="<?= $this->S('/eb/svg/medal' . $item['prioridad'] . '.svg'); ?>" alt="" class="bandera">
+                                </div>
+                            <?php } ?>
+                            <div class="border-img text-center">
+                                <div class="contenedor-table-cell">
+                                    <div class="contenedor-img-table-cell">
+                                        <a href="<?=$this->url(array('slug' => $item['slugaviso'], 'url_id' => $item['urlaviso']), 'aviso', true);?>">
+                                            <img class="img-post" src="<?= $this->E()->getElementLogos($item['logo']) ?>" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                                
+                                
+                            </div>
+                            <div class="border-dos">
+                                <div class="caption text-center">
+                                    <a href="<?=$this->url(array('slug' => $item['slugaviso'], 'url_id' => $item['urlaviso']), 'aviso', true);?>" >
+                                        <h3><?= $item['puesto'] ?></h3>
+                                    </a>
+                                    <div class="text-left">
+                                        <small><i class="fa fa-clock-o" aria-hidden="true"></i> Hace  <?= $this->Hace($item['fh_pub']) ?>  <span> | </span><?= $item['ubicacion'] ?></small>
+                                    </div>
+                                    <p><?= $this->VerAviso()->detalle($item['funciones'],20)  ?></p>
+                                    <div class="text-center">
+                                        <a href="<?=
+                                                $this->url(array(
+                                                    'slug' => $item["slugaviso"], 'url_id' => $item["urlaviso"]), 'aviso', true)
+                                                ?>" class="buttom-blue-w">Ver anuncio</a>
+                                    </div>         
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>
+    </section>
+<? endif; ?>

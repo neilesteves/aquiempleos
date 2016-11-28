@@ -1,0 +1,55 @@
+<?=
+$this->partial('_partials/_navigation.phtml',
+	 array('menu_sel' => $this->menu_sel, "flashMessages" => $this->flashMessages))
+?>
+
+<div id="wrapper" class="row">
+	 <div class="grids-6">
+		  <div id="whatUseApt" class="what-EMPLEOBUSCO">
+				<h2>¿Por qué usar aquiempleos.com?</h2>
+				<p class="intro">Porque somos el portal de empleos líder en Perú. Contamos con soluciones únicas para conseguir empleos en Perú a través de los siguientes médios:</p>
+				<div id="a-screen-pro" class="rel">
+					 <div id="a-tres-pro">
+						  <h6 class="a-nuestraweb bold">Nuestra Web</h6>
+						  <p class="a-nuestra-web-ap">www.aquiempleos.com</p>
+						  <h6 class="a-suplemento-EMPLEOBUSCO bold">Diario La Prensa</h6>
+						  <p></p>
+						  <h6 class="a-suplemento-talan bold">Diario Trome</h6>
+						  <p class="a-suplemen-talan">en la sección de Empleos de AquiEmpleos</p>
+					 </div>
+				</div>
+				<p class="intro">Siempre encontrarás Tips, artículos y entrevistas que te ayudarán a prepararte en tus procesos de selección en:</p>
+				<ul class="list-items">
+					 <li><a href="http://facebook.com/pages/EMPLEOBUSCOpe/156487814406534" target="_blank">Nuestra Página en Facebook</a></li>
+					 <li><a href="http://blog.EMPLEOBUSCO.com/" target="_blank">Nuestro blog</a></li>
+					 <li><a href="javascript:;">Nuestra Web</a></li>
+					  <li><a href="http://www.linkedin.com/company/EMPLEOBUSCO">Linkedin</a></li>
+				</ul>
+				<div id="a-se-parte">
+					 <div id="a-parte-de">
+						  <div class="a-screen-cuenta">
+								<p class="a-trabajamos">
+									 Las empresas con las que trabajamos saben de nuestra seriedad y profesionalismo para ofrecerte una variedad de ofertas laborales las 24 horas del día los 365 días del año.
+									 <span>Sé parte del mundo AquiEmpleos</span>
+									 Ingresa tu perfil y encontrarás miles de oportunidades de empleo esperanto por ti..
+								</p><br>
+								<a href="/postulante/registro/paso1/" id="aRegistrateBtn" class="btn btn-primary">Registrate</a>
+						  </div>
+					 </div>
+				</div>
+		  </div>
+	 </div>
+	 <aside class="grids-300">
+<!--        <div class="eplanning ads300x250" data-section="Right1"></div>-->
+		  <?=
+		  $this->partial('home/_articulos_interes.phtml', 'postulante',
+				$this->articulosInteres)
+		  ?>
+		  <div class="pubish-ad">
+				<p>PUBLICA <span>TU AVISO</span></p>
+				<a href="<?= SITE_URL . '/empresa/publica-aviso/' ?>" title="Ingresa Aquí" class="btn btn-primary">Ingresa Aquí</a>
+				<span>PROGRAMA PARA EMPRESAS</span>
+				<div class="img-aside"></div>
+		  </div>
+	 </aside>
+</div>

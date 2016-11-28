@@ -1,0 +1,10 @@
+
+<? $cont = 1;
+    foreach($this->gruposEmpresa as $grupo) { 
+        if ($grupo["id"] != $this->idGrupoActual) { ?>
+    <div class="chkOpMPB"><input class="noBdr" id="chkGrupo<?=$cont?>" rel="<?=$grupo["id"]?>" text="<?=$grupo["nombre"]?>" type="checkbox"/><label for="chkGrupo<?=$cont?>"><?=$this->escape($grupo["nombre"])?></label></div>
+<? 
+    $cont++;
+        }
+} ?>
+<input type="hidden" id="tokenBolsa" value="<?php echo $this->tokenBolsa?>"/>

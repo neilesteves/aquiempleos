@@ -1,0 +1,72 @@
+<?= $this->partial('_partials/_navigation.phtml', array('menu_sel' => $this->menu_sel)) ?>
+<div class="wrap_featured_profile">
+	 <img src="<?= $this->S('/images/bannerPerfilDestacado.jpg'); ?>">
+	 <div class="box-center row">
+		  <div class="content txt_right">
+				<h1>Perfil Destacado</h1>
+				<h2>Hazte Notar</h2>
+				<a href="javascript:;" class="btn btn-primary btn-big" data-anchor="#planes">Mira nuestros planes</a>
+				<ul class="check-list">
+					 <li><span class="icon_check_big"></span>Prioridad en resultados de búsqueda de las empresas.</li>
+					 <li><span class="icon_check_big"></span>Lugar preferencial en las ofertas de trabajo que postules.</li>
+					 <li><span class="icon_check_big"></span>Alertas del proceso de postulación.</li>
+					 <li><span class="icon_check_big"></span>Evaluación Psicológica Online.</li>
+				</ul>
+		  </div>
+	 </div>
+</div>
+<div class="info_featured_profile wrap_bg">
+	 <div class="box-center">Haz que tu búsqueda de empleo sea más efectiva con <b>Perfil Destacado</b>,<br>una valiosa herramienta que te ayudará a multiplicar las posibilidades<br>de conseguir el empleo que estás buscando.</div>
+</div>
+<div class="info_featured_profile wrapper row">
+	 <div class="grids-3">
+		  <div class="image_featured_profile type1"></div>
+		  <h3>Prioridad en Resultados de Búsqueda</h3>
+		  <p>Tu perfil aparecerá en los primeros lugares de los listados generales de las empresas, dándote mayores posibilidades de ser elegido.</p>
+	 </div>
+	 <div class="grids-3">
+		  <div class="image_featured_profile type2"></div>
+		  <h3>Lugar preferencial en ofertas de trabajo</h3>
+		  <p>Al postular a un trabajo aparecerás entre los primeros candidatos. Tendrás mejores opciones de ir avanzando a lo largo del proceso de selección.</p>
+	 </div>
+	 <div class="grids-3">
+		  <div class="image_featured_profile type3"></div>
+		  <h3>Alertas del proceso de postulación</h3>
+		  <p>Te mantendremos informado oportunamente de tu participación en los procesos de selección y te enviaremos reportes semanales de las empresas que vieron  tu perfil.</p>
+	 </div>
+	 <div class="grids-3">
+		  <div class="image_featured_profile type4"></div>
+		  <h3>Evaluación Psicológica Online</h3>
+		  <p>Te ofrecemos una evaluación psicológica online para que conozcas tu fortalezas y áreas de mejora, para sacarles el máximo provecho antes de una entrevista.</p>
+	 </div>
+</div>
+<div class="plan_featured_profile" id="planes">
+	 <div class="box-center">
+		  <h2 class="title">Escoge tu plan de Perfil Destacado</h2>
+		  <?php $contador = 0; ?>
+		  <?php foreach ($this->tarifa as $tarifa) { ?>
+				<?php
+				$color = 'orange';
+				if ($contador == 0) {
+					 $color = 'orange';
+				} else if ($contador == 1) {
+					 $color = 'blue';
+				} else {
+					 $color = 'green';
+				}
+				?>
+				<div class="choose-ads <?=$color?>">
+					 <div class="title-ads"><h2 class="title"><?= $tarifa['meses'] ?> Meses</h2></div>
+					 <p>$ <?= $tarifa['precio'] ?></p>
+					 <?php if ($this->rol == Application_Model_Usuario::ROL_POSTULANTE) { ?>
+						  <a class="btn btn-primary" href="/perfil-destacado/paso2/tarifa/<?= $tarifa['id'] ?>">¡Adquiérelo Ya!</a>
+					 <?php } else if ($this->rol == Application_Model_Usuario::ROL_EMPRESA) { ?>
+						  <a class="btn btn-primary tooltip" data-tool="Solo para postulantes." disabled>¡Adquiérelo Ya!</a>
+					 <?php } else { ?>
+						  <a class="btn btn-primary login_modal" data-href="/perfil-destacado/paso2/tarifa/<?= $tarifa['id'] ?>" href="#loginP" title="">¡Adquiérelo Ya!</a>
+					 <?php } ?>
+				</div>
+				<?php $contador++;
+		  } ?>
+	 </div>
+</div>

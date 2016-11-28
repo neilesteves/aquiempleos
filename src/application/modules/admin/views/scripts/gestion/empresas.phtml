@@ -1,0 +1,131 @@
+<div id="main" class="all">
+    <div class="innerAll">
+        <div class="bgAll gridS20">
+            <?=$this->partial('_partials/_navigation.phtml','admin',array('isAuth'=>$this->isAuth, "flashMessages"=>$this->flashMessages))?>
+            <div class="gridTab">
+                <div class="gridIT">
+                    <h5 class="h5TitleAdm">Módulo de Administración</h5>
+                    <div class="iAccount" id="innerMain">
+                        <div id="admLeftNM" class="blockAL grid4 omega left">
+                            <?=$this->partial('gestion/_sidebar-menu.phtml',array('menu_sel_side' => $this->menu_sel_side,'rol' => $this->rol))?>
+                        </div>
+                        
+                        <div class="blockAR blockFix alpha right">
+                            <div class="iBlockAR">
+                                <h2 class="titleMAU">Empresas</h2>
+                            <form action="" method="post" id="frmBuscar_empresas" class="">
+                                <div class="block">
+                                    <label for="fRazonSocial" class="labelN"> Razón Social:</label>
+                                    <?$hasError = $this->formAdmin->razonsocial->hasErrors(); ?>
+                                    <?=$this->formAdmin->razonsocial->setAttribs(array('id'=>'fRazonSocial','class'=>'fields inputN left replaceNbsp','tabindex'=>'6'))->renderViewHelper(); ?>
+                                    <span class="response cGray left<?=$hasError?' bad':''?>"><?=$hasError?$this->formAdmin->razonsocial->errMsg:''?></span>
+                                </div>
+                              	<div class="block">
+                                    <label for="fRuc" class="labelN"> Ruc:</label>
+                                    <?$hasError = $this->formAdmin->num_ruc->hasErrors(); ?>
+                                    <?=$this->formAdmin->num_ruc->setAttribs(array('id'=>'fRuc2','class'=>'fields inputN left replaceNbsp','tabindex'=>'7'))->renderViewHelper(); ?>
+                                    <span class="response cGray left<?=$hasError?' bad':''?>"><?=$hasError?$this->formAdmin->num_ruc->errMsg:""?> </span>
+                                </div>
+                                <div class="all">
+                                    <button id="fSendRS"  type="submit" class="active btnSptAdm sptAdm right btn-gestion" value="">Buscar</button>
+                                    <button id="fResetRS"  type="reset" class="active btnSptAdm sptAdm right btn-gestion" value="">Limpiar</button>
+                                </div>
+                            </form>
+                            </div>
+                            <?php if(isset($this->empresaAdminUrl)) { ?>
+                            <div class="gridYScroll">  
+                                <table summary="Administradores" id="dataAadmins" class="dataGrid">
+                                    <thead>
+                                    <?php $base = $this->empresaAdminUrl ?>
+                                        <tr>
+                                            <th class="data2 titleGrid">#</th>
+                                            <th class="data3 titleGrid linkTitleG">
+                                                <? $col = 'razon_social' ?>
+                                                <? $ord = $this->col == $col && $this->ord == 'ASC' ? 'DESC': 'ASC' ?>
+                                                <? $base['col']=$col;
+                                                   $base['ord']=$ord;
+                                                   $url = $this->url($base,'default',true) ?>
+                                                <a href="<?=$url?>" class="rel relArrow">Nombre Empresa<span class="arrowDG <?=strtolower($ord)?>">&nbsp;</span></a>
+                                            </th>
+                                            <th class="data4 titleGrid linkTitleG">
+                                                <? $col = 'ruc' ?>
+                                                <? $ord = $this->col == $col && $this->ord == 'ASC' ? 'DESC': 'ASC' ?>
+                                                <? $base['col']=$col;
+                                                   $base['ord']=$ord;
+                                                   $url = $this->url($base,'default',true) ?>
+                                                <a href="<?=$url?>" class="rel relArrow">Ruc<span class="arrowDG <?=strtolower($ord)?>">&nbsp;</span></a>
+                                            </th>
+                                            <th class="data5 titleGrid">Estado</th>
+                                            <th class="data6 titleGrid linkTitleG">
+                                                <? $col = 'fh_registro' ?>
+                                                <? $ord = $this->col == $col && $this->ord == 'ASC' ? 'DESC': 'ASC' ?>
+                                                <? $base['col']=$col;
+                                                   $base['ord']=$ord;
+                                                   $url = $this->url($base,'default',true) ?>
+                                                <a href="<?=$url?>" class="rel relArrow">Fecha Registro<span class="arrowDG <?=strtolower($ord)?>">&nbsp;</span></a>
+                                            </th>
+                                            <th class="data7 titleGrid">Acción</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php
+                                    if (count($this->arrayBusqueda)>0) { 
+                                        $cantidad =5;//$this->arrayBusqueda->getCurrentItemCount() 
+                                        $count = ($this->pagina - 1)*$cantidad + 1 ; 
+                                    }
+                                    ?>
+                                    <?php foreach ($this->arrayBusqueda as $item) {?>
+
+                                    <?php
+                                        $token = crypt($item['id'], '$2a$07$'.md5(uniqid(rand(), true)).'$');                                                         
+                                    ?>
+                                        <tr>
+                                            <td class="data2"><?= $count++; ?></td>
+                                            <td class="data3"><?= $item['razonsocial'] ?></td>
+                                            <td class="data4"><?= $item['num_ruc'] ?></td>
+                                            <td class="data5"> <?= $item['activo']==1? 'Activo':'Inactivo'?>
+                                            </td>
+                                            <td class="data6">
+                                            <?php if ($item['fh_registro']) { ?>
+                                            <?=  date('d/m/Y', strtotime($item['fh_registro']));?>
+                                            <?php } else { ?>
+                                            Sin Fecha
+                                            <?php } ?>
+                                            </td>
+                                            <td class="data3">
+                                                <div class="editAdmEPI"><a href="<?=$this->url(array('module'=>'admin','controller'=>'mi-cuenta-empresa','action'=>'datos-empresa','rel'=>$item['id']),"default",true)?> ">Editar</a></div>
+                                                <?php if ($item['activo'] != 0) {?>
+                                                    <div class="blockAdmEPI"><a href="#winAlertBloquearEmp" class="blockEmp emp winModal" rel="<?=$item['id']?>" data-token="<?=$token;?>">Bloquear</a></div>
+                                                <?php } else { ?>
+                                                    <div class="blockAdmEPI"><a href="#winAlertBloquearEmp" class="desblockEmp emp winModal" rel="<?=$item['id']?>" data-token="<?=$token;?>">Desbloquear</a></div>
+                                                <?php } ?>
+                                                <?php if ($item['estadoLF'] == 0) :?>
+                                                    <div class=""><a href="#winAlertBloquearLookAndFeel" class="empLookAndFeel winModal" rel="<?=$item['id']?>" data-token="<?=$token;?>">Activar Look&Feel</a></div>
+                                                <?php else: ?>
+                                                    <div class=""><a href="#winAlertBloquearLookAndFeel" class="blockLookAndFeel empLookAndFeel winModal" rel="<?=$item['id']?>" data-token="<?=$token;?>">Desactivar Look&Feel</a></div>
+                                                <?php endif; {
+                                                
+                                              } ?>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+                                    </tbody>
+                                </table>
+                            </div>  
+                            <?php if (count($this->arrayBusqueda) != 0) { ?>
+                            <div class="pagination all">
+                                <?= $this->paginationControl($this->arrayBusqueda, 'Sliding', 'gestion/_pag.phtml') ?>
+                            </div>
+                            <?php } else { ?>
+                                <div class="pagination all">
+                                <div class='pagUl theta alignL'> - No hay una empresa que se adecue a la búsqueda </div>
+                            </div>
+                            <?php }  ?>
+                            <?php } ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

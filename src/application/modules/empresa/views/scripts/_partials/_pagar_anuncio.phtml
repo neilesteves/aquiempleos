@@ -1,0 +1,189 @@
+<div class="row">
+    <form method="post" id="formEndP4Emp" action="<?=
+    $this->url(array(
+        'module' => 'empresa', 'controller' => 'comprar-aviso', 'action' => 'pagar-web',
+        'aviso' => $this->dataAnuncio["anuncioId"]), 'default', true)
+    ?>" class="frm-horizontal">
+        <div class="col-md-4">
+            <div class="pasarela-titular pd-09">
+                <span class="resumen-de-pago">Resumen de Pago</span>
+                <div class="pull-right">
+                    <span class="total">Total:
+                        <span class="total"> S/. <?php
+                            echo $this->montoWeb + $this->montoImpreso
+                            ?></span>
+                    </span>
+                </div>
+            </div>
+            <div class="pasarela-subtitulo">
+                <p>Producto: Aviso Web</p>
+            </div>
+            <ul class="producto">
+                <?php foreach ($this->detalle_producto_web as $i => $detalle): ?>
+                    <?php if ($this->Compra()->avisoWeb($detalle)): ?>
+                        <li>
+                            <i class="fa fa-check-circle pad-btn-text" aria-hidden="true"></i><?php echo $this->Compra()->avisoWeb($detalle); ?>
+                        </li>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </ul>
+            <?php if (count($this->detalle_producto_impreso)) { ?>
+                <div class="pasarela-subtitulo">
+                    <p>Producto: <?php echo $this->dataAnuncio["nombreProducto"] ?></p>
+                </div>
+                <ul class="producto">
+                    <?php foreach ($this->detalle_producto_impreso as $i => $detalle): ?>
+                        <li>
+                            <i class="fa fa-check-circle pad-btn-text" aria-hidden="true"></i> <?php echo $detalle; ?>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            <?php } ?>
+        </div>
+        <div class="col-md-4">
+            <div class="pasarela-titular text-center">
+                <p class="mg-t">Tipo de Comprobante</p>
+            </div>
+            <div class="pasarela-subtitulo-default">
+                <p>Texto de advertencia sobre el pago con Recibo y/o Factura que debe de tener el cuenta el cliente</p>
+            </div>
+            <div class="text-center">
+                <div class="recibo inline">
+                    <input type="radio" name="radioTipoDoc" value="recibo" checked="checked">Recibo
+                </div>
+                <div class="factura inline">
+                    <input type="radio" name="radioTipoDoc" value="factura">Factura
+                </div>
+            </div>
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">RUC:</label>
+                    <div class="col-sm-10 pd-t-05">
+                        <?=
+                        $this->Formfacturacion->txtRuc->setAttribs(array(
+                            'id' => 'txtRuc', 'class' => 'form-control', 'required' => ''))->renderViewHelper();
+                        ?>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">Razón Social:</label>
+                    <div class="col-sm-10 pd-t-05">
+                        <?=
+                        $this->Formfacturacion->txtName->setAttribs(array('id' => 'txtName',
+                            'class' => 'form-control', 'required' => ''))->renderViewHelper();
+                        ?>
+                    </div>
+                </div>
+            </div>
+            <small class="atencion">
+                <p>ATENCIÓN:</p>
+                <ul>
+                    <li>El precio incluye el IGV</li>
+                </ul>
+            </small>
+        </div>
+        <div class="col-md-4">
+            <div class="pasarela-titular text-center">
+                <p class="mg-t">Metódo de Pago</p>
+            </div>
+            <div class="pasarela-subtitulo-default black">
+                <p>Publica el Aviso pagando con Efectivo</p>
+            </div>
+            <div class="punto-facil gris">
+                <input id="punto-facil" type="radio" name="radioTipoPago" value="pf">
+                <label for="punto-facil"><img src="<?= SITE_URL ?>/static/main/img/puntofacil.png">
+                    Comprar pagando con PuntoFácil</label>
+            </div>
+            <div class="pasarela-subtitulo-default black">
+                <p>Publica el Aviso pagando con Tarjeta de Crédito</p>
+            </div>
+            <div class="form-box">
+                <div>
+                    <label class="pasos">Paso 1: Elige la Tarjeta con la que deseas pagar</label>
+                    <div class="text-left">
+                        <div class="card">
+                            <input id="tarjeta-credito" type="radio" name="radioTipoPago"  value="credomatic">
+                            <label for="tarjeta-credito"><img src="<?= SITE_URL ?>/static/main/img/visa.png">
+                                <img src="<?= SITE_URL ?>/static/main/img/mastercard.png">
+                                <img src="<?= SITE_URL ?>/static/main/img/americanexpress.png">
+                                <img src="<?= SITE_URL ?>/static/main/img/dinnerclub.png">
+                                <img src="<?= SITE_URL ?>/static/main/img/jcb.png">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-horizontal">
+                    <label class="pasos">Paso 2: Ingresa los Datos de tu Tarjeta:</label>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label gris">Número de Tarjeta</label>
+                        <div class="col-sm-8 pd-t-05">
+                            <input type="text" class="form-control" name="ccnumber" maxlength="16" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label gris">Fecha de Expiración</label>
+                        <div class="col-sm-8 pd-t-05">
+                            <select class="style-btn-fecha btn-right" data-width="120px" title="Mes" name="mes">
+                                <option value="01">Enero</option>
+                                <option value="02">Febrero</option>
+                                <option value="03">Marzo</option>
+                                <option value="04">Abril</option>
+                                <option value="05">Mayo</option>
+                                <option value="06">Junio</option>
+                                <option value="07">Julio</option>
+                                <option value="08">Agosto</option>
+                                <option value="09">Septiembre</option>
+                                <option value="10">Octubre</option>
+                                <option value="11">Noviembre</option>
+                                <option value="12">Diciembre</option>
+                            </select>
+                            <select class="style-btn-fecha" name="anio"  data-width="100px" title="Año">
+                                <?php
+                                for ($i = date('y'); $i <= date('y') + 10; $i++):
+                                    ?>
+                                    <option value="<?php echo $i ?>">20<?php echo $i ?></option>
+                                <?php endfor; ?>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <?php if ($this->isSessionAdmin === true) : ?>
+
+                <p>Publica el Aviso pagando en Ventanilla</p>
+                <div class="ventanilla">
+                    <input type="radio" value="pv" name="radioTipoPago"/>
+                    Genera tu Código para pagar en Ventanilla
+                </div>
+                <?php endif; ?>
+                <div class="botones text-center">
+                <input type="hidden" name="idtarifa" value="<?= $this->idtarifa ?>" id="idtarifa" />
+                <input type="hidden" name="token" value="<?php echo $this->token ?>" />
+
+
+                <div id="message-validacion" class="error-validacion"></div>
+                <div class="box-button">
+                  <a href="<?= $_SERVER['HTTP_REFERER'] ?>">
+                    <button class="regresar btn" type="button">
+                      <span class="arrow-left">
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                      </span>
+                      Regresar
+                    </button>
+                  </a>
+
+                    <button class="btn-pagar-submit pagar btn" type="button">
+                        Pagar
+                        <span class="arrow">
+                            <i class="fa fa-angle-right" aria-hidden="true"></i>
+                        </span>
+                    </button>
+                    <input type="hidden" name="monto_web" id="monto_web" value="<?php echo $this->montoWeb ?>"/>
+                    <input type="hidden" name="monto_impreso" id="monto_impreso" value="<?php echo $this->montoImpreso ?>"/>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

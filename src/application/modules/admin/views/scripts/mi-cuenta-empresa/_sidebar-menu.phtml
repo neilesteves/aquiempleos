@@ -1,0 +1,16 @@
+<? $active2 = "active"; ?>
+
+<div class="blockAL grid4 omega left">
+    <h5 class="tituloPC r5T">Opciones Empresa</h5>
+    <ul class="thirdMenu bLBlue bgLBlue r5B mB20">
+        <li class="liThird <?=$this->menu_sel_side==App_Controller_Action_Admin::MENU_POST_SIDE_DATOSEMPRESA?$active2:''?>"><a class="aThird" href="<?=$this->url(array('module'=>'admin','controller'=>'mi-cuenta-empresa','action'=>'datos-empresa','rel'=>$this->rel),"default",true)?>"><span class="sThird">Datos de la empresa</span></a></li>
+
+        <li class="liThird <?=$this->menu_sel_side==App_Controller_Action_Admin::MENU_POST_SIDE_API_LISTARUSUARIO?$active2:''?>"><a class="aThird" href="<?=$this->url(array('module'=>'admin','controller'=>'api','action'=>'listar-usuarios','rel'=>$this->rel,'membresiaTipo'=>$this->membresiaTipo),"default",true)?>"><span class="sThird">Trabaja con Nosotros</span></a></li>
+        <li class="liThird <?=$this->menu_sel_side==App_Controller_Action_Admin::MENU_POST_SIDE_CAMBIOCLAVE?$active2:''?>"><a class="aThird" href="<?=$this->url(array('module'=>'admin','controller'=>'mi-cuenta-empresa','action'=>'cambio-clave','rel'=>$this->rel),"default",true)?>"><span class="sThird">Cambio de clave</span></a></li>
+        <li class="liThird liLast <?=$this->menu_sel_side==App_Controller_Action_Admin::MENU_POST_SIDE_ADMINISTRADORES?$active2:''?>"><a class="aThird ie6Last" href="<?=$this->url(array('module'=>'admin','controller'=>'administrador-empresa','action'=>'index','rel'=>$this->rel),"default",true)?>"><span class="sThird">Administradores</span></a></li>
+    </ul>
+    
+</div>
+
+
+

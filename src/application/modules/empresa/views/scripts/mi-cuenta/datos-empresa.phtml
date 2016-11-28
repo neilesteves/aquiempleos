@@ -1,0 +1,61 @@
+<?=
+$this->partial('_partials/_navigation.phtml',
+    array('menu_sel' => $this->menu_sel, 'isAuth' => $this->isAuth))
+?>
+<?=
+$this->partial('mi-cuenta/_sec-menu.phtml',
+    array('menu_post_sel' => $this->menu_post_sel, "tieneBuscador" => $this->tieneBuscador,
+        'tieneBolsaCVs' => $this->tieneBolsaCVs,'Look_Feel'=>$this->Look_Feel))
+?>
+<div id="wrapper">
+    <?=$this->partial('_partials/_messages.phtml',array("flashMessages"=>$this->flashMessages))?>
+    <div class="row">
+        <div class="grids-2">
+            <?=
+            $this->partial('mi-cuenta/_sidebar-menu.phtml',
+                array('menu_sel_side' => $this->menu_sel_side))
+            ?>
+        </div>
+        <div class="grids-7">
+            <form action="" method="post" id="frmCompanyRegistration" enctype="multipart/form-data" class="frm-horizontal medium">
+                <h2>Datos de la empresa</h2>
+                <div class="wrap-controls">
+                    <?php echo $this->partial('registro-empresa/_usuario_paso1.phtml',
+                        'empresa',
+                        array(
+                        'formUsuario' => $this->formUsuario,
+                        'emailMicuenta' => $this->emailMicuenta,
+                        'modulo' => $this->modulo,
+                        'controlador' => $this->controlador
+                        )
+                    );
+                    ?>
+                    <?php echo $this->partial('registro-empresa/_empresa_paso1.phtml',
+                        'empresa',
+                        array(
+                        'formEmpresa' => $this->frmEmpresa,
+                        'imgPhoto' => $this->imgPhoto,
+                        'idEmpresa' => $this->idEmpresa,
+                        'config' => $this->config,
+                        'numPalabraRazonComercial' => $this->numPalabraRazonComercial,
+                        'numPalabraRazonSocial' => $this->numPalabraRazonSocial
+                        )
+                    );
+                    ?>
+                </div>
+
+                <h2>Ubicación</h2>
+                <div class="wrap-controls">
+                    <?=
+                    $this->partial('registro-empresa/_ubigeoEmpresa_paso1.phtml',
+                        array('formEmpresa' => $this->frmEmpresa));
+                    ?>
+                </div>
+                <div class="txt_right">
+                    <button type="submit" id="btnCompanyRegister" class="btn btn-primary input-xsmall">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

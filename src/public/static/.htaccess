@@ -1,0 +1,40 @@
+AddType application/vnd.ms-word.document.macroEnabled.12 .docm
+AddType application/vnd.openxmlformats-officedocument.wordprocessingml.document docx
+AddType application/vnd.openxmlformats-officedocument.wordprocessingml.template dotx
+AddType application/vnd.ms-powerpoint.template.macroEnabled.12 potm
+AddType application/vnd.openxmlformats-officedocument.presentationml.template potx
+AddType application/vnd.ms-powerpoint.addin.macroEnabled.12 ppam
+AddType application/vnd.ms-powerpoint.slideshow.macroEnabled.12 ppsm
+AddType application/vnd.openxmlformats-officedocument.presentationml.slideshow ppsx
+AddType application/vnd.ms-powerpoint.presentation.macroEnabled.12 pptm
+AddType application/vnd.openxmlformats-officedocument.presentationml.presentation pptx
+AddType application/vnd.ms-excel.addin.macroEnabled.12 xlam
+AddType application/vnd.ms-excel.sheet.binary.macroEnabled.12 xlsb
+AddType application/vnd.ms-excel.sheet.macroEnabled.12 xlsm
+AddType application/vnd.openxmlformats-officedocument.spreadsheetml.sheet xlsx
+AddType application/vnd.ms-excel.template.macroEnabled.12 xltm
+AddType application/vnd.openxmlformats-officedocument.spreadsheetml.template xltx
+AddType application/octet-stream .csv
+AddType application/octet-stream .xls
+AddType application/octet-stream .doc
+AddType application/octet-stream .docx
+AddType application/octet-stream .pdf
+AddType image/svg+xml svg svgz 
+AddEncoding gzip svgz
+RewriteEngine On
+
+
+
+
+RewriteCond %{REQUEST_FILENAME} -s [OR]
+RewriteCond %{REQUEST_FILENAME} -l [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^.*$ - [NC,L]
+RewriteRule ^.*$ index.php [NC,L]
+
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(ttf|ttc|otf|eot|woff|font.css|css)$">
+    Header set Access-Control-Allow-Origin "*"
+  </FilesMatch>
+</IfModule>

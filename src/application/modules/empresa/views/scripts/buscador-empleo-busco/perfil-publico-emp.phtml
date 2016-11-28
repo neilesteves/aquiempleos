@@ -1,0 +1,66 @@
+<?=
+$this->partial('_partials/_navigation.phtml',
+    array('menu_sel' => $this->menu_sel, 'isAuth' => $this->isAuth, "flashMessages" => $this->flashMessages))
+?>
+<?=
+$this->partial('mi-cuenta/_sec-menu.phtml',
+    array('menu_post_sel' => $this->menu_post_sel,
+        "tieneBuscador" => $this->tieneBuscador,'tieneBolsaCVs'=> $this->tieneBolsaCVs,'Look_Feel'=>$this->Look_Feel))
+?>
+<div id="wrapper" class="row">
+<div id="buscaPerfilE" class="iAccount ">
+    <?php if((int)$this->btnBloqueado>0){?>
+        <div class="msgYellow mB10 r5 msgPerfilEPL">
+                <div class="msgInPerfilEPL">
+                        <span class="dateDMAPEeMp">El postulante 
+                            <?php 
+                                echo $this->postulante['postulante']['nombres'].' '.$this->postulante['postulante']['apellidos'];
+                            ?>
+                             se encuentra bloqueado.
+                        </span>
+                </div>
+        </div>
+    <?php }?>
+    <h2 class="titleModSP bold titlePEL">Cuenta de empresa: <span class="txtEmpresaEPL"><?echo $this->auth['empresa']['nombre_comercial']; ?></span></h2>		
+    <div id="linkHeadMFC" class="all">
+        <div class="cntTitlePEL left"></div>
+        <div id="linkRMFC" class="right"><a href="javascript:history.back(1)">&laquo; Volver</a></div>
+    </div>
+    <div id="mensajesVerProceso" class="hide r5 dvMensajesBolsaCVs">MENSAJES</div>
+    <div id="perfilEmpPA">
+        <div id="allBtnsCR" class="divListHeadE all">
+            <div class="all">                
+                <!--h6 class="titleNameEPC left">Perfil de <span class="spanNameEPC" id="spanPostulante" rel="<?=$this->postulante['postulante']['slug']?>"><?= $this->postulante['postulante']['nombres'].' '.$this->postulante['postulante']['apellidos']?> </span></h6-->
+                <h6 class="titleNameEPC ancho380 left">Perfil de <span class="spanNameEPC" id="spanPostulante" rel="<?=$this->postulante['postulante']['slug']?>"><?= $this->postulante['postulante']['nombres'].' '.$this->postulante['postulante']['apellidos']?> </span></h6>                                  
+                <?php if($this->option ){?>       
+                <div class="right" id="divShareCP">
+                    <div id="iDivShareCP">
+                        <a id="btnEnviarMail" class="left icoShareCP icoComp icoSpt" href="javascript:;">Enviar por E-mail</a>
+                        <div class="lineSepCP right">
+                            <a class="expPdfCP icoSpt right" target="_blank" href="<?=$this->url(array('module'=>'postulante','controller'=>'mi-cuenta','action'=>'pdf','slug'=>$this->postulante['postulante']['slug']),"default",true)?>">Exporta a PDF</a>
+                        </div>
+                    </div>                   
+                </div><?php } ?>
+                <ul class="ulListHeadE  mR10 right">
+                    <?php if((int)$this->btnBloqueado==0 && $this->option ){?>                    
+                        <li id="bntRegRBusca" class="liListHeadE right">
+                            <a id="btnInvite" rel="<?=$this->postulante['postulante']['idpostulante']?>" class="aListHeadE right" href="javascript:;">&nbsp;Invitar</a>
+                        </li>
+                    <?php }?>
+                    <?php     if ($this->tieneBolsaCVs && $this->option ) : ?>             
+                        <li class="liListHeadE liSeparMR left">
+                            <a class="aListHeadE left noScrollTop envPostulanteABolsa" rel="<?= $this->postulante['postulante']['idpostulante'] ?>" id="btnEnvABolsa" name="btnEnvABolsa" href="">Enviar a Carpeta de CVs</a>
+                        </li>        
+                    <?php endif; ?>
+                </ul>                                
+            </div>
+            <div id="loadMsjEmpPP" class="all r5 hide"></div>    
+        </div>
+    </div>
+    <div class="all" id="innerMainEPL">
+        <div id="contentEPL2">
+        <?= $this->partial('mi-cuenta/_perfil-publico-old.phtml','postulante',$this->postulante)?>
+        </div>
+    </div>
+</div>
+</div>

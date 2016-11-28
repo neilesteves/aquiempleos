@@ -1,0 +1,95 @@
+<div class="paginador all">
+    <?php if ($this->pageCount) { ?>
+        <ul class="pagUl all theta alignR right">
+            <?php
+            /*
+             if (isset($this->previous)) {
+
+                $params = array('page' => $this->first);
+                echo '<li class="itemPag firstNextP">« <a class="linkPag firstP" href="' . str_replace("/search-cmp/busqueda/", "/buscar/", $this->url($params)) . '#anclaPag">Primero</a></li>';
+            }
+            */
+            if($this->pageCount > 1){
+                if (isset($this->previous)) {
+                    $params = array('page' => $this->previous);
+                    echo '<li class="itemPag prevPag"><a rel="'.$this->previous.'" class="linkPag first" href="' . str_replace("/search-cmp/busqueda/", "/buscar/", $this->url($params)) . '#anclaPag">&laquo; Anterior</a></li>';
+                }else {
+                    echo '<li class="itemPag prevPag"><a class="linkPag active">&laquo; Anterior</a></li>';
+                }
+            }
+            //var_dump($this);
+            echo '<li class="itemPag"><a class="linkPag active">Página</a></li>';
+            $viewPages = array();
+            if ($this->pageCount <= 5) {
+                foreach ($this->pagesInRange as $page){
+                    $viewPages[] = array('page' => $page, 'label' => $page);
+                }
+            } else {
+                if($this->current <= $this->first + 3){
+                    for ($i = $this->first; $i <= ($this->first + 3); $i++) {
+                        $viewPages[] = array('page' => $i, 'label' => $i);
+                    }
+                    $viewPages[] = array('page' => $i, 'label' => "...");
+                    $viewPages[] = array('page' => $this->last, 'label' => $this->last);
+                }else if($this->current >= $this->last - 3){
+                    $viewPages[] = array('page' => $this->first, 'label' => $this->first);
+                    $viewPages[] = array('page' => ($this->last - 4), 'label' => "...");
+                    for ($i = ($this->last - 3); $i <= $this->last; $i++) {
+                        $viewPages[] = array('page' => $i, 'label' => $i);
+                    }
+                }else{
+                    $viewPages[] = array('page' => $this->first, 'label' => $this->first);
+                    if ($this->first < ($this->current - 2)) {
+                        $viewPages[] = array('page' => ($this->current - 2), 'label' => "...");
+                    }
+
+                    $viewPages[] = array('page' => ($this->current - 1), 'label' => ($this->current - 1));
+                    $viewPages[] = array('page' => $this->current, 'label' => $this->current);
+                    $viewPages[] = array('page' => ($this->current + 1), 'label' => ($this->current + 1));
+
+                    if ($this->last > ($this->current + 2)) {
+                        $viewPages[] = array('page' => ($this->current + 2), 'label' => "...");
+                    }
+                    $viewPages[] = array('page' => $this->last, 'label' => $this->last);
+                }
+
+            }
+            ?>
+
+            <? foreach ($viewPages as $page): ?>
+                <? if ($page['page'] != $this->current): ?>
+                    <li class="itemPag"><a rel="<?= $page['page']; ?>" href="<?= str_replace("/search-cmp/busqueda/", "/buscar/", $this->url(array('page' => $page['page']))); ?>#anclaPag"><?= $page['label']; ?></a></li>
+                    <?= $this->last == $page['page'] ? '' : '' ?>
+                <? else: ?>
+                    <li class="itemPag"><a class="linkPag active"><?= $page['label']; ?> <?= $this->last == $page['page'] ? '' : '' ?></a></li>
+                <? endif; ?>
+            <? endforeach; ?>
+
+            <?
+            if($this->pageCount > 1){
+                if (isset($this->next)) {
+                    $params = array('page' => $this->next);
+                    echo '<li class="itemPag nextPag"><a rel="'.$this->next.'" class="linkPag next" href="' . str_replace("/search-cmp/busqueda/", "/buscar/", $this->url($params)) . '#anclaPag">Siguiente &raquo;</a></li>';
+                }else {
+                    echo '<li class="itemPag nextPag"><a class="linkPag active">Siguiente &raquo;</a></li>';
+                }
+            }
+            /*
+            if (isset($this->next)) {
+                $params = array('page' => $this->last);
+                echo '<li class="itemPag lastNext"><a class="linkPag nextLastP" href="' . str_replace("/search-cmp/busqueda/", "/buscar/", $this->url($params)) . '#anclaPag">Último</a> »</li>';
+            }
+            */
+            ?>
+        </ul>
+
+    <?php
+    } else {
+        echo '<div class="paginador all">';
+        if($this->isfoot) {
+            echo "<div class='pagUl grid8 theta alignC'> - No hay Avisos registrados </div>";
+        }
+    	echo '</div>';
+    }
+    ?>
+</div>

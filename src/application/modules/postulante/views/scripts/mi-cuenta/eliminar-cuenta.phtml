@@ -1,0 +1,79 @@
+<?=$this->partial('_partials/_new_messages.phtml',array("flashMessages"=>$this->flashMessages))?>
+<div class="configuration_wrapper">
+      <div class="center_box">
+        <?= $this->partial('mi-cuenta/_sidebar-menu_mi_cuenta_datos.phtml', array('menu_sel_side' => $this->menu_sel_side)) ?>
+
+          <div class="content_wrapper"><span class="title_content">Eliminar cuenta</span>
+
+          <div class="information">
+            <p class="information_text">
+
+              Al Desactivar tu cuenta se desactivará tu perfil, no podrás postular a ninguna oferta de trabajo,
+              no se te informará de posibles nuevas oportunidades de empleo ni de
+              información acerca del mercado laboral.
+            </p>
+            <form id="frmDeleteAcount" class="frm_delete_acount" method="post" novalidate="novalidate">
+
+                <?=$this->formEliminarCuenta->hash_remove_account->renderViewHelper(); ?>
+                <?php /* echo $this->formEliminarCuenta->hash_remove_account->hasErrors() ? $this->formEliminarCuenta->hash_remove_account->errMsg : '' */ ?>
+
+                <?= $this->formEliminarCuenta->chxReassons->hasErrors() ? $this->formEliminarCuenta->reasons->errMsg : '' ?>
+
+                <?php foreach ($this->formEliminarCuenta->chxReassons->getMultiOptions() as $key => $val) { ?>
+                <fieldset class="form_control tooltipstered">
+                    <label class="ioption">
+                        <input type="radio" name="chxReassons"  class="chx_reasons" value="<?=$val?>">
+                        <?=$key?>
+                    </label>
+                </fieldset>
+                <?php } ?>
+
+
+                <fieldset class="form_control tooltipstered">
+                    <?php
+                        echo $this->formEliminarCuenta->txaReasons->setAttribs(array(
+                            'placeholder' => 'Por favor , explícanos el motivo.',
+                            'class' => 'txa_motive',
+                            'required' => 'required',
+                            'aria-required' => 'true'
+                        ))->renderViewHelper();
+                    ?>
+                    <?= $this->formEliminarCuenta->txaReasons->hasErrors() ? $this->formEliminarCuenta->txaReasons->errMsg : '' ?>
+                </fieldset>
+
+                <fieldset class="form_control password tooltipstered">
+                  <label class="lbl_control" for="txtPassword">Contraseña</label>
+                  <?php
+                      echo $this->formEliminarCuenta->txtPassword->setAttribs(array(
+                          'class' => 'txt_control',
+                          'required' => 'required',
+                          'aria-required' => 'true'
+                      ))->renderViewHelper();
+                  ?>
+                  <?= $this->formEliminarCuenta->txtPassword->hasErrors() ? $this->formEliminarCuenta->txtPassword->errMsg : '' ?>
+                </fieldset>
+
+                <fieldset class="form_control tooltipstered">
+                    <label class="ioption" for="confirmation">
+                        <?php
+                            echo $this->formEliminarCuenta->confirmation->setAttribs(array(
+                                'class' => 'chx_confirmation',
+                                'required' => 'required',
+                                'aria-required' => 'true'
+                            ))->renderViewHelper();
+                        ?>
+                        Acepto eliminar de manera definitiva mi cuenta en AquiEmpleos.
+                    </label>
+                    <?= $this->formEliminarCuenta->confirmation->hasErrors() ? $this->formEliminarCuenta->confirmation->errMsg : '' ?>
+                </fieldset>
+
+                <button class="btn btn_cuaternary btn_save">Guardar</button>
+
+            </form>
+          </div>
+        </div>
+
+
+
+    </div>
+</div>

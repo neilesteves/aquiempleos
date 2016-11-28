@@ -1,0 +1,30 @@
+<div class="wrap-controls">
+    <div class="control-group">
+        <label for="txtPresentPassword" class="control-label"><em>*</em> Actual contraseña:</label>
+        <div class="controls">
+            <?=$this->formCambioClave->oldpswd->setAttribs(array('id'=>'txtPresentPassword','class'=>'input-xmiddle','maxlength'=>32,'type'=>'password','tabindex'=>'2','required'=>'', 'data-parsley-trigger'=>'change', 'data-parsley-minlength'=>'6', 'data-parsley-maxlength'=>'32', 'maxlength'=>32))->renderViewHelper(); ?>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label for="txtNewPassword" class="control-label"><em>*</em> Nueva contraseña:</label>
+        <div class="controls">
+            <?=$this->formCambioClave->pswd->setAttribs(array('id'=>'txtNewPassword','class'=>'input-xmiddle','maxlength'=>32,'type'=>'password','tabindex'=>'2','required'=>'', 'data-parsley-trigger'=>'change', 'data-parsley-errors-container'=>'#responsePassword', 'data-parsley-minlength'=>'6', 'data-parsley-maxlength'=>'32', 'maxlength'=>32, 'data-pstrength-container' => '#divPasswordStr'))->renderViewHelper(); ?>
+            <div class="parsley_info" id="responsePassword"><div class="txt_small">Usa de 6 a 32 caracteres ¡Sé ingenioso!</div></div>
+            <div id="divPasswordStr" class="wrap_stronger_pass middle"></div>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label for="txtRepeatPassword" class="control-label"><em>*</em> Confirmar contraseña:</label>
+        <div class="controls">
+            <?=$this->formCambioClave->pswd2->setAttribs(array('id'=>'txtRepeatPassword','class'=>'input-xmiddle','maxlength'=>32,'type'=>'password','tabindex'=>'3','required'=>'', 'data-parsley-trigger'=>'change','data-parsley-equalto'=>'#txtNewPassword', 'data-parsley-minlength'=>'6', 'data-parsley-maxlength'=>'32', 'maxlength'=>32))->renderViewHelper(); ?>       
+        </div>
+    </div>
+    <?php     
+        echo $this->formCambioClave->tok->renderViewHelper(); 
+        ?>
+    <input type="hidden" name="csrfhash" id="ocultohash" value="<?= CSRF_HASH ?>" />
+</div>
+</fieldset>
+

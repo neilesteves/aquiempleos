@@ -1,0 +1,158 @@
+<dataConfig>
+   <xi:include href="./db-connection.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>     -->  
+ 
+    <document>
+        <entity name="aviso" transformer="DateFormatTransformer" query="SELECT DISTINCT
+  a.id                     AS id_anuncio_web,
+  a.creado_por             AS creado_por,
+  a.fh_vencimiento_proceso AS fh_vencimiento_proceso,
+  a.slug                   AS slugaviso,
+  a.slug_pais              AS slugpais,
+  (CASE a.mostrar_empresa WHEN 0 THEN '' WHEN 1 THEN IF((ISNULL(a.logo) OR (a.logo = '')),'',a.logo) END) AS logoanuncio,
+ (CASE a.mostrar_empresa WHEN 0 THEN TRIM(REPLACE(REPLACE(a.empresa_rs,'.',''),' ',' ')) WHEN 1 THEN TRIM(REPLACE(REPLACE(e.nombre_comercial,' ',' '),'.','')) END) AS empresa_rs,
+   LOWER((CASE a.mostrar_empresa WHEN 0 THEN TRIM(REPLACE(REPLACE(a.empresa_rs,'.',''),' ',' ')) WHEN 1 THEN TRIM(REPLACE(REPLACE(e.nombre_comercial,' ',' '),'.','')) END)) AS empresa_rs_busqueda,
+   CAST(a.mostrar_empresa AS CHAR(2))        AS mostrar_empresa,
+  a.mostrar_salario        AS mostrar_salario,
+  LCASE(e.nombre_comercial) AS nombre_comercial,
+  LCASE(e.razon_social)    AS razon_social,
+  e.id                     AS id_empresa,
+  
+  REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(LCASE(TRIM(REPLACE(e.nombre_comercial,'.',''))),' ','-'),'á','a'),'é','e'),'í','i'),'ó','o'),'ú','u'),'ñ','n'),'--',' '),' ','-') AS empresaslug,
+  CONCAT(e.razon_social,'|',e.nombre_comercial,'|',REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(LCASE(TRIM(REPLACE(e.nombre_comercial,'.',''))),' ','-'),'á','a'),'é','e'),'í','i'),'ó','o'),'ú','u'),'--',' '),' ','-')) AS dataempresa,
+  (SELECT
+     GROUP_CONCAT(ca.adecsys_code SEPARATOR ',')
+   FROM compra_adecsys_codigo ca
+   WHERE (ca.id_compra = a.id_compra)) AS adecsys_code,
+  IF((CONCAT(a.funciones,a.responsabilidades) = ''),' ',CONCAT(a.funciones,' ',a.responsabilidades)) AS description,
+  IF((CONCAT(a.funciones,a.responsabilidades) = ''),' ',LOWER(CONCAT(a.funciones,' ',a.responsabilidades))) AS description_busqueda,
+  (SELECT
+     CONCAT(u.nombre)
+   FROM ubigeo u
+   WHERE (u.id = a.id_ubigeo)) AS ubicacion,
+  (SELECT
+     u.slug_ubigeo
+   FROM ubigeo u
+   WHERE (u.id = a.id_ubigeo)) AS ubicacionslug,
+  a.puesto                 AS puesto,
+  LOWER(a.puesto)                 AS puesto_busqueda,
+  (SELECT
+     CONCAT(ar.nombre,'|',ar.slug)
+   FROM area ar
+   WHERE (ar.id = a.id_area)) AS area,
+  (SELECT
+     CONCAT(IFNULL(ar.slug,' '))
+   FROM area ar
+   WHERE (ar.id = a.id_area)) AS areaslug,
+  (SELECT
+     GROUP_CONCAT(DISTINCT c.nombre SEPARATOR ',')
+   FROM ((anuncio_web aw
+       JOIN anuncio_estudio ae
+         ON ((aw.id = ae.id_anuncio_web)))
+      JOIN carrera c
+        ON ((c.id = ae.id_carrera)))
+   WHERE ((c.id = ae.id_carrera)
+          AND (aw.id = a.id))) AS carrera_busqueda,
+  (SELECT
+     GROUP_CONCAT(DISTINCT c.slug SEPARATOR ',')
+   FROM ((anuncio_web aw
+       JOIN anuncio_estudio ae
+         ON ((aw.id = ae.id_anuncio_web)))
+      JOIN carrera c
+        ON ((c.id = ae.id_carrera)))
+   WHERE ((c.id = ae.id_carrera)
+          AND (aw.id = a.id))) AS carreraslug,
+  (SELECT
+     GROUP_CONCAT(DISTINCT tc.nombre SEPARATOR '#')
+   FROM (((anuncio_web aw
+        JOIN anuncio_estudio ae
+          ON ((aw.id = ae.id_anuncio_web)))
+       JOIN carrera c
+         ON ((c.id = ae.id_carrera)))
+      JOIN tipo_carrera tc
+        ON ((tc.id = c.id_tipo_carrera)))
+   WHERE ((c.id = ae.id_carrera)
+          AND (aw.id = a.id))) AS tipo_carrera,
+  (SELECT
+     CONCAT(np.nombre,'|',np.slug)
+   FROM nivel_puesto np
+   WHERE (np.id = a.id_nivel_puesto)) AS nivel,
+  (SELECT
+     np.nombre
+   FROM nivel_puesto np
+   WHERE (np.id = a.id_nivel_puesto)) AS nivel_busqueda,
+  (SELECT
+     CONCAT(np.slug)
+   FROM nivel_puesto np
+   WHERE (np.id = a.id_nivel_puesto)) AS nivelslug,
+  a.fh_pub                 AS fecha_publicacion,
+  DATE(a.fh_pub)                 AS fecha_publi,
+  IF(ISNULL(a.salario_min),'0',IF((a.mostrar_salario = 0),0,CAST(IF(((a.salario_max = 750) OR (a.salario_max = 600)),1,a.salario_min) AS DECIMAL(10,2)))) AS price,
+  IF((ISNULL(a.salario_max) OR (a.salario_max = '')),IF((((a.salario_min = 10001) OR (a.salario_min = 9001)) AND (a.mostrar_salario = 1)),15000.00,0),IF((a.mostrar_salario = 0),0,CAST(a.salario_max AS DECIMAL(10,2)))) AS price2,
+ 
+IF(prioridad&lt;6,1,0)  AS destacado,
+a.destacado AS destacado_home,
+   a.prioridad              AS prioridad,
+  CONCAT('/ofertas-de-trabajo/',a.slug,'-',a.url_id) AS url,
+  a.url_id                 AS url_id,  a.discapacidad
+
+FROM (anuncio_web a
+   JOIN empresa e
+     ON ((e.id = a.id_empresa)))
+WHERE ((a.online = 1)
+       AND (a.estado = 'pagado')
+       AND (a.borrador = 0)
+       AND (a.eliminado = 0)
+       AND (a.cerrado = 0))
+GROUP BY a.id">
+            <!--datos personales -->
+                 <field column="id_anuncio_web" name="id_anuncio_web" /> 
+                <field column="adecsys_code" name="adecsys_code" /> 
+            <field column="logoanuncio" name="logoanuncio" /> 
+            <!--<field column="razon_comercial" name="razon_comercial" />-->
+            <field column="nombre_comercial" name="nombre_comercial" />      
+            <field column="razon_social" name="razon_social" />   
+            <field column="dataempresa" name="dataempresa" />   
+            <field column="empresaslug" name="empresaslug" />   
+            <field column="empresa_rs" name="empresa_rs" />
+            <field column="mostrar_empresa" name="mostrar_empresa" />
+            <field column="mostrar_salario" name="mostrar_salario" />
+            <field column="description" name="description"/>
+            <field column="ubicacion" name="ubicacion" />
+            <field column="ubicacionslug" name="ubicacionslug" />
+            <field column="slugpais" name="slugpais" />            
+            <field column="puesto" name="puesto"/>
+                        <field column="puesto_busqueda," name="puesto_busqueda,"/>
+
+            <field column="slugaviso" name="slugaviso" />
+            <field column="id_empresa" name="id_empresa" />
+            <field column="area" name="area" />
+            <field column="areaslug" name="areaslug"/>
+            <!--<field column="carrera" name="carrera" />-->
+            <field column="carrera_busqueda" name="carrera_busqueda" />
+            <field column="carreraslug" name="carreraslug" />
+            <field column="tipo_carrera" name="tipo_carrera" />
+           <field column="nivel" name="nivel" />
+            <field column="nivel_busqueda" name="nivel_busqueda" />
+            <field column="nivelslug" name="nivelslug"/>
+            <field column="fecha_publicacion" name="fecha_publicacion"  dateTimeFormat='yyyy-MM-dd HH:mm:ss'/>
+            <field column="fecha_publi" name="fecha_publi"  dateTimeFormat='yyyy-MM-dd'/>
+            <field column="fh_vencimiento_proceso" name="fh_vencimiento_proceso"  dateTimeFormat='yyyy-MM-dd'/>
+            
+            <field column="price" name="price" />
+            <field column="price2" name="price2" />
+            <!--<field column="pub_days" name="pub_days" />-->
+            <field column="destacado" name="destacado" /> 
+
+             <field column="prioridad" name="prioridad" />
+            <!--<field column="diasbusqueda" name="diasbusqueda" />-->
+            <field column="url" name="url" /> 
+            <field column="url_id" name="url_id" />       
+            <field column="creado_por" name="creado_por" />   
+            <field column="discapacidad" name="discapacidad" />
+    
+               <field column="destacado_home" name="destacado_home" /> 
+
+
+        </entity>
+    </document>
+</dataConfig>

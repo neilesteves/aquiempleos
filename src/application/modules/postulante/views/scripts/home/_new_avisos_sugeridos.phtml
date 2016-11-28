@@ -1,0 +1,22 @@
+<div class="row">
+      <?php foreach ($this->groupUltimosAvisos as $i => $item) { ?>
+      <?php
+      $item['ubicacion']=!empty($item['ubicacion'])?$item['ubicacion']:'&nbsp;';
+      $url = 
+              $this->url(array('slug' => $item['slugaviso'], 'empresaslug'=>App_Util::validateSlugEmpresa($item['empresaslug'],$item['mostrar_empresa']), 'ubicacionslug'=>$item['ubicacionslug'], 'url_id' => $item['urlaviso']),'aviso', true);
+      $logo = ($item['logo'] == '' || $item["mostrar_empresa"] == '0' || $item["logo"]== NULL) ? $this->verLogoDefecto ? $this->S('/images/' . $this->logoDefecto) : '' : ELEMENTS_URL_LOGOS . $item['logo'].$this->E()->getLastCommit();
+      ?>
+    <div class="company_wrapper"  itemscope itemtype="http://schema.org/JobPosting">
+        <a itemprop="url" href="<?= $url ?>" onClick="ga('send','event','postulacion','postulacion_rapida','<?php echo (isset($item['slug_area'])) ? $item['slug_area']:'';?>_<?=$item['slug_nivel']?>_<?=$item['url_aviso']?>_<?=$this->postulante?>');">
+          <div class="center_image"><img alt="" class="lazy" data-src="<?=$logo?>" src="<?=$this->S('/main/img/blank.gif')?>"/></div>
+          <div class="company_information">
+              <h4 class="ellipsis" itemprop="title"><?=nl2br($this->escape($item['puesto'])); ?></h4>
+              <p><span itemprop="occupationalCategory">Área: <?=$item['areas']?></span>
+                  <label itemprop="jobLocation"><?=(strlen($item['ubicacion']) > 25) ? substr($item['ubicacion'], 0, 25) . '...' : $item['ubicacion'];?></label>
+              </p><span class="btn btn_secondary">Ver detalle</span>
+          </div>
+          <div class="icon icon_arrow_right hide"></div>
+        </a>
+    </div>
+      <?php } ?>
+</div>

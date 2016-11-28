@@ -1,0 +1,249 @@
+<div class="box_cip">
+  <div class="payment_header"><img src="<?php echo $this->S('/images/logo_pagoefectivo_comercios.png'); ?>">
+    <h4>PASARELA DE PAGOS</h4>
+    <div class="print_button">
+      <button class="print_pdf" onclick="window.print()">IMPRIMIR <span></span></button>
+    </div>
+  </div>
+  <div class="payment_summary">
+    <div class="content_payment_summary">
+      <div class="payment_code">
+        <div class="logo_pagoefectivo_black"><img src="<?php echo $this->S('/images/logo_pagoefectivo.png'); ?>"></div>
+        <div class="info_code">
+          <p>Código de pago <span>(CIP): </span></p>
+          <h3><?= $this->anuncioWeb["cip"] ?></h3>
+        </div>
+        <div class="restrictions">Este código de pago no constituye una reserva confirmada sino hasta la realización del pago a través de los canales mencionados.<br>AquiEmpleos se reserva el derecho a finalizar un pedido antes del tiempo indicado; en este caso el código CIP quedaría sin efecto.</div>
+      </div>
+      <div class="total_pay"><span>Total a pagar:</span>
+        <h4><?php echo $this->moneda?> <?= number_format($this->anuncioWeb["totalPrecio"], 2) ?></h4><span>(Incluido <?php echo $this->igv?>)</span>
+        <div class="line_pay"></div>
+        <div class="payment_date">Puedes realizar el pago hasta el <?=($this->fhCierre->get("EEEE d ' ' ")) ?> <?= ($this->fhCierre->get("MMMM '/' ' ' H:m  ' p.m.'")) ?></div>
+      </div>
+    </div>
+    <div class="info_payment_summary">
+      <div class="content_info">
+        <div class="logo_info_left"><span></span></div>
+        <p>Indique que va realizar un Pago a la Empresa <span class="bold">PAGOEFECTIVO</span><br>(*) La cuenta de recaudación NO corresponde a <span class="bold">AquiEmpleos, </span>corresponde a la empresa <span class="bold">PAGOEFECTIVO</span></p>
+        <div class="logo_info_right"><span></span></div>
+      </div>
+    </div>
+  </div>
+  <div class="payment_methods">
+    <h4>FORMAS DE PAGO</h4>
+    <div class="content_payment_methods">
+      <p>Imprima esta orden de pago y acérquese a cualquiera de estos centros autorizados para efectuar el pago:</p>
+      <p class="mobile">Conserve el código de pago y acérquese a cualquiera de estos centros autorizados para efectuar el pago:</p>
+      <div class="places row">
+        <div class="place bold payfor">PAGAR POR</div>
+        <div class="place"><span class="internet icon"></span><span class="bold">INTERNET</span></div>
+        <div class="place"><span class="agentes icon"></span><span class="bold">AGENTES</span></div>
+        <div class="place"><span class="agencias icon"></span><span class="bold">AGENCIAS</span></div>
+        <div class="place"><span class="cajeros icon"></span><span class="bold">CAJEROS</span></div>
+      </div>
+      <div class="accordion_affiliated_office">
+        <div id="#section1" class="accordion" name="section1">
+          <div class="logo_accordion"><img src="<?php echo $this->S('/images/oficinas/interbank.png'); ?>" title="Interbank"></div><span>-</span><img src="<?php echo $this->S('/images/globalnet.jpg'); ?>" alt="Globalnet" class="cajero">
+        </div>
+        <div class="container open">
+          <div class="content">
+            <div class="place_steps">
+              <h6>Banca por internet de Interbank:</h6>
+              <ul>
+                <li>1.-Ingresa a tu cuenta y selecciona la opción de <strong>Pago de Recibos - Diversas Empresas.</strong></li>
+                <li>2.-Selecciona la cuenta de cargo y en empresa seleccionar <strong>PAGOEFECTIVO.</strong></li>
+                <li>3.-Ingresa el siguiente <strong>Código de Pago: <?php echo $this->cip ?></strong>, confirme su transacción y Listo.</li>
+              </ul>
+            </div>
+            <div class="place_steps">
+              <h6>En un agente Interbank:</h6>
+              <ul>
+                <li>1.-Indique que va realizar un pago a la <strong>empresa PAGOEFECTIVO</strong> y brinda el siguiente <strong>código 2735001.</strong></li>
+                <li>2.-Indique el <strong>Código de Pago: <?php echo $this->cip ?></strong>, el importe a pagar y la moneda.</li>
+                <li>3.-Verificar que el voucher indique <strong>PAGOEFECTIVO.</strong></li>
+              </ul>
+            </div>
+            <div class="place_steps">
+              <h6>En Tiendas y Money Market de Interbank:</h6>
+              <ul>
+                <li>1.-Indique que va realizar un <strong>pago de recaudo a PAGOEFECTIVO.</strong></li>
+                <li>2.-Indique el <strong>Código de Pago: <?php echo $this->cip ?></strong>, el importe a pagar y la moneda.</li>
+                <li>3.-Verificar que el voucher indique <strong>PAGOEFECTIVO.</strong></li>
+              </ul>
+            </div>
+            <div class="place_steps">
+              <h6>En Cajeros con Tarjeta - Global Net:</h6>
+              <ul>
+                <li>1.-Seleccione <strong>Pagos/Pagos de Recibo/Pagos Varios/Varios.</strong></li>
+                <li>2.-Digite el <strong>código: 35001</strong> y siga las instrucciones del Cajero Automático(*).</li>
+              </ul>
+              <h6>En Cajeros sin Tarjeta - Global Net Plus:</h6>
+              <ul>
+                <li>1.-Presione cualquier botón de la pantalla del cajero.</li>
+                <li>2.-Seleccione <strong>Pagos de recibos/Otros/Otros.</strong></li>
+                <li>3.-Digite el <strong>código: 35001</strong> y siga las instrucciones del Cajero Automático(*).</li>
+                <li><strong>(*)Verificar que el voucher indique Empresa: PAGOEFECTIVO.</strong></li>
+                <li></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div id="section2" class="accordion">
+          <div class="logo_accordion"><img src="<?php echo $this->S('/images/oficinas/kasnet.png'); ?>" title="Kasnet"></div><span>+</span>
+        </div>
+        <div class="container close">
+          <div class="content">
+            <div class="place_steps empty"></div>
+            <div class="place_steps">
+              <h6>En un agente Kasnet:</h6>
+              <ul>
+                <li>1.-Indique que va realizar un pago de recaudo a <strong>PAGOEFECTIVO MN.</strong></li>
+                <li>2.-Indique el <strong>Código de Pago: <?php echo $this->cip ?></strong> y el importe a pagar.</li>
+                <li>3.-Verificar que el voucher indique <strong>PAGO DE RECAUDO: PAGOEFECTIVO MN.</strong></li>
+              </ul>
+            </div>
+            <div class="place_steps empty"></div>
+            <div class="place_steps empty"></div>
+          </div>
+        </div>
+        <div class="accordion">
+          <div class="logo_accordion"><img src="<?php echo $this->S('/images/oficinas/continental.png'); ?>" title="BBVA Continental"></div><span>+</span>
+        </div>
+        <div class="container close">
+
+          <div class="content">
+            <div class="place_steps">
+              <h6>Banca por Internet:</h6>
+              <ul>
+                <li>1.-Ingrese a su cuenta, seleccione <strong>Pago de Servicios, De Instituciones y Emp.</strong></li>
+                <li>2.-Realice la búsqueda de los servicios escribiendo <strong>PAGOEFECTIVO.</strong> Luego seleccione <strong>PAGOEFECTIVO MN.</strong></li>
+                <li>3.-Ingresa el siguiente <strong>Código de Pago: <?php echo $this->cip ?></strong>, confirme su transacción y Listo.</li>
+              </ul>
+            </div>
+            <div class="place_steps">
+              <h6>En un Agente Express:</h6>
+              <ul>
+                <li>1.-Indique que va realizar un pago de recaudo a <strong>PAGOEFECTIVO MN.</strong></li>
+                <li>2.-Indique el <strong>Código de Pago: <?php echo $this->cip ?></strong>, el importe a pagar y la moneda.</li>
+                <li>3.-Verificar que el voucher indique <strong>EMISORA: PAGOEFECTIVO MN.</strong></li>
+              </ul>
+            </div>
+            <div class="place_steps">
+              <h6>En una Agencia del BBVA:</h6>
+              <ul>
+                <li>1.-Indique que va realizar un pago de recaudo a <strong>PAGOEFECTIVO MN.</strong></li>
+                <li>2.-Indique el <strong>Código de Pago: <?php echo $this->cip ?></strong>, el importe a pagar y la moneda.</li>
+                <li>3.-Verificar que el voucher indique <strong>EMISORA: PAGOEFECTIVO MN.</strong></li>
+              </ul>
+            </div>
+            <div class="place_steps empty"></div>
+          </div>
+        </div>
+        <div id="section5" class="accordion">
+          <div class="logo_accordion"><img src="<?php echo $this->S('/images/oficinas/bcp.png'); ?>" title="BCP"></div><span>+</span>
+        </div>
+        <div class="container close">
+          <div class="content">
+            <div class="place_steps">
+              <h6>Banca por Internet:</h6>
+              <ul>
+                <li>1.-Ingrese a su cuenta y selecciona <strong>Pago de servicios, Empresas Diversas.</strong></li>
+                <li>2.-Seleccione la empresa <strong>PAGOEFECTIVO</strong> y el servicio <strong>PAGOEFECTIVO - SOLES.</strong></li>
+                <li>3.-Ingrese el siguiente <strong>Código de Pago: <?php echo $this->cip ?></strong>, confirme su transacción y Listo.</li>
+              </ul>
+            </div>
+            <div class="place_steps">
+              <h6>En un Agente BCP:</h6>
+              <ul>
+                <li>1.-Indique que va realizar un pago a la empresa <strong>PAGOEFECTIVO</strong> y brinda el siguiente <strong>código 02186.</strong></li>
+                <li>2.-Indique el <strong>Código de Pago: <?php echo $this->cip ?></strong>, el importe a pagar y la moneda.</li>
+                <li>3.-Verificar que el voucher indique <strong>EMPRESA: PAGOEFECTIVO.</strong></li>
+              </ul>
+            </div>
+            <div class="place_steps">
+              <h6>En una Agencia BCP:</h6>
+              <ul>
+                <li>1.-Indique que va realizar un pago a la empresa <strong>PAGOEFECTIVO.</strong></li>
+                <li>2.-Indique el <strong>Código de Pago: <?php echo $this->cip ?></strong>, el importe a pagar y la moneda.</li>
+                <li>3.-Verificar que el voucher indique <strong>Empresa Afiliada: PAGOEFECTIVO.</strong></li>
+              </ul>
+            </div>
+            <div class="place_steps empty"></div>
+          </div>
+        </div>
+        <div id="section6" class="accordion">
+          <div class="logo_accordion"><img src="<?php echo $this->S('/images/oficinas/scotiabank.png'); ?>" title="Scotiabank"></div><span>+</span>
+        </div>
+        <div class="container close">
+          <div class="content">
+            <div class="place_steps">
+              <h6>Banca por Internet:</h6>
+              <ul>
+                <li>1.-Ingrese a su cuenta y seleccione <strong>Pagos - Otras Instituciones, Otros.</strong></li>
+                <li>2.-Seleccionar la Institución según servicio: <strong>PAGOEFECTIVO (SOLES).</strong></li>
+                <li>3.-Ingrese el siguiente <strong>Código de Pago: <?php echo $this->cip ?></strong>, confirme su transacción y Listo.</li>
+              </ul>
+            </div>
+            <div class="place_steps">
+              <h6>En un Cajero Express:</h6>
+              <ul>
+                <li>1.-Indique que va realizar un pago a la empresa <strong>PAGOEFECTIVO.</strong></li>
+                <li>2.-Indique el <strong>Código de Pago: <?php echo $this->cip ?></strong>, el importe a pagar y la moneda.</li>
+                <li>3.-Verificar que el voucher indique <strong>PAGOEFECTIVO.</strong></li>
+              </ul>
+            </div>
+            <div class="place_steps">
+              <h6>En una Agencia de Scotiabank:</h6>
+              <ul>
+                <li>1.-Indique que desea realizar un pago a la empresa <strong>PAGOEFECTIVO.</strong></li>
+                <li>2.-Indique el <strong>Código de Pago: <?php echo $this->cip ?></strong>, el importe a pagar y la moneda.</li>
+                <li>3.-Verificar que el voucher indique <strong>PAGOEFECTIVO.</strong></li>
+              </ul>
+            </div>
+            <div class="place_steps empty"></div>
+          </div>
+        </div>
+        <div id="section7" class="accordion">
+          <div class="logo_accordion"><img src="<?php echo $this->S('/images/oficinas/western_union.png'); ?>" title="Western Union"></div><span>+</span>
+        </div>
+        <div class="container close">
+          <div class="content">
+            <div class="place_steps empty"></div>
+            <div class="place_steps">
+              <h6>En una Agencia de Pago de Servicios Western Union:</h6>
+              <ul>
+                <li>1.-Indique que va realizar un pago de servicio a la empresa <strong>PAGOEFECTIVO.</strong></li>
+                <li>2.-Indique el <strong>Código de Pago: <?php echo $this->cip ?></strong>, el importe a pagar y la moneda.</li>
+                <li>3.-Verificar que el voucher indique <strong>Entidad: PAGOEFECTIVO.</strong></li>
+              </ul>
+            </div>
+            <div class="place_steps empty"></div>
+            <div class="place_steps empty"></div>
+          </div>
+        </div>
+        <div id="section8" class="accordion">
+          <div class="logo_accordion"><img src="<?php echo $this->S('/images/oficinas/full_carga.png'); ?>" title="FullCarga"></div><span>+</span>
+        </div>
+        <div class="container close">
+          <div class="content">
+            <div class="place_steps empty"></div>
+            <div class="place_steps">
+              <h6>Acérquese a cualquier Establecimiento Bodega, Farmacia, Cabina, Locutorio que tenga el logo de PAGOEFECTIVO y/o FullCarga.</h6>
+              <ul>
+                <li>1.-Indique que va realizar un pago de Servicio a la empresa <strong>PAGOEFECTIVO.</strong></li>
+                <li>2.-Elige el servicio <strong>PAGOEFECTIVO-SOLES.</strong></li>
+                <li>3.-Indique el <strong>código de Pago: <?php echo $this->cip ?></strong>.</li>
+              </ul>
+            </div>
+            <div class="place_steps empty"></div>
+            <div class="place_steps empty"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="print_button txt_right">
+      <button class="print_pdf" onclick="window.print()">IMPRIMIR <span></span></button>
+    </div>
+    <h2>GRACIAS POR SU PREFERENCIA</h2>
+  </div>
+</div>

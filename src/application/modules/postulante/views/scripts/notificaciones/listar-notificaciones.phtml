@@ -1,0 +1,33 @@
+<?php if(isset($this->datajsonoti)){ ?>
+        <div class="body_messages">             
+            <?php   foreach ($this->datajsonoti as $msj) { ?>
+                <?php if($msj['tipo_mensaje']=='pregunta'){?>
+                <div class="message_tx">
+                  <p>	<span class="date">22 Jul.- </span><?=$msj['cuerpo']?><i> </i></p>
+                  <div class="center_images"><img src="<?= ELEMENTS_URL_LOGOS .$this->logoEmpresa ?>"></div>
+                </div>
+                <?php } ?>
+                <?php if($msj['tipo_mensaje']=='mensaje'){?>
+                <div class="message_rx">
+                  <p> <span class="date">22 Jul.- </span><?=$msj['cuerpo']?>.<i> </i></p>
+                  <div class="crop_image" style="background-image:url(<?= ELEMENTS_URL_IMG .$this->logopostulante ?>)"><img src="" alt=""></div>
+                </div>
+                <div class="clear"></div> 
+                <?php } ?>
+            <?php    }?>
+        </div>
+        <div class="header_messages">
+          <h2><?=$this->puesto?> <br><?=$this->empresa?></h2>
+            <form class="box_conteiner">
+               <div class="box_conteiner_img">
+                 <div class="crop_image" style="background-image:url(<?= ELEMENTS_URL_IMG .$this->logopostulante ?>)"><img src="" alt=""></div>
+                 <div class="box_conteiner_talk"><i> </i>
+                    <?=$this->formRest->mensaje->setAttribs(array('id'=>'mensaje'  , 'placeholder'=>'Ingresa una respuesta'))->renderViewHelper();?>
+                   <p class="max_nummber">(máximo 1000 caracteres)</p><a href="#" class="btn btn_send">Enviar</a>
+                 </div>
+                 <div class="clear"></div>
+               </div>
+                <?=$this->formRest->hidAuthTokenCuestion->setAttribs(array('id'=>'hidAuthTokenCuestion'))->renderViewHelper();?>
+             </form>
+        </div>
+<?php }?>
