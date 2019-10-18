@@ -99,40 +99,40 @@ class Application_Form_Login extends App_Form
         $this->addElement($e);
 
         $e = new Zend_Form_Element_Hidden('returnFB');
-        $returnFacebok = Zend_Controller_Front::getInstance()->getRequest()->getRequestUri();
+        $returnFacebook = Zend_Controller_Front::getInstance()->getRequest()->getRequestUri();
         $helper= new App_Controller_Action_Helper_Util();
 
-        if ($returnFacebok == '/empresa' || $returnFacebok == '/empresa/') {            
-             $returnFacebok = str_replace('/', '', $returnFacebok);
-            $returnFacebok = '/'.$returnFacebok.'/mi-cuenta';
+        if ($returnFacebook == '/empresa' || $returnFacebook == '/empresa/') {            
+             $returnFacebook = str_replace('/', '', $returnFacebook);
+            $returnFacebook = '/'.$returnFacebook.'/mi-cuenta';
 
         }
-        if ($returnFacebok == '/admin' || $returnFacebok == '/admin/') {            
-              $returnFacebok = str_replace('/', '', $returnFacebok);
-              $returnFacebok = '/'.$returnFacebok.'/gestion';
+        if ($returnFacebook == '/admin' || $returnFacebook == '/admin/') {            
+              $returnFacebook = str_replace('/', '', $returnFacebook);
+              $returnFacebook = '/'.$returnFacebook.'/gestion';
 
         }
-        if ($returnFacebok == '/') {
-            $returnFacebok .= 'mi-cuenta';
+        if ($returnFacebook == '/') {
+            $returnFacebook .= 'mi-cuenta';
         }
-        if ($returnFacebok == '/registro') {
-            $returnFacebok = '/mi-cuenta';
+        if ($returnFacebook == '/registro') {
+            $returnFacebook = '/mi-cuenta';
         }
         
-        $returnFb = explode('/', $returnFacebok );
+        $returnFb = explode('/', $returnFacebook );
         if ($returnFb[1] == 'ofertas-de-trabajo') {
-            $returnFacebok=urlencode($helper->codifica(($returnFacebok)));
+            $returnFacebook=urlencode($helper->codifica(($returnFacebook)));
         }
           $retur=explode('/', $return );
         if ($returnFb[1]=='buscar') {          
-            $returnFacebok=urlencode($helper->codifica(($returnFacebok)));
+            $returnFacebook=urlencode($helper->codifica(($returnFacebook)));
         }
 
         if ($returnFb[1]=='empresa') {
-            $returnFacebok = '/mi-cuenta';
+            $returnFacebook = '/mi-cuenta';
         }
                       
-        $e->setValue($returnFacebok);
+        $e->setValue($returnFacebook);
         $e->clearDecorators();
         $e->addDecorator('ViewHelper');
         $this->addElement($e);
